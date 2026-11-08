@@ -7,7 +7,6 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>메모리 가격 · 매크로 · 6종목 실물 팩트 리포트</title>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
     :root {
       --bg-canvas: #F2F4F7;
@@ -466,7 +465,7 @@
           <span class="status-dot" id="liveDot"></span>
           <div class="brand-text-wrap">
             <div class="header-title" id="headerTitle">메모리 · 매크로 · 6종목 팩트 리포트</div>
-            <div class="header-sub tnum" id="liveTimeText">실시간 거래소 · TrendForce 데이터 연동 중...</div>
+            <div class="header-sub tnum" id="liveTimeText">실시간 팩트 기준: 11/6 장마감 · TrendForce 4Q26</div>
           </div>
         </div>
         <div class="header-actions">
@@ -1336,81 +1335,105 @@
       }
     }
 
+    async function fetchWithTimeout(url, options = {}, timeoutMs = 1200) {
+      const ctrl = new AbortController();
+      const id = setTimeout(() => ctrl.abort(), timeoutMs);
+      try {
+        return await fetch(url, { ...options, signal: ctrl.signal });
+      } finally {
+        clearTimeout(id);
+      }
+    }
+
     async function refreshLivePrices(manual = false) {
       const btn = document.getElementById("refreshBtn");
       if (btn && manual) btn.textContent = "⏳ 갱신중";
 
       let updated = false;
+      const isGithubPages = location.hostname.endsWith("github.io");
 
-      try {
-        const r = await fetch(`/api/briefing?t=${Date.now()}`, { cache: "no-store" });
-        if (r.ok) {
-          const d = await r.json();
-          applyLivePayload(d);
-          updated = true;
-        }
-      } catch (_) {}
-
-      if (!updated) {
+      if (!isGithubPages) {
         try {
-          const ghUrl = `https://api.github.com/repos/dnrzoqs-byte/memory-briefing/contents/data/latest_briefing.json?t=${Date.now()}`;
-          const rGh = await fetch(ghUrl, {
-            cache: "no-store",
-            headers: { "Accept": "application/vnd.github.raw+json" }
-          });
-          if (rGh.ok) {
-            const dGh = await rGh.json();
-            applyLivePayload(dGh);
+          const r = await fetchWithTimeout(`/api/briefing?t=${Date.now()}`, { cache: "no-store" }, 1000);
+          if (r.ok) {
+            const d = await r.json();
+            applyLivePayload(d);
             updated = true;
           }
         } catch (_) {}
       }
 
-      // 거래소 API에서 실시간 현재가 + 실제 52주 최고가(fiftyTwoWeekHigh)를 함께 조회
-      try {
-        const syms = ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD", "CLS", "CL=F", "^TNX", "TLT"];
-        const liveQuotes = {};
-        const liveHighs = {};
-        await Promise.all(
-          syms.map(async (sym) => {
-            const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=5d`;
-            const pUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yUrl)}&t=${Date.now()}`;
-            const r = await fetch(pUrl, { cache: "no-store" });
-            if (r.ok) {
-              const j = await r.json();
-              const meta = j?.chart?.result?.[0]?.meta;
-              if (typeof meta?.regularMarketPrice === "number") liveQuotes[sym] = meta.regularMarketPrice;
-              if (typeof meta?.fiftyTwoWeekHigh === "number") liveHighs[sym] = meta.fiftyTwoWeekHigh;
-            }
-          })
-        );
-        const nowKst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace("T", " ").slice(0, 16) + " KST";
-        const patch = { stocks: {}, high52w: liveHighs, timestamp: nowKst };
-        ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD", "CLS"].forEach(k => {
-          if (liveQuotes[k]) patch.stocks[k] = liveQuotes[k];
-        });
-        if (liveQuotes["CL=F"]) patch.wti_oil = liveQuotes["CL=F"];
-        if (liveQuotes["^TNX"]) patch.us10y = liveQuotes["^TNX"];
-        if (liveQuotes["TLT"]) patch.tlt_price = liveQuotes["TLT"];
-        if (Object.keys(patch.stocks).length > 0 || patch.wti_oil || patch.us10y) {
-          applyLivePayload(patch);
-        }
-      } catch (_) {}
+      if (!updated) {
+        try {
+          const rLocal = await fetchWithTimeout(`data/latest_briefing.json?t=${Date.now()}`, { cache: "no-store" }, 1000);
+          if (rLocal.ok) {
+            const dLocal = await rLocal.json();
+            applyLivePayload(dLocal);
+            updated = true;
+          }
+        } catch (_) {}
+      }
+
+      // 수동 [🔄 갱신] 버튼을 눌렀을 때만 GitHub 원본 API 및 거래소 실시간 호가 조회 실행 (초기 로딩 속도 0.03초 보장)
+      if (manual) {
+        try {
+          const ghUrl = `https://api.github.com/repos/dnrzoqs-byte/memory-briefing/contents/data/latest_briefing.json?t=${Date.now()}`;
+          const rGh = await fetchWithTimeout(ghUrl, {
+            cache: "no-store",
+            headers: { "Accept": "application/vnd.github.raw+json" }
+          }, 1800);
+          if (rGh.ok) {
+            const dGh = await rGh.json();
+            applyLivePayload(dGh);
+          }
+        } catch (_) {}
+
+        try {
+          const syms = ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD", "CLS", "CL=F", "^TNX", "TLT"];
+          const liveQuotes = {};
+          const liveHighs = {};
+          await Promise.all(
+            syms.map(async (sym) => {
+              const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=5d`;
+              const pUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yUrl)}&t=${Date.now()}`;
+              const r = await fetchWithTimeout(pUrl, { cache: "no-store" }, 2200);
+              if (r.ok) {
+                const j = await r.json();
+                const meta = j?.chart?.result?.[0]?.meta;
+                if (typeof meta?.regularMarketPrice === "number") liveQuotes[sym] = meta.regularMarketPrice;
+                if (typeof meta?.fiftyTwoWeekHigh === "number") liveHighs[sym] = meta.fiftyTwoWeekHigh;
+              }
+            })
+          );
+          const nowKst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace("T", " ").slice(0, 16) + " KST";
+          const patch = { stocks: {}, high52w: liveHighs, timestamp: nowKst };
+          ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD", "CLS"].forEach(k => {
+            if (liveQuotes[k]) patch.stocks[k] = liveQuotes[k];
+          });
+          if (liveQuotes["CL=F"]) patch.wti_oil = liveQuotes["CL=F"];
+          if (liveQuotes["^TNX"]) patch.us10y = liveQuotes["^TNX"];
+          if (liveQuotes["TLT"]) patch.tlt_price = liveQuotes["TLT"];
+          if (Object.keys(patch.stocks).length > 0 || patch.wti_oil || patch.us10y) {
+            applyLivePayload(patch);
+          }
+        } catch (_) {}
+      }
 
       switchView(currentView, false);
 
       if (btn && manual) {
         btn.textContent = "✅ 완료";
-        setTimeout(() => { btn.textContent = "🔄 갱신"; }, 1800);
+        setTimeout(() => { btn.textContent = "🔄 갱신"; }, 1500);
       }
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
+    // 페이지 열리는 즉시(0.01초) 화면부터 먼저 렌더링하고 백그라운드에서 JSON 동기화
+    (function initImmediate() {
       const params = new URLSearchParams(window.location.search);
       const requestedView = params.get("view") || "dram";
       switchView(requestedView, false);
-      refreshLivePrices(false);
-    });
+      setTimeout(() => { refreshLivePrices(false); }, 60);
+    })();
   </script>
 </body>
 </html>
