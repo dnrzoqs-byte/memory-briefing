@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,8 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <title>메모리 가격 · 매크로 · 6종목 실물 팩트 리포트</title>
   <style>
     :root {
@@ -90,8 +92,7 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background-color: var(--bg-surface);
-      border-bottom: 1px solid var(--border-color);
+      background-color: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
       padding: 11px 14px;
     }
 
@@ -110,13 +111,90 @@
       flex: 1;
     }
 
+        /* --- Enhanced Pulse Animation --- */
     .status-dot {
+      position: relative;
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background-color: var(--safe-green);
-      box-shadow: 0 0 0 3px var(--safe-green-soft);
       flex-shrink: 0;
+    }
+    .status-dot::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background-color: var(--safe-green);
+      opacity: 0.6;
+      animation: status-pulse 2s infinite ease-out;
+    }
+    @keyframes status-pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      70% { transform: scale(2.2); opacity: 0; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* --- Bottom Navigation Bar (Mobile Native Feel) --- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      height: calc(58px + env(safe-area-inset-bottom, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      background-color: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-color);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 50;
+      box-shadow: 0 -3px 12px rgba(17, 24, 39, 0.04);
+    }
+    html.dark .bottom-nav {
+      background-color: rgba(21, 28, 40, 0.88);
+      box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.35);
+    }
+    .nav-tab {
+      appearance: none;
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: inherit;
+      padding: 6px 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-tab .nav-icon {
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-tab .nav-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-tab.active {
+      color: var(--down-blue);
+    }
+    .nav-tab.active .nav-icon {
+      transform: scale(1.15) translateY(-1px);
+    }
+    .nav-tab.active .nav-label {
+      font-weight: 800;
     }
 
     .brand-text-wrap {
@@ -162,7 +240,7 @@
 
     .view-body {
       flex: 1;
-      padding: 12px 12px 28px;
+      padding: 12px 12px calc(80px + env(safe-area-inset-bottom, 0px));
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -469,6 +547,9 @@
           </div>
         </div>
         <div class="header-actions">
+                    <button onclick="shareReport()" id="shareBtn" class="icon-btn" title="공유하기">
+            공유
+          </button>
           <button onclick="refreshLivePrices(true)" id="refreshBtn" class="icon-btn">
             🔄 갱신
           </button>
@@ -480,6 +561,25 @@
     </header>
 
     <main id="viewContainer" class="view-body"></main>
+
+    <nav class="bottom-nav">
+      <button class="nav-tab active" data-view="dram" onclick="switchView('dram')">
+        <span class="nav-icon">💾</span>
+        <span class="nav-label">DRAM 시황</span>
+      </button>
+      <button class="nav-tab" data-view="rates" onclick="switchView('rates')">
+        <span class="nav-icon">📈</span>
+        <span class="nav-label">금리·매크로</span>
+      </button>
+      <button class="nav-tab" data-view="overview5" onclick="switchView('overview5')">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">보유 6종목</span>
+      </button>
+      <button class="nav-tab" data-view="factcheck" onclick="switchView('factcheck')">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">팩트체크</span>
+      </button>
+    </nav>
 
   </div>
 
@@ -1251,6 +1351,14 @@
       else if (currentView === "rates") container.innerHTML = renderRatesView();
       else if (currentView === "overview5") container.innerHTML = renderOverview5View();
       else if (currentView === "factcheck") container.innerHTML = renderFactCheckView();
+      // Sync bottom nav tabs
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        if (tab.dataset.view === currentView) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
 
       if (updateUrl && window.history && window.history.replaceState) {
         const url = new URL(window.location.href);
@@ -1271,8 +1379,28 @@
       if (detailEl) detailEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
     };
 
+        window.shareReport = function() {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: '반도체 메모리 · 매크로 · 6종목 실물 팩트 리포트',
+          url: url
+        }).catch(() => {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('shareBtn');
+          if (btn) {
+            const orig = btn.textContent;
+            btn.textContent = '복사됨!';
+            setTimeout(() => { btn.textContent = orig; }, 1500);
+          }
+        });
+      }
+    };
+
     window.toggleDark = function() {
       const isDark = document.documentElement.classList.toggle("dark");
+      try { localStorage.setItem("semi_theme", isDark ? "dark" : "light"); } catch(_) {}
       const btn = document.getElementById("darkBtn");
       if (btn) btn.textContent = isDark ? "라이트" : "다크";
     };
@@ -1429,6 +1557,14 @@
 
     // 페이지 열리는 즉시(0.01초) 화면부터 먼저 렌더링하고 백그라운드에서 JSON 동기화
     (function initImmediate() {
+            try {
+        const savedTheme = localStorage.getItem("semi_theme");
+        if (savedTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          const btn = document.getElementById("darkBtn");
+          if (btn) btn.textContent = "라이트";
+        }
+      } catch(_) {}
       const params = new URLSearchParams(window.location.search);
       const requestedView = params.get("view") || "dram";
       switchView(requestedView, false);
