@@ -3,556 +3,738 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>반도체 · 금리 · 내 종목 그래픽 챗봇</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>반도체 · 금리 · 5종목 실시간 브리핑</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --bg-page: #E8EEF5;
-      --bg-chat: #BACEE0;
-      --bg-card: #FFFFFF;
-      --bg-subtle: #F3F5F8;
-      --bg-tray: #FFFFFF;
-      --text-primary: #191919;
-      --text-secondary: #48484A;
-      --text-muted: #76767A;
-      --border-line: rgba(0, 0, 0, 0.08);
-      --kakao-yellow: #FEE500;
-      --up-red: #D93025;
-      --up-red-bg: #FEF2F2;
-      --down-blue: #1A63D8;
-      --down-blue-bg: #EFF6FF;
-      --safe-green: #0D8A58;
-      --safe-green-bg: #ECFDF5;
-      --warn-amber: #B4690E;
-      --warn-amber-bg: #FFFBEB;
+      --bg-canvas: #F2F4F7;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F7F8FA;
+      --bg-accent: #EEF4FF;
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --text-muted: #6B7280;
+      --border-color: #E5E7EB;
+      --border-subtle: #F3F4F6;
+      --brand-primary: #1D4ED8;
+      --up-red: #DC2626;
+      --up-red-soft: #FEF2F2;
+      --down-blue: #2563EB;
+      --down-blue-soft: #EFF6FF;
+      --safe-green: #059669;
+      --safe-green-soft: #ECFDF5;
+      --warn-amber: #D97706;
+      --warn-amber-soft: #FFFBEB;
+      --shadow-card: 0 1px 3px rgba(17, 24, 39, 0.06), 0 1px 2px rgba(17, 24, 39, 0.04);
     }
 
     html.dark {
-      --bg-page: #0B0C0E;
-      --bg-chat: #12151A;
-      --bg-card: #1C1F26;
-      --bg-subtle: #262A34;
-      --bg-tray: #181B22;
-      --text-primary: #F5F5F7;
-      --text-secondary: #B4B6BC;
-      --text-muted: #7C7F87;
-      --border-line: rgba(255, 255, 255, 0.10);
-      --up-red: #FF5A52;
-      --up-red-bg: rgba(255, 90, 82, 0.15);
-      --down-blue: #5294FF;
-      --down-blue-bg: rgba(82, 148, 255, 0.15);
-      --safe-green: #2AD192;
-      --safe-green-bg: rgba(42, 209, 146, 0.15);
-      --warn-amber: #FFB547;
-      --warn-amber-bg: rgba(255, 181, 71, 0.15);
+      --bg-canvas: #0B0F17;
+      --bg-surface: #151C28;
+      --bg-subtle: #1E2736;
+      --bg-accent: rgba(37, 99, 235, 0.16);
+      --text-primary: #F9FAFB;
+      --text-secondary: #D1D5DB;
+      --text-muted: #9CA3AF;
+      --border-color: #263042;
+      --border-subtle: #1E2736;
+      --brand-primary: #60A5FA;
+      --up-red: #F87171;
+      --up-red-soft: rgba(248, 113, 113, 0.14);
+      --down-blue: #60A5FA;
+      --down-blue-soft: rgba(96, 165, 250, 0.14);
+      --safe-green: #34D399;
+      --safe-green-soft: rgba(52, 211, 153, 0.14);
+      --warn-amber: #FBBF24;
+      --warn-amber-soft: rgba(251, 191, 36, 0.14);
+      --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
-      margin: 0;
-      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
-      background-color: var(--bg-page);
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      background-color: var(--bg-canvas);
       color: var(--text-primary);
+      line-height: 1.45;
       letter-spacing: -0.02em;
       -webkit-font-smoothing: antialiased;
     }
 
     .tnum {
       font-variant-numeric: tabular-nums;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
     }
 
-    .app-shell {
-      max-width: 540px;
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    .shell {
+      max-width: 520px;
       margin: 0 auto;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background-color: var(--bg-chat);
-      box-shadow: 0 0 32px rgba(0, 0, 0, 0.10);
-      transition: max-width 0.2s ease;
-    }
-    .app-shell.wide-mode {
-      max-width: 880px;
+      background-color: var(--bg-canvas);
     }
 
-    .top-bar {
+    .app-header {
       position: sticky;
       top: 0;
-      z-index: 30;
-      background-color: var(--bg-tray);
-      border-bottom: 1px solid var(--border-line);
-      padding: 12px 16px;
+      z-index: 40;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .chat-stream {
-      flex: 1;
-      padding: 16px 14px 24px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .bot-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      animation: fadeUp 0.22s ease-out;
-    }
-
-    .bot-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 13px;
-      background: #191919;
-      color: #FEE500;
+    .header-top {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
+      justify-content: space-between;
+      padding: 12px 16px 10px;
+      gap: 8px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--safe-green);
+      box-shadow: 0 0 0 3px var(--safe-green-soft);
       flex-shrink: 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     }
 
-    .bot-bubble {
-      background-color: var(--bg-card);
+    .header-title {
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text-primary);
-      border-radius: 4px 18px 18px 18px;
-      padding: 15px;
-      width: 100%;
-      max-width: 100%;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--border-line);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .user-row {
+    .header-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .header-actions {
       display: flex;
-      justify-content: flex-end;
-      animation: fadeUp 0.18s ease-out;
-    }
-
-    .user-bubble {
-      background-color: var(--kakao-yellow);
-      color: #191919;
-      border-radius: 18px 4px 18px 18px;
-      padding: 10px 14px;
-      font-size: 13.5px;
-      font-weight: 700;
-      max-width: 82%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-    }
-
-    .choice-tray {
-      position: sticky;
-      bottom: 0;
-      z-index: 30;
-      background-color: var(--bg-tray);
-      border-top: 1px solid var(--border-line);
-      padding: 12px 14px 16px;
-      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-    }
-
-    .choice-chip {
-      display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12.5px;
-      font-weight: 700;
-      background-color: var(--bg-subtle);
-      color: var(--text-primary);
-      border: 1px solid var(--border-line);
-      cursor: pointer;
-      transition: all 0.14s ease;
-      text-align: left;
-    }
-    .choice-chip:hover {
-      transform: translateY(-1px);
-      border-color: var(--down-blue);
-    }
-    .choice-chip.primary {
-      background-color: #FEE500;
-      color: #191919;
-      border-color: rgba(0,0,0,0.12);
+      gap: 6px;
+      flex-shrink: 0;
     }
 
-    .sub-pill {
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
+    .icon-btn {
+      height: 30px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
       background-color: var(--bg-subtle);
       color: var(--text-secondary);
-      border: 1px solid var(--border-line);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.97);
+    }
+
+    .view-body {
+      flex: 1;
+      padding: 14px 14px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    .seg-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background-color: var(--bg-subtle);
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .seg-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      background-color: var(--bg-subtle);
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .seg-btn {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 7px 2px;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-align: center;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.14s ease;
+    }
+
+    .seg-btn.active {
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-weight: 800;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .kpi-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .kpi-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .kpi-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .kpi-box {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-bottom: 4px;
+    }
+
+    .kpi-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+
+    .chart-box {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 10px 8px;
+    }
+
+    .aligned-row {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: border-color 0.15s ease;
+    }
+
+    .aligned-row.clickable {
       cursor: pointer;
     }
-    .sub-pill.active {
-      background-color: var(--text-primary);
-      color: var(--bg-card);
+
+    .aligned-row.clickable:hover {
+      border-color: var(--down-blue);
     }
 
-    .subtle-box {
-      background-color: var(--bg-subtle);
+    .row-top-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 1.1fr;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .row-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .gauge-track {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563EB 0%, #10B981 55%, #DC2626 100%);
+      margin: 8px 0;
+    }
+
+    .gauge-Pin {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #FFFFFF;
+      border: 3px solid #111827;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+
+    .insight-box {
+      background-color: var(--bg-accent);
       border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 12.5px;
+      color: var(--text-primary);
+      line-height: 1.55;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .insight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .insight-item {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 12.5px;
+    }
+
+    .insight-key {
+      font-weight: 800;
+      color: var(--down-blue);
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
-  <div id="appShell" class="app-shell">
+  <div class="shell">
 
-    <!-- 상단 채널 헤더 -->
-    <header class="top-bar flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5">
-        <div class="w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-sm shadow-sm" style="background:#FEE500; color:#191919;">
-          📊
-        </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="font-bold text-sm">반도체 브리핑 챗봇</span>
-            <span id="liveBadge" class="text-xs px-1.5 py-0.5 rounded font-bold" style="background: var(--safe-green-bg); color: var(--safe-green);">실시간 연동</span>
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-group">
+          <span class="status-dot" id="liveDot"></span>
+          <div>
+            <div class="header-title" id="headerTitle">반도체 · 금리 · 5종목 실물 브리핑</div>
+            <div class="header-sub tnum" id="liveTimeText">실시간 시세 연동 중...</div>
           </div>
-          <div id="liveTimeText" class="text-xs tnum" style="color: var(--text-muted);">2026.11.08 · 정오(12:00) · 퇴근(19:00) 자동갱신</div>
         </div>
-      </div>
-
-      <div class="flex items-center gap-1">
-        <a href="http://pf.kakao.com/_vSvxeX" target="_blank" class="px-2 py-1.5 rounded-lg text-xs font-bold" style="background:#FEE500; color:#191919; text-decoration:none;">
-          💬 카톡채널
-        </a>
-        <button onclick="refreshLivePrices(true)" id="refreshBtn" class="px-2 py-1.5 rounded-lg text-xs font-bold subtle-box">
-          🔄 실시간갱신
-        </button>
-        <button onclick="showAllCards()" class="px-2 py-1.5 rounded-lg text-xs font-bold subtle-box">
-          📑 전체
-        </button>
-        <button onclick="toggleDark()" id="darkBtn" class="px-2 py-1.5 rounded-lg text-xs font-bold subtle-box">
-          다크
-        </button>
+        <div class="header-actions">
+          <button onclick="refreshLivePrices(true)" id="refreshBtn" class="icon-btn">
+            🔄 실시간 갱신
+          </button>
+          <button onclick="toggleDark()" id="darkBtn" class="icon-btn">
+            다크
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- 중앙 채팅 스트림 (선택지를 누를 때마다 그래프 카드가 생성됨) -->
-    <main id="chatStream" class="chat-stream">
-
-      <!-- 기본 웰컴 카드 -->
-      <div class="bot-row">
-        <div class="bot-avatar">팩트</div>
-        <div class="w-full">
-          <div class="text-xs font-semibold mb-1" style="color: var(--text-secondary);">반도체 실물팩트 봇 · 방금</div>
-          <div class="bot-bubble space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background: var(--safe-green-bg); color: var(--safe-green);">
-                ✅ 증권사·모건스탠리 거품 완전 배제
-              </span>
-              <span class="text-xs tnum" style="color: var(--text-muted);">11월 8일 기준</span>
-            </div>
-            <div class="text-sm font-bold leading-snug">
-              안녕하세요 동욱님! 글자만 가득한 브리핑 대신, 아래 메뉴를 누르시면 <span style="color: var(--down-blue);">실시간 그래프와 시각 자료</span>로 바로 보여드립니다.
-            </div>
-            <div class="subtle-box p-3 text-xs leading-relaxed space-y-1 tnum" style="color: var(--text-secondary);">
-              <div>• <strong>오늘의 핵심</strong>: 디램(DDR5) 소매가는 <strong>$60.17(-0.8%)</strong>로 단기 숨고르기 중이나, <strong>4분기 대량 납품 계약가는 +10~15% 추가 인상</strong> 확정적!</div>
-              <div>• <strong>금리 신호등</strong>: 미국 10년 금리 <strong>4.86%</strong> (4.70% 밑으로 내려올 때가 반등 신호탄)</div>
-              <div>• <strong>최우선 매집</strong>: <strong>삼성전자우(15.0만) · 대덕전자(7.1만)</strong> 역사적 바닥 구간</div>
-            </div>
-            <div class="text-xs font-bold pt-1" style="color: var(--text-muted);">
-              👇 보고 싶은 그래프 브리핑을 선택해 주세요!
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </main>
-
-    <!-- 하단 고정 챗봇 선택지 트레이 (언제든 클릭 가능) -->
-    <footer class="choice-tray">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-extrabold" style="color: var(--text-secondary);">💬 브리핑 선택 메뉴 (누르면 그래프가 바로 뜹니다)</span>
-        <button onclick="clearChat()" class="text-xs font-semibold" style="color: var(--text-muted);">🧹 대화 비우기</button>
-      </div>
-
-      <!-- 1열: 핵심 테마 그래프 선택지 -->
-      <div class="flex flex-wrap gap-1.5 mb-2">
-        <button onclick="askBot('dram')" class="choice-chip primary">🔮 1. 디램 가격 &amp; 다음주 예측 그래프</button>
-        <button onclick="askBot('rates')" class="choice-chip">🏦 2. 한·미 금리 &amp; 국채 가격 그래프</button>
-        <button onclick="askBot('overview5')" class="choice-chip">🎯 3. 내 5종목 목표가 한눈에 비교</button>
-        <button onclick="askBot('factcheck')" class="choice-chip">⚖️ 4. 증권사·모건스탠리 거품 비교</button>
-      </div>
-
-      <!-- 2열: 내 보유 5종목 개별 상세 밴드 그래프 선택지 -->
-      <div class="flex flex-wrap items-center gap-1.5 pt-1.5 border-t" style="border-color: var(--border-line);">
-        <span class="text-xs font-bold mr-1" style="color: var(--text-muted);">📈 종목별 그래프:</span>
-        <button onclick="askBot('stock_005935')" class="sub-pill">★ 삼성전자우</button>
-        <button onclick="askBot('stock_005930')" class="sub-pill">삼성전자</button>
-        <button onclick="askBot('stock_353200')" class="sub-pill">🔴 대덕전자</button>
-        <button onclick="askBot('stock_240810')" class="sub-pill">원익IPS</button>
-        <button onclick="askBot('stock_AMD')" class="sub-pill">🇺🇸 AMD</button>
-      </div>
-    </footer>
+    <main id="viewContainer" class="view-body"></main>
 
   </div>
 
   <script>
     const dramSeries = {
       ddr5_16g: {
-        name: "신형 서버·PC용 (DDR5 16G)",
-        price: "$60.17",
-        change: "-0.82% (6개월 +61.7%)",
-        nextText: "다음주 예측 $59.6 (연말 납품가 +15%↑)",
-        labels: ["5월", "7월", "9월", "10월", "현재", "다음주(예측)", "12월(예측)"],
+        shortTab: "DDR5 16G",
+        name: "신형 서버·PC용 DDR5 16Gb",
+        price: 60.17,
+        changeText: "-0.82% (6개월 +61.7%)",
+        nextForecast: "$59.60",
+        yearEndForecast: "$61.50",
+        contractTrend: "+10% ~ +15% 인상 확정",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "12월말"],
         pts: [37.20, 47.80, 58.90, 60.67, 60.17, 59.60, 61.50],
-        note: "다음 주 소매 거래가는 PC 업체 관망세로 $59.4~$60.3 부근에서 살짝 숨고르기(-0.5%~-1%)가 예상되지만, 삼성전자가 실제 돈 받는 4분기 대량 납품 계약가는 +10~15% 추가 상승이 확정적입니다."
+        summary: "다음 주 소매 현물가는 PC 제조사 원가 부담으로 $59.4~$60.3 구간에서 단기 숨고르기(-0.5%~-1.0%)가 예상되나, 삼성전자 실적의 90%를 좌우하는 4분기 고정 계약가는 AI 서버 수요로 +10~15% 추가 인상이 확정적입니다."
       },
       ddr4_16g: {
-        name: "일반형 16G (DDR4 16G)",
-        price: "$80.82",
-        change: "-1.06% (6개월 +74.2%)",
-        nextText: "다음주 예측 $79.8 (단기 급등 숨고르기)",
-        labels: ["5월", "7월", "9월", "10월", "현재", "다음주(예측)", "12월(예측)"],
+        shortTab: "DDR4 16G",
+        name: "일반 범용 DDR4 16Gb",
+        price: 80.82,
+        changeText: "-1.06% (6개월 +74.2%)",
+        nextForecast: "$79.80",
+        yearEndForecast: "$78.50",
+        contractTrend: "구형 감산 · 신형 전환",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "12월말"],
         pts: [46.40, 61.00, 78.20, 81.69, 80.82, 79.80, 78.50],
-        note: "구형 DDR4는 6개월간 +74% 급등한 피로감으로 다음 주 $79.8선까지 완만한 조정이 예상됩니다. 삼성전자가 구형 라인을 줄여 신형(DDR5·HBM)으로 전환 중이라 실적엔 오히려 긍정적입니다."
+        summary: "구형 DDR4는 최근 6개월간 +74% 급등한 뒤 단기 차익 매물이 소화되며 다음 주 $79.8선까지 완만한 조정이 예상됩니다. 삼성전자가 구형 라인을 줄여 DDR5·HBM으로 전환 중이라 수익성엔 긍정적입니다."
       },
       ddr4_8g: {
-        name: "보급형 8G (DDR4 8G)",
-        price: "$45.61",
-        change: "-0.93% (6개월 +55.1%)",
-        nextText: "다음주 예측 $45.1 (보합권 횡보)",
-        labels: ["5월", "7월", "9월", "10월", "현재", "다음주(예측)", "12월(예측)"],
+        shortTab: "DDR4 8G",
+        name: "보급형 PC·가전용 DDR4 8Gb",
+        price: 45.61,
+        changeText: "-0.93% (6개월 +55.1%)",
+        nextForecast: "$45.10",
+        yearEndForecast: "$44.80",
+        contractTrend: "보합권 횡보 유지",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "12월말"],
         pts: [29.40, 37.50, 44.80, 46.04, 45.61, 45.10, 44.80],
-        note: "보급형 8Gb 제품은 중저가 PC·가전 업체들의 원가 저항으로 다음 주 $45 부근에서 옆으로 횡보할 전망입니다."
+        summary: "보급형 8Gb 제품은 중저가 PC·가전 업체의 재고 조절로 다음 주 $45.1 부근에서 큰 변동 없이 횡보할 전망입니다."
       },
       ddr5_mod: {
-        name: "완제품 램 16GB 모듈",
-        price: "$241.67",
-        change: "보합 (6개월 +68.4%)",
-        nextText: "다음주 예측 $242.0 (강보합 고점 유지)",
-        labels: ["5월", "7월", "9월", "10월", "현재", "다음주(예측)", "12월(예측)"],
+        shortTab: "16GB 모듈",
+        name: "서버·PC 완제품 16GB 모듈",
+        price: 241.67,
+        changeText: "보합 (6개월 +68.4%)",
+        nextForecast: "$242.00",
+        yearEndForecast: "$248.00",
+        contractTrend: "공급 부족 지속",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "12월말"],
         pts: [143.50, 185.00, 232.50, 241.00, 241.67, 242.00, 248.00],
-        note: "대덕전자 기판(MLB·패키지) 수요와 직결되는 서버·PC용 완제품 모듈은 물량 부족이 지속되어 다음 주에도 꺾임 없이 $242~248 강보합이 예상됩니다."
+        summary: "대덕전자 기판(패키지·MLB) 출하량과 직결되는 완제품 모듈 가격은 공급 부족이 이어지며 다음 주에도 꺾임 없이 $242~248 강보합 흐름이 예상됩니다."
       }
+    };
+
+    const liveMacro = {
+      us10y: 4.86,
+      us2y: 4.31,
+      fedRate: "3.75~4.00%",
+      tlt: 81.92,
+      krBase: 3.00,
+      kr10y: 3.86,
+      usdkrw: 1363.9
     };
 
     const stockData = {
       stock_005935: {
-        name: "① 삼성전자우 (005935)",
+        shortName: "삼전우",
+        name: "삼성전자우",
+        code: "005935",
         unit: "만",
         curr: 15.03,
         currLabel: "150,300원",
         bottom: 15.0,
-        bottomLabel: "14.5~15.5만",
+        bottomLabel: "15.0만",
         target1: 21.0,
-        target1Label: "20.5~21.5만",
+        target1Label: "21.0만",
         target2: 27.0,
-        target2Label: "26~28만원",
+        target2Label: "27.0만",
         hype: 44.0,
-        hypeLabel: "증권사 44만(거품)",
-        badge: "★ 1순위 최우선 매집 (청산가치 바닥)",
-        badgeStyle: "background: var(--up-red-bg); color: var(--up-red);",
+        hypeLabel: "44.0만",
+        upside: "+40% ~ +80%",
+        action: "★ 1순위 최우선 매집",
+        tone: "red",
         history: [17.8, 17.1, 16.4, 15.8, 15.03, 21.0, 27.0],
-        histLabels: ["7월", "8월", "9월", "10월", "현재(바닥)", "1차회귀", "실전익절"],
-        summary: "증권사가 부르는 40만원대는 잊으시고, 과거 10년 삼성전자가 항상 회복했던 평균 자산가치(PBR 1.5배)만 대입해도 우선주 제값은 21만~27만원입니다. 현재 15만원 초반은 회사 청산가치(PBR 1.0배) 바닥이라 배당 받으며 모아가기 가장 안전합니다."
+        histLabels: ["7월", "8월", "9월", "10월", "현재", "1차회귀", "실전익절"],
+        basis: "10년 평균 PBR 1.5배 (본주 대비 우선주 할인율 반영)",
+        summary: "국내 증권사 목표가(44만)는 배제하고 과거 10년 실제 거래된 평균 자산가치만 적용해도 적정가는 21만~27만원입니다. 현재 15만원 초반은 청산가치(PBR 1.0배) 바닥이므로 배당을 받으며 모아가기 가장 안전합니다."
       },
       stock_005930: {
-        name: "② 삼성전자 (005930)",
+        shortName: "삼성전자",
+        name: "삼성전자",
+        code: "005930",
         unit: "만",
         curr: 18.87,
         currLabel: "188,700원",
         bottom: 18.0,
-        bottomLabel: "17.5~18.5만",
+        bottomLabel: "18.0만",
         target1: 25.0,
-        target1Label: "24.5~26만",
+        target1Label: "25.0만",
         target2: 32.0,
-        target2Label: "31~33만원",
+        target2Label: "32.0만",
         hype: 60.0,
-        hypeLabel: "증권사 60만(거품)",
-        badge: "🟢 장기보유 · 18만원 선 분할매수",
-        badgeStyle: "background: var(--safe-green-bg); color: var(--safe-green);",
+        hypeLabel: "60.0만",
+        upside: "+33% ~ +70%",
+        action: "18만원 선 분할매수",
+        tone: "green",
         history: [22.4, 21.3, 20.2, 19.5, 18.87, 25.0, 32.0],
-        histLabels: ["7월", "8월", "9월", "10월", "현재(바닥)", "1차회귀", "실전익절"],
-        summary: "국내 증권사(60만)는 희망고문이고 모건스탠리는 공매도용 흔들기입니다. 지난 10년간 삼성전자는 장부가치 1.1배(약 18만원)에서 무조건 바닥을 찍고 1.6배(약 25만~32만원)까지 되돌림했습니다."
+        histLabels: ["7월", "8월", "9월", "10월", "현재", "1차회귀", "실전익절"],
+        basis: "10년 실거래 PBR 밴드 하단 1.1배 ~ 평균 1.6배",
+        summary: "지난 10년간 삼성전자는 장부가치 1.1배(약 18만원)에서 어김없이 바닥을 다지고 평균 1.6배(25만~32만원)로 회귀했습니다. 모건스탠리 공포 리포트에 흔들려 바닥에서 매도할 구간이 아닙니다."
       },
       stock_353200: {
-        name: "③ 대덕전자 (353200)",
+        shortName: "대덕전자",
+        name: "대덕전자",
+        code: "353200",
         unit: "만",
         curr: 7.12,
         currLabel: "71,200원",
         bottom: 7.1,
-        bottomLabel: "6.8~7.4만",
+        bottomLabel: "7.1만",
         target1: 10.2,
-        target1Label: "9.8~10.5만",
+        target1Label: "10.2만",
         target2: 13.0,
-        target2Label: "12.5~13.5만",
+        target2Label: "13.0만",
         hype: 19.0,
-        hypeLabel: "증권사 19만(거품)",
-        badge: "🔴 적극 매수 (실적 대비 과매도 바닥)",
-        badgeStyle: "background: var(--up-red-bg); color: var(--up-red);",
+        hypeLabel: "19.0만",
+        upside: "+43% ~ +82%",
+        action: "🔴 과매도 적극 매수",
+        tone: "red",
         history: [9.4, 8.8, 8.1, 7.6, 7.12, 10.2, 13.0],
-        histLabels: ["7월", "8월", "9월", "10월", "현재(바닥)", "1차회귀", "실전익절"],
-        summary: "증권사 목표가(19만)는 반으로 깎아 들으셔야 합니다. 최근 6,150억 신규 공장 투자 비용을 다 빼고 실제 찍히는 분기 영업이익에 기판 업종 10년 평균 배수만 곱해도 제값은 10만~13만원입니다. 지금 7.1만원은 억울하게 빠진 바겐세일 구간입니다."
+        histLabels: ["7월", "8월", "9월", "10월", "현재", "1차회귀", "실전익절"],
+        basis: "6,150억 신규 시설투자 감가상각 반영 후 10년 평균 PER",
+        summary: "증권사 최고 목표가(19만)에서 거품을 걷어내고 대규모 시설투자 비용을 보수적으로 차감해도 실전 적정가는 10.2만~13.0만원입니다. DDR5 모듈 강세 속에 현재 7.1만원은 명백한 과매도 바닥권입니다."
       },
       stock_240810: {
-        name: "④ 원익IPS (240810)",
+        shortName: "원익IPS",
+        name: "원익IPS",
+        code: "240810",
         unit: "만",
         curr: 6.67,
         currLabel: "66,700원",
         bottom: 6.0,
-        bottomLabel: "5.8~6.3만",
+        bottomLabel: "6.0만",
         target1: 9.1,
-        target1Label: "8.8~9.5만",
+        target1Label: "9.1만",
         target2: 11.5,
-        target2Label: "11~12만원",
+        target2Label: "11.5만",
         hype: 16.0,
-        hypeLabel: "증권사 16만(거품)",
-        badge: "🟢 보유 · 추매는 6만 초반에만",
-        badgeStyle: "background: var(--safe-green-bg); color: var(--safe-green);",
+        hypeLabel: "16.0만",
+        upside: "+36% ~ +72%",
+        action: "보유 (6만초반 추매)",
+        tone: "green",
         history: [8.1, 7.6, 7.2, 6.9, 6.67, 9.1, 11.5],
         histLabels: ["7월", "8월", "9월", "10월", "현재", "1차회귀", "실전익절"],
-        summary: "삼성 미국 테일러 공장 장비 대금 입금이 내년 초로 이연된 점을 감안하면 실전 적정가는 9만~11.5만원입니다. 현재 6.67만원은 완전 바닥(6.0만)보다 살짝 위이므로 급하게 추매하지 마시고 보유만 하세요."
+        basis: "삼성 테일러 공장 장비 반입 및 대금 정산 시차 반영",
+        summary: "장비 수주 대금이 실적에 찍히는 시기가 삼성전자우·대덕전자보다 반 박자 늦습니다. 현재 보유 물량은 유지하되, 추가 매수는 6.0만~6.2만원 완전히 눌렸을 때만 천천히 접근하세요."
       },
       stock_AMD: {
-        name: "⑤ AMD (NASDAQ)",
+        shortName: "AMD",
+        name: "AMD",
+        code: "NASDAQ",
         unit: "$",
         curr: 449.04,
         currLabel: "$449.04",
         bottom: 428.0,
-        bottomLabel: "$415~$440",
+        bottomLabel: "$428",
         target1: 530.0,
-        target1Label: "$520~$540",
+        target1Label: "$530",
         target2: 605.0,
-        target2Label: "$590~$620",
+        target2Label: "$605",
         hype: 950.0,
-        hypeLabel: "월가 $950(거품)",
-        badge: "🟡 보유 · 미국 10년금리 4.7% 밑에서 추매",
-        badgeStyle: "background: var(--warn-amber-bg); color: var(--warn-amber);",
+        hypeLabel: "$950",
+        upside: "+18% ~ +35%",
+        action: "보유 (금리 4.7%↓ 추매)",
+        tone: "amber",
         history: [510, 492, 475, 460, 449.04, 530, 605],
         histLabels: ["7월", "8월", "9월", "10월", "현재", "1차회귀", "실전익절"],
-        summary: "월가 IB들의 $700~$1,250 목표가 거품을 빼고, 실제 찍힌 3분기 매출($13.4B)과 내년 순이익에 과거 평균 배수(PER 25배)만 곱하면 실전 제값은 $530~$605입니다. 미국 10년 금리(4.86%)가 4.7% 아래로 꺾일 때 $420~$440에서 담으세요."
+        basis: "분기 실물 매출($13.4B) 및 FCF 대비 5년 평균 PER 25배",
+        summary: "월가 IB들의 과장된 목표가($950)를 배제하고 실제 데이터센터 매출 성장률만 대입하면 적정가는 $530~$605입니다. 미국 10년물 국채금리가 4.70% 아래로 내려올 때 가장 탄력적으로 반등합니다."
       }
     };
 
-    function buildDramSvg(key) {
-      const item = dramSeries[key];
-      const pts = item.pts;
-      const minV = Math.min(...pts) * 0.90;
+    let currentView = 'dram';
+    let currentDramKey = 'ddr5_16g';
+    let currentStockKey = 'stock_005935';
+
+    function renderLineSvg(pts, labels, forecastStartIdx, unitPrefix = "$", unitSuffix = "") {
+      const w = 460, h = 156, padX = 38, topY = 28, botY = 122;
+      const minV = Math.min(...pts) * 0.91;
       const maxV = Math.max(...pts) * 1.07;
-      const w = 480, padX = 34, topY = 24, botY = 112;
 
-      const coords = pts.map((v, i) => {
-        const x = padX + (i * (w - padX * 2)) / (pts.length - 1);
-        const y = botY - ((v - minV) / (maxV - minV)) * (botY - topY);
-        return { x, y, v, label: item.labels[i] };
-      });
+      const coords = pts.map((v, i) => ({
+        x: padX + (i * (w - padX * 2)) / (pts.length - 1),
+        y: botY - ((v - minV) / (maxV - minV)) * (botY - topY),
+        v,
+        label: labels[i]
+      }));
 
-      const actual = coords.slice(0, 5);
-      const forecast = coords.slice(4);
+      const actual = coords.slice(0, forecastStartIdx + 1);
+      const forecast = coords.slice(forecastStartIdx);
       const actualPath = actual.map((c, i) => (i === 0 ? `M ${c.x} ${c.y}` : `L ${c.x} ${c.y}`)).join(" ");
       const forecastPath = forecast.map((c, i) => (i === 0 ? `M ${c.x} ${c.y}` : `L ${c.x} ${c.y}`)).join(" ");
       const areaD = `${actualPath} L ${actual[actual.length - 1].x} ${botY} L ${actual[0].x} ${botY} Z`;
 
       return `
-        <svg viewBox="0 0 ${w} 142" class="w-full h-36 overflow-visible">
-          <rect x="${coords[4].x}" y="${topY - 8}" width="${coords[6].x - coords[4].x + 22}" height="${botY - topY + 14}" rx="8" fill="#1A63D8" fill-opacity="0.06" />
-          <line x1="${padX}" y1="${topY}" x2="${w - padX}" y2="${topY}" stroke="currentColor" stroke-opacity="0.07" />
-          <line x1="${padX}" y1="${(topY + botY)/2}" x2="${w - padX}" y2="${(topY + botY)/2}" stroke="currentColor" stroke-opacity="0.07" />
-          <line x1="${padX}" y1="${botY}" x2="${w - padX}" y2="${botY}" stroke="currentColor" stroke-opacity="0.12" />
-          <path d="${areaD}" fill="#D93025" fill-opacity="0.10" />
-          <path d="${actualPath}" fill="none" stroke="#D93025" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="${forecastPath}" fill="none" stroke="#1A63D8" stroke-width="2.6" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" />
+        <svg viewBox="0 0 ${w} ${h}" style="width:100%; height:auto; display:block; overflow:visible;">
+          <rect x="${coords[forecastStartIdx].x}" y="${topY - 12}" width="${coords[coords.length - 1].x - coords[forecastStartIdx].x + 26}" height="${botY - topY + 20}" rx="8" fill="#2563EB" fill-opacity="0.06" />
+          <line x1="${padX - 10}" y1="${topY}" x2="${w - padX + 10}" y2="${topY}" stroke="currentColor" stroke-opacity="0.07" />
+          <line x1="${padX - 10}" y1="${(topY + botY) / 2}" x2="${w - padX + 10}" y2="${(topY + botY) / 2}" stroke="currentColor" stroke-opacity="0.07" />
+          <line x1="${padX - 10}" y1="${botY}" x2="${w - padX + 10}" y2="${botY}" stroke="currentColor" stroke-opacity="0.14" />
+          <path d="${areaD}" fill="#DC2626" fill-opacity="0.08" />
+          <path d="${actualPath}" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${forecastPath}" fill="none" stroke="#2563EB" stroke-width="2.8" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" />
           ${coords.map((c, idx) => {
-            const isForecast = idx > 4;
-            const isNow = idx === 4;
-            const col = isForecast ? "#1A63D8" : "#D93025";
+            const isForecast = idx > forecastStartIdx;
+            const isNow = idx === forecastStartIdx;
+            const dotCol = isForecast ? "#2563EB" : "#DC2626";
+            const txtCol = isForecast ? "var(--down-blue)" : "var(--text-primary)";
+            const formattedVal = unitPrefix === "$" && c.v >= 100
+              ? `${unitPrefix}${Math.round(c.v)}${unitSuffix}`
+              : `${unitPrefix}${c.v.toFixed(1)}${unitSuffix}`;
             return `
-              <circle cx="${c.x}" cy="${c.y}" r="${isNow ? 4.5 : 3.5}" fill="${col}" />
-              <text x="${c.x}" y="${c.y - 8}" text-anchor="middle" font-size="10.5" font-weight="${isNow || isForecast ? '800' : '600'}" fill="${isForecast ? '#1A63D8' : 'currentColor'}" class="tnum">$${c.v.toFixed(1)}</text>
-              <text x="${c.x}" y="${botY + 17}" text-anchor="middle" font-size="10" font-weight="${isForecast ? '700' : '500'}" fill="${isForecast ? '#1A63D8' : '#76767A'}" class="tnum">${c.label}</text>
+              <circle cx="${c.x}" cy="${c.y}" r="${isNow ? 5 : 3.8}" fill="${dotCol}" stroke="#FFFFFF" stroke-width="1.5" />
+              <text x="${c.x}" y="${c.y - 10}" text-anchor="middle" font-size="11" font-weight="${isNow || isForecast ? '800' : '600'}" fill="${txtCol}" class="tnum">${formattedVal}</text>
+              <text x="${c.x}" y="${botY + 20}" text-anchor="middle" font-size="10.5" font-weight="${isNow || isForecast ? '800' : '600'}" fill="${isForecast ? 'var(--down-blue)' : 'var(--text-muted)'}">${c.label}</text>
             `;
-          }).join('')}
+          }).join("")}
         </svg>
       `;
     }
 
-    function buildDramCardHtml(uid, initialKey = 'ddr5_16g') {
-      const item = dramSeries[initialKey];
+    function renderDramView() {
+      const item = dramSeries[currentDramKey];
       return `
-        <div class="space-y-2.5" id="dramCard-${uid}">
-          <div class="flex items-center justify-between">
+        <section class="card">
+          <div class="card-header">
             <div>
-              <span class="text-xs font-bold" style="color: var(--safe-green);">🔮 대만 실거래가(실선) + 다음주·연말 예측(점선)</span>
-              <h3 class="text-base font-extrabold mt-0.5" id="dramTitle-${uid}">${item.name}</h3>
+              <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">DRAMeXchange 실물 현물·계약 데이터</span>
+              <h2 class="card-title">${item.name}</h2>
             </div>
-            <div class="text-right">
-              <div class="text-lg font-extrabold tnum" id="dramPrice-${uid}">${item.price}</div>
-              <div class="text-xs font-bold tnum" style="color: var(--down-blue);" id="dramNext-${uid}">${item.nextText}</div>
+            <div style="text-align:right;" class="tnum nowrap">
+              <div style="font-size:20px; font-weight:800; color:var(--text-primary);">$${item.price.toFixed(2)}</div>
+              <div style="font-size:11.5px; font-weight:700; color:var(--down-blue);">${item.changeText}</div>
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-1">
-            <button onclick="switchBotDram('${uid}', 'ddr5_16g')" id="btn-${uid}-ddr5_16g" class="sub-pill active">신형 DDR5</button>
-            <button onclick="switchBotDram('${uid}', 'ddr4_16g')" id="btn-${uid}-ddr4_16g" class="sub-pill">일반 DDR4 16G</button>
-            <button onclick="switchBotDram('${uid}', 'ddr4_8g')" id="btn-${uid}-ddr4_8g" class="sub-pill">보급형 8G</button>
-            <button onclick="switchBotDram('${uid}', 'ddr5_mod')" id="btn-${uid}-ddr5_mod" class="sub-pill">16GB 모듈</button>
+          <div class="seg-grid-4">
+            ${Object.keys(dramSeries).map(k => `
+              <button onclick="selectDramKey('${k}')" class="seg-btn ${k === currentDramKey ? 'active' : ''}">
+                ${dramSeries[k].shortTab}
+              </button>
+            `).join("")}
           </div>
 
-          <div class="subtle-box p-3">
-            <div id="dramSvgWrap-${uid}">${buildDramSvg(initialKey)}</div>
-            <div id="dramDesc-${uid}" class="text-xs mt-2 pt-2 border-t leading-relaxed" style="border-color: var(--border-line); color: var(--text-secondary);">
-              💡 <strong>판단</strong>: ${item.note}
+          <div class="kpi-grid-3 tnum" style="margin-bottom:12px;">
+            <div class="kpi-box">
+              <div class="kpi-label">현재 소매 실거래</div>
+              <div class="kpi-val">$${item.price.toFixed(2)}</div>
+              <div class="kpi-sub" style="color:var(--text-muted);">대만 현물 기준</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">다음주 예상가</div>
+              <div class="kpi-val" style="color:var(--down-blue);">${item.nextForecast}</div>
+              <div class="kpi-sub" style="color:var(--down-blue);">단기 숨고르기</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">4분기 대량 납품가</div>
+              <div class="kpi-val" style="color:var(--up-red);">+10~15%↑</div>
+              <div class="kpi-sub" style="color:var(--up-red);">고정계약 인상</div>
             </div>
           </div>
 
-          <div class="subtle-box p-3 space-y-2">
-            <div class="text-xs font-bold">📊 소매가(현물) vs 삼성전자가 실제 돈 받는 대량 납품가(고정계약)</div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span>소매 거래가 (다음주 예상)</span>
-                <span class="font-bold tnum" style="color: var(--down-blue);">-0.5% ~ -1.0% 단기 숨고르기</span>
+          <div class="chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; font-weight:700; margin-bottom:4px; padding:0 4px;">
+              <span style="color:var(--up-red);">━ 실선: 실제 거래가 추이</span>
+              <span style="color:var(--down-blue);">--- 점선: 다음주 · 연말 예측</span>
+            </div>
+            ${renderLineSvg(item.pts, item.labels, 4, "$", "")}
+          </div>
+
+          <div class="aligned-row" style="margin-top:12px;">
+            <div style="font-size:12px; font-weight:800; margin-bottom:10px;">
+              📊 왜 소매가가 쉬어가도 삼성전자·대덕전자 실적은 오를까?
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                <span>소매 현물가 (비중 10% · 다음주 예측)</span>
+                <span class="tnum" style="color:var(--down-blue);">-0.5% ~ -1.0% 약보합 숨고르기</span>
               </div>
-              <div class="w-full h-2.5 rounded-full bg-gray-200 overflow-hidden">
-                <div class="h-full rounded-full" style="width: 48%; background: #1A63D8;"></div>
+              <div style="width:100%; height:8px; border-radius:999px; background:var(--border-color); overflow:hidden;">
+                <div style="width:45%; height:100%; background:var(--down-blue); border-radius:999px;"></div>
               </div>
             </div>
             <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span>4분기 대량 납품 계약가 (진짜 실적)</span>
-                <span class="font-bold tnum" style="color: var(--up-red);">+10% ~ +15% 추가 인상 확정적!</span>
+              <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                <span>4분기 빅테크 대량 납품 계약가 (실적 90%)</span>
+                <span class="tnum" style="color:var(--up-red);">+10% ~ +15% 추가 인상 확정적</span>
               </div>
-              <div class="w-full h-2.5 rounded-full bg-gray-200 overflow-hidden">
-                <div class="h-full rounded-full" style="width: 88%; background: #D93025;"></div>
+              <div style="width:100%; height:8px; border-radius:999px; background:var(--border-color); overflow:hidden;">
+                <div style="width:88%; height:100%; background:var(--up-red); border-radius:999px;"></div>
               </div>
             </div>
           </div>
-        </div>
+
+          <div class="insight-box" style="margin-top:12px;">
+            <div class="insight-list">
+              <div class="insight-item">
+                <span class="insight-key">핵심 결론</span>
+                <span>${item.summary}</span>
+              </div>
+            </div>
+          </div>
+        </section>
       `;
     }
 
-    window.switchBotDram = function(uid, key) {
-      ['ddr5_16g', 'ddr4_16g', 'ddr4_8g', 'ddr5_mod'].forEach(k => {
-        const b = document.getElementById(`btn-${uid}-${k}`);
-        if (b) b.classList.toggle('active', k === key);
-      });
-      const item = dramSeries[key];
-      document.getElementById(`dramTitle-${uid}`).textContent = item.name;
-      document.getElementById(`dramPrice-${uid}`).textContent = item.price;
-      document.getElementById(`dramNext-${uid}`).textContent = item.nextText;
-      document.getElementById(`dramSvgWrap-${uid}`).innerHTML = buildDramSvg(key);
-      document.getElementById(`dramDesc-${uid}`).innerHTML = `💡 <strong>판단</strong>: ${item.note}`;
-    };
-
-    function buildRatesCardHtml() {
-      const ratePts = [4.28, 4.42, 4.58, 4.72, 4.86];
-      const labels = ["7월", "8월", "9월", "10월", "현재(4.86%)"];
-      const w = 460, padX = 36, topY = 22, botY = 104;
+    function renderRatesView() {
+      const ratePts = [4.28, 4.42, 4.58, 4.72, Number(liveMacro.us10y)];
+      const labels = ["7월", "8월", "9월", "10월", "현재"];
+      const w = 460, h = 152, padX = 38, topY = 28, botY = 120;
       const minV = 4.10, maxV = 5.05;
       const coords = ratePts.map((v, i) => ({
         x: padX + (i * (w - padX * 2)) / (ratePts.length - 1),
@@ -563,364 +745,432 @@
       const threshY = botY - ((4.70 - minV) / (maxV - minV)) * (botY - topY);
 
       return `
-        <div class="space-y-3">
-          <div>
-            <span class="text-xs font-bold" style="color: var(--up-red);">🏦 미국 연준(FRED) · 한국은행 금리 &amp; 국채 가격 그래프</span>
-            <h3 class="text-base font-extrabold mt-0.5">미국 10년 금리가 초록색 점선(4.70%) 아래로 내려오면 반도체 급반등!</h3>
-          </div>
-
-          <div class="subtle-box p-3">
-            <div class="flex justify-between items-center text-xs font-bold mb-1">
-              <span>🇺🇸 미국 10년 국채금리 5개월 추이</span>
-              <span style="color: var(--safe-green);">--- 초록 점선: 4.70% (반도체 매수·반등 기준선)</span>
-            </div>
-            <svg viewBox="0 0 ${w} 130" class="w-full h-32 overflow-visible">
-              <line x1="${padX}" y1="${threshY}" x2="${w - padX}" y2="${threshY}" stroke="#0D8A58" stroke-width="2" stroke-dasharray="5 4" />
-              <text x="${padX + 6}" y="${threshY - 5}" font-size="10" font-weight="700" fill="#0D8A58">반등 기준선 4.70%</text>
-              <line x1="${padX}" y1="${botY}" x2="${w - padX}" y2="${botY}" stroke="currentColor" stroke-opacity="0.12" />
-              <path d="${pathD}" fill="none" stroke="#D93025" stroke-width="2.8" stroke-linecap="round" />
-              ${coords.map((c, i) => `
-                <circle cx="${c.x}" cy="${c.y}" r="${i === 4 ? 4.5 : 3.5}" fill="#D93025" />
-                <text x="${c.x}" y="${c.y - 8}" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor" class="tnum">${c.v.toFixed(2)}%</text>
-                <text x="${c.x}" y="${botY + 16}" text-anchor="middle" font-size="10" fill="#76767A" class="tnum">${c.label}</text>
-              `).join('')}
-            </svg>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2 text-xs tnum">
-            <div class="subtle-box p-2.5">
-              <div style="color: var(--text-muted);">🇺🇸 미국 장기국채 가격(TLT)</div>
-              <div class="text-base font-extrabold mt-0.5">$81.92 <span class="text-xs font-bold" style="color: var(--down-blue);">(바닥 다지기)</span></div>
-              <div class="mt-0.5" style="color: var(--text-secondary);">$83 위로 오르면 금리 안정 신호</div>
-            </div>
-            <div class="subtle-box p-2.5">
-              <div style="color: var(--text-muted);">🇰🇷 한국 기준금리 / 국고채 10년</div>
-              <div class="text-base font-extrabold mt-0.5">3.00% / 3.86%</div>
-              <div class="mt-0.5" style="color: var(--safe-green);">환율 1,363.9원 (삼성 수출 호재)</div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function buildOverview5CardHtml() {
-      const items = [
-        { key: 'stock_005935', name: '① 삼성전자우', now: '15.0만', bot: '15만', t1: '21만', t2: '27만', pct: 18, upside: '+40% ~ +80%', action: '★ 1순위 모아가기', col: '#D93025' },
-        { key: 'stock_005930', name: '② 삼성전자', now: '18.87만', bot: '18만', t1: '25만', t2: '32만', pct: 22, upside: '+33% ~ +70%', action: '18만원 선 매수', col: '#0D8A58' },
-        { key: 'stock_353200', name: '③ 대덕전자', now: '7.12만', bot: '7.1만', t1: '10.2만', t2: '13만', pct: 16, upside: '+43% ~ +82%', action: '🔴 적극 매수', col: '#D93025' },
-        { key: 'stock_240810', name: '④ 원익IPS', now: '6.67만', bot: '6.0만', t1: '9.1만', t2: '11.5만', pct: 28, upside: '+36% ~ +72%', action: '보유(6만초 추매)', col: '#0D8A58' },
-        { key: 'stock_AMD', name: '⑤ AMD', now: '$449', bot: '$428', t1: '$530', t2: '$605', pct: 30, upside: '+18% ~ +35%', action: '금리 진정시 추매', col: '#B4690E' }
-      ];
-
-      return `
-        <div class="space-y-3">
-          <div>
-            <span class="text-xs font-bold" style="color: var(--safe-green);">🎯 증권사·모건스탠리 거품 뺀 '10년 실제 거래 밴드' 기준</span>
-            <h3 class="text-base font-extrabold mt-0.5">내 5종목 현재 위치(●) &amp; 실전 목표가 막대 그래프</h3>
-            <p class="text-xs mt-0.5" style="color: var(--text-secondary);">왼쪽 파란색(바닥)에 가까울수록 지금 사기 좋은 종목입니다. 종목 이름을 누르면 상세 그래프가 열립니다.</p>
-          </div>
-
-          <div class="space-y-2.5 tnum">
-            ${items.map(it => `
-              <div onclick="askBot('${it.key}')" class="subtle-box p-3 cursor-pointer hover:opacity-95 transition">
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <div>
-                    <span class="font-extrabold text-sm">${it.name}</span>
-                    <span class="font-bold ml-1" style="color: var(--text-secondary);">현재 ${it.now}</span>
-                  </div>
-                  <span class="font-extrabold px-2 py-0.5 rounded-full" style="background: rgba(0,0,0,0.06); color: ${it.col};">${it.action} (기대 ${it.upside})</span>
-                </div>
-
-                <div class="relative w-full h-3 rounded-full bg-gradient-to-r from-blue-500 via-emerald-500 to-red-500 my-2">
-                  <div style="left: ${it.pct}%;" class="absolute -top-1 w-5 h-5 rounded-full bg-white border-2 border-gray-900 shadow flex items-center justify-center text-[9px] font-extrabold text-gray-900">●</div>
-                </div>
-
-                <div class="flex justify-between text-[11px] font-semibold" style="color: var(--text-muted);">
-                  <span style="color: var(--down-blue);">매수바닥 ${it.bot}</span>
-                  <span style="color: var(--safe-green);">1차 회귀 ${it.t1}</span>
-                  <span style="color: var(--up-red);">실전익절 ${it.t2}</span>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    function buildSingleStockCardHtml(stockKey) {
-      const s = stockData[stockKey];
-      const pts = s.history;
-      const w = 460, padX = 38, topY = 24, botY = 108;
-      const minV = Math.min(...pts) * 0.88;
-      const maxV = Math.max(...pts) * 1.08;
-      const coords = pts.map((v, i) => ({
-        x: padX + (i * (w - padX * 2)) / (pts.length - 1),
-        y: botY - ((v - minV) / (maxV - minV)) * (botY - topY),
-        v, label: s.histLabels[i]
-      }));
-      const actual = coords.slice(0, 5);
-      const target = coords.slice(4);
-      const actualPath = actual.map((c, i) => (i === 0 ? `M ${c.x} ${c.y}` : `L ${c.x} ${c.y}`)).join(" ");
-      const targetPath = target.map((c, i) => (i === 0 ? `M ${c.x} ${c.y}` : `L ${c.x} ${c.y}`)).join(" ");
-
-      return `
-        <div class="space-y-3">
-          <div class="flex items-center justify-between gap-2">
+        <section class="card">
+          <div class="card-header">
             <div>
-              <span class="text-xs font-bold" style="color: var(--text-muted);">📈 종목별 10년 실거래 밴드 &amp; 목표 경로 그래프</span>
-              <h3 class="text-base font-extrabold mt-0.5">${s.name} · 현재 <span class="tnum">${s.currLabel}</span></h3>
+              <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red);">미 연준(FRED) · 한국은행 실시간 지표</span>
+              <h2 class="card-title">한·미 금리 &amp; 국채 가격 신호등</h2>
             </div>
-            <span class="text-xs font-extrabold px-2.5 py-1 rounded-full shrink-0" style="${s.badgeStyle}">${s.badge}</span>
+            <div style="text-align:right;" class="tnum nowrap">
+              <div style="font-size:20px; font-weight:800; color:var(--up-red);">${Number(liveMacro.us10y).toFixed(2)}%</div>
+              <div style="font-size:11.5px; font-weight:700; color:var(--text-muted);">미국 10년 국채금리</div>
+            </div>
           </div>
 
-          <div class="subtle-box p-3">
-            <svg viewBox="0 0 ${w} 135" class="w-full h-36 overflow-visible">
-              <rect x="${coords[4].x}" y="${topY - 8}" width="${coords[6].x - coords[4].x + 24}" height="${botY - topY + 14}" rx="8" fill="#0D8A58" fill-opacity="0.07" />
-              <line x1="${padX}" y1="${botY}" x2="${w - padX}" y2="${botY}" stroke="currentColor" stroke-opacity="0.12" />
-              <path d="${actualPath}" fill="none" stroke="#1A63D8" stroke-width="2.8" stroke-linecap="round" />
-              <path d="${targetPath}" fill="none" stroke="#D93025" stroke-width="2.8" stroke-dasharray="5 4" stroke-linecap="round" />
-              ${coords.map((c, idx) => {
-                const isTarget = idx > 4;
-                const isNow = idx === 4;
-                const col = isTarget ? "#D93025" : "#1A63D8";
-                const valTxt = s.unit === "$" ? `$${Math.round(c.v)}` : `${c.v}${s.unit}`;
-                return `
-                  <circle cx="${c.x}" cy="${c.y}" r="${isNow ? 5 : 3.5}" fill="${col}" />
-                  <text x="${c.x}" y="${c.y - 9}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${isTarget ? '#D93025' : 'currentColor'}" class="tnum">${valTxt}</text>
-                  <text x="${c.x}" y="${botY + 17}" text-anchor="middle" font-size="10" font-weight="${isTarget || isNow ? '700' : '500'}" fill="${isTarget ? '#D93025' : '#76767A'}" class="tnum">${c.label}</text>
-                `;
-              }).join('')}
+          <div class="kpi-grid-2 tnum" style="margin-bottom:12px;">
+            <div class="kpi-box">
+              <div class="kpi-label">🇺🇸 미국 10년 / 2년 국채금리</div>
+              <div class="kpi-val">${Number(liveMacro.us10y).toFixed(2)}% <span style="font-size:12px; color:var(--text-muted);">/ ${liveMacro.us2y.toFixed(2)}%</span></div>
+              <div class="kpi-sub" style="color:var(--up-red);">4.70% 하향 돌파 시 급반등</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">🇺🇸 미국 장기국채 가격 (TLT)</div>
+              <div class="kpi-val">$${Number(liveMacro.tlt).toFixed(2)}</div>
+              <div class="kpi-sub" style="color:var(--down-blue);">$83 회복 시 금리 안정</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">🇰🇷 한국 기준금리 / 국고채 10년</div>
+              <div class="kpi-val">${liveMacro.krBase.toFixed(2)}% <span style="font-size:12px; color:var(--text-muted);">/ ${liveMacro.kr10y.toFixed(2)}%</span></div>
+              <div class="kpi-sub" style="color:var(--safe-green);">국내 채권시장 안정권</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">💱 원/달러 환율</div>
+              <div class="kpi-val">${Number(liveMacro.usdkrw).toLocaleString()}원</div>
+              <div class="kpi-sub" style="color:var(--safe-green);">반도체 달러 수출 호재</div>
+            </div>
+          </div>
+
+          <div class="chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; font-weight:700; margin-bottom:4px; padding:0 4px;">
+              <span style="color:var(--up-red);">━ 미국 10년물 국채금리 추이</span>
+              <span style="color:var(--safe-green);">--- 초록 점선: 4.70% (반도체 반등 기준선)</span>
+            </div>
+            <svg viewBox="0 0 ${w} ${h}" style="width:100%; height:auto; display:block; overflow:visible;">
+              <line x1="${padX - 10}" y1="${threshY}" x2="${w - padX + 10}" y2="${threshY}" stroke="#059669" stroke-width="2" stroke-dasharray="5 4" />
+              <text x="${padX + 4}" y="${threshY - 6}" font-size="10.5" font-weight="800" fill="var(--safe-green)">반등 기준선 4.70%</text>
+              <line x1="${padX - 10}" y1="${botY}" x2="${w - padX + 10}" y2="${botY}" stroke="currentColor" stroke-opacity="0.14" />
+              <path d="${pathD}" fill="none" stroke="#DC2626" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+              ${coords.map((c, i) => `
+                <circle cx="${c.x}" cy="${c.y}" r="${i === 4 ? 5 : 3.8}" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.5" />
+                <text x="${c.x}" y="${c.y - 10}" text-anchor="middle" font-size="11" font-weight="800" fill="var(--text-primary)" class="tnum">${c.v.toFixed(2)}%</text>
+                <text x="${c.x}" y="${botY + 20}" text-anchor="middle" font-size="10.5" font-weight="600" fill="var(--text-muted)">${c.label}</text>
+              `).join("")}
             </svg>
           </div>
 
-          <div class="grid grid-cols-4 gap-1.5 text-center text-xs tnum">
-            <div class="subtle-box p-2">
-              <div style="color: var(--text-muted);">실전 매수바닥</div>
-              <div class="font-extrabold mt-0.5" style="color: var(--down-blue);">${s.bottomLabel}</div>
-            </div>
-            <div class="subtle-box p-2">
-              <div style="color: var(--text-muted);">1차 평균회귀</div>
-              <div class="font-extrabold mt-0.5" style="color: var(--safe-green);">${s.target1Label}</div>
-            </div>
-            <div class="subtle-box p-2">
-              <div style="color: var(--text-muted);">실전 분할익절</div>
-              <div class="font-extrabold mt-0.5" style="color: var(--up-red);">${s.target2Label}</div>
-            </div>
-            <div class="subtle-box p-2 opacity-60">
-              <div style="color: var(--text-muted);">증권사 허수가</div>
-              <div class="font-bold line-through mt-0.5">${s.hypeLabel}</div>
+          <div class="insight-box" style="margin-top:12px;">
+            <div class="insight-list">
+              <div class="insight-item">
+                <span class="insight-key">주가 영향</span>
+                <span>최근 반도체 주가가 눌린 진짜 원인은 업황 둔화가 아니라 <strong>미국 10년 금리(${Number(liveMacro.us10y).toFixed(2)}%) 상승</strong> 때문입니다.</span>
+              </div>
+              <div class="insight-item">
+                <span class="insight-key">매수 타이밍</span>
+                <span>국내 삼성전자우·대덕전자는 고환율 수혜로 지금 바로 분할 매집이 유리하며, <strong>AMD</strong>는 미 10년 금리가 <strong>4.70% 아래</strong>로 내려올 때 비중을 늘리세요.</span>
+              </div>
             </div>
           </div>
-
-          <div class="text-xs leading-relaxed p-3 rounded-xl" style="background: var(--bg-subtle); color: var(--text-secondary);">
-            💡 <strong>실전 대응 가이드</strong>: ${s.summary}
-          </div>
-        </div>
+        </section>
       `;
     }
 
-    function buildFactCheckCardHtml() {
-      const rows = [
-        { name: "삼성전자우", now: 15, real: 27, hype: 44, unit: "만원" },
-        { name: "삼성전자", now: 18.8, real: 32, hype: 60, unit: "만원" },
-        { name: "대덕전자", now: 7.1, real: 13, hype: 19, unit: "만원" },
-        { name: "원익IPS", now: 6.7, real: 11.5, hype: 16, unit: "만원" },
-        { name: "AMD", now: 449, real: 605, hype: 950, unit: "$" }
-      ];
+    function renderOverview5View() {
+      const s = stockData[currentStockKey];
+      const badgeStyles = {
+        red: "background:var(--up-red-soft); color:var(--up-red);",
+        green: "background:var(--safe-green-soft); color:var(--safe-green);",
+        amber: "background:var(--warn-amber-soft); color:var(--warn-amber);"
+      };
+
+      const rows = Object.keys(stockData).map(key => {
+        const it = stockData[key];
+        const range = it.target2 - it.bottom;
+        const rawPct = ((it.curr - it.bottom) / (range || 1)) * 100;
+        const pct = Math.max(6, Math.min(92, Math.round(rawPct)));
+        const isSelected = key === currentStockKey;
+        return `
+          <div onclick="selectStockKey('${key}')" class="aligned-row clickable tnum" style="${isSelected ? 'border: 2px solid var(--down-blue); background: var(--bg-surface);' : ''}">
+            <div class="row-top-grid">
+              <div class="nowrap">
+                <span style="font-size:14px; font-weight:800; color:var(--text-primary);">${it.name}</span>
+              </div>
+              <div style="text-align:right;" class="nowrap">
+                <span style="font-size:13.5px; font-weight:800; color:var(--text-primary);">${it.currLabel}</span>
+              </div>
+              <div style="text-align:right;" class="nowrap">
+                <span style="font-size:11px; font-weight:800; padding:3px 8px; border-radius:999px; ${badgeStyles[it.tone]}">${it.action}</span>
+              </div>
+            </div>
+
+            <div class="gauge-track">
+              <div class="gauge-Pin" style="left:${pct}%;"></div>
+            </div>
+
+            <div class="row-bottom-grid">
+              <span style="color:var(--down-blue); text-align:left;">바닥 ${it.bottomLabel}</span>
+              <span style="color:var(--safe-green); text-align:center;">1차 ${it.target1Label}</span>
+              <span style="color:var(--up-red); text-align:right;">익절 ${it.target2Label} (${it.upside})</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const unitPrefix = s.unit === "$" ? "$" : "";
+      const unitSuffix = s.unit === "$" ? "" : "만";
+
       return `
-        <div class="space-y-3">
-          <div>
-            <span class="text-xs font-bold" style="color: var(--warn-amber);">⚖️ 왜 증권사 리포트도, 모건스탠리도 믿으면 안 될까요?</span>
-            <h3 class="text-base font-extrabold mt-0.5">국내 증권사 뻥튀기 목표가 vs 10년 실거래 진짜 적정가 비교 그래프</h3>
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">10년 실제 거래 PBR·PER 밴드 기준</span>
+              <h2 class="card-title">내 5종목 현재 위치(●) &amp; 실전 목표가</h2>
+            </div>
+            <span style="font-size:11px; font-weight:700; color:var(--text-muted);" class="nowrap">종목 터치 시 아래 상세 그래프</span>
           </div>
 
-          <div class="space-y-2.5 text-xs tnum">
-            ${rows.map(r => {
-              const nowPct = Math.round((r.now / r.hype) * 100);
-              const realPct = Math.round((r.real / r.hype) * 100);
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            ${rows}
+          </div>
+        </section>
+
+        <section class="card" id="stockDetailCard">
+          <div class="card-header">
+            <div>
+              <span class="section-tag" style="${badgeStyles[s.tone]}">${s.action}</span>
+              <h2 class="card-title">${s.name} (${s.code}) 상세 목표 경로</h2>
+            </div>
+            <div style="text-align:right;" class="tnum nowrap">
+              <div style="font-size:19px; font-weight:800;">${s.currLabel}</div>
+              <div style="font-size:11px; font-weight:700; color:var(--safe-green);">기대수익 ${s.upside}</div>
+            </div>
+          </div>
+
+          <div class="seg-grid-5">
+            ${Object.keys(stockData).map(k => `
+              <button onclick="selectStockKey('${k}')" class="seg-btn ${k === currentStockKey ? 'active' : ''}">
+                ${stockData[k].shortName}
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="kpi-grid-4 tnum" style="margin-bottom:12px; text-align:center;">
+            <div class="kpi-box" style="padding:8px 4px;">
+              <div class="kpi-label">실전 매수바닥</div>
+              <div class="kpi-val" style="font-size:13.5px; color:var(--down-blue);">${s.bottomLabel}</div>
+            </div>
+            <div class="kpi-box" style="padding:8px 4px;">
+              <div class="kpi-label">1차 평균회귀</div>
+              <div class="kpi-val" style="font-size:13.5px; color:var(--safe-green);">${s.target1Label}</div>
+            </div>
+            <div class="kpi-box" style="padding:8px 4px;">
+              <div class="kpi-label">실전 분할익절</div>
+              <div class="kpi-val" style="font-size:13.5px; color:var(--up-red);">${s.target2Label}</div>
+            </div>
+            <div class="kpi-box" style="padding:8px 4px; opacity:0.6;">
+              <div class="kpi-label">증권사 과장가</div>
+              <div class="kpi-val" style="font-size:13.5px; text-decoration:line-through;">${s.hypeLabel}</div>
+            </div>
+          </div>
+
+          <div class="chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; font-weight:700; margin-bottom:4px; padding:0 4px;">
+              <span style="color:var(--up-red);">━ 최근 주가 추이 (바닥 다지기)</span>
+              <span style="color:var(--down-blue);">--- 10년 평균밴드 목표 경로</span>
+            </div>
+            ${renderLineSvg(s.history, s.histLabels, 4, unitPrefix, unitSuffix)}
+          </div>
+
+          <div class="insight-box" style="margin-top:12px;">
+            <div class="insight-list">
+              <div class="insight-item">
+                <span class="insight-key">산출 기준</span>
+                <span>${s.basis}</span>
+              </div>
+              <div class="insight-item">
+                <span class="insight-key">실전 전략</span>
+                <span>${s.summary}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderFactCheckView() {
+      const list = Object.keys(stockData).map(k => stockData[k]);
+
+      return `
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <span class="section-tag" style="background:var(--warn-amber-soft); color:var(--warn-amber);">국내 증권사 거품 &amp; 외국계 공포 리포트 배제</span>
+              <h2 class="card-title">증권사 허수 목표가 vs 실전 적정가 비교</h2>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;" class="tnum">
+            ${list.map(it => {
+              const nowPct = Math.round((it.curr / it.hype) * 100);
+              const realPct = Math.round((it.target2 / it.hype) * 100);
               return `
-                <div class="subtle-box p-3 space-y-1.5">
-                  <div class="flex justify-between font-bold">
-                    <span>${r.name} (현재 ${r.now}${r.unit})</span>
-                    <span style="color: var(--safe-green);">진짜 적정익절가: ${r.real}${r.unit} <span class="line-through opacity-60 ml-1" style="color: var(--text-muted);">(증권사 ${r.hype}${r.unit})</span></span>
+                <div class="aligned-row">
+                  <div class="row-top-grid">
+                    <div class="nowrap" style="font-size:13.5px; font-weight:800;">
+                      ${it.name} <span style="font-size:12px; color:var(--text-muted); font-weight:600;">(${it.currLabel})</span>
+                    </div>
+                    <div class="nowrap" style="text-align:right; font-size:12px; font-weight:800; color:var(--safe-green);">
+                      실전익절 ${it.target2Label}
+                    </div>
+                    <div class="nowrap" style="text-align:right; font-size:11.5px; font-weight:600; color:var(--text-muted); text-decoration:line-through;">
+                      증권사 ${it.hypeLabel}
+                    </div>
                   </div>
-                  <div class="w-full h-3 rounded-full bg-gray-200 relative overflow-hidden">
-                    <div style="width: ${realPct}%; background: #0D8A58;" class="h-full rounded-full"></div>
-                    <div style="width: ${nowPct}%; background: #1A63D8;" class="h-full rounded-full absolute top-0 left-0"></div>
+
+                  <div style="position:relative; width:100%; height:10px; border-radius:999px; background:var(--border-color); overflow:hidden; margin:6px 0;">
+                    <div style="position:absolute; top:0; left:0; height:100%; width:${realPct}%; background:var(--safe-green); border-radius:999px;"></div>
+                    <div style="position:absolute; top:0; left:0; height:100%; width:${nowPct}%; background:var(--down-blue); border-radius:999px;"></div>
                   </div>
-                  <div class="flex justify-between text-[11px]" style="color: var(--text-muted);">
-                    <span style="color: var(--down-blue);">■ 파란색: 현재 주가(${r.now}${r.unit})</span>
-                    <span style="color: var(--safe-green);">■ 초록색: 10년 실거래 익절가(${r.real}${r.unit})</span>
-                    <span>□ 회색: 증권사 거품(${r.hype}${r.unit})</span>
+
+                  <div class="row-bottom-grid">
+                    <span style="color:var(--down-blue); text-align:left;">■ 현재가 ${it.curr}${it.unit}</span>
+                    <span style="color:var(--safe-green); text-align:center;">■ 실전익절 ${it.target2Label}</span>
+                    <span style="color:var(--text-muted); text-align:right;">□ 증권사거품 ${it.hypeLabel}</span>
                   </div>
                 </div>
               `;
-            }).join('')}
+            }).join("")}
           </div>
-        </div>
+
+          <div class="insight-box" style="margin-top:12px;">
+            <div class="insight-list">
+              <div class="insight-item">
+                <span class="insight-key">국내 증권사</span>
+                <span>주식 중개 수수료 수익을 위해 10년 동안 단 한 번도 도달한 적 없는 과장된 목표가(삼전 60만, 대덕 19만)를 제시하므로 35~45% 할인해 봐야 합니다.</span>
+              </div>
+              <div class="insight-item">
+                <span class="insight-key">외국계 IB</span>
+                <span>모건스탠리 등의 매도 리포트는 바닥권에서 개인 물량을 저가 매집하기 위한 단기 흔들기인 경우가 많으므로, 반드시 <strong>실물 출하량과 10년 평균 PBR·PER 밴드</strong>만 기준으로 삼으세요.</span>
+              </div>
+            </div>
+          </div>
+        </section>
       `;
     }
 
-    let msgCounter = 1;
+    const viewTitles = {
+      dram: "🔮 디램 가격 & 다음주 예측",
+      rates: "🏦 한·미 금리 & 국채 가격 신호등",
+      overview5: "🎯 내 5종목 목표가 & 상세 밴드",
+      factcheck: "⚖️ 증권사 거품 vs 실전 적정가 비교"
+    };
 
-    function askBot(topic) {
-      const stream = document.getElementById('chatStream');
-      const uid = ++msgCounter;
-
-      const userLabels = {
-        dram: "🔮 1. 디램 가격 & 다음주 예측 그래프 보여줘",
-        rates: "🏦 2. 한·미 금리 & 국채 가격 그래프 보여줘",
-        overview5: "🎯 3. 내 5종목 목표가 한눈에 비교 그래프 보여줘",
-        factcheck: "⚖️ 4. 증권사 거품 뺀 진짜 적정가 비교 그래프 보여줘",
-        stock_005935: "📈 ① 삼성전자우 상세 밴드 그래프 보여줘",
-        stock_005930: "📈 ② 삼성전자 상세 밴드 그래프 보여줘",
-        stock_353200: "📈 ③ 대덕전자 상세 밴드 그래프 보여줘",
-        stock_240810: "📈 ④ 원익IPS 상세 밴드 그래프 보여줘",
-        stock_AMD: "📈 ⑤ AMD 상세 밴드 그래프 보여줘"
-      };
-
-      const uRow = document.createElement('div');
-      uRow.className = 'user-row';
-      uRow.innerHTML = `<div class="user-bubble">${userLabels[topic] || topic}</div>`;
-      stream.appendChild(uRow);
-
-      let cardContent = '';
-      if (topic === 'dram') cardContent = buildDramCardHtml(uid, 'ddr5_16g');
-      else if (topic === 'rates') cardContent = buildRatesCardHtml();
-      else if (topic === 'overview5') cardContent = buildOverview5CardHtml();
-      else if (topic === 'factcheck') cardContent = buildFactCheckCardHtml();
-      else if (topic.startsWith('stock_')) cardContent = buildSingleStockCardHtml(topic);
-
-      const bRow = document.createElement('div');
-      bRow.className = 'bot-row';
-      bRow.innerHTML = `
-        <div class="bot-avatar">팩트</div>
-        <div class="w-full">
-          <div class="text-xs font-semibold mb-1" style="color: var(--text-secondary);">반도체 실물팩트 봇 · 방금</div>
-          <div class="bot-bubble">
-            ${cardContent}
-          </div>
-        </div>
-      `;
-      stream.appendChild(bRow);
-
-      setTimeout(() => {
-        bRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 40);
-    }
-
-    function showAllCards() {
-      ['dram', 'rates', 'overview5', 'stock_005935', 'stock_353200', 'factcheck'].forEach(t => askBot(t));
-    }
-
-    function clearChat() {
-      const stream = document.getElementById('chatStream');
-      while (stream.children.length > 1) {
-        stream.removeChild(stream.lastChild);
+    function switchView(viewName, updateUrl = true) {
+      if (viewName.startsWith("stock_")) {
+        currentStockKey = viewName;
+        currentView = "overview5";
+      } else if (["dram", "rates", "overview5", "factcheck"].includes(viewName)) {
+        currentView = viewName;
+      } else {
+        currentView = "dram";
       }
-      askBot('dram');
-      askBot('overview5');
+
+      const titleEl = document.getElementById("headerTitle");
+      if (titleEl) titleEl.textContent = viewTitles[currentView] || "반도체 · 금리 실물 브리핑";
+
+      const container = document.getElementById("viewContainer");
+      if (currentView === "dram") container.innerHTML = renderDramView();
+      else if (currentView === "rates") container.innerHTML = renderRatesView();
+      else if (currentView === "overview5") container.innerHTML = renderOverview5View();
+      else if (currentView === "factcheck") container.innerHTML = renderFactCheckView();
+
+      if (updateUrl && window.history && window.history.replaceState) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("view", currentView);
+        window.history.replaceState({}, "", url.toString());
+      }
     }
 
-    function toggleDark() {
-      const isDark = document.documentElement.classList.toggle('dark');
-      document.getElementById('darkBtn').textContent = isDark ? '라이트' : '다크';
-    }
+    window.selectDramKey = function(key) {
+      currentDramKey = key;
+      switchView("dram", false);
+    };
 
-    function toggleWidth() {
-      const isWide = document.getElementById('appShell').classList.toggle('wide-mode');
-      document.getElementById('widthBtn').textContent = isWide ? '📱 모바일폭' : '🖥️ 넓게';
+    window.selectStockKey = function(key) {
+      currentStockKey = key;
+      switchView("overview5", false);
+      const detailEl = document.getElementById("stockDetailCard");
+      if (detailEl) detailEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    };
+
+    window.toggleDark = function() {
+      const isDark = document.documentElement.classList.toggle("dark");
+      const btn = document.getElementById("darkBtn");
+      if (btn) btn.textContent = isDark ? "라이트" : "다크";
+    };
+
+    function applyLivePayload(data) {
+      if (!data) return;
+      if (data.ddr5_price) {
+        dramSeries.ddr5_16g.price = Number(data.ddr5_price);
+        dramSeries.ddr5_16g.pts[4] = Number(data.ddr5_price);
+      }
+      if (data.ddr4_16g_price) {
+        dramSeries.ddr4_16g.price = Number(data.ddr4_16g_price);
+        dramSeries.ddr4_16g.pts[4] = Number(data.ddr4_16g_price);
+      }
+      if (data.us10y) liveMacro.us10y = Number(data.us10y);
+      if (data.us2y) liveMacro.us2y = Number(data.us2y);
+      if (data.tlt_price) liveMacro.tlt = Number(data.tlt_price);
+      if (data.stocks) {
+        const st = data.stocks;
+        if (st["005935.KS"]) {
+          stockData.stock_005935.curr = +(st["005935.KS"] / 10000).toFixed(2);
+          stockData.stock_005935.currLabel = Math.round(Number(st["005935.KS"])).toLocaleString() + "원";
+          stockData.stock_005935.history[4] = stockData.stock_005935.curr;
+        }
+        if (st["005930.KS"]) {
+          stockData.stock_005930.curr = +(st["005930.KS"] / 10000).toFixed(2);
+          stockData.stock_005930.currLabel = Math.round(Number(st["005930.KS"])).toLocaleString() + "원";
+          stockData.stock_005930.history[4] = stockData.stock_005930.curr;
+        }
+        if (st["353200.KS"]) {
+          stockData.stock_353200.curr = +(st["353200.KS"] / 10000).toFixed(2);
+          stockData.stock_353200.currLabel = Math.round(Number(st["353200.KS"])).toLocaleString() + "원";
+          stockData.stock_353200.history[4] = stockData.stock_353200.curr;
+        }
+        if (st["240810.KQ"]) {
+          stockData.stock_240810.curr = +(st["240810.KQ"] / 10000).toFixed(2);
+          stockData.stock_240810.currLabel = Math.round(Number(st["240810.KQ"])).toLocaleString() + "원";
+          stockData.stock_240810.history[4] = stockData.stock_240810.curr;
+        }
+        if (st["AMD"]) {
+          stockData.stock_AMD.curr = +Number(st["AMD"]).toFixed(2);
+          stockData.stock_AMD.currLabel = "$" + Number(st["AMD"]).toFixed(2);
+          stockData.stock_AMD.history[4] = stockData.stock_AMD.curr;
+        }
+      }
+      const tEl = document.getElementById("liveTimeText");
+      const ts = data.timestamp || data.updated_at;
+      if (tEl && ts) {
+        tEl.textContent = `실시간 기준: ${ts}`;
+      }
     }
 
     async function refreshLivePrices(manual = false) {
-      const btn = document.getElementById('refreshBtn');
-      if (btn && manual) btn.textContent = '⏳ 갱신중...';
+      const btn = document.getElementById("refreshBtn");
+      if (btn && manual) btn.textContent = "⏳ 갱신중...";
+
+      let updated = false;
+
       try {
-        let data = null;
-        try {
-          const r = await fetch('/api/briefing', { cache: 'no-store' });
-          if (r.ok) data = await r.json();
-        } catch (_) {}
-        if (!data) {
-          try {
-            const syms = ['005935.KS', '005930.KS', '353200.KS', '240810.KQ', 'AMD'];
-            const liveStocks = {};
-            await Promise.all(syms.map(async (sym) => {
-              const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=5d`;
-              const pUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yUrl)}`;
-              const r = await fetch(pUrl, { cache: 'no-store' });
-              if (r.ok) {
-                const j = await r.json();
-                const price = j?.chart?.result?.[0]?.meta?.regularMarketPrice;
-                if (typeof price === 'number') liveStocks[sym] = price;
-              }
-            }));
-            if (Object.keys(liveStocks).length > 0) {
-              data = {
-                stocks: liveStocks,
-                timestamp: new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace('T', ' ').slice(0, 16) + ' KST'
-              };
-            }
-          } catch (_) {}
-        }
-        if (data) {
-          if (data.ddr5_price) {
-            dramSeries.ddr5_16g.price = '$' + Number(data.ddr5_price).toFixed(2);
-            dramSeries.ddr5_16g.pts[4] = Number(data.ddr5_price);
-          }
-          if (data.ddr4_16g_price) {
-            dramSeries.ddr4_16g.price = '$' + Number(data.ddr4_16g_price).toFixed(2);
-            dramSeries.ddr4_16g.pts[4] = Number(data.ddr4_16g_price);
-          }
-          if (data.stocks) {
-            const st = data.stocks;
-            if (st['005935.KS']) {
-              stockData.stock_005935.curr = +(st['005935.KS'] / 10000).toFixed(2);
-              stockData.stock_005935.currLabel = Number(st['005935.KS']).toLocaleString() + '원';
-              stockData.stock_005935.history[4] = stockData.stock_005935.curr;
-            }
-            if (st['005930.KS']) {
-              stockData.stock_005930.curr = +(st['005930.KS'] / 10000).toFixed(2);
-              stockData.stock_005930.currLabel = Number(st['005930.KS']).toLocaleString() + '원';
-              stockData.stock_005930.history[4] = stockData.stock_005930.curr;
-            }
-            if (st['353200.KS']) {
-              stockData.stock_353200.curr = +(st['353200.KS'] / 10000).toFixed(2);
-              stockData.stock_353200.currLabel = Number(st['353200.KS']).toLocaleString() + '원';
-              stockData.stock_353200.history[4] = stockData.stock_353200.curr;
-            }
-            if (st['240810.KQ']) {
-              stockData.stock_240810.curr = +(st['240810.KQ'] / 10000).toFixed(2);
-              stockData.stock_240810.currLabel = Number(st['240810.KQ']).toLocaleString() + '원';
-              stockData.stock_240810.history[4] = stockData.stock_240810.curr;
-            }
-            if (st['AMD']) {
-              stockData.stock_AMD.curr = +Number(st['AMD']).toFixed(2);
-              stockData.stock_AMD.currLabel = '$' + Number(st['AMD']).toFixed(2);
-              stockData.stock_AMD.history[4] = stockData.stock_AMD.curr;
-            }
-          }
-          const tEl = document.getElementById('liveTimeText');
-          if (tEl && data.timestamp) tEl.textContent = `실시간 기준: ${data.timestamp} (FRED · DRAMeXchange · 거래소)`;
+        const r = await fetch(`/api/briefing?t=${Date.now()}`, { cache: "no-store" });
+        if (r.ok) {
+          const d = await r.json();
+          applyLivePayload(d);
+          updated = true;
         }
       } catch (_) {}
+
+      if (!updated) {
+        try {
+          const ghUrl = `https://api.github.com/repos/dnrzoqs-byte/memory-briefing/contents/data/latest_briefing.json?t=${Date.now()}`;
+          const rGh = await fetch(ghUrl, {
+            cache: "no-store",
+            headers: { "Accept": "application/vnd.github.raw+json" }
+          });
+          if (rGh.ok) {
+            const dGh = await rGh.json();
+            applyLivePayload(dGh);
+            updated = true;
+          }
+        } catch (_) {}
+      }
+
+      if (!updated) {
+        try {
+          const r2 = await fetch(`./data/latest_briefing.json?t=${Date.now()}`, { cache: "no-store" });
+          if (r2.ok) {
+            const d2 = await r2.json();
+            applyLivePayload(d2);
+            updated = true;
+          }
+        } catch (_) {}
+      }
+
+      try {
+        const syms = ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD"];
+        const liveStocks = {};
+        await Promise.all(
+          syms.map(async (sym) => {
+            const yUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?interval=1d&range=5d`;
+            const pUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(yUrl)}&t=${Date.now()}`;
+            const r = await fetch(pUrl, { cache: "no-store" });
+            if (r.ok) {
+              const j = await r.json();
+              const price = j?.chart?.result?.[0]?.meta?.regularMarketPrice;
+              if (typeof price === "number") liveStocks[sym] = price;
+            }
+          })
+        );
+        if (Object.keys(liveStocks).length > 0) {
+          const nowKst = new Date(Date.now() + 9 * 3600 * 1000).toISOString().replace("T", " ").slice(0, 16) + " KST";
+          applyLivePayload({ stocks: liveStocks, timestamp: nowKst });
+        }
+      } catch (_) {}
+
+      switchView(currentView, false);
+
       if (btn && manual) {
-        btn.textContent = '✅ 최신반영!';
-        clearChat();
-        setTimeout(() => { btn.textContent = '🔄 실시간갱신'; }, 2000);
+        btn.textContent = "✅ 갱신완료";
+        setTimeout(() => { btn.textContent = "🔄 실시간 갱신"; }, 1800);
       }
     }
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      await refreshLivePrices(false);
+    window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
-      const view = params.get('view');
-      if (view) {
-        askBot(view);
-      } else {
-        askBot('dram');
-        askBot('overview5');
-      }
+      const requestedView = params.get("view") || "dram";
+      switchView(requestedView, false);
+      refreshLivePrices(false);
     });
   </script>
 </body>
