@@ -11,45 +11,48 @@
   <title>메모리 가격 · 매크로 · 6종목 실물 팩트 리포트</title>
   <style>
     :root {
-      --bg-canvas: #F2F4F7;
+      /* Modern Fintech Palette (Toss / Apple Finance Style) */
+      --bg-canvas: #F4F6F9;
       --bg-surface: #FFFFFF;
-      --bg-subtle: #F7F8FA;
-      --bg-accent: #EEF4FF;
-      --text-primary: #111827;
-      --text-secondary: #374151;
-      --text-muted: #6B7280;
-      --border-color: #E5E7EB;
-      --border-subtle: #E9ECEF;
-      --up-red: #DC2626;
-      --up-red-soft: #FEF2F2;
-      --down-blue: #2563EB;
-      --down-blue-soft: #EFF6FF;
-      --safe-green: #059669;
-      --safe-green-soft: #ECFDF5;
-      --warn-amber: #D97706;
-      --warn-amber-soft: #FFFBEB;
-      --shadow-card: 0 1px 3px rgba(17, 24, 39, 0.06);
+      --bg-subtle: #F8F9FB;
+      --bg-accent: #EFF5FF;
+      --text-primary: #191F28;
+      --text-secondary: #4E5968;
+      --text-muted: #8B95A1;
+      --border-color: #E5E8EB;
+      --border-subtle: #ECEFF2;
+      --up-red: #F04452;
+      --up-red-soft: #FEECEF;
+      --down-blue: #3182F6;
+      --down-blue-soft: #E8F2FF;
+      --safe-green: #04B066;
+      --safe-green-soft: #E6F7F0;
+      --warn-amber: #FA8C16;
+      --warn-amber-soft: #FFF7E6;
+      --shadow-card: 0 4px 16px rgba(17, 24, 39, 0.04), 0 1px 3px rgba(17, 24, 39, 0.02);
+      --shadow-hover: 0 8px 24px rgba(17, 24, 39, 0.08);
     }
 
     html.dark {
-      --bg-canvas: #0B0F17;
-      --bg-surface: #151C28;
-      --bg-subtle: #1E2736;
-      --bg-accent: rgba(37, 99, 235, 0.15);
-      --text-primary: #F9FAFB;
-      --text-secondary: #D1D5DB;
-      --text-muted: #9CA3AF;
-      --border-color: #263042;
-      --border-subtle: #222B3C;
-      --up-red: #F87171;
-      --up-red-soft: rgba(248, 113, 113, 0.15);
-      --down-blue: #60A5FA;
-      --down-blue-soft: rgba(96, 165, 250, 0.15);
-      --safe-green: #34D399;
-      --safe-green-soft: rgba(52, 211, 153, 0.15);
-      --warn-amber: #FBBF24;
-      --warn-amber-soft: rgba(251, 191, 36, 0.15);
-      --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --bg-canvas: #0F141C;
+      --bg-surface: #182232;
+      --bg-subtle: #1E2B3E;
+      --bg-accent: rgba(49, 130, 246, 0.14);
+      --text-primary: #F2F4F7;
+      --text-secondary: #B0B8C1;
+      --text-muted: #6B7684;
+      --border-color: #273449;
+      --border-subtle: #212D3F;
+      --up-red: #FF5E6D;
+      --up-red-soft: rgba(255, 94, 109, 0.14);
+      --down-blue: #4593FC;
+      --down-blue-soft: rgba(69, 147, 252, 0.14);
+      --safe-green: #25C984;
+      --safe-green-soft: rgba(37, 201, 132, 0.14);
+      --warn-amber: #FFB338;
+      --warn-amber-soft: rgba(255, 179, 56, 0.14);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -92,15 +95,23 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background-color: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
-      padding: 11px 14px;
+      background-color: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 14px 9px;
+      transition: background-color 0.2s ease;
+    }
+    html.dark .app-header {
+      background-color: rgba(24, 34, 50, 0.92);
     }
 
-    .header-top {
+    .header-main-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
+      min-height: 32px;
     }
 
     .brand-group {
@@ -111,7 +122,6 @@
       flex: 1;
     }
 
-        /* --- Enhanced Pulse Animation --- */
     .status-dot {
       position: relative;
       width: 8px;
@@ -138,81 +148,15 @@
       100% { transform: scale(2.2); opacity: 0; }
     }
 
-    /* --- Bottom Navigation Bar (Mobile Native Feel) --- */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 500px;
-      height: calc(58px + env(safe-area-inset-bottom, 0px));
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-      background-color: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border-color);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      z-index: 50;
-      box-shadow: 0 -3px 12px rgba(17, 24, 39, 0.04);
-    }
-    html.dark .bottom-nav {
-      background-color: rgba(21, 28, 40, 0.88);
-      box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.35);
-    }
-    .nav-tab {
-      appearance: none;
-      background: transparent;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-      font-family: inherit;
-      padding: 6px 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .nav-tab .nav-icon {
-      font-size: 17px;
-      line-height: 1;
-      transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .nav-tab .nav-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    .nav-tab.active {
-      color: var(--down-blue);
-    }
-    .nav-tab.active .nav-icon {
-      transform: scale(1.15) translateY(-1px);
-    }
-    .nav-tab.active .nav-label {
-      font-weight: 800;
-    }
-
-    .brand-text-wrap {
-      min-width: 0;
-      flex: 1;
-    }
-
     .header-title {
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--text-primary);
       line-height: 1.25;
-    }
-
-    .header-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.025em;
     }
 
     .header-actions {
@@ -222,12 +166,12 @@
       flex-shrink: 0;
     }
 
-    .icon-btn {
-      height: 30px;
+    .pill-btn {
+      height: 29px;
       padding: 0 9px;
-      border-radius: 8px;
+      border-radius: 999px;
       border: 1px solid var(--border-color);
-      background-color: var(--bg-subtle);
+      background-color: var(--bg-surface);
       color: var(--text-secondary);
       font-size: 11px;
       font-weight: 700;
@@ -235,7 +179,47 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 3px;
       white-space: nowrap;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+    .pill-btn:active {
+      transform: scale(0.96);
+    }
+    .pill-btn-primary {
+      background-color: var(--down-blue-soft);
+      color: var(--down-blue);
+      border-color: rgba(49, 130, 246, 0.25);
+      font-weight: 800;
+    }
+
+    .header-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 5px;
+      padding-left: 16px;
+    }
+
+    .live-badge {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--safe-green);
+      background-color: var(--safe-green-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .header-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
     }
 
     .view-body {
@@ -384,119 +368,205 @@
       padding: 0 4px;
     }
 
-    .aligned-row {
+        .aligned-row {
       background-color: var(--bg-subtle);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 12px;
+      border-radius: 14px;
+      padding: 13px 14px;
       width: 100%;
+      transition: all 0.15s ease;
     }
-
     .aligned-row.clickable {
       cursor: pointer;
     }
+    .aligned-row.clickable:hover {
+      box-shadow: var(--shadow-hover);
+    }
 
-    .row-header-flex {
+    .stock-head-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .stock-info {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 6px;
-      margin-bottom: 4px;
+      min-width: 0;
+      flex: 1;
       flex-wrap: wrap;
     }
 
-    .stock-title-group {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      min-width: 0;
+    .stock-name-text {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
     }
 
     .action-pill {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 999px;
+      padding: 2px 7px;
+      border-radius: 6px;
       flex-shrink: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .stock-price-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex-shrink: 0;
+      line-height: 1.25;
+    }
+
+    .stock-curr-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--down-blue);
+      letter-spacing: -0.02em;
+    }
+
+    .stock-drawdown-val {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--up-red);
+      margin-top: 1px;
     }
 
     .fact-subline {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-secondary);
-      margin-bottom: 6px;
-      line-height: 1.4;
+      margin-bottom: 8px;
+      line-height: 1.45;
     }
 
-    .target-3col {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 4px;
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px dashed var(--border-color);
-      text-align: center;
-    }
-
-    .target-cell-label {
-      font-size: 10.5px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    .target-cell-val {
-      font-size: 12.5px;
-      font-weight: 800;
+    .gauge-wrap {
+      margin: 8px 0 10px;
     }
 
     .gauge-track {
       position: relative;
       width: 100%;
-      height: 8px;
+      height: 6px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #2563EB 0%, #10B981 55%, #DC2626 100%);
-      margin: 8px 0;
+      background: linear-gradient(90deg, var(--down-blue) 0%, var(--safe-green) 50%, var(--up-red) 100%);
     }
 
     .gauge-pin {
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background-color: #FFFFFF;
-      border: 3px solid #111827;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+      border: 3px solid var(--text-primary);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .gauge-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .target-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .target-cell {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 48px;
+      text-align: center;
+    }
+
+    .target-cell-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1.2;
+      margin-bottom: 3px;
+      white-space: nowrap;
+    }
+
+    .target-cell-val {
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .bar-progress-wrap {
+      margin: 8px 0 10px;
+    }
+
+    .bar-progress-track {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--border-color);
+      overflow: hidden;
     }
 
     .insight-box {
       background-color: var(--bg-accent);
       border-radius: 12px;
-      padding: 12px;
+      padding: 13px 14px;
       font-size: 12px;
       color: var(--text-primary);
-      line-height: 1.5;
+      line-height: 1.55;
+      border: 1px solid rgba(49, 130, 246, 0.12);
     }
 
     .insight-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 9px;
     }
 
     .insight-item {
       display: grid;
-      grid-template-columns: 74px minmax(0, 1fr);
+      grid-template-columns: 86px 1fr;
       align-items: baseline;
-      gap: 8px;
+      gap: 10px;
+      line-height: 1.55;
     }
 
     .insight-key {
-      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background-color: var(--bg-surface);
       color: var(--down-blue);
-      font-size: 11.5px;
+      font-weight: 800;
+      font-size: 11px;
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+      white-space: nowrap;
     }
 
     .radar-list {
@@ -538,25 +608,26 @@
   <div class="shell">
 
     <header class="app-header">
-      <div class="header-top">
+      <div class="header-main-row">
         <div class="brand-group">
           <span class="status-dot" id="liveDot"></span>
-          <div class="brand-text-wrap">
-            <div class="header-title" id="headerTitle">메모리 · 매크로 · 6종목 팩트 리포트</div>
-            <div class="header-sub tnum" id="liveTimeText">실시간 팩트 기준: 11/6 장마감 · TrendForce 4Q26</div>
-          </div>
+          <h1 class="header-title" id="headerTitle">메모리 · 매크로 · 6종목 팩트 리포트</h1>
         </div>
         <div class="header-actions">
-                    <button onclick="shareReport()" id="shareBtn" class="icon-btn" title="공유하기">
-            공유
+          <button onclick="shareReport()" id="shareBtn" class="pill-btn" title="공유">
+            <span>🔗</span> <span>공유</span>
           </button>
-          <button onclick="refreshLivePrices(true)" id="refreshBtn" class="icon-btn">
-            🔄 갱신
+          <button onclick="refreshLivePrices(true)" id="refreshBtn" class="pill-btn pill-btn-primary" title="새로고침">
+            <span class="refresh-icon">🔄</span> <span id="refreshLabel">갱신</span>
           </button>
-          <button onclick="toggleDark()" id="darkBtn" class="icon-btn">
-            다크
+          <button onclick="toggleDark()" id="darkBtn" class="pill-btn" title="테마 전환">
+            <span id="darkIcon">🌓</span> <span id="darkLabel">테마</span>
           </button>
         </div>
+      </div>
+      <div class="header-sub-row">
+        <span class="live-badge">LIVE</span>
+        <div class="header-sub tnum" id="liveTimeText">실시간 팩트 기준: 11/6 장마감 · TrendForce 4Q26</div>
       </div>
     </header>
 
@@ -1131,34 +1202,42 @@
         const pct = Math.max(6, Math.min(92, Math.round(rawPct)));
         const isSelected = key === currentStockKey;
         return `
-          <div onclick="selectStockKey('${key}')" class="aligned-row clickable tnum" style="${isSelected ? 'border: 2px solid var(--down-blue); background: var(--bg-surface);' : ''}">
-            <div class="row-header-flex">
-              <div class="stock-title-group">
-                <span style="font-size:14.5px; font-weight:800; color:var(--text-primary);">${it.name}</span>
-                <span style="font-size:13.5px; font-weight:800; color:var(--down-blue);">${it.currLabel}</span>
-                <span style="font-size:11px; font-weight:700; color:var(--up-red);">(${it.drawdown})</span>
+          <div onclick="selectStockKey('${key}')" class="aligned-row clickable tnum" style="${isSelected ? 'border: 2px solid var(--down-blue); background: var(--bg-surface); box-shadow: 0 4px 14px rgba(49,130,246,0.12);' : ''}">
+            <div class="stock-head-row">
+              <div class="stock-info">
+                <span class="stock-name-text">${it.name}</span>
+                <span class="action-pill" style="${badgeStyles[it.tone]}">${it.action}</span>
               </div>
-              <span class="action-pill" style="${badgeStyles[it.tone]}">${it.action}</span>
+              <div class="stock-price-col">
+                <span class="stock-curr-val">${it.currLabel}</span>
+                <span class="stock-drawdown-val">(${it.drawdown})</span>
+              </div>
             </div>
 
             <div class="fact-subline">📌 ${it.hardFact}</div>
 
-            <div class="gauge-track">
-              <div class="gauge-pin" style="left:${pct}%;"></div>
+            <div class="gauge-wrap">
+              <div class="gauge-track">
+                <div class="gauge-pin" style="left:${pct}%;"></div>
+              </div>
+              <div class="gauge-labels">
+                <span>52주 저점 ${it.bottom}${it.unit}</span>
+                <span>52주 최고 ${it.high52w}${it.unit}</span>
+              </div>
             </div>
 
             <div class="target-3col">
-              <div>
-                <div class="target-cell-label">펀더멘털 적정가</div>
-                <div class="target-cell-val" style="color:var(--safe-green);">${it.target1Label}</div>
+              <div class="target-cell">
+                <span class="target-cell-label">적정가 (1단계)</span>
+                <span class="target-cell-val" style="color:var(--safe-green);">${it.target1Label}</span>
               </div>
-              <div>
-                <div class="target-cell-label">컨센서스·확장가</div>
-                <div class="target-cell-val" style="color:var(--up-red);">${it.target2Label}</div>
+              <div class="target-cell">
+                <span class="target-cell-label">컨센서스 (2단계)</span>
+                <span class="target-cell-val" style="color:var(--up-red);">${it.target2Label}</span>
               </div>
-              <div>
-                <div class="target-cell-label">실제 52주 최고가</div>
-                <div class="target-cell-val" style="color:var(--text-primary);">${it.high52w}${it.unit}</div>
+              <div class="target-cell">
+                <span class="target-cell-label">실제 52주 최고</span>
+                <span class="target-cell-val" style="color:var(--text-primary);">${it.high52w}${it.unit}</span>
               </div>
             </div>
           </div>
@@ -1280,30 +1359,38 @@
               const t1Pct = Math.round((it.target1 / it.hype) * 100);
               const t2Pct = Math.round((it.target2 / it.hype) * 100);
               return `
-                <div class="aligned-row">
-                  <div class="row-header-flex">
-                    <span style="font-size:14px; font-weight:800;">${it.name} <span style="font-size:12px; color:var(--down-blue);">(${it.currLabel})</span></span>
-                    <span style="font-size:11px; font-weight:700; color:var(--text-secondary);">52주 최고 ${it.high52w}${it.unit} <span style="color:var(--text-muted); text-decoration:line-through;">(증권사최고 ${it.hypeLabel})</span></span>
+                <div class="aligned-row tnum">
+                  <div class="stock-head-row">
+                    <div class="stock-info">
+                      <span class="stock-name-text">${it.name}</span>
+                      <span style="font-size:12px; font-weight:700; color:var(--text-muted);">${it.code}</span>
+                    </div>
+                    <div class="stock-price-col">
+                      <span class="stock-curr-val">${it.currLabel}</span>
+                      <span style="font-size:10.5px; font-weight:700; color:var(--text-muted);">52주 최고 ${it.high52w}${it.unit}</span>
+                    </div>
                   </div>
 
-                  <div style="position:relative; width:100%; height:10px; border-radius:999px; background:var(--border-color); overflow:hidden; margin:8px 0;">
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${t2Pct}%; background:var(--up-red); opacity:0.38; border-radius:999px;"></div>
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${t1Pct}%; background:var(--safe-green); border-radius:999px;"></div>
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${nowPct}%; background:var(--down-blue); border-radius:999px;"></div>
+                  <div class="bar-progress-wrap">
+                    <div class="bar-progress-track">
+                      <div style="position:absolute; top:0; left:0; height:100%; width:${t2Pct}%; background:var(--up-red); opacity:0.35; border-radius:999px;"></div>
+                      <div style="position:absolute; top:0; left:0; height:100%; width:${t1Pct}%; background:var(--safe-green); border-radius:999px;"></div>
+                      <div style="position:absolute; top:0; left:0; height:100%; width:${nowPct}%; background:var(--down-blue); border-radius:999px;"></div>
+                    </div>
                   </div>
 
                   <div class="target-3col">
-                    <div>
-                      <div class="target-cell-label">■ 현재가 (낙폭)</div>
-                      <div class="target-cell-val" style="color:var(--down-blue);">${it.curr}${it.unit} (${it.drawdown})</div>
+                    <div class="target-cell">
+                      <span class="target-cell-label">현재가 (${it.drawdown})</span>
+                      <span class="target-cell-val" style="color:var(--down-blue);">${it.curr}${it.unit}</span>
                     </div>
-                    <div>
-                      <div class="target-cell-label">■ 1단계 적정가</div>
-                      <div class="target-cell-val" style="color:var(--safe-green);">${it.target1Label}</div>
+                    <div class="target-cell">
+                      <span class="target-cell-label">1단계 펀더멘털</span>
+                      <span class="target-cell-val" style="color:var(--safe-green);">${it.target1Label}</span>
                     </div>
-                    <div>
-                      <div class="target-cell-label">■ 2단계 컨센서스</div>
-                      <div class="target-cell-val" style="color:var(--up-red);">${it.target2Label}</div>
+                    <div class="target-cell">
+                      <span class="target-cell-label">2단계 컨센서스</span>
+                      <span class="target-cell-val" style="color:var(--up-red);">${it.target2Label}</span>
                     </div>
                   </div>
                 </div>
@@ -1402,7 +1489,7 @@
       const isDark = document.documentElement.classList.toggle("dark");
       try { localStorage.setItem("semi_theme", isDark ? "dark" : "light"); } catch(_) {}
       const btn = document.getElementById("darkBtn");
-      if (btn) btn.textContent = isDark ? "라이트" : "다크";
+      if (btn) const iconEl = document.getElementById("darkIcon"); const labelEl = document.getElementById("darkLabel"); if (iconEl) iconEl.textContent = isDark ? "☀️" : "🌙"; if (labelEl) labelEl.textContent = isDark ? "라이트" : "다크";
     };
 
     function updateStockMetrics(stockKey, rawPrice, rawHigh52w) {
@@ -1475,7 +1562,7 @@
 
     async function refreshLivePrices(manual = false) {
       const btn = document.getElementById("refreshBtn");
-      if (btn && manual) btn.textContent = "⏳ 갱신중";
+      if (btn && manual) const l = document.getElementById("refreshLabel"); if (l) l.textContent = "갱신중";
 
       let updated = false;
       const isGithubPages = location.hostname.endsWith("github.io");
@@ -1550,8 +1637,7 @@
       switchView(currentView, false);
 
       if (btn && manual) {
-        btn.textContent = "✅ 완료";
-        setTimeout(() => { btn.textContent = "🔄 갱신"; }, 1500);
+        const l = document.getElementById("refreshLabel"); if (l) l.textContent = "완료"; setTimeout(() => { if (l) l.textContent = "갱신"; }, 1500);
       }
     }
 
@@ -1562,7 +1648,7 @@
         if (savedTheme === "dark") {
           document.documentElement.classList.add("dark");
           const btn = document.getElementById("darkBtn");
-          if (btn) btn.textContent = "라이트";
+          if (btn) const iconEl = document.getElementById("darkIcon"); const labelEl = document.getElementById("darkLabel"); if (iconEl) iconEl.textContent = "☀️"; if (labelEl) labelEl.textContent = "라이트";
         }
       } catch(_) {}
       const params = new URLSearchParams(window.location.search);
