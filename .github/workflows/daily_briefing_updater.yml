@@ -2,9 +2,8 @@ name: Daily Memory & Market Briefing Updater
 
 on:
   schedule:
-    # 매일 평일(월~금) 08:30 KST (UTC 23:30 전일) & 18:30 KST (UTC 09:30)
-    - cron: '30 23 * * 0-4'
-    - cron: '30 9 * * 1-5'
+    # 24시간 매시간 정각 자동 실행 (DRAMeXchange·국내/미국 장세·WTI·환율 상시 최신 동기화)
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
