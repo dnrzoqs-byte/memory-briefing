@@ -454,6 +454,106 @@
       line-height: 1.42;
     }
 
+    /* 시뮬레이터 & 계산기 컴포넌트 */
+    .sim-input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .sim-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .sim-input-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .sim-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 9px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 800;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .sim-input:focus {
+      border-color: var(--down-blue);
+    }
+    .quick-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .quick-chip {
+      appearance: none;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .quick-chip:hover, .quick-chip.active {
+      background-color: var(--bg-accent);
+      color: var(--down-blue);
+      border-color: var(--down-blue);
+      font-weight: 800;
+    }
+    .calc-res-box {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 11px;
+      margin-bottom: 10px;
+    }
+    .calc-res-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .calc-res-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .calc-res-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .calc-res-val {
+      font-size: 14.5px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+    .calc-sub-text {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .playbook-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 11px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .live-toast {
       position: fixed;
       top: 56px;
@@ -566,8 +666,8 @@
         <span class="nav-label">6종목 팩트</span>
       </button>
       <button class="nav-tab" id="tab-factcheck" onclick="switchView('factcheck')">
-        <span class="nav-icon">⚖️</span>
-        <span class="nav-label">52주최고 비교</span>
+        <span class="nav-icon">💰</span>
+        <span class="nav-label">배당·수익 계산</span>
       </button>
       <button class="nav-tab" id="tab-rates" onclick="switchView('rates')">
         <span class="nav-icon">🏦</span>
@@ -1261,59 +1361,266 @@
       `;
     }
 
-    /* [화면 4] 실제 52주 최고가 · 증권사 목표가 · 실적 기반 적정가 팩트 비교 */
+    // =========================================================================
+    // [화면 3] 💰 배당금 & 목표수익 실전 시뮬레이터 및 실전 매매 신호등 엔진
+    // =========================================================================
+    let simDvdShares = 100;
+    let simStockKey = 'stock_005935';
+    let simStockQty = 100;
+    let simBuyPrice = 150900;
+
+    window.updateDvdShares = function(shares) {
+      simDvdShares = Math.max(1, parseInt(shares) || 1);
+      const input = document.getElementById("dvdSharesInput");
+      if (input && document.activeElement !== input) input.value = simDvdShares;
+      recalcDvdDisplay();
+    };
+
+    window.selectSimStock = function(key) {
+      simStockKey = key;
+      const s = stockData[key];
+      if (s) {
+        simBuyPrice = s.unit === "만" ? Math.round(s.curr * 10000) : s.curr;
+        const buyInput = document.getElementById("simBuyPriceInput");
+        if (buyInput) buyInput.value = simBuyPrice;
+      }
+      switchView("factcheck", false);
+    };
+
+    window.updateSimValues = function() {
+      const qInput = document.getElementById("simQtyInput");
+      const pInput = document.getElementById("simBuyPriceInput");
+      if (qInput) simStockQty = Math.max(1, parseFloat(qInput.value) || 1);
+      if (pInput) simBuyPrice = Math.max(0.01, parseFloat(pInput.value) || 1);
+      recalcSimDisplay();
+    };
+
+    function recalcDvdDisplay() {
+      const perQuarterPreTax = simDvdShares * 4601;
+      const perQuarterPostTax = Math.round(perQuarterPreTax * 0.846);
+      const annualPostTax = perQuarterPostTax * 4;
+      const currPrice = 150900;
+      const totalInv = simDvdShares * currPrice;
+      const postTaxYield = ((4601 * 4 * 0.846) / currPrice * 100).toFixed(2);
+
+      const mainStockQty = Math.floor(totalInv / 189900);
+      const mainAnnualPostTax = Math.round(mainStockQty * 4601 * 4 * 0.846);
+      const extraDvd = annualPostTax - mainAnnualPostTax;
+
+      const qEl = document.getElementById("dvdPerQuarter");
+      const aEl = document.getElementById("dvdAnnual");
+      const yEl = document.getElementById("dvdYield");
+      const diffEl = document.getElementById("dvdExtraDiff");
+      if (qEl) qEl.innerHTML = `${perQuarterPostTax.toLocaleString()}원 <span class="calc-sub-text">(세전 ${perQuarterPreTax.toLocaleString()}원)</span>`;
+      if (aEl) aEl.textContent = `${annualPostTax.toLocaleString()}원`;
+      if (yEl) yEl.textContent = `연 ${postTaxYield}%`;
+      if (diffEl) diffEl.innerHTML = `💡 본주(18.99만) 대신 삼전우 선택 시 주식 수 <strong style="color:var(--up-red);">+25.8% 더 확보</strong> ➡️ 연간 배당금 <strong style="color:var(--safe-green);">+${extraDvd.toLocaleString()}원 더 실수령!</strong>`;
+    }
+
+    function recalcSimDisplay() {
+      const s = stockData[simStockKey];
+      if (!s) return;
+      const isKrw = s.unit === "만";
+      const currP = isKrw ? s.curr * 10000 : s.curr;
+      const t1P = isKrw ? s.target1 * 10000 : s.target1;
+      const t2P = isKrw ? s.target2 * 10000 : s.target2;
+
+      const curVal = simStockQty * currP;
+      const initVal = simStockQty * simBuyPrice;
+      const curPnl = curVal - initVal;
+      const curPnlPct = ((curPnl / initVal) * 100).toFixed(1);
+
+      const t1Val = simStockQty * t1P;
+      const t1Pnl = t1Val - initVal;
+      const t1PnlPct = ((t1Pnl / initVal) * 100).toFixed(1);
+
+      const t2Val = simStockQty * t2P;
+      const t2Pnl = t2Val - initVal;
+      const t2PnlPct = ((t2Pnl / initVal) * 100).toFixed(1);
+
+      const curPnlEl = document.getElementById("simCurPnl");
+      const t1ResEl = document.getElementById("simT1Res");
+      const t2ResEl = document.getElementById("simT2Res");
+
+      const formatMoney = (v) => isKrw ? `${Math.round(v).toLocaleString()}원` : `$${v.toFixed(2)}`;
+      const pnlColor = (v) => v >= 0 ? "var(--up-red)" : "var(--down-blue)";
+      const sign = (v) => v >= 0 ? "+" : "";
+
+      if (curPnlEl) curPnlEl.innerHTML = `<span style="color:${pnlColor(curPnl)};">${sign(curPnl)}${formatMoney(curPnl)} (${sign(curPnlPct)}${curPnlPct}%)</span> <span class="calc-sub-text">| 현재 평가: ${formatMoney(curVal)}</span>`;
+      if (t1ResEl) t1ResEl.innerHTML = `총 <strong style="font-size:15px; color:var(--safe-green);">${formatMoney(t1Val)}</strong> <span style="font-size:12px; font-weight:800; color:${pnlColor(t1Pnl)};">(${sign(t1PnlPct)}${t1PnlPct}%, ${sign(t1Pnl)}${formatMoney(t1Pnl)})</span>`;
+      if (t2ResEl) t2ResEl.innerHTML = `총 <strong style="font-size:15px; color:var(--up-red);">${formatMoney(t2Val)}</strong> <span style="font-size:12px; font-weight:800; color:${pnlColor(t2Pnl)};">(${sign(t2PnlPct)}${t2PnlPct}%, ${sign(t2Pnl)}${formatMoney(t2Pnl)})</span>`;
+    }
+
     function renderFactCheckView() {
-      const list = Object.keys(stockData).map(k => stockData[k]);
+      const s = stockData[simStockKey] || stockData.stock_005935;
+      const isKrw = s.unit === "만";
+
+      setTimeout(() => {
+        recalcDvdDisplay();
+        recalcSimDisplay();
+      }, 10);
+
+      const playbookList = [
+        {
+          name: "★ 삼성전자우",
+          code: "005935",
+          signal: "🟢 적극 분할매집",
+          tone: "green",
+          actionText: "15.0만 원 이하 안전마진 확보 구간. 본주 대비 20.5% 할인 거래 중이며 분기 주당 4,601원(세후 연 10.3%) 배당 수령. 1단계 적정가 20.5만 원까지 홀딩 및 배당 재투자 최우선."
+        },
+        {
+          name: "🔴 대덕전자",
+          code: "353200",
+          signal: "🟢 과매도 저가매수",
+          tone: "green",
+          actionText: "3Q 잠정 영업익 879억 원(OPM 21%) 서프라이즈에도 52주 최고(19.8만) 대비 -62% 폭락 후 11/9 +5.62% 급반등. 1단계 펀더멘털 적정가 13.0만~14.0만 원 복원력 최상위."
+        },
+        {
+          name: "🇺🇸 셀레스티카 (CLS)",
+          code: "NYSE: CLS",
+          signal: "🟢 선행 PER 9.6배 매집",
+          tone: "green",
+          actionText: "젠슨 황 스캔들로 빅테크(구글·메타)의 자체 AI 칩(ASIC) 스위치 주문 폭증. 회사 공식 2027년 EPS $21.50 가이던스 기준 선행 PER 9.6배 극단적 저평가. 1단계 $345, 2단계 $435."
+        },
+        {
+          name: "원익IPS",
+          code: "240810",
+          signal: "🟡 3Q 서프라이즈 보유",
+          tone: "amber",
+          actionText: "11/9 오늘 DART 3Q 영업익 666.5억 원(+142% YoY)으로 컨센(530억) 대폭 완파. 테일러 팹 매출 이연 우려는 현 주가(67,300원, -64.2%)에 선반영 완료. 4분기 정산(10.5만)까지 홀딩."
+        },
+        {
+          name: "🇺🇸 AMD",
+          code: "NASDAQ",
+          signal: "🟡 GPU 다변화 보유",
+          tone: "amber",
+          actionText: "3분기 데이터센터 매출 +97% 폭증. 엔비디아 일극 체제 불안으로 EPYC CPU 및 Instinct GPU 채택 가속화. 모건스탠리 목표가 $550 도달 시까지 보유 유지."
+        },
+        {
+          name: "삼성전자",
+          code: "005930",
+          signal: "🟡 기존 물량 홀딩",
+          tone: "amber",
+          actionText: "3Q 영업이익 107.4조 원 사상 최대 실적에도 본주는 매물벽 존재. 기존 물량은 보유하되, 신규 추가 자금은 똑같이 주당 4,601원 배당을 받으면서 20.5% 저렴한 삼성전자우로 집중."
+        }
+      ];
 
       return `
+        <!-- [1] 삼성전자우 vs 본주 배당금 & 괴리율 실전 계산기 -->
         <section class="card">
-          <span class="section-tag" style="background:var(--warn-amber-soft); color:var(--warn-amber);">[데이터 팩트] 현재가 vs 펀더멘털 적정가 vs 52주 최고가 vs 증권사 최고가</span>
+          <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">💰 3Q 확정 공시 · 주당 4,601원 (세후 15.4% 원천징수 반영)</span>
           <div class="card-top-row">
-            <h2 class="card-title">6종목 실제 고점 · 컨센서스 · 실전 목표가 비교</h2>
+            <h2 class="card-title">👑 삼성전자우 배당금 &amp; 실수령액 실시간 계산기</h2>
           </div>
 
-          <div style="display:flex; flex-direction:column; gap:10px;" class="tnum">
-            ${list.map(it => {
-              const nowPct = Math.round((it.curr / it.hype) * 100);
-              const t1Pct = Math.round((it.target1 / it.hype) * 100);
-              const t2Pct = Math.round((it.target2 / it.hype) * 100);
-              return `
-                <div class="aligned-row">
-                  <div class="row-header-flex">
-                    <span style="font-size:14px; font-weight:800;">${it.name} <span style="font-size:12px; color:var(--down-blue);">(${it.currLabel})</span></span>
-                    <span style="font-size:11px; font-weight:700; color:var(--text-secondary);">52주 최고 ${it.high52w}${it.unit} <span style="color:var(--text-muted); text-decoration:line-through;">(증권사최고 ${it.hypeLabel})</span></span>
-                  </div>
+          <div class="sim-input-group" style="margin-bottom:8px;">
+            <div class="sim-input-label">보유 주식 수 입력 (주)</div>
+            <input type="number" id="dvdSharesInput" class="sim-input tnum" value="${simDvdShares}" oninput="updateDvdShares(this.value)" placeholder="주식 수를 입력하세요" />
+          </div>
 
-                  <div style="position:relative; width:100%; height:10px; border-radius:999px; background:var(--border-color); overflow:hidden; margin:8px 0;">
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${t2Pct}%; background:var(--up-red); opacity:0.38; border-radius:999px;"></div>
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${t1Pct}%; background:var(--safe-green); border-radius:999px;"></div>
-                    <div style="position:absolute; top:0; left:0; height:100%; width:${nowPct}%; background:var(--down-blue); border-radius:999px;"></div>
-                  </div>
+          <div class="quick-chip-row">
+            <span style="font-size:11px; font-weight:700; color:var(--text-muted); align-self:center;">퀵 설정:</span>
+            <button class="quick-chip" onclick="updateDvdShares(50)">50주</button>
+            <button class="quick-chip" onclick="updateDvdShares(100)">100주</button>
+            <button class="quick-chip" onclick="updateDvdShares(300)">300주</button>
+            <button class="quick-chip" onclick="updateDvdShares(500)">500주</button>
+            <button class="quick-chip" onclick="updateDvdShares(1000)">1,000주</button>
+          </div>
 
-                  <div class="target-3col">
-                    <div>
-                      <div class="target-cell-label">■ 현재가 (낙폭)</div>
-                      <div class="target-cell-val" style="color:var(--down-blue);">${it.curr}${it.unit} (${it.drawdown})</div>
-                    </div>
-                    <div>
-                      <div class="target-cell-label">■ 1단계 적정가</div>
-                      <div class="target-cell-val" style="color:var(--safe-green);">${it.target1Label}</div>
-                    </div>
-                    <div>
-                      <div class="target-cell-label">■ 2단계 컨센서스</div>
-                      <div class="target-cell-val" style="color:var(--up-red);">${it.target2Label}</div>
-                    </div>
-                  </div>
+          <div class="calc-res-box tnum">
+            <div class="calc-res-grid">
+              <div class="calc-res-item">
+                <div class="calc-res-label">■ 1회 분기 세후 실수령액</div>
+                <div class="calc-res-val" id="dvdPerQuarter" style="color:var(--safe-green); font-size:15px;">-</div>
+              </div>
+              <div class="calc-res-item">
+                <div class="calc-res-label">■ 연간 총 4회 세후 배당금</div>
+                <div class="calc-res-val" id="dvdAnnual" style="color:var(--up-red); font-size:15px;">-</div>
+              </div>
+              <div class="calc-res-item">
+                <div class="calc-res-label">■ 세후 연 배당수익률</div>
+                <div class="calc-res-val" id="dvdYield" style="color:var(--text-primary); font-size:14px;">-</div>
+              </div>
+              <div class="calc-res-item">
+                <div class="calc-res-label">■ 투자 원금 (현재가 기준)</div>
+                <div class="calc-res-val" style="color:var(--text-secondary); font-size:13.5px;">${(simDvdShares * 150900).toLocaleString()}원</div>
+              </div>
+            </div>
+            <div style="margin-top:10px; padding-top:8px; border-top:1px dashed var(--border-color); font-size:11.5px; font-weight:700;" id="dvdExtraDiff">
+              -
+            </div>
+          </div>
+        </section>
+
+        <!-- [2] 6종목 시나리오별 목표수익 & 평가손익 계산기 -->
+        <section class="card">
+          <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue);">🎯 10년 밸류에이션 팩트 기반 · 1단계 &amp; 2단계 목표수익 계산</span>
+          <div class="card-top-row">
+            <h2 class="card-title">내 종목 목표가 도달 시 예상 자산 계산기</h2>
+          </div>
+
+          <div class="seg-grid-3x2" style="margin-bottom:10px;">
+            ${Object.keys(stockData).map(k => `
+              <button onclick="selectSimStock('${k}')" class="seg-btn ${k === simStockKey ? 'active' : ''}">
+                ${stockData[k].shortName}
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="sim-input-row tnum">
+            <div class="sim-input-group">
+              <div class="sim-input-label">보유 수량 (${isKrw ? '주' : 'Shares'})</div>
+              <input type="number" id="simQtyInput" class="sim-input" value="${simStockQty}" oninput="updateSimValues()" />
+            </div>
+            <div class="sim-input-group">
+              <div class="sim-input-label">내 매수 평단가 (${isKrw ? '원' : '$'})</div>
+              <input type="number" id="simBuyPriceInput" class="sim-input" value="${simBuyPrice}" oninput="updateSimValues()" />
+            </div>
+          </div>
+
+          <div class="calc-res-box tnum">
+            <div style="font-size:11.5px; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+              [현재 상태] <span id="simCurPnl">-</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="background:var(--bg-surface); padding:8px 10px; border-radius:9px; border:1px solid var(--border-subtle);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                  <span style="font-size:11px; font-weight:800; color:var(--safe-green);">■ 1단계 적정가 (${s.target1Label}, 가능성 75~80%)</span>
                 </div>
-              `;
-            }).join("")}
+                <div id="simT1Res" style="font-size:13px; font-weight:800;">-</div>
+              </div>
+              <div style="background:var(--bg-surface); padding:8px 10px; border-radius:9px; border:1px solid var(--border-subtle);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                  <span style="font-size:11px; font-weight:800; color:var(--up-red);">■ 2단계 컨센서스 (${s.target2Label}, 가능성 45~50%)</span>
+                </div>
+                <div id="simT2Res" style="font-size:13px; font-weight:800;">-</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- [3] 실전 종목별 행동 플레이북 & 현금 비중 룰 -->
+        <section class="card">
+          <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red);">🧭 실전 매매 신호등 &amp; 6종목 행동 지침</span>
+          <h2 class="card-title" style="margin-bottom:10px;">지금 시점 종목별 매수·홀딩·익절 기준</h2>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            ${playbookList.map(p => `
+              <div class="playbook-card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:13.5px; font-weight:800;">${p.name} <span style="font-size:11px; font-weight:600; color:var(--text-muted);">(${p.code})</span></span>
+                  <span class="action-pill" style="background:${p.tone === 'green' ? 'var(--safe-green-soft)' : 'var(--warn-amber-soft)'}; color:${p.tone === 'green' ? 'var(--safe-green)' : 'var(--warn-amber)'};">${p.signal}</span>
+                </div>
+                <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.42;">${p.actionText}</div>
+              </div>
+            `).join("")}
           </div>
 
           <div class="insight-box" style="margin-top:12px;">
             <div class="insight-list">
               <div class="insight-item">
-                <span class="insight-key">데이터 기준</span>
-                <span>기계적인 비율이 아니라 <strong>실제 분기 영업이익·EPS 공시 팩트와 10년 역사적 PER·PBR 배수</strong>로 산출했습니다. 금리(미 10년 4.86%·한은 3.0%)가 현재처럼 높을 때는 <strong>1단계 펀더멘털 적정가(가능성 75~80%)</strong>를 기준점으로 삼고, 유가·금리가 하향 안정화되면 <strong>2단계 컨센서스·전고점 회복권(가능성 45~55%)</strong>까지 수익을 극대화하세요.</span>
+                <span class="insight-key">현금 비중 룰</span>
+                <span>현재 미 10년 국채금리 4.84% 및 유가 $87.79 구간에서는 <strong>주식 80~85%, 현금 15~20%</strong>를 유지하며, 유가가 $85 이하로 내려가거나 미 10년물이 4.70%를 하향 돌파할 때 남은 현금으로 주식 비중을 90% 이상으로 채우는 것이 정석입니다.</span>
               </div>
             </div>
           </div>
@@ -1328,7 +1635,7 @@
       dram: "🔮 메모리 가격 팩트 (DRAM·HBM4·eSSD)",
       rates: "🏦 한·미 금리 · 유가 · 부동산 유동성",
       overview5: "🎯 6종목 공시 팩트 & 목표가 (CLS 포함)",
-      factcheck: "⚖️ 52주 최고가 · 컨센서스 · 적정가 비교"
+      factcheck: "💰 배당금 & 목표수익 실전 시뮬레이터"
     };
 
     function showToast(msg) {
