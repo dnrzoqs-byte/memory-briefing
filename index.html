@@ -1421,49 +1421,57 @@
       if (data.dram_spot) {
         const sp = data.dram_spot;
         if (sp.ddr5_16g && sp.ddr5_16g.price) {
-          dramSeries.ddr5_16g.price = Number(sp.ddr5_16g.price);
-          dramSeries.ddr5_16g.pts[4] = Number(sp.ddr5_16g.price);
+          const p = Number(Number(sp.ddr5_16g.price).toFixed(2));
+          dramSeries.ddr5_16g.price = p;
+          dramSeries.ddr5_16g.pts[4] = p;
           if (sp.ddr5_16g.change) dramSeries.ddr5_16g.changeText = `현물 ${sp.ddr5_16g.change} (6개월 +61.7%)`;
           if (sp.ddr5_16g.spot_forecast) dramSeries.ddr5_16g.spotForecast = sp.ddr5_16g.spot_forecast;
           if (sp.ddr5_16g.contract_fact) dramSeries.ddr5_16g.contractFact = sp.ddr5_16g.contract_fact;
         }
         if (sp.ddr4_16g && sp.ddr4_16g.price) {
-          dramSeries.ddr4_16g.price = Number(sp.ddr4_16g.price);
-          dramSeries.ddr4_16g.pts[4] = Number(sp.ddr4_16g.price);
+          const p = Number(Number(sp.ddr4_16g.price).toFixed(2));
+          dramSeries.ddr4_16g.price = p;
+          dramSeries.ddr4_16g.pts[4] = p;
           if (sp.ddr4_16g.change) dramSeries.ddr4_16g.changeText = `현물 ${sp.ddr4_16g.change} (6개월 +73.1%)`;
           if (sp.ddr4_16g.spot_forecast) dramSeries.ddr4_16g.spotForecast = sp.ddr4_16g.spot_forecast;
           if (sp.ddr4_16g.contract_fact) dramSeries.ddr4_16g.contractFact = sp.ddr4_16g.contract_fact;
         }
         if (sp.ddr4_8g && sp.ddr4_8g.price) {
-          dramSeries.ddr4_8g.price = Number(sp.ddr4_8g.price);
-          dramSeries.ddr4_8g.pts[4] = Number(sp.ddr4_8g.price);
+          const p = Number(Number(sp.ddr4_8g.price).toFixed(2));
+          dramSeries.ddr4_8g.price = p;
+          dramSeries.ddr4_8g.pts[4] = p;
           if (sp.ddr4_8g.change) dramSeries.ddr4_8g.changeText = `현물 ${sp.ddr4_8g.change} (6개월 +53.8%)`;
           if (sp.ddr4_8g.spot_forecast) dramSeries.ddr4_8g.spotForecast = sp.ddr4_8g.spot_forecast;
           if (sp.ddr4_8g.contract_fact) dramSeries.ddr4_8g.contractFact = sp.ddr4_8g.contract_fact;
         }
         if (sp.ddr5_mod && sp.ddr5_mod.price) {
-          dramSeries.ddr5_mod.price = Number(sp.ddr5_mod.price);
-          dramSeries.ddr5_mod.pts[4] = Number(sp.ddr5_mod.price);
+          const p = Number(Number(sp.ddr5_mod.price).toFixed(2));
+          dramSeries.ddr5_mod.price = p;
+          dramSeries.ddr5_mod.pts[4] = p;
           if (sp.ddr5_mod.change) dramSeries.ddr5_mod.changeText = `현물 ${sp.ddr5_mod.change} (6개월 +69.5%)`;
           if (sp.ddr5_mod.spot_forecast) dramSeries.ddr5_mod.spotForecast = sp.ddr5_mod.spot_forecast;
           if (sp.ddr5_mod.contract_fact) dramSeries.ddr5_mod.contractFact = sp.ddr5_mod.contract_fact;
         }
       } else {
         if (data.ddr5_price) {
-          dramSeries.ddr5_16g.price = Number(data.ddr5_price);
-          dramSeries.ddr5_16g.pts[4] = Number(data.ddr5_price);
+          const p = Number(Number(data.ddr5_price).toFixed(2));
+          dramSeries.ddr5_16g.price = p;
+          dramSeries.ddr5_16g.pts[4] = p;
         }
         if (data.ddr4_16g_price) {
-          dramSeries.ddr4_16g.price = Number(data.ddr4_16g_price);
-          dramSeries.ddr4_16g.pts[4] = Number(data.ddr4_16g_price);
+          const p = Number(Number(data.ddr4_16g_price).toFixed(2));
+          dramSeries.ddr4_16g.price = p;
+          dramSeries.ddr4_16g.pts[4] = p;
         }
         if (data.ddr4_8g_price) {
-          dramSeries.ddr4_8g.price = Number(data.ddr4_8g_price);
-          dramSeries.ddr4_8g.pts[4] = Number(data.ddr4_8g_price);
+          const p = Number(Number(data.ddr4_8g_price).toFixed(2));
+          dramSeries.ddr4_8g.price = p;
+          dramSeries.ddr4_8g.pts[4] = p;
         }
         if (data.ddr5_mod_price) {
-          dramSeries.ddr5_mod.price = Number(data.ddr5_mod_price);
-          dramSeries.ddr5_mod.pts[4] = Number(data.ddr5_mod_price);
+          const p = Number(Number(data.ddr5_mod_price).toFixed(2));
+          dramSeries.ddr5_mod.price = p;
+          dramSeries.ddr5_mod.pts[4] = p;
         }
       }
 
@@ -1595,6 +1603,23 @@
       const requestedView = params.get("view") || "dram";
       switchView(requestedView, false);
       setTimeout(() => { refreshLivePrices(false); }, 50);
+
+      // 30초마다 백그라운드 무중단 자동 갱신 (열어두기만 해도 항상 최신 유지)
+      setInterval(() => {
+        if (!document.hidden) {
+          refreshLivePrices(false);
+        }
+      }, 30000);
+
+      // 모바일 화면 켜짐 및 브라우저 탭 복귀 시 즉각 실시간 동기화
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) {
+          refreshLivePrices(false);
+        }
+      });
+      window.addEventListener("focus", () => {
+        refreshLivePrices(false);
+      });
     })();
   </script>
 </body>
