@@ -1,0 +1,36 @@
+name: Daily Memory & Market Briefing Updater
+
+on:
+  schedule:
+    # 매일 평일(월~금) 08:30 KST (UTC 23:30 전일) & 18:30 KST (UTC 09:30)
+    - cron: '30 23 * * 0-4'
+    - cron: '30 9 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-briefing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Market Data Updater
+        run: |
+          python scripts/update_market_data.py
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/latest_briefing.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): update daily DRAM & market data [skip ci]" && git push)
