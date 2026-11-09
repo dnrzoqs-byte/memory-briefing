@@ -3,10 +3,10 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
 
   const stocks = {
-    '005935.KS': 150300,
-    '005930.KS': 188700,
-    '353200.KS': 71200,
-    '240810.KQ': 66700,
+    '005935.KS': 150900,
+    '005930.KS': 189900,
+    '353200.KS': 75200,
+    '240810.KQ': 67300,
     'AMD': 449.04,
     'CLS': 206.68
   };
@@ -20,9 +20,9 @@ export default async function handler(req, res) {
   };
   let tltPrice = 81.92;
   let us10y = 4.86;
-  let wtiOil = 90.34;
+  let wtiOil = 88.47;
   let ddr5Price = 60.17;
-  let ddr416gPrice = 80.82;
+  let ddr416gPrice = 80.24;
 
   async function fetchYahooMeta(symbol) {
     try {
