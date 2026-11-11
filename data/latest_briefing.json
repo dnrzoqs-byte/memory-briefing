@@ -1,27 +1,27 @@
 {
-  "timestamp": "2026-11-11 10:44 KST",
-  "updated_at": "2026-11-11 10:44 KST",
+  "timestamp": "2026-11-11 17:59 KST",
+  "updated_at": "2026-11-11 17:59 KST",
   "market_date": "2026.11.11 실시간 (국내: 11/9 종가확정 / 미장·선물: 실시간)",
   "dram_spot": {
     "ddr5_16g": {
-      "price": 60.167,
-      "change": "+0.00%",
+      "price": 60.233,
+      "change": "+0.11%",
       "high": 72.5,
       "low": 46.0,
       "spot_forecast": "$59.60 (단기 숨고르기)",
       "contract_fact": "4Q26 고정계약가 +10~15% QoQ 상승 확정"
     },
     "ddr4_16g": {
-      "price": 79.99,
-      "change": "-0.31%",
+      "price": 79.867,
+      "change": "-0.15%",
       "high": 114.0,
       "low": 45.0,
       "spot_forecast": "$79.50 (구형 감산·서버 전환)",
       "contract_fact": "메이저 3사 구형 감산 및 서버향 라인 전환"
     },
     "ddr4_8g": {
-      "price": 45.0,
-      "change": "-0.47%",
+      "price": 44.893,
+      "change": "-0.24%",
       "high": 82.0,
       "low": 24.8,
       "spot_forecast": "$44.80 (보합권 횡보)",
@@ -36,31 +36,31 @@
       "contract_fact": "AI 에이전트 워크로드 서버 증설 직수혜"
     }
   },
-  "ddr5_price": 60.167,
-  "ddr4_16g_price": 79.99,
-  "ddr4_8g_price": 45.0,
+  "ddr5_price": 60.233,
+  "ddr4_16g_price": 79.867,
+  "ddr4_8g_price": 44.893,
   "ddr5_mod_price": 243.333,
   "macro": {
     "us10y": 4.98,
     "us2y": 4.31,
     "tlt_price": 80.88,
-    "wti_oil": 86.25,
-    "usdkrw": 1338.6,
+    "wti_oil": 86.21,
+    "usdkrw": 1334.9,
     "kr_base": 3.0,
     "kr_10y": 3.85
   },
   "us10y": 4.98,
   "us2y": 4.31,
   "tlt_price": 80.88,
-  "wti_oil": 86.25,
-  "usdkrw": 1338.6,
+  "wti_oil": 86.21,
+  "usdkrw": 1334.9,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
-    "005935.KS": 159800.0,
-    "005930.KS": 200500.0,
-    "353200.KS": 86150.0,
-    "240810.KQ": 73600.0,
+    "005935.KS": 165000.0,
+    "005930.KS": 206000.0,
+    "353200.KS": 91100.0,
+    "240810.KQ": 79700.0,
     "AMD": 515.21,
     "CLS": 223.89
   },
