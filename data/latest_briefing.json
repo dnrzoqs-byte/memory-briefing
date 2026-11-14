@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-15 01:27 KST",
+  "updated_at": "2026-11-15 06:10 KST",
   "market_date": "2026.11.15(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -373,7 +373,7 @@
     {
       "tag": "AI 생태계 지각변동 · NVIDIA+1 반사이익",
       "title": "젠슨 황 엔비디아 CEO 전격 사임 충격파 → '탈엔비디아(NVIDIA+1)' 대안 진영(AMD·셀레스티카·삼성전자)으로 글로벌 자금 대이동!",
-      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「젠슨 황 씨 사임 후 엔비디아 반도체 중국 유출 의혹, 미국이 규제 강화하면 중국은 희토류로 맞대응? 🔍」 - 뉴닉)",
+      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「젠슨 황 사임에 1.5GW 유출설 겹친 엔비디아…HBM 2027년 판도 바뀐다」 - 글로벌이코노믹)",
       "impact": "보유 6종목 중 AMD(1차 적정가 $540~$560 진입 완료)·셀레스티카·삼성전자·삼전우 직접적 반사이익 수혜"
     },
     {
@@ -404,27 +404,27 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-15 01:27 KST",
+    "updated_at": "2026-11-15 06:10 KST",
     "sector": [
+      {
+        "title": "젠슨 황 사임에 1.5GW 유출설 겹친 엔비디아…HBM 2027년 판도 바뀐다",
+        "source": "글로벌이코노믹",
+        "pubDate": "Sat, 14 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOU20wVmRXV0w4RVllaXd1dnc4dU9YWlQyNlFsRzdySFgtZzFva1FqSnJHY013dk1LWUpHckVqaVA4SFRRT3VYd3VXMlFqNVRTM2JCaWVDNDBDWHZPNExOWTVrOXZETWpCVUU1NmVSTDF6S090QnNqOXd5aU10VFhDTGlKYXNNYW5y?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
+        "title": "깐부 젠슨 황 사임은 K반도체 둠스데이?…초대형 변수에 업계 초긴장 [반도체 투자 리포트]",
+        "source": "세계일보",
+        "pubDate": "Sat, 14 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBRLVRzV2VYMXAtaU1VclRqWjN6Mzk5aVBTZGlvQW9LOUxlbDZId3NOME9GRV82Zktnd3oxS1NZTlJmTkkwRlZ4Ny00eGNwQ3Fxc3M4U3JvY1kzbHpkZG1Ka2ZibkdqbTFCT1BF0gFUQVVfeXFMT2JzMTg1OUhMVW9ycVV4UkJSSjZtUURjUnNrOXNqcG1KQ3RMZUJkb1Q1dTNTMHpFLWdxTW9EWlFNcnFSbW1fZ3Q1MlE2b2hDMG80Z3BU?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
       {
         "title": "젠슨 황 씨 사임 후 엔비디아 반도체 중국 유출 의혹, 미국이 규제 강화하면 중국은 희토류로 맞대응? 🔍",
         "source": "뉴닉",
         "pubDate": "Sat, 14 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9hNHJqbFBuRnBnQWVTUDBlWklIZmhNS2sxLVNxR2pyYTdjeERDREhadlFlYUx1eTFwbExSUGE2aFM3SzVVLTg5UUlZcFp6ekxHeEdr?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "\"사임 후폭풍\"…미중 AI 패권 재편에 韓반도체 '촉각' [젠슨황 스캔들⑤·끝]",
-        "source": "뉴시스",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1SQmFJbzYxN2FIVWJlT0g3YjdQTUNXYUk0clVJSDBCODZKeEdqdkNKZmhmUWdIQndpUG84SUN5eTNyQ3Q3cFc2aVJqTTI1dUpCeDY2LTNoc3Jid210RTBxM9IBeEFVX3lxTE1PRmo3Q2tseURGbzdyZDVTa053dDNVZXFCNmtISzJpWmoyejhtTnA0TUlpbE9ieFg4QWpvdk9aQTV2a0t6X0twQTFOSHh3akZNbExpSEwxVkptWW1RTnJmR0dteXZVaW9nQzBMRXVPUjc3RmlTeDFYNw?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "미국 의원들, 엔비디아에 대한 조사 강화",
-        "source": "VOA 한국어 홈페이지",
-        "pubDate": "Fri, 13 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzWjM5c3RGVDNTRldLZGdYa0dJeW5ja0lmaHIzQURqYzhoNkJzUGt5d1E3dG9HTXQzNXd5VlMwLU83VXVmMmZNZHZXY2xpYkQ20gFTQVVfeXFMTnd1TzgxV0xpRVEyaHl1elkzUUJQNkJpRlFiWTEtMWVEUWoyMHBOa0xldXl5cERpbGctVGR2SzlVaG96WHE5engwWlBMb2VNOXdPaDA?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -463,10 +463,10 @@
         "tag": "메모리 업황"
       },
       {
-        "title": "삼성전자, DRAM값 20% 인상 검토…미국 상장 카드까지 만지작",
-        "source": "글로벌이코노믹",
-        "pubDate": "Tue, 07 Jul 2026",
-        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNZW80QWh6YTNwek5MbUdiNkl0bVFPdUlFX21HYTd0MHgySF9YekFyMXQ3NU1qUW1VVVFHRExldFhyM01XZ2gwZkV0aUpSTGo0YUwxQ1h2SUdESGVNUFpDRXpxLWZ6R25yMWQ4TllaZ05QaUx2NGJ4Z3RaS3ZSaWtsaEdPNG9NdUhp?oc=5",
+        "title": "삼성전자 분기 영업익 107조…AI 반도체가 만든 사상 최대 실적",
+        "source": "부산경남대표방송 KNN 뉴스",
+        "pubDate": "Thu, 08 Oct 2026",
+        "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5OYmJ4ZkFFWGJ6a3Itek5OTTNUOUkxODB1anR3bGJsZ2xvU29KSER5aWxLeGdHSjZIRlRJcFR0S2M1R2h5RUhqT1MtY3dmTU9Bd0VRWmRpbw?oc=5",
         "tag": "메모리 업황"
       }
     ],
