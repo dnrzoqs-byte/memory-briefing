@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-11-14 06:15 KST",
-  "updated_at": "2026-11-14 06:15 KST",
+  "timestamp": "2026-11-14 11:02 KST",
+  "updated_at": "2026-11-14 11:02 KST",
   "market_date": "2026.11.14 실시간 (국내: 11/9 종가확정 / 미장·선물: 실시간)",
   "dram_spot": {
     "ddr5_16g": {
@@ -44,16 +44,16 @@
     "us10y": 5.15,
     "us2y": 4.31,
     "tlt_price": 79.38,
-    "wti_oil": 89.15,
-    "usdkrw": 1335.6,
+    "wti_oil": 88.92,
+    "usdkrw": 1335.1,
     "kr_base": 3.0,
     "kr_10y": 3.85
   },
   "us10y": 5.15,
   "us2y": 4.31,
   "tlt_price": 79.38,
-  "wti_oil": 89.15,
-  "usdkrw": 1335.6,
+  "wti_oil": 88.92,
+  "usdkrw": 1335.1,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
