@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-14 15:10 KST",
+  "updated_at": "2026-11-14 16:21 KST",
   "market_date": "2026.11.14(토) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -404,7 +404,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-14 15:10 KST",
+    "updated_at": "2026-11-14 16:21 KST",
     "sector": [
       {
         "title": "흔들리는 엔비디아…구글·AMD, 칩 시장 '지각변동' 일으키나 - 머니투데이",
@@ -414,17 +414,17 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
+        "title": "정부 “엔비디아 GPU 26만장 공급 차질 없어”…젠슨 황 사임에도 협력 계속",
+        "source": "한겨레",
+        "pubDate": "Sat, 14 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9qa1RSRFo3czhPLVhKV1FocGdsZGZjclZPTUtkQjJ6Q09hdjdrREx6bWQxRS1EQk9hVEM2enVYWGRvVkh0Q1hzVlA4WlVBaE5QV3Btekt0UHpFYV9TVUw1ZA?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
         "title": "미국 의원들, 엔비디아에 대한 조사 강화",
         "source": "VOA 한국어 홈페이지",
         "pubDate": "Fri, 13 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzWjM5c3RGVDNTRldLZGdYa0dJeW5ja0lmaHIzQURqYzhoNkJzUGt5d1E3dG9HTXQzNXd5VlMwLU83VXVmMmZNZHZXY2xpYkQ20gFTQVVfeXFMTnd1TzgxV0xpRVEyaHl1elkzUUJQNkJpRlFiWTEtMWVEUWoyMHBOa0xldXl5cERpbGctVGR2SzlVaG96WHE5engwWlBMb2VNOXdPaDA?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "\"사임 후폭풍\"…미중 AI 패권 재편에 韓반도체 '촉각' [젠슨황 스캔들⑤·끝]",
-        "source": "뉴시스",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1SQmFJbzYxN2FIVWJlT0g3YjdQTUNXYUk0clVJSDBCODZKeEdqdkNKZmhmUWdIQndpUG84SUN5eTNyQ3Q3cFc2aVJqTTI1dUpCeDY2LTNoc3Jid210RTBxM9IBeEFVX3lxTE1PRmo3Q2tseURGbzdyZDVTa053dDNVZXFCNmtISzJpWmoyejhtTnA0TUlpbE9ieFg4QWpvdk9aQTV2a0t6X0twQTFOSHh3akZNbExpSEwxVkptWW1RTnJmR0dteXZVaW9nQzBMRXVPUjc3RmlTeDFYNw?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -568,7 +568,7 @@
           "title": "AMD Instinct MI450 & Helios System: Challenging Nvidia's Data Center Hegemony",
           "source": "Moomoo",
           "pubDate": "Tue, 03 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQODNVRk1GVWhwYUpZbDhlcUlMU1d6aWlYbk5VaFFiV3FEZEZHRXBLajhqUE9XNVZlcXV1ODZra0pPdzJxbjdKa3NCc29xWWVhNkJQQUQ2V3U0SEVYQWZIQklfZk1zY2t1aHExbmI5YS1WSWRtYXhfRmk0WmhVRTdBV0JMVGZIaWlvU1ExU0t5RGo2ZXZ1UFdQWjFsY1N3MGhSTGZBak45d1dSaHdHbFdtVEp1VWdWcklhQlE?oc=5"
+          "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPQUZTazA3SkR0UHpReGJOOHgzcGRubC1aaXJfSGpNel9mWkhKbTB1YkJpUjZDZ3c4QTRwMEFUQWEwT0RNWWdQWWFHNnd3S0hLVW52T0tsdDNuNFlDancwdHRYQmVwZ2VSZFYxOERSOFpfQkJFb2lSZldnNVNqTHJpcVlDbzVYM3hMYmh6NDdwWDQwbnNHZHgyLVNPNkZya21FN0JzN29jSUhBa2NiN25XQVN1akFsYXpkemdv?oc=5"
         }
       ],
       "CLS": [
