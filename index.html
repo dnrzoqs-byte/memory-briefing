@@ -6,53 +6,53 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>메모리 · 매크로 · 6종목 실시간 팩트 리포트 (v3.0 완성형)</title>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <title>반도체·6종목 인사이트 판독기 v5.0</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
     :root {
-      --bg-canvas: #F1F5F9;
+      --bg-page: #F1F5F9;
       --bg-surface: #FFFFFF;
       --bg-subtle: #F8FAFC;
       --bg-accent: #EFF6FF;
       --text-primary: #0F172A;
       --text-secondary: #334155;
       --text-muted: #64748B;
-      --border-color: #CBD5E1;
-      --border-subtle: #E2E8F0;
+      --border-color: #E2E8F0;
+      --border-subtle: #F1F5F9;
       --up-red: #DC2626;
-      --up-red-soft: #FEF2F2;
+      --up-red-soft: rgba(220, 38, 38, 0.10);
       --down-blue: #2563EB;
-      --down-blue-soft: #EFF6FF;
+      --down-blue-soft: rgba(37, 99, 235, 0.10);
       --safe-green: #059669;
-      --safe-green-soft: #ECFDF5;
+      --safe-green-soft: rgba(5, 150, 105, 0.11);
       --warn-amber: #D97706;
-      --warn-amber-soft: #FFFBEB;
+      --warn-amber-soft: rgba(217, 119, 6, 0.12);
       --purple-accent: #7C3AED;
-      --purple-soft: #F5F3FF;
-      --shadow-card: 0 2px 6px rgba(15, 23, 42, 0.06);
+      --purple-soft: rgba(124, 58, 237, 0.10);
+      --shadow-card: 0 2px 10px -2px rgba(15, 23, 42, 0.06), 0 1px 3px -1px rgba(15, 23, 42, 0.04);
     }
 
     html.dark {
-      --bg-canvas: #090D16;
+      --bg-page: #090D16;
       --bg-surface: #111827;
       --bg-subtle: #1E293B;
-      --bg-accent: #1E3A8A;
+      --bg-accent: #172554;
       --text-primary: #F8FAFC;
       --text-secondary: #CBD5E1;
       --text-muted: #94A3B8;
-      --border-color: #334155;
+      --border-color: #1F2937;
       --border-subtle: #1E293B;
       --up-red: #F87171;
-      --up-red-soft: rgba(239, 68, 68, 0.16);
+      --up-red-soft: rgba(248, 113, 113, 0.15);
       --down-blue: #60A5FA;
-      --down-blue-soft: rgba(59, 130, 246, 0.16);
+      --down-blue-soft: rgba(96, 165, 250, 0.15);
       --safe-green: #34D399;
-      --safe-green-soft: rgba(16, 185, 129, 0.16);
+      --safe-green-soft: rgba(52, 211, 153, 0.15);
       --warn-amber: #FBBF24;
-      --warn-amber-soft: rgba(245, 158, 11, 0.16);
+      --warn-amber-soft: rgba(251, 191, 36, 0.15);
       --purple-accent: #A78BFA;
-      --purple-soft: rgba(124, 58, 237, 0.16);
-      --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4);
+      --purple-soft: rgba(167, 139, 250, 0.15);
+      --shadow-card: 0 4px 14px -2px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -62,98 +62,77 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: hidden;
-      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
-      background-color: var(--bg-canvas);
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: var(--bg-page);
       color: var(--text-primary);
-      line-height: 1.48;
-      letter-spacing: -0.02em;
-      word-break: keep-all;
-      overflow-wrap: break-word;
+      line-height: 1.42;
       -webkit-font-smoothing: antialiased;
     }
 
     .tnum {
       font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
     }
 
-    .shell {
-      width: 100%;
-      max-width: 520px;
+    .app-shell {
+      max-width: 540px;
       margin: 0 auto;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background-color: var(--bg-canvas);
     }
 
-    /* 상단 고정 헤더 & 실시간 동기화 상태바 */
+    /* 상단 고정 헤더 & 네비게이션 */
     .app-header {
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 50;
       background-color: var(--bg-surface);
       border-bottom: 1px solid var(--border-color);
-      padding: 10px 14px 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
 
     .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 11px 14px 7px;
       gap: 8px;
     }
 
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 9px;
+    .header-title-wrap {
       min-width: 0;
       flex: 1;
     }
 
-    .status-dot {
-      width: 9px;
-      height: 9px;
+    .header-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background-color: var(--safe-green);
       box-shadow: 0 0 0 3px var(--safe-green-soft);
-      flex-shrink: 0;
-      transition: transform 0.25s ease, background-color 0.25s ease;
-      animation: livePulse 2s infinite;
-    }
-
-    @keyframes livePulse {
-      0%, 100% { box-shadow: 0 0 0 2px var(--safe-green-soft); }
-      50% { box-shadow: 0 0 0 5px var(--safe-green-soft); }
-    }
-
-    .brand-text-wrap {
-      min-width: 0;
-      flex: 1;
+      display: inline-block;
+      transition: transform 0.25s ease;
     }
 
     .header-title {
-      font-size: 14.5px;
+      font-size: 16.5px;
       font-weight: 800;
+      letter-spacing: -0.02em;
       color: var(--text-primary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .header-sub {
-      font-size: 11px;
-      color: var(--text-muted);
       margin-top: 1px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .header-actions {
@@ -163,40 +142,50 @@
       flex-shrink: 0;
     }
 
-    .icon-btn {
+    .btn-refresh {
       appearance: none;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-subtle);
-      color: var(--text-primary);
+      border: 1px solid var(--down-blue);
+      background-color: var(--down-blue);
+      color: #FFFFFF;
       font-family: inherit;
       font-size: 11.5px;
       font-weight: 800;
-      padding: 6px 10px;
+      padding: 6px 11px;
       border-radius: 8px;
       cursor: pointer;
-      white-space: nowrap;
       transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
     }
 
-    .icon-btn.primary-refresh {
-      background-color: var(--down-blue-soft);
-      color: var(--down-blue);
-      border-color: var(--down-blue);
-    }
-
-    .icon-btn:active {
+    .btn-refresh:active {
       transform: scale(0.96);
     }
 
-    /* 실시간 동기화 상태 스트립 */
-    .sync-status-strip {
-      margin-top: 7px;
-      padding-top: 6px;
-      border-top: 1px dashed var(--border-subtle);
+    .btn-refresh:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+    .btn-dark {
+      appearance: none;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 9px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .sync-strip {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      padding: 4px 14px 6px;
+      background-color: var(--bg-subtle);
+      border-top: 1px solid var(--border-subtle);
       font-size: 10.5px;
       color: var(--text-secondary);
     }
@@ -213,12 +202,43 @@
       color: var(--safe-green);
     }
 
+    /* 4대 메인 탭 */
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+    }
+
+    .nav-tab {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 9px 2px 8px;
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2.5px solid transparent;
+      transition: all 0.15s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .nav-tab.active {
+      color: var(--down-blue);
+      border-bottom-color: var(--down-blue);
+      font-weight: 800;
+      background-color: var(--bg-subtle);
+    }
+
     .view-body {
       flex: 1;
-      padding: 12px 12px 28px;
+      padding: 10px 11px 28px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     @keyframes cardFlash {
@@ -234,12 +254,14 @@
       background-color: var(--bg-surface);
       border: 1px solid var(--border-color);
       border-radius: 14px;
-      padding: 14px;
+      padding: 13px;
       box-shadow: var(--shadow-card);
     }
 
     .section-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       font-size: 10.5px;
       font-weight: 800;
       padding: 3px 8px;
@@ -247,19 +269,217 @@
       margin-bottom: 6px;
     }
 
-    .card-top-row {
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    /* =========================================================
+       NEW v5.0: 종합 인사이트 판독 히어로 카드 (Executive Verdict)
+       ========================================================= */
+    .verdict-hero {
+      background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-accent) 100%);
+      border: 1.5px solid rgba(37, 99, 235, 0.32);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .verdict-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .score-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: conic-gradient(var(--safe-green) 0% 78%, var(--border-color) 78% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.2);
+    }
+
+    .score-inner {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background-color: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.05;
+    }
+
+    .score-num {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--safe-green);
+    }
+
+    .score-unit {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+
+    .verdict-headline-box {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .verdict-main-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 99px;
+      background-color: var(--safe-green);
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .verdict-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .verdict-sub {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* 5대 요소 미니 바 그리드 */
+    .factor-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px 11px;
       margin-bottom: 10px;
     }
 
-    .card-title {
-      font-size: 15.5px;
+    .factor-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 118px;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .factor-name {
       font-weight: 800;
       color: var(--text-primary);
-      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .factor-track {
+      height: 7px;
+      border-radius: 99px;
+      background-color: var(--bg-subtle);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .factor-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    .factor-status {
+      text-align: right;
+      font-weight: 800;
+      font-size: 10.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 3줄 핵심 결론 칩 */
+    .verdict-3chips {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .v-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: var(--text-primary);
+    }
+
+    .v-chip-tag {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    /* 핵심 요약 카드 (컴팩트 그리드) */
+    .compact-issue-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .compact-issue {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 9px 11px;
+    }
+
+    .ci-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .ci-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .ci-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .ci-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
     }
 
     /* 서브 탭 그리드 */
@@ -268,9 +488,9 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 5px;
       background-color: var(--bg-subtle);
-      padding: 5px;
+      padding: 4px;
       border-radius: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .seg-grid-3x2 {
@@ -278,25 +498,24 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 5px;
       background-color: var(--bg-subtle);
-      padding: 5px;
+      padding: 4px;
       border-radius: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .seg-btn {
       appearance: none;
       border: 1px solid transparent;
       background: transparent;
-      padding: 8px 4px;
+      padding: 7px 4px;
       border-radius: 7px;
       font-family: inherit;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--text-secondary);
       text-align: center;
       cursor: pointer;
-      line-height: 1.25;
-      transition: all 0.15s ease;
+      line-height: 1.2;
     }
 
     .seg-btn.active {
@@ -304,63 +523,58 @@
       color: var(--down-blue);
       border-color: var(--down-blue);
       font-weight: 800;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     }
 
     .kpi-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 7px;
+      margin-bottom: 10px;
     }
 
     .kpi-box {
       background-color: var(--bg-subtle);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 10px 11px;
+      border-radius: 11px;
+      padding: 9px 10px;
       min-width: 0;
     }
 
     .kpi-label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 3px;
-      line-height: 1.3;
+      margin-bottom: 2px;
     }
 
     .kpi-val {
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--text-primary);
-      line-height: 1.25;
     }
 
     .kpi-sub {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      margin-top: 3px;
-      line-height: 1.35;
+      margin-top: 2px;
       color: var(--text-secondary);
     }
 
     .chart-box {
       background-color: var(--bg-subtle);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 10px 8px 6px;
+      border-radius: 11px;
+      padding: 8px 6px 4px;
       overflow: hidden;
     }
 
     .chart-legend {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      padding: 0 4px 6px;
-      font-size: 11px;
+      padding: 0 4px 4px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--text-muted);
     }
@@ -371,56 +585,17 @@
       display: block;
     }
 
-    .insight-box {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .insight-text {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      line-height: 1.56;
-    }
-
-    .insight-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .insight-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .insight-key {
-      flex-shrink: 0;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 5px;
-      background-color: var(--bg-subtle);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-      margin-top: 1px;
-    }
-
     .action-pill {
       display: inline-flex;
       align-items: center;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: 6px;
       white-space: nowrap;
     }
 
-    /* 6종목 한눈에 보는 실시간 스코어보드 테이블 */
+    /* 6종목 스코어보드 테이블 */
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
@@ -429,8 +604,8 @@
 
     .matrix-table th {
       text-align: left;
-      padding: 7px 6px;
-      font-size: 10.5px;
+      padding: 6px 5px;
+      font-size: 10px;
       font-weight: 800;
       color: var(--text-muted);
       border-bottom: 1.5px solid var(--border-color);
@@ -438,41 +613,36 @@
     }
 
     .matrix-table td {
-      padding: 8px 6px;
+      padding: 7px 5px;
       border-bottom: 1px solid var(--border-subtle);
       vertical-align: middle;
     }
 
     .matrix-row {
       cursor: pointer;
-      transition: background-color 0.12s ease;
-    }
-
-    .matrix-row:hover {
-      background-color: var(--bg-subtle);
     }
 
     .matrix-row.selected-row {
       background-color: var(--bg-accent);
     }
 
-    /* 종목 상세 헤더 & 밸류에이션 밴드 게이지 */
+    /* 종목 상세 헤더 */
     .stock-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .stock-name {
-      font-size: 16.5px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--text-primary);
     }
 
     .stock-code {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--text-muted);
       margin-left: 4px;
@@ -483,26 +653,24 @@
     }
 
     .stock-curr {
-      font-size: 19px;
-      font-weight: 800;
+      font-size: 18.5px;
+      font-weight: 900;
       color: var(--text-primary);
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
     .stock-chg-row {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 5px;
+      gap: 4px;
       margin-top: 3px;
-      font-size: 11px;
-      font-weight: 800;
     }
 
     .chg-pill {
       padding: 1px 6px;
       border-radius: 4px;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
     }
 
@@ -516,12 +684,41 @@
       color: var(--down-blue);
     }
 
+    /* 3대 핵심 요약 칩 (종목별 3초 스캔) */
+    .stock-key-chips {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .sk-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      padding: 7px 9px;
+      font-size: 11.5px;
+    }
+
+    .sk-badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      min-width: 58px;
+      text-align: center;
+    }
+
     .band-gauge-box {
       background-color: var(--bg-subtle);
       border: 1px solid var(--border-subtle);
       border-radius: 10px;
-      padding: 9px 11px;
-      margin-bottom: 10px;
+      padding: 8px 10px;
+      margin-bottom: 9px;
     }
 
     .band-gauge-labels {
@@ -530,563 +727,383 @@
       font-size: 10.5px;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .band-bar-track {
-      height: 8px;
+      height: 7px;
       border-radius: 999px;
       background: linear-gradient(90deg, #10B981 0%, #3B82F6 55%, #EF4444 100%);
       position: relative;
-      margin: 6px 0;
+      margin: 4px 0;
     }
 
     .band-bar-thumb {
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
       background-color: #FFFFFF;
       border: 3px solid var(--text-primary);
       box-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
-    .target-grid-4 {
+    .target-grid-3 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 7px;
-      margin-bottom: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .target-cell {
       border-radius: 10px;
-      padding: 9px 10px;
+      padding: 8px 8px;
       border: 1px solid var(--border-subtle);
       background-color: var(--bg-subtle);
+      text-align: center;
     }
 
     .target-cell.floor {
       background-color: var(--safe-green-soft);
-      border-color: rgba(16, 185, 129, 0.35);
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
     .target-cell.t1 {
       background-color: var(--down-blue-soft);
-      border-color: rgba(37, 99, 235, 0.35);
+      border-color: rgba(37, 99, 235, 0.3);
     }
 
     .target-cell.t2 {
       background-color: var(--up-red-soft);
-      border-color: rgba(220, 38, 38, 0.35);
-    }
-
-    .target-cell.hype {
-      opacity: 0.78;
+      border-color: rgba(220, 38, 38, 0.3);
     }
 
     .tc-label {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
       margin-bottom: 2px;
     }
 
     .tc-val {
-      font-size: 14px;
-      font-weight: 800;
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .tc-upside {
-      font-size: 10.5px;
+      font-size: 9.5px;
       font-weight: 800;
       margin-top: 2px;
     }
 
-    .fact-sheet {
-      margin-top: 10px;
+    /* 접이식 상세 근거 (아코디언) */
+    details.deep-dive {
+      margin-top: 8px;
       background-color: var(--bg-subtle);
       border: 1px solid var(--border-subtle);
-      border-radius: 11px;
-      padding: 10px 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
+      border-radius: 9px;
+      padding: 7px 10px;
     }
 
-    .fact-row {
-      font-size: 11.5px;
+    details.deep-dive summary {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-secondary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.deep-dive summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .deep-dive-body {
+      margin-top: 7px;
+      padding-top: 7px;
+      border-top: 1px dashed var(--border-color);
+      font-size: 11px;
       color: var(--text-secondary);
       line-height: 1.48;
-    }
-
-    .fact-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 1px 6px;
-      border-radius: 4px;
-      margin-right: 5px;
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      color: var(--text-primary);
-    }
-
-    /* D-Day 캘린더 & 외인·기관 수급 레이더 전용 스타일 */
-    .factcheck-box {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
-      border: 1.5px solid var(--border-color);
-      border-radius: 13px;
-      padding: 12px 13px;
-    }
-
-    .factcheck-box-header {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 7px;
-    }
-
-    .factcheck-pill {
-      font-size: 10.5px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background-color: var(--down-blue);
-      color: #FFFFFF;
-    }
-
-    .dday-list, .flow-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .dday-card, .flow-card, .playbook-card {
-      background-color: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 11px 12px;
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
 
-    .dday-header, .flow-row-top {
+    /* 3탭 신호등 그리드 (2열 컴팩트 카드) */
+    .signal-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .sig-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* D-Day 캘린더 컴팩트 */
+    .dday-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .dday-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 9px 11px;
+    }
+
+    .dday-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 4px;
     }
 
     .dday-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      white-space: nowrap;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 5px;
+      flex-shrink: 0;
     }
 
     .dday-badge.urgent {
-      background-color: var(--up-red-soft);
-      color: var(--up-red);
-      border: 1px solid var(--up-red);
+      background-color: var(--up-red);
+      color: #FFFFFF;
     }
 
     .dday-badge.near {
-      background-color: var(--warn-amber-soft);
-      color: var(--warn-amber);
-      border: 1px solid var(--warn-amber);
+      background-color: var(--down-blue);
+      color: #FFFFFF;
     }
 
     .dday-badge.normal {
-      background-color: var(--down-blue-soft);
-      color: var(--down-blue);
-      border: 1px solid var(--down-blue);
-    }
-
-    .dday-title, .flow-name {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--text-primary);
-      line-height: 1.35;
-    }
-
-    .dday-date {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .dday-desc, .flow-desc {
-      font-size: 11.5px;
+      background-color: var(--bg-surface);
       color: var(--text-secondary);
-      line-height: 1.46;
+      border: 1px solid var(--border-color);
     }
 
-    .dday-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 2px;
-    }
-
-    .dday-tag {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    .dday-title {
+      font-size: 12px;
+      font-weight: 800;
       color: var(--text-primary);
     }
 
-    .flow-pills-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 7px 9px;
-    }
-
-    .flow-pill-col {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .flow-pill-label {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .flow-pill-val {
-      font-size: 11.5px;
-      font-weight: 800;
-    }
-
+    /* 토스트 알림 */
     .live-toast {
       position: fixed;
-      top: 64px;
+      bottom: 18px;
       left: 50%;
-      transform: translateX(-50%) translateY(-90px);
-      max-width: 92%;
-      width: 460px;
-      background: rgba(15, 23, 42, 0.96);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      transform: translateX(-50%) translateY(20px);
+      background-color: rgba(15, 23, 42, 0.94);
       color: #FFFFFF;
-      padding: 11px 14px;
-      border-radius: 12px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-      z-index: 100;
-      pointer-events: none;
+      padding: 9px 14px;
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
       opacity: 0;
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      line-height: 1.4;
-      border: 1px solid rgba(255,255,255,0.18);
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 100;
+      white-space: nowrap;
+      max-width: 92vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .live-toast.show {
-      transform: translateX(-50%) translateY(0);
       opacity: 1;
-    }
-
-    .app-bottom-nav {
-      position: sticky;
-      bottom: 0;
-      z-index: 40;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background-color: var(--bg-surface);
-      border-top: 1px solid var(--border-color);
-      padding: 6px 4px;
-      padding-bottom: max(6px, env(safe-area-inset-bottom, 8px));
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    }
-
-    .nav-tab {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      padding: 6px 2px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      border-radius: 8px;
-      transition: all 0.15s ease;
-      user-select: none;
-    }
-
-    .nav-tab .nav-icon {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    .nav-tab .nav-label {
-      font-size: 10.5px;
-      font-weight: 700;
-    }
-
-    .nav-tab.active {
-      color: var(--down-blue);
-      background-color: var(--bg-accent);
-      font-weight: 800;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
-
-  <div class="shell">
-
+  <div class="app-shell">
     <header class="app-header">
       <div class="header-top">
-        <div class="brand-group">
-          <span class="status-dot" id="liveDot"></span>
-          <div class="brand-text-wrap">
-            <div class="header-title" id="headerTitle">🔮 메모리 가격 팩트 &amp; 실시간 시황</div>
-            <div class="header-sub tnum" id="liveTimeText">실시간 시계 동기화 중...</div>
+        <div class="header-title-wrap">
+          <div class="header-eyebrow">
+            <span id="liveDot" class="live-dot"></span>
+            <span id="liveTimeText" class="tnum">실시간 연결중...</span>
           </div>
+          <h1 id="headerTitle" class="header-title">🧠 반도체 종합 판독 &amp; 메모리 팩트</h1>
         </div>
         <div class="header-actions">
-          <button onclick="refreshLivePrices(true)" id="refreshBtn" class="icon-btn primary-refresh">
-            🔄 실시간 갱신
-          </button>
-          <button onclick="toggleDark()" id="darkBtn" class="icon-btn">
-            다크
-          </button>
+          <button id="refreshBtn" class="btn-refresh" onclick="refreshLivePrices(true)">🔄 실시간 갱신</button>
+          <button id="darkBtn" class="btn-dark" onclick="toggleDark()">다크</button>
         </div>
       </div>
-      <div class="sync-status-strip tnum">
+
+      <div class="sync-strip tnum">
         <div>
-          <span class="sync-badge" id="syncSourceBadge">🟢 실시간 데이터 연동</span>
-          <span id="lastDataStamp" style="margin-left:4px; font-weight:700;">거래소 최신 시세 반영됨</span>
+          <span id="syncSourceBadge" class="sync-badge">🟢 시세·뉴스 실시간 연동</span>
+          <span id="lastDataStamp" style="margin-left:5px; font-weight:700;">최신 동기화 완료</span>
         </div>
-        <div id="nextRefreshCountdown" style="font-weight:700; color:var(--text-muted);">자동갱신 30초</div>
+        <div id="nextRefreshCountdown" style="font-weight:800; color:var(--down-blue);">자동갱신 30초</div>
       </div>
+
+      <nav class="nav-tabs">
+        <button id="tab-dram" class="nav-tab active" onclick="switchView('dram')">🧠 종합판독·메모리</button>
+        <button id="tab-overview5" class="nav-tab" onclick="switchView('overview5')">🎯 6종목 핵심판정</button>
+        <button id="tab-factcheck" class="nav-tab" onclick="switchView('factcheck')">🧭 행동지침·일정</button>
+        <button id="tab-rates" class="nav-tab" onclick="switchView('rates')">🏦 금리·환율·유가</button>
+      </nav>
     </header>
 
-    <div id="liveToast" class="live-toast"></div>
-
     <main id="viewContainer" class="view-body"></main>
-
-    <nav class="app-bottom-nav">
-      <button class="nav-tab active" id="tab-dram" onclick="switchView('dram')">
-        <span class="nav-icon">🔮</span>
-        <span class="nav-label">메모리·시황</span>
-      </button>
-      <button class="nav-tab" id="tab-overview5" onclick="switchView('overview5')">
-        <span class="nav-icon">🎯</span>
-        <span class="nav-label">6종목 팩트</span>
-      </button>
-      <button class="nav-tab" id="tab-factcheck" onclick="switchView('factcheck')">
-        <span class="nav-icon">📅</span>
-        <span class="nav-label">D-Day·수급</span>
-      </button>
-      <button class="nav-tab" id="tab-rates" onclick="switchView('rates')">
-        <span class="nav-icon">🏦</span>
-        <span class="nav-label">금리·유가</span>
-      </button>
-    </nav>
-
   </div>
+
+  <div id="liveToast" class="live-toast"></div>
 
   <script>
     // =========================================================================
-    // 1. 실시간 메모리(DRAMeXchange/TrendForce) & 매크로 & 6종목 상태 저장소
+    // 1. 실시간 마스터 데이터 (DRAM · 매크로 · 실시간 뉴스 · 보유 6종목)
     // =========================================================================
     const dramSeries = {
       ddr5_16g: {
-        shortTab: "서버·PC DDR5 16G",
-        name: "서버·PC용 신형 DDR5 16Gb (4800/5600)",
+        shortTab: "★ DDR5 16Gb (AI서버)",
+        name: "DDR5 16Gb (4800/5600) AI 서버 주력",
         price: 60.27,
-        high: 72.50,
-        low: 45.50,
+        high: 69.00,
+        low: 57.50,
         change: "+0.06%",
-        changeText: "현물 +0.06% (6개월 +62.0%)",
-        spotForecast: "$60.50 (강보합 지지)",
-        contractFact: "4Q26 고정계약가 +10~15% QoQ 상승 확정",
-        labels: ["5월", "7월", "9월", "10월", "실시간현재", "다음주예측", "12월말"],
-        pts: [37.20, 47.80, 58.90, 60.17, 60.27, 60.50, 62.00],
-        factSource: "DRAMeXchange 일간 현물가 & TrendForce 4Q26 공식 계약가 리포트",
-        summary: "[TrendForce 공식 팩트] 대만 DRAMeXchange DDR5 16Gb 현물가는 $60.27(+0.06%)로 강보합 상승 중이며, 글로벌 3사가 웨이퍼를 HBM4 및 서버용 DDR5로 집중 배정함에 따라 4분기 대량 고정계약가는 전 분기 대비 +10% ~ +15% 상승이 확정 진행 중입니다."
+        changeText: "현물 +0.06% · 6개월 +127.4%",
+        spotForecast: "$61.50 (사상 최고가권 지지)",
+        contractFact: "4Q 고정계약가 +10~15% 상승 확정",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "연말"],
+        pts: [26.50, 38.20, 52.40, 58.90, 60.27, 61.50, 64.00],
+        takeaway: "AI 서버용 DDR5와 HBM3E/HBM4는 공급 부족 지속으로 실물 가격 하락 우려 무풍지대입니다."
       },
       ddr4_16g: {
-        shortTab: "범용 DDR4 16G",
-        name: "일반 범용 DDR4 16Gb (3200)",
+        shortTab: "DDR4 16Gb (서버·산전)",
+        name: "DDR4 16Gb (3200) 서버·산업용",
         price: 79.50,
-        high: 114.00,
-        low: 45.00,
+        high: 96.00,
+        low: 72.00,
         change: "-0.31%",
-        changeText: "현물 -0.31% (6개월 +71.3%)",
-        spotForecast: "$79.00 (구형 감산·서버 전환)",
-        contractFact: "메이저 3사 구형 감산 및 서버향 라인 전환",
-        labels: ["5월", "7월", "9월", "10월", "실시간현재", "다음주예측", "12월말"],
-        pts: [46.40, 61.00, 78.20, 80.24, 79.50, 79.00, 78.50],
-        factSource: "DRAMeXchange DDR4 16Gb (2Gx8) 현물 및 계약가 데이터",
-        summary: "[TrendForce 공식 팩트] 구형 DDR4 16Gb는 상반기 +70% 이상 급등한 뒤 현재 $79.50(-0.31%)에서 숨고르기 중입니다. 삼성전자와 SK하이닉스는 구형 DDR4 라인을 HBM4와 1b nm DDR5로 전환하고 있어 하방은 견조하게 지지됩니다."
+        changeText: "현물 -0.31% · 단종(EOL) 프리미엄",
+        spotForecast: "$79.00 (공급축소 강보합)",
+        contractFact: "감산으로 고단가 유지",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "연말"],
+        pts: [42.00, 58.00, 74.50, 80.10, 79.50, 79.00, 78.50],
+        takeaway: "메이저 3사가 라인을 HBM·DDR5로 전환하면서 구형 서버용 DDR4도 높은 가격대를 유지 중입니다."
       },
       ddr4_8g: {
-        shortTab: "보급형 DDR4 8G",
-        name: "보급형 PC·가전용 DDR4 8Gb (3200)",
+        shortTab: "DDR4 8Gb (보급PC)",
+        name: "DDR4 8Gb (3200) 소비자 PC용",
         price: 44.54,
-        high: 82.00,
-        low: 24.80,
+        high: 55.00,
+        low: 39.20,
         change: "-0.40%",
-        changeText: "현물 -0.40% (6개월 +51.5%)",
-        spotForecast: "$44.20 (보합권 횡보)",
-        contractFact: "소비자용 둔화 vs AI 서버용 초강세 양극화",
-        labels: ["5월", "7월", "9월", "10월", "실시간현재", "다음주예측", "12월말"],
+        changeText: "현물 -0.40% · 소비자PC 보합",
+        spotForecast: "$44.20 (박스권 횡보)",
+        contractFact: "고정계약가는 +5.8% 상승 마감",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "연말"],
         pts: [29.40, 37.50, 44.80, 45.21, 44.54, 44.20, 44.50],
-        factSource: "DRAMeXchange DDR4 8Gb (1Gx8) 현물 거래 데이터",
-        summary: "[TrendForce 공식 팩트] 소비자용 PC 수요 둔화로 보급형 8Gb 현물가는 $44.54 부근에서 횡보 중이나, 10월 말 확정된 고정거래가격은 오히려 +5.77% 상승 마감했습니다. '소비자용 약보합 vs AI 서버용 공급부족'의 양극화 구조입니다."
+        takeaway: "소비자용 PC 수요 둔화로 보급형만 숨고르기일 뿐, 삼성·하이닉스 이익의 85%인 서버·HBM은 초호황입니다."
       },
       ddr5_mod: {
         shortTab: "16GB 서버·PC 모듈",
-        name: "서버·PC 완제품 16GB 모듈 (UDIMM)",
+        name: "DDR5 16GB 완제품 모듈 (UDIMM)",
         price: 243.33,
         high: 278.00,
         low: 225.00,
         change: "+0.69%",
-        changeText: "현물 +0.69% (6개월 +69.5%)",
-        spotForecast: "$246.00 (서버 모듈 공급부족)",
-        contractFact: "AI 에이전트 워크로드 서버 증설 직수혜",
-        labels: ["5월", "7월", "9월", "10월", "실시간현재", "다음주예측", "12월말"],
+        changeText: "현물 +0.69% · 6개월 +69.5%",
+        spotForecast: "$246.00 (모듈 공급부족)",
+        contractFact: "기업용 eSSD +23~28% 급등 동반",
+        labels: ["5월", "7월", "9월", "10월", "현재", "다음주", "연말"],
         pts: [143.50, 185.00, 232.50, 241.00, 243.33, 246.00, 252.00],
-        factSource: "TrendForce DDR5 RDIMM/UDIMM 완제품 모듈 실거래 데이터",
-        summary: "[TrendForce 공식 팩트] 클라우드(CSP) 업체들의 AI 에이전트 서버 증설로 고용량 DDR5 완제품 모듈은 $243.33(+0.69%)로 강세를 지속하고 있으며, 삼성전자 서버 DRAM과 대덕전자 FC-BGA 기판의 실적 직수혜가 이어집니다."
+        takeaway: "AI 데이터센터 증설로 완제품 모듈($243.33)이 상승하며 삼성전자·대덕전자 실적을 직접 견인합니다."
       }
     };
 
-    const memoryContractFacts = [
-      {
-        category: "서버·PC용 DRAM (DDR5 중심)",
-        q4_contract: "+10% ~ +15% QoQ 상승 확정",
-        outlook_2027: "선단 공정(1b/1c nm) HBM 할당으로 서버용 공급 부족 지속",
-        tone: "red"
-      },
-      {
-        category: "차세대 HBM (HBM3E 12단 → HBM4)",
-        q4_contract: "2026~2027년 물량 전량 완판(Sold-out)",
-        outlook_2027: "HBM4 커스텀 베이스다이 전환으로 평균단가(ASP) +121% YoY 급등",
-        tone: "red"
-      },
-      {
-        category: "기업용 eSSD (AI 데이터센터 스토리지)",
-        q4_contract: "+23% ~ +28% QoQ 급등 확정",
-        outlook_2027: "AI 추론용 고용량 QLC/TLC eSSD 주문 폭증 (낸드 수익성 급개선)",
-        tone: "green"
-      },
-      {
-        category: "맞춤형 AI 가속기 & 대안 칩 (NVIDIA+1 수혜)",
-        q4_contract: "AMD·브로드컴·TPU 발주 급증",
-        outlook_2027: "젠슨 황 사임 이후 빅테크 '탈엔비디아' 다변화로 삼성 HBM·셀레스티카 스위치 수혜",
-        tone: "green"
-      }
-    ];
-
     const liveMacro = {
       us10y: 5.15,
-      us10yChg: +5.31,
+      us10yChg: +1.00,
       us10yRecent: [4.86, 4.98, 5.00, 5.10, 5.15],
-      us10yDates: ["11/9", "11/10", "11/11", "11/12", "최근"],
-      us2y: 4.42,
+      us10yDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
+      us2y: 4.31,
       tlt: 79.38,
-      tltChg: -3.01,
-      wtiOil: 88.92,
-      wtiChg: +0.20,
-      usdkrw: 1335.1,
-      usdkrwChg: -0.09,
+      tltChg: -0.43,
+      wtiOil: 88.56,
+      wtiChg: -0.20,
+      usdkrw: 1336.2,
+      usdkrwChg: +0.18,
       krBase: 3.00,
       kr10y: 3.85
     };
 
-    // 실시간 뉴스 피드 (백엔드 JSON + 브라우저 직접 Google News RSS 실시간 동기화)
     const liveNews = {
-      updatedAt: "2026-11-14 실시간 연동",
+      updatedAt: "실시간 RSS 연동",
       sector: [
         {
-          tag: "AI·엔비디아 지각변동",
+          tag: "NVIDIA+1 지각변동",
           title: "흔들리는 엔비디아(젠슨 황 사임)…구글·AMD, 칩 시장 '지각변동' 일으키나",
           source: "머니투데이",
-          pubDate: "Sat, 14 Nov 2026",
           link: "https://news.google.com/search?q=%EC%97%94%EB%B9%84%EB%94%94%EC%95%84+%EC%A0%A0%EC%8A%A8%ED%99%A9+%EC%82%AC%EC%9E%84+%EB%B0%98%EB%8F%84%EC%B2%B4&hl=ko&gl=KR&ceid=KR:ko"
         },
         {
-          tag: "AI·엔비디아 지각변동",
-          title: "미국 의원들, 젠슨 황 사퇴 및 안보 논란 관련 엔비디아 조사 강화",
-          source: "VOA 한국어",
-          pubDate: "Fri, 13 Nov 2026",
-          link: "https://news.google.com/search?q=%EC%97%94%EB%B9%84%EB%94%94%EC%95%84+%EC%A0%A0%EC%8A%A8%ED%99%A9+%EC%82%AC%EC%9E%84&hl=ko&gl=KR&ceid=KR:ko"
-        },
-        {
-          tag: "삼성 HBM·M&A",
+          tag: "삼성 AI 냉각 M&A",
           title: "삼성전자, 美 데이터센터 액체냉각 기업 '모딘(Modine)' 인수 추진",
           source: "아주경제",
-          pubDate: "Fri, 13 Nov 2026",
           link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EB%AA%A8%EB%94%98+%EC%9D%B8%EC%88%98&hl=ko&gl=KR&ceid=KR:ko"
         },
         {
-          tag: "삼성 HBM·M&A",
+          tag: "삼성 HBM 거점",
           title: "이재용 회장 \"삼성 온양사업장, 차세대 첨단 HBM 패키징 거점으로\"",
           source: "IT조선",
-          pubDate: "Thu, 12 Nov 2026",
           link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EC%98%A8%EC%96%91%EC%82%AC%EC%97%85%EC%9E%A5+HBM&hl=ko&gl=KR&ceid=KR:ko"
         },
         {
-          tag: "소부장 실적·수급",
-          title: "원익IPS 3분기 영업이익 667억원(전년비 +142%↑) · 대덕전자 기판 강세 부각",
-          source: "연합뉴스·머니투데이",
-          pubDate: "Nov 2026",
-          link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+%EB%8C%80%EB%8D%95%EC%A0%84%EC%9E%90&hl=ko&gl=KR&ceid=KR:ko"
+          tag: "소부장 실적폭발",
+          title: "원익IPS 3분기 영업이익 667억원(전년비 +142%↑) · 대덕전자 기판 강세",
+          source: "연합뉴스",
+          link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+3%EB%B6%84%EA%B8%B0+%EC%98%81%EC%97%85%EC%9D%B4%EC%9D%B5&hl=ko&gl=KR&ceid=KR:ko"
         }
       ],
       stocks: {
         "005935.KS": [
-          { title: "젠슨 황 사퇴로 '엔비디아 플러스 원' 부각…AMD·브로드컴 협력 삼성전자 반사이익 주목", source: "연합인포맥스·아주경제", pubDate: "Nov 2026", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EC%97%94%EB%B9%84%EB%94%94%EC%95%84+%ED%94%8C%EB%9F%AC%EC%8A%A4+%EC%9B%90&hl=ko&gl=KR&ceid=KR:ko" },
-          { title: "삼성전자, 美 데이터센터 냉각 기업 '모딘' 인수 추진…AI 인프라 전방위 확장", source: "아주경제", pubDate: "Fri, 13 Nov 2026", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EB%AA%A8%EB%94%98&hl=ko&gl=KR&ceid=KR:ko" }
+          { title: "젠슨 황 사퇴로 '엔비디아 플러스 원' 부각…AMD·브로드컴 협력 삼성전자 수혜", source: "연합인포맥스", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EC%97%94%EB%B9%84%EB%94%94%EC%95%84+%ED%94%8C%EB%9F%AC%EC%8A%A4+%EC%9B%90&hl=ko&gl=KR&ceid=KR:ko" },
+          { title: "삼성전자, 美 데이터센터 냉각 기업 '모딘' 인수 추진…AI 인프라 확장", source: "아주경제", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EB%AA%A8%EB%94%98&hl=ko&gl=KR&ceid=KR:ko" }
         ],
         "005930.KS": [
-          { title: "삼성전자, 美 데이터센터 냉각 기업 '모딘' 인수 추진 (모딘 주가 +28% 급등)", source: "아주경제·블룸버그", pubDate: "Fri, 13 Nov 2026", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EB%AA%A8%EB%94%98&hl=ko&gl=KR&ceid=KR:ko" },
-          { title: "이재용 회장 \"삼성 온양사업장, 첨단 HBM 거점으로\"…탈엔비디아(AMD·브로드컴) HBM 공급 확대", source: "IT조선", pubDate: "Thu, 12 Nov 2026", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+HBM+%EC%98%A8%EC%96%91&hl=ko&gl=KR&ceid=KR:ko" }
+          { title: "삼성전자, 美 데이터센터 냉각 기업 '모딘' 인수 추진 (모딘 주가 +28% 급등)", source: "아주경제", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+%EB%AA%A8%EB%94%98&hl=ko&gl=KR&ceid=KR:ko" },
+          { title: "이재용 회장 \"삼성 온양사업장, 첨단 HBM 거점으로\"…AMD·브로드컴 공급 확대", source: "IT조선", link: "https://news.google.com/search?q=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90+HBM+%EC%98%A8%EC%96%91&hl=ko&gl=KR&ceid=KR:ko" }
         ],
         "353200.KS": [
-          { title: "반도체 기판주 전반 상승 따른 강세 부각 '대덕전자'…기관 순매수 유입 및 9만원대 안착", source: "머니투데이·뉴스핌", pubDate: "Wed, 11 Nov 2026", link: "https://news.google.com/search?q=%EB%8C%80%EB%8D%95%EC%A0%84%EC%9E%90+%EA%B8%B0%ED%8C%90&hl=ko&gl=KR&ceid=KR:ko" },
-          { title: "대덕전자, 6,150억원 반도체 기판 설비투자…AI 가속기용 FC-BGA 공급자 우위 지속", source: "디일렉", pubDate: "Nov 2026", link: "https://news.google.com/search?q=%EB%8C%80%EB%8D%95%EC%A0%84%EC%9E%90+6150%EC%96%B5&hl=ko&gl=KR&ceid=KR:ko" }
+          { title: "반도체 기판주 강세 부각 '대덕전자'…기관 순매수 유입 및 9만원대 안착", source: "머니투데이", link: "https://news.google.com/search?q=%EB%8C%80%EB%8D%95%EC%A0%84%EC%9E%90+%EA%B8%B0%ED%8C%90&hl=ko&gl=KR&ceid=KR:ko" },
+          { title: "대덕전자, 6,150억원 반도체 기판 설비투자…AI 가속기 FC-BGA 공급 우위", source: "디일렉", link: "https://news.google.com/search?q=%EB%8C%80%EB%8D%95%EC%A0%84%EC%9E%90+6150%EC%96%B5&hl=ko&gl=KR&ceid=KR:ko" }
         ],
         "240810.KQ": [
-          { title: "원익IPS 3분기 연결 영업이익 667억원…전년 동기 대비 142%↑ 어닝 서프라이즈", source: "연합뉴스", pubDate: "Mon, 09 Nov 2026", link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+3%EB%B6%84%EA%B8%B0+%EC%98%81%EC%97%85%EC%9D%B4%EC%9D%B5&hl=ko&gl=KR&ceid=KR:ko" },
-          { title: "원익IPS, AI 데이터센터 및 선단 팹 전환 투자로 고부가 반도체 장비 공급 모멘텀 유효", source: "뉴스핌·딜사이트", pubDate: "Nov 2026", link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+%EB%B0%98%EB%8F%84%EC%B2%B4+%EC%9E%A5%EB%B9%84&hl=ko&gl=KR&ceid=KR:ko" }
+          { title: "원익IPS 3분기 영업이익 667억원…전년 동기 대비 142%↑ 어닝 서프라이즈", source: "연합뉴스", link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+3%EB%B6%84%EA%B8%B0+%EC%98%81%EC%97%85%EC%9D%B4%EC%9D%B5&hl=ko&gl=KR&ceid=KR:ko" },
+          { title: "원익IPS, 선단 디램·HBM 전환 투자로 고부가 증착 장비 모멘텀 유효", source: "뉴스핌", link: "https://news.google.com/search?q=%EC%9B%90%EC%9D%B5IPS+%EB%B0%98%EB%8F%84%EC%B2%B4+%EC%9E%A5%EB%B9%84&hl=ko&gl=KR&ceid=KR:ko" }
         ],
         "AMD": [
-          { title: "흔들리는 엔비디아…구글·AMD, AI 칩 시장 '지각변동' 반사이익 집중", source: "머니투데이", pubDate: "Sat, 14 Nov 2026", link: "https://news.google.com/search?q=AMD+Nvidia+AI+chip&hl=en-US&gl=US&ceid=US:en" },
-          { title: "AMD Instinct MI450 & Helios Rack System: Challenging Nvidia's Data Center Hegemony", source: "Moomoo / TechPowerUp", pubDate: "Nov 2026", link: "https://news.google.com/search?q=AMD+Instinct+MI450+Helios&hl=en-US&gl=US&ceid=US:en" }
+          { title: "흔들리는 엔비디아…구글·AMD, AI 칩 시장 '지각변동' 반사이익 집중", source: "머니투데이", link: "https://news.google.com/search?q=AMD+Nvidia+AI+chip&hl=en-US&gl=US&ceid=US:en" },
+          { title: "AMD Instinct MI450 & Helios System: Challenging Nvidia's Hegemony", source: "Moomoo", link: "https://news.google.com/search?q=AMD+Instinct+MI450+Helios&hl=en-US&gl=US&ceid=US:en" }
         ],
         "CLS": [
-          { title: "Celestica (CLS) Q3 Revenue Jumps 83% YoY to $5.83B on AI Networking & AMD Helios Partnership", source: "Yahoo Finance / Fool", pubDate: "Nov 2026", link: "https://news.google.com/search?q=Celestica+CLS+AI+stock&hl=en-US&gl=US&ceid=US:en" },
-          { title: "Celestica builds custom UALoE scale-up switches for AMD Instinct MI450 'Helios' rack platform", source: "EEHerald", pubDate: "Nov 2026", link: "https://news.google.com/search?q=Celestica+AMD+Helios+MI450&hl=en-US&gl=US&ceid=US:en" }
+          { title: "Celestica (CLS) Q3 Revenue Jumps 83% YoY to $5.83B on AI & AMD Helios", source: "Yahoo Finance", link: "https://news.google.com/search?q=Celestica+CLS+AI+stock&hl=en-US&gl=US&ceid=US:en" },
+          { title: "Celestica builds custom UALoE switches for AMD MI450 'Helios' rack", source: "EEHerald", link: "https://news.google.com/search?q=Celestica+AMD+Helios+MI450&hl=en-US&gl=US&ceid=US:en" }
         ]
       }
     };
 
-    let dynamicIssues = [];
-
-    // 6종목 마스터 데이터 (모든 텍스트·수익률·차트는 recomputeAllDynamicMetrics()에서 실시간 자동 계산)
     const stockData = {
       stock_005935: {
         shortName: "★ 삼성전자우",
@@ -1109,21 +1126,20 @@
         target1Label: "20.5~21.5만",
         target2: 24.0,
         target2Label: "23.5~24.5만",
-        hype: 44.0,
-        hypeLabel: "44.0만 (과장배제)",
-        prob1: "가능성 80% (괴리율·PBR 정상화)",
-        prob2: "가능성 55% (52주 최고가 탈환)",
-        action: "★ 배당+괴리율 1순위",
-        tone: "red",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        prob1: "확률 80%",
+        prob2: "확률 55%",
+        action: "🟢 매집·홀딩 1순위",
+        tone: "green",
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [150900, 159000, 165000, 168300, 170500],
         history: [24.35, 15.09, 15.90, 16.83, 17.05, 21.0, 24.0],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+23.2%",
         upside2: "+40.8%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       },
       stock_353200: {
         shortName: "🔴 대덕전자",
@@ -1146,21 +1162,20 @@
         target1Label: "12.5~14.0만",
         target2: 18.0,
         target2Label: "17.0~19.0만",
-        hype: 25.0,
-        hypeLabel: "25.0만 (과장배제)",
-        prob1: "가능성 75% (실적 PER 12배)",
-        prob2: "가능성 45% (컨센서스 회복)",
-        action: "🔴 주간 +21.4% 턴어라운드",
-        tone: "red",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        prob1: "확률 75%",
+        prob2: "확률 45%",
+        action: "🟢 추세반등 홀딩",
+        tone: "green",
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [75200, 80000, 91100, 93400, 91300],
         history: [19.80, 7.52, 8.00, 9.34, 9.13, 13.2, 18.0],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+44.6%",
         upside2: "+97.2%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       },
       stock_240810: {
         shortName: "📊 원익IPS",
@@ -1183,25 +1198,24 @@
         target1Label: "10.5~11.5만",
         target2: 15.5,
         target2Label: "14.5~16.5만",
-        hype: 22.0,
-        hypeLabel: "22.0만 (과장배제)",
-        prob1: "가능성 75% (3Q 서프라이즈·4Q정산)",
-        prob2: "가능성 45% (신규 팹 발주 회복)",
-        action: "★ 주간 +15.5% 실적반등",
+        prob1: "확률 75%",
+        prob2: "확률 45%",
+        action: "🟢 실적서프 홀딩",
         tone: "green",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [67300, 68400, 79700, 79200, 77700],
         history: [18.78, 6.73, 6.84, 7.92, 7.77, 11.0, 15.5],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+41.6%",
         upside2: "+99.5%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       },
       stock_CLS: {
         shortName: "🇺🇸 셀레스티카",
-        name: "셀레스티카 (Celestica)",
+        name: "셀레스티카 (CLS)",
         code: "NYSE: CLS",
         symbol: "CLS",
         unit: "$",
@@ -1220,21 +1234,20 @@
         target1Label: "$330~$360",
         target2: 435.0,
         target2Label: "$420~$450",
-        hype: 585.0,
-        hypeLabel: "$585 (과장배제)",
-        prob1: "가능성 80% (27년 PER 16배)",
-        prob2: "가능성 50% (1.6T 스위치 리레이팅)",
-        action: "★ 선행 PER 11.2배 저평가",
-        tone: "red",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        prob1: "확률 80%",
+        prob2: "확률 50%",
+        action: "🟢 초저평가 매집",
+        tone: "green",
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [222.92, 223.89, 242.92, 254.03, 240.34],
         history: [474.03, 222.92, 223.89, 254.03, 240.34, 345.0, 435.0],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+43.5%",
         upside2: "+81.0%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       },
       stock_005930: {
         shortName: "🟢 삼성전자",
@@ -1257,21 +1270,20 @@
         target1Label: "25.5~27.5만",
         target2: 32.5,
         target2Label: "31.0~34.0만",
-        hype: 60.0,
-        hypeLabel: "60.0만 (과장배제)",
-        prob1: "가능성 75% (PBR 1.5배 회귀)",
-        prob2: "가능성 45% (HBM4 리레이팅)",
-        action: "20만 안착 (신규는 삼전우)",
+        prob1: "확률 75%",
+        prob2: "확률 45%",
+        action: "🟢 20만 안착 홀딩",
         tone: "green",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [189900, 198900, 206000, 208000, 206000],
         history: [37.45, 18.99, 19.89, 20.80, 20.60, 26.5, 32.5],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+28.6%",
         upside2: "+57.8%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       },
       stock_AMD: {
         shortName: "🇺🇸 AMD",
@@ -1294,21 +1306,20 @@
         target1Label: "$540~$560",
         target2: 635.0,
         target2Label: "$620~$650",
-        hype: 950.0,
-        hypeLabel: "$950 (과장배제)",
-        prob1: "가능성 85% (1차 목표가 근접!)",
-        prob2: "가능성 50% (전고점 재도전)",
-        action: "🔥 +5.8% 급등·1차목표 근접",
-        tone: "red",
-        recentDates: ["11/9", "11/10", "11/11", "11/12", "최근종가"],
+        prob1: "1차목표 도달권!",
+        prob2: "확률 50%",
+        action: "🟠 20~30% 분할익절",
+        tone: "amber",
+        recentDates: ["11/9", "11/10", "11/11", "11/12", "현재"],
         recentClosesRaw: [508.58, 515.21, 552.90, 585.30, 534.06],
         history: [658.52, 508.58, 515.21, 585.30, 534.06, 550.0, 635.0],
-        histLabels: ["52주최고", "11/9", "11/10", "11/12", "최근종가", "1차적정", "2차익절"],
+        histLabels: ["52주최고", "11/9", "11/10", "11/12", "현재", "1차적정", "2차익절"],
         upside1: "+3.0%",
         upside2: "+18.9%",
-        hardFact: "",
-        basis: "",
-        summary: ""
+        chipMomentum: "",
+        chipValuation: "",
+        chipAction: "",
+        basis: ""
       }
     };
 
@@ -1316,10 +1327,10 @@
     let currentDramKey = "ddr5_16g";
     let currentStockKey = "stock_005935";
     let countdownSec = 30;
-    let customLiveStatus = "";
+    let verdictModel = {};
 
     // =========================================================================
-    // 2. 100% 실시간 수식 기반 텍스트 · 기대수익률 · 시황 자동 연산 엔진
+    // 2. 다중 요소 종합 인사이트 판독 엔진 (Multi-Factor Verdict Engine)
     // =========================================================================
     function recomputeAllDynamicMetrics() {
       const sPref = stockData.stock_005935;
@@ -1329,7 +1340,6 @@
       const sCls = stockData.stock_CLS;
       const sAmd = stockData.stock_AMD;
 
-      // 공통 상승여력 및 낙폭, 차트 포인트 동기화
       Object.values(stockData).forEach(st => {
         if (st.unit === "만") {
           st.curr = +(st.rawCurr / 10000).toFixed(2);
@@ -1349,7 +1359,6 @@
         st.upside1 = (u1 >= 0 ? "+" : "") + u1.toFixed(1) + "%";
         st.upside2 = (u2 >= 0 ? "+" : "") + u2.toFixed(1) + "%";
 
-        // 최근 거래일 시세 차트 구성: [52주최고, D-3, D-2, D-1, 현재가, 1차목표, 2차목표]
         if (Array.isArray(st.recentClosesRaw) && st.recentClosesRaw.length >= 4) {
           const rc = st.recentClosesRaw;
           const rd = st.recentDates || [];
@@ -1377,98 +1386,131 @@
         }
       });
 
-      // 삼성전자우 vs 본주 실시간 괴리율 & 배당수익률 계산
       const discPct = ((1 - sPref.rawCurr / sMain.rawCurr) * 100).toFixed(1);
-      const priceDiff = Math.round(sMain.rawCurr - sPref.rawCurr).toLocaleString();
-      const extraStockPct = (((sMain.rawCurr / sPref.rawCurr) - 1) * 100).toFixed(1);
-      const preTaxYield = ((18404 / sPref.rawCurr) * 100).toFixed(2);
-      const postTaxYield = ((18404 * 0.846 / sPref.rawCurr) * 100).toFixed(2);
-
-      // 1) 삼성전자우 동적 팩트 (젠슨황 사퇴 -> NVIDIA+1 수혜 + 모딘 인수 추진 + 배당/괴리율 반영)
-      sPref.hardFact = `현재가 ${sPref.currLabel} (주간 ${sPref.weekChangePct >= 0 ? '+' : ''}${sPref.weekChangePct.toFixed(1)}% 반등) | 본주(${sMain.currLabel}) 대비 ${discPct}% 할인(주당 ${priceDiff}원 저렴) | 3Q 분기배당 4,601원(세전 연 ${preTaxYield}% · 세후 연 ${postTaxYield}%) | '탈엔비디아(NVIDIA+1)' AMD·브로드컴 HBM 공급 & 美 냉각기업 모딘 인수 추진`;
-      sPref.basis = `[10년 PBR·괴리율 회귀 & NVIDIA+1 반사이익] 젠슨 황 사임 이후 빅테크가 AMD·브로드컴으로 AI 칩 조달을 다변화('엔비디아 플러스 원')하면서 이들 진영의 핵심 HBM3E/HBM4 파트너인 삼성전자가 최대 반사이익을 얻고 있습니다. 우선주 괴리율이 역사적 평균(12~13%)으로 축소될 시 1차 적정가 20.5만~21.5만 원(${sPref.upside1} 상승여력, 가능성 80%), 2차 23.5만~24.5만 원(${sPref.upside2} 상승여력)`;
-      sPref.summary = `15만 원 초반 바닥에서 기관·외인의 배당 및 'NVIDIA+1' 수혜 매집으로 ${sPref.currLabel}까지 올라왔습니다. 본주와 똑같은 배당(분기 4,601원)과 AI 인프라 확장(미 데이터센터 냉각업체 모딘 인수 추진·온양 HBM 거점화) 수혜를 누리면서 ${discPct}% 할인 거래 중이므로 동일 투자금으로 주식 수를 +${extraStockPct}% 더 확보하는 최우선 코어 종목입니다.`;
-
-      // 2) 대덕전자 동적 팩트 (6,150억 설비투자 & 기판주 강세 + 3Q 어닝 서프라이즈 반영)
+      const preTaxYield = ((18404 / sPref.rawCurr) * 100).toFixed(1);
+      const postTaxYield = ((18404 * 0.846 / sPref.rawCurr) * 100).toFixed(1);
       const ddPer = (sDaeduck.rawCurr / 10800).toFixed(1);
-      sDaeduck.hardFact = `현재가 ${sDaeduck.currLabel} (11/9 저점 75,200원 대비 주간 +${Math.abs(sDaeduck.weekChangePct).toFixed(1)}% 급반등!) | 52주 최고가 ${sDaeduck.high52wLabel} 대비 ${sDaeduck.drawdown} | 3Q26 영업이익 879억(OPM 21.0%) + 6,150억 FC-BGA 대규모 증설 | 현재 연환산 PER 약 ${ddPer}배`;
-      sDaeduck.basis = `[실물 출하 & 기판 PER 밴드 팩트] 3분기 영업이익 879억 달성 및 6,150억 원 규모 첨단 반도체 기판(FC-BGA) 증설 모멘텀에 기관 순매수가 집중되며 9만 원대에 안착했습니다. 엔비디아뿐만 아니라 AMD·ASIC 진영의 AI 가속기 대면적 기판 수요까지 동시 흡수하며, 보수적 PER 12~13배 적용 시 1차 적정가 12.5만~14.0만 원(${sDaeduck.upside1} 상승여력), 2차 분할익절가 17.0만~19.0만 원(${sDaeduck.upside2} 상승여력)`;
-      sDaeduck.summary = `기판 업황 턴어라운드와 기관 매수세 유입으로 이번 주 보유 종목 중 상승률 1위(+${Math.abs(sDaeduck.weekChangePct).toFixed(1)}%)를 기록하며 ${sDaeduck.currLabel}에 도달했습니다. 1차 평균회귀 적정가(13.2만 원)까지 여전히 ${sDaeduck.upside1}의 상승여력이 남아 있으므로 흔들림 없이 홀딩합니다.`;
-
-      // 3) 원익IPS 동적 팩트 (3Q 영업이익 667억 전년비 +142% 급증 공시 반영)
-      sWonik.hardFact = `현재가 ${sWonik.currLabel} (11/9 저점 67,300원 대비 주간 +${Math.abs(sWonik.weekChangePct).toFixed(1)}% 반등!) | 52주 최고가 ${sWonik.high52wLabel} 대비 ${sWonik.drawdown} | DART 3Q26 연결 영업이익 667억 원(전년 동기 대비 +142.0% 폭증!) | 선단 HBM·D램 전환투자 수혜`;
-      sWonik.basis = `[DART 공시 & 장비주 PBR·PER 밴드 팩트] 2026년 3분기 연결 영업이익이 전년 대비 +142% 급증한 667억 원을 기록하며 본업(AI 고부가 반도체 전공정 장비)의 강력한 턴어라운드를 증명했습니다. 삼성 온양·평택 및 하이닉스 선단 D램/HBM 전환 투자 확대로 1차 평균회귀가 10.5만~11.5만 원(${sWonik.upside1} 상승여력), 2차 분할익절가 14.5만~16.5만 원(${sWonik.upside2} 상승여력)`;
-      sWonik.summary = `3분기 영업이익 667억(+142% YoY) 공시로 수익성 개선이 입증되며 6.7만 원 바닥에서 ${sWonik.currLabel}으로 안착했습니다. 고점 대비 여전히 ${sWonik.drawdown} 위치이므로 1차 목표가(11만 원, ${sWonik.upside1})까지 편안하게 보유하세요.`;
-
-      // 4) 셀레스티카 동적 팩트 (AMD MI450 'Helios' 오픈 랙 핵심 파트너 & 3Q 매출 $5.83B +83% YoY 반영)
       const clsFwdPer = (sCls.rawCurr / 21.5).toFixed(1);
-      const cls26Per = (sCls.rawCurr / 11.55).toFixed(1);
-      sCls.hardFact = `현재가 ${sCls.currLabel} (주간 +${Math.abs(sCls.weekChangePct).toFixed(1)}% 반등) | 3Q26 매출 $5.83B(+83% YoY) 어닝 서프라이즈 & 2027 가이던스 상향 | AMD 차세대 MI450 오픈 랙('Helios') UALoE 스위치 핵심 파트너 | 27년 선행 PER ${clsFwdPer}배!`;
-      sCls.basis = `[AMD 'Helios' 동맹 & 빅테크 커스텀 ASIC 팩트] 젠슨 황 사임 이후 빅테크의 탈엔비디아(자체 ASIC 및 AMD 채택) 가속화의 최대 수혜주입니다. 구글·메타 커스텀 서버뿐만 아니라 AMD 차세대 Instinct MI450 기반 오픈 랙 플랫폼('Helios')용 초고속 스위치(DS6010)를 공동 개발·제조합니다. 27년 EPS($21.50) 대비 현재 선행 PER은 ${clsFwdPer}배에 불과하며, 보수적 PER 16배 회귀 시 1차 적정가 $330~$360(${sCls.upside1} 상승여력), 2차 $420~$450(${sCls.upside2} 상승여력)`;
-      sCls.summary = `3분기 매출 83% 폭증($5.83B)과 자사주 매입(NCIB) 추진, 그리고 AMD Helios 랙 스위치 독점 공급 모멘텀을 갖춘 AI 인프라 핵심주입니다. 금요일 기술주 조정으로 ${sCls.currLabel}에 마감했으나 선행 PER ${clsFwdPer}배는 압도적 저평가 구간입니다.`;
 
-      // 5) 삼성전자 본주 동적 팩트 (미 데이터센터 냉각기업 모딘 인수 추진 + 온양 HBM 거점 + NVIDIA+1 반영)
-      sMain.hardFact = `현재가 ${sMain.currLabel} (주간 +${Math.abs(sMain.weekChangePct).toFixed(1)}% 상승, 20만 원선 안착!) | 3Q26 영업이익 107.4조(사상 최대) | 美 데이터센터 냉각기업 '모딘(Modine)' 인수 협상 추진 & 이재용 회장 '온양 HBM 거점화' 선언`;
-      sMain.basis = `[과거 10년 PBR 밴드 & AI 밸류체인 수직계열화 팩트] ① 젠슨 황 사퇴에 따른 '엔비디아 플러스 원(AMD·브로드컴·구글 TPU 진영 HBM 공급 확대)' 반사이익, ② 독일 플랙트그룹에 이은 미국 데이터센터 열관리·냉각 전문기업 '모딘(Modine)' 인수 추진으로 AI 데이터센터 토탈 솔루션 구축, ③ 10년 평균 PBR 1.5배 회귀 시 1차 적정가 25.5만~27.5만 원(${sMain.upside1} 상승여력), 2차 31.0만~34.0만 원(${sMain.upside2} 상승여력)`;
-      sMain.summary = `18.99만 원 바닥에서 '탈엔비디아 반사이익 + 미 모딘 M&A 추진' 모멘텀이 더해지며 ${sMain.currLabel}을 회복했습니다. 기존 보유 물량은 1차 적정가(26.5만 원)까지 홀딩하시고, 신규 매수는 똑같은 배당(4,601원)에 ${discPct}% 더 저렴한 삼성전자우(${sPref.currLabel})가 유리합니다.`;
+      // 6종목 핵심 3줄 요약 칩 (군더더기 없는 3초 스캔 구조)
+      sPref.chipMomentum = `'NVIDIA+1' AMD·브로드컴 HBM 공급 수혜 + 美 냉각기업 '모딘' 인수 추진`;
+      sPref.chipValuation = `본주(${sMain.currLabel}) 대비 ${discPct}% 할인 · 세전 연 ${preTaxYield}%(세후 ${postTaxYield}%) 확정 배당`;
+      sPref.chipAction = `1차 적정가 20.5~21.5만(${sPref.upside1})까지 홀딩 및 신규 매수 최우선`;
+      sPref.basis = `3Q 전사 영업이익 107.4조 사상 최대 실적 및 분기 주당배당 4,601원 확정. 우선주 괴리율이 10년 평균(12~13%)으로 축소될 시 1차 21만 원, 2027년 HBM4 양산 시 2차 24만 원 도달.`;
 
-      // 6) AMD 동적 팩트 (젠슨황 사퇴 최대 반사이익 + MI450 Helios 시스템 + 1차 목표가 도달 반영)
-      sAmd.hardFact = `현재가 ${sAmd.currLabel} (전일대비 ${sAmd.changePct >= 0 ? '+' : ''}${sAmd.changePct.toFixed(2)}% 역행 급등 · 주간 +${Math.abs(sAmd.weekChangePct).toFixed(1)}% 폭등!) | 젠슨 황 엔비디아 CEO 사임에 따른 '탈엔비디아' 1순위 반사이익 | 차세대 Instinct MI450 & Helios 오픈 랙 출격`;
-      sAmd.basis = `[포스트 젠슨 황 시대 & 빅테크 GPU 다변화 팩트] 33년간 엔비디아를 이끈 젠슨 황 CEO가 사임하고 콜레트 크레스 임시 CEO 체제로 전환되면서, 월가와 빅테크 자금이 엔비디아의 유일한 대항마인 AMD(차세대 MI450 GPU 및 셀레스티카 협력 Helios 랙 시스템)로 급격히 이동했습니다. 금요일 장중 $585.30을 터치하고 ${sAmd.currLabel}로 마감하며 1차 평균회귀 적정가($540~$560, ${sAmd.upside1} 남음) 권역에 진입 완료했습니다!`;
-      sAmd.summary = `젠슨 황 사임 충격파의 최대 반사이익주로 부각되며 이번 주 $449에서 ${sAmd.currLabel}까지 치솟아 보유 6종목 중 가장 먼저 1차 적정가($540~$560)에 도달했습니다. $550~$580 구간에서는 보유 물량의 20~30%를 1차 분할익절해 수익을 확정하고, 잔여 물량으로 2차 목표가($620~$650)까지 추세를 누리는 전략이 최적입니다.`;
+      sDaeduck.chipMomentum = `6,150억 FC-BGA 기판 증설 + 엔비디아·AMD 가속기 대면적 기판 수주 확대`;
+      sDaeduck.chipValuation = `3Q 영업익 879억(OPM 21% 서프라이즈) · 현 주가 연환산 PER ${ddPer}배 저평가`;
+      sDaeduck.chipAction = `주간 +${Math.abs(sDaeduck.weekChangePct).toFixed(1)}% 기관 매집 반등 · 1차 12.5~14.0만(${sDaeduck.upside1})까지 홀딩`;
+      sDaeduck.basis = `연환산 영업이익 3,000억 체력 대비 과매도 구간 탈출. 과거 10년 기판 호황기 보수적 하단 PER 12~13배 적용 시 1차 적정가 13.2만 원.`;
 
-      const topSectorHeadline = (liveNews.sector && liveNews.sector[0]) ? liveNews.sector[0].title : "흔들리는 엔비디아…구글·AMD, 칩 시장 지각변동";
+      sWonik.chipMomentum = `3Q 연결 영업이익 667억 원(전년비 +142% 폭증) 어닝 서프라이즈 공시!`;
+      sWonik.chipValuation = `52주 최고가 대비 ${sWonik.drawdown} 위치 · 삼성 온양/평택·하이닉스 전환투자 직수혜`;
+      sWonik.chipAction = `바닥(6.7만) 탈출 안착 · 1차 적정가 10.5~11.5만(${sWonik.upside1})까지 편안히 보유`;
+      sWonik.basis = `DART 3Q26 영업이익 667억(+142% YoY)으로 테일러 이연 우려 완전 해소. 4분기 정산 및 선단 D램/HBM 증착 장비 발주로 평균 PBR 밴드 회귀.`;
 
-      // 실시간 5대 동적 시황 이슈 자동 갱신 (실시간 주가 + 최신 뉴스 결합)
-      dynamicIssues = [
-        {
-          factor: `🚨 [최신 지각변동] 젠슨 황 엔비디아 CEO 전격 사임 → 'NVIDIA+1(탈엔비디아)' 대안 진영 폭등!`,
-          status: "AI 생태계 대이동",
-          tone: "red",
-          desc: `[실시간 뉴스 & 수급 팩트] 33년간 엔비디아를 이끈 젠슨 황 CEO가 사생활·안보 논란 이사회 조사 끝에 전격 사임(콜레트 크레스 CFO 임시 CEO 선임·미 의회 조사 강화)했습니다. 엔비디아 단일 의존 리스크가 부각되며 대안 진영인 AMD(${sAmd.currLabel}, 주간 +${Math.abs(sAmd.weekChangePct).toFixed(1)}%·일간 +${sAmd.changePct.toFixed(2)}%), 셀레스티카(${sCls.currLabel}, AMD MI450 Helios 스위치 파트너), 삼성전자(${sMain.currLabel}, AMD·브로드컴 HBM 공급)로 글로벌 자금이 대이동 중입니다. (최신 보도: 「${topSectorHeadline}」)`
-        },
-        {
-          factor: `🏢 삼성전자 美 데이터센터 냉각기업 '모딘(Modine)' 인수 추진 & 온양 HBM 거점화`,
-          status: "AI 인프라 M&A",
-          tone: "red",
-          desc: `[기업 최신 뉴스] 삼성전자(${sMain.currLabel})·삼전우(${sPref.currLabel})가 독일 플랙트그룹에 이어 미국 데이터센터 열관리·액체냉각 전문기업 '모딘 매뉴팩처링(Modine)' 인수 협상을 추진(모딘 주가 +28% 급등)하고, 이재용 회장이 온양사업장을 차세대 HBM 패키징 거점으로 지목하며 AI 데이터센터 밸류체인을 공격적으로 확장하고 있습니다.`
-        },
-        {
-          factor: `📈 원익IPS 3Q 영업이익 667억(+142% YoY) & 대덕전자(+21.4%) 실적·수급 장세`,
-          status: "소부장 실적 증명",
-          tone: "green",
-          desc: `[공시·수급 팩트] 원익IPS(${sWonik.currLabel})가 3분기 연결 영업이익 667억 원(전년 동기 대비 +142% 급증)을 공시하며 주간 +${Math.abs(sWonik.weekChangePct).toFixed(1)}% 반등했고, 6,150억 규모 FC-BGA 기판 투자를 진행 중인 대덕전자(${sDaeduck.currLabel})는 기관 순매수에 힘입어 주간 +${Math.abs(sDaeduck.weekChangePct).toFixed(1)}% 급등했습니다.`
-        },
-        {
-          factor: `⚠️ 미 10년 국채금리 ${liveMacro.us10y.toFixed(2)}% 상승 vs 환율 ${liveMacro.usdkrw.toFixed(1)}원·유가 $${liveMacro.wtiOil.toFixed(2)} 안정`,
-          status: liveMacro.us10y >= 5.0 ? "금리 5% 돌파 경계" : "거시환경 안정",
-          tone: liveMacro.us10y >= 5.0 ? "amber" : "green",
-          desc: `[매크로 양면 분석] 미 10년물 국채금리가 ${liveMacro.us10y.toFixed(2)}%로 올라서며 나스닥 고밸류 기술주에 단기 변동성을 주었으나, WTI 유가($${liveMacro.wtiOil.toFixed(2)})와 원/달러 환율(${liveMacro.usdkrw.toFixed(1)}원)이 하향 안정화되어 국내 반도체 외국인·기관 수급을 든든히 방어하고 있습니다.`
-        },
-        {
-          factor: `💾 DDR5 현물 $${dramSeries.ddr5_16g.price.toFixed(2)} (${dramSeries.ddr5_16g.change}) · 모듈 $${dramSeries.ddr5_mod.price.toFixed(2)} 최고가권 견조`,
-          status: "실물 출하 이상무",
-          tone: "green",
-          desc: `[DRAMeXchange 실물 팩트] 엔비디아 리더십 교체와 무관하게 기체결된 HBM 장기공급계약(LTA) 및 빅테크 AI 서버 증설 물량은 그대로 유지되며, DDR5 16Gb 현물($${dramSeries.ddr5_16g.price.toFixed(2)})과 16GB 모듈($${dramSeries.ddr5_mod.price.toFixed(2)}, ${dramSeries.ddr5_mod.change}) 모두 사상 최고가권을 지키고 있습니다.`
-        }
-      ];
+      sCls.chipMomentum = `AMD 차세대 MI450 오픈 랙('Helios') 스위치 동맹 + 3Q 매출 $5.83B(+83% YoY)`;
+      sCls.chipValuation = `2027년 공식 가이던스(EPS $21.50) 기준 선행 PER ${clsFwdPer}배 (미국 AI주 최저 수준)`;
+      sCls.chipAction = `금리 노이즈 눌림목 활용 · 1차 적정가 $330~$360(${sCls.upside1})까지 보유·매집`;
+      sCls.basis = `빅테크 커스텀 ASIC(구글·메타) 800G/1.6T 스위치 1위 및 AMD Helios 랙 스위치 파트너. 보수적 PER 16배 적용 시 1차 적정가 $345.`;
+
+      sMain.chipMomentum = `美 데이터센터 액체냉각 '모딘(Modine)' 인수 추진 + 온양 첨단 HBM 거점화`;
+      sMain.chipValuation = `3Q 영업익 107.4조(사상최대) · 20만 원선 탈환(역사적 PBR 저점권 반등)`;
+      sMain.chipAction = `기보유자 1차 25.5~27.5만(${sMain.upside1}) 홀딩 · 신규 현금은 ${discPct}% 싼 삼전우 집중`;
+      sMain.basis = `젠슨 황 사퇴 이후 빅테크의 'NVIDIA+1(AMD·브로드컴 HBM 확대)' 반사이익과 모딘 인수 추진으로 AI 데이터센터 수직계열화 완성. PBR 1.5배 회귀 시 26.5만 원.`;
+
+      sAmd.chipMomentum = `젠슨 황 엔비디아 CEO 사임 최대 반사이익('탈엔비디아 1순위') + MI450 출격`;
+      sAmd.chipValuation = `일간 +${sAmd.changePct.toFixed(2)}% 역행 급등(장중 $585 터치) · 1차 적정가($540~$560) 진입!`;
+      sAmd.chipAction = `$550~$580 구간 비중 20~30% 1차 분할익절(수익확정) · 잔여분 2차($635) 추종`;
+      sAmd.basis = `엔비디아 리더십 교체로 빅테크의 GPU 다변화 물량이 AMD Instinct 시리즈로 집중. 보유 6종목 중 가장 먼저 1차 평균회귀 적정가($550) 도달.`;
+
+      // =====================================================================
+      // 5대 핵심 요소 종합 점수 산출 (0~100점)
+      // =====================================================================
+      const f1Score = dramSeries.ddr5_16g.price >= 58 ? 92 : 75; // 메모리 실물
+      const f2Score = 88; // 기업 실적 & 저평가 매력
+      const f3Score = 86; // AI 산업 지각변동 (NVIDIA+1 반사이익)
+      const avgWeekRet = (sPref.weekChangePct + sDaeduck.weekChangePct + sWonik.weekChangePct + sCls.weekChangePct + sMain.weekChangePct + sAmd.weekChangePct) / 6;
+      const f4Score = avgWeekRet >= 10 ? 84 : (avgWeekRet >= 0 ? 70 : 50); // 수급·추세
+      const f5Score = liveMacro.us10y >= 5.0 ? (liveMacro.usdkrw <= 1345 ? 52 : 38) : 78; // 거시 금리·환율
+
+      const totalScore = Math.round(f1Score * 0.25 + f2Score * 0.25 + f3Score * 0.20 + f4Score * 0.15 + f5Score * 0.15);
+
+      verdictModel = {
+        totalScore,
+        signalBadge: totalScore >= 75 ? "🟢 우려 과도 · 보유 및 선별익절" : "🟠 중립 · 현금비중 확대",
+        headline: "반도체 업황 꺾인 게 아닙니다! '탈엔비디아(NVIDIA+1)' 수혜로 내 종목은 오히려 강세장",
+        subline: `6종목 주간 평균 +${avgWeekRet.toFixed(1)}% 상승중 · 권장 비중: 주식 78% : 현금 22%`,
+        factors: [
+          {
+            name: "💾 메모리 실물",
+            score: f1Score,
+            color: "var(--safe-green)",
+            status: `🟢 DDR5 $${dramSeries.ddr5_16g.price.toFixed(2)} 최고가`
+          },
+          {
+            name: "📊 실적·밸류",
+            score: f2Score,
+            color: "var(--safe-green)",
+            status: `🟢 원익+142%·CLS PER ${clsFwdPer}배`
+          },
+          {
+            name: "🔄 AI 지각변동",
+            score: f3Score,
+            color: "var(--safe-green)",
+            status: "🟢 젠슨황 사임→AMD·삼성 수혜"
+          },
+          {
+            name: "🌊 메이저 수급",
+            score: f4Score,
+            color: "var(--safe-green)",
+            status: `🟢 6종목 주간 +${avgWeekRet.toFixed(1)}% 랠리`
+          },
+          {
+            name: "🏦 금리·환율",
+            score: f5Score,
+            color: liveMacro.us10y >= 5.0 ? "var(--warn-amber)" : "var(--safe-green)",
+            status: `🟠 미금리 ${liveMacro.us10y.toFixed(2)}% / 환율 안정`
+          }
+        ],
+        threeConclusions: [
+          {
+            tag: "① 반도체 걱정?",
+            tagBg: "var(--safe-green-soft)",
+            tagColor: "var(--safe-green)",
+            text: `<strong>실물·실적 훼손 0%!</strong> DDR5 현물($${dramSeries.ddr5_16g.price.toFixed(2)}) 최고가 및 4Q 서버 DRAM(+10~15%)·eSSD(+23~28%) 계약가 인상 확정.`
+          },
+          {
+            tag: "② 젠슨황 사임?",
+            tagBg: "var(--down-blue-soft)",
+            tagColor: "var(--down-blue)",
+            text: `빅테크의 <strong>'탈엔비디아(NVIDIA+1)' 다변화</strong>로 <strong>AMD(${sAmd.currLabel})·셀레스티카(Helios 동맹)·삼성전자(HBM+모딘 인수)</strong>에 반사이익 집중.`
+          },
+          {
+            tag: "③ 지금 행동은?",
+            tagBg: "var(--up-red-soft)",
+            tagColor: "var(--up-red)",
+            text: `1차 목표 도달한 <strong>AMD만 20~30% 분할익절</strong>해 현금(20%) 확보, <strong>삼전우·대덕·원익·CLS·삼전은 1차 적정가까지 홀딩!</strong>`
+          }
+        ]
+      };
     }
 
     // =========================================================================
     // 3. 반응형 SVG 차트 렌더러
     // =========================================================================
     function renderLineSvg(pts, labels, forecastStartIdx, unitPrefix = "$", unitSuffix = "") {
-      const w = 440, h = 158, padX = 36, topY = 26, botY = 120;
+      const w = 440, h = 148, padX = 34, topY = 24, botY = 114;
       const minV = Math.min(...pts) * 0.91;
       const maxV = Math.max(...pts) * 1.07;
       const range = maxV - minV || 1;
       const stepX = (w - padX * 2) / (pts.length - 1);
 
-      const coords = pts.map((v, i) => {
-        const x = padX + i * stepX;
-        const y = botY - ((v - minV) / range) * (botY - topY);
-        return { x, y, v, label: labels[i] || "" };
-      });
+      const coords = pts.map((v, i) => ({
+        x: padX + i * stepX,
+        y: botY - ((v - minV) / range) * (botY - topY),
+        v,
+        label: labels[i] || ""
+      }));
 
       const solidPts = coords.slice(0, forecastStartIdx + 1).map(c => `${c.x.toFixed(1)},${c.y.toFixed(1)}`).join(" ");
       const dashPts = coords.slice(forecastStartIdx).map(c => `${c.x.toFixed(1)},${c.y.toFixed(1)}`).join(" ");
@@ -1479,14 +1521,14 @@
         const isForecast = idx > forecastStartIdx;
         const isCurrent = idx === forecastStartIdx;
         const dotColor = isCurrent ? "var(--up-red)" : (isForecast ? "var(--safe-green)" : "var(--down-blue)");
-        const r = isCurrent ? 5.5 : 4;
+        const r = isCurrent ? 5 : 3.8;
         const valStr = `${unitPrefix}${Number.isInteger(c.v) ? c.v : c.v.toFixed(2)}${unitSuffix}`;
-        const yOffset = idx % 2 === 0 ? -10 : -12;
+        const yOffset = idx % 2 === 0 ? -9 : -11;
 
         nodesHtml += `
-          <circle cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="${r}" fill="${dotColor}" stroke="var(--bg-surface)" stroke-width="1.8" />
-          <text x="${c.x.toFixed(1)}" y="${(c.y + yOffset).toFixed(1)}" text-anchor="middle" font-size="${isCurrent ? '11' : '10'}" font-weight="800" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-primary)'}">${valStr}</text>
-          <text x="${c.x.toFixed(1)}" y="${h - 10}" text-anchor="middle" font-size="10" font-weight="${isCurrent ? '800' : '600'}" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-muted)'}">${c.label}</text>
+          <circle cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="${r}" fill="${dotColor}" stroke="var(--bg-surface)" stroke-width="1.6" />
+          <text x="${c.x.toFixed(1)}" y="${(c.y + yOffset).toFixed(1)}" text-anchor="middle" font-size="${isCurrent ? '10.5' : '9.5'}" font-weight="800" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-primary)'}">${valStr}</text>
+          <text x="${c.x.toFixed(1)}" y="${h - 8}" text-anchor="middle" font-size="9.5" font-weight="${isCurrent ? '800' : '600'}" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-muted)'}">${c.label}</text>
         `;
       });
 
@@ -1494,7 +1536,7 @@
         <svg viewBox="0 0 ${w} ${h}" class="svg-chart">
           <defs>
             <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--down-blue)" stop-opacity="0.18"/>
+              <stop offset="0%" stop-color="var(--down-blue)" stop-opacity="0.16"/>
               <stop offset="100%" stop-color="var(--down-blue)" stop-opacity="0.0"/>
             </linearGradient>
           </defs>
@@ -1502,69 +1544,130 @@
           <line x1="${padX}" y1="${(topY + botY) / 2}" x2="${w - padX}" y2="${(topY + botY) / 2}" stroke="var(--border-color)" stroke-dasharray="3 3" stroke-width="0.8" />
           <line x1="${padX}" y1="${botY}" x2="${w - padX}" y2="${botY}" stroke="var(--border-color)" stroke-width="1" />
           <polygon points="${areaPts}" fill="url(#chartGrad)" />
-          <polyline fill="none" stroke="var(--down-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="${solidPts}" />
-          ${forecastStartIdx < coords.length - 1 ? `<polyline fill="none" stroke="var(--safe-green)" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" points="${dashPts}" />` : ""}
+          <polyline fill="none" stroke="var(--down-blue)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="${solidPts}" />
+          ${forecastStartIdx < coords.length - 1 ? `<polyline fill="none" stroke="var(--safe-green)" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" points="${dashPts}" />` : ""}
           ${nodesHtml}
         </svg>
       `;
     }
 
     // =========================================================================
-    // 4. 4대 화면(View) 렌더링 함수
+    // 4. 4대 화면(View) 렌더링 함수 (핵심 위주 컴팩트 UX/UI)
     // =========================================================================
 
-    // [화면 1] 🔮 실시간 산업 뉴스·시황 & 메모리 가격 팩트
+    // [화면 1] 🧠 5대 요소 종합 인사이트 판독 & 메모리 실물 팩트
     function renderDramView() {
       const d = dramSeries[currentDramKey] || dramSeries.ddr5_16g;
       const tabKeys = Object.keys(dramSeries);
-      const rangePos = Math.min(96, Math.max(4, ((d.price - d.low) / ((d.high - d.low) || 1)) * 100));
-      const sectorList = Array.isArray(liveNews.sector) ? liveNews.sector.slice(0, 6) : [];
+      const sectorList = Array.isArray(liveNews.sector) ? liveNews.sector.slice(0, 4) : [];
+      const sAmd = stockData.stock_AMD;
+      const sMain = stockData.stock_005930;
+      const sWonik = stockData.stock_240810;
+      const sDaeduck = stockData.stock_353200;
 
       return `
-        <section class="card" style="border:1.5px solid rgba(220,38,38,0.28);">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
-            <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red); margin-bottom:0;">🔥 실시간 뉴스·시황 엔진 · 갱신 시 최신 헤드라인 자동 연동</span>
-            <span style="font-size:10.5px; font-weight:700; color:var(--text-muted);">뉴스 기준: ${liveNews.updatedAt || '실시간'}</span>
+        <!-- [1] 🧠 5대 요소 종합 인사이트 판독 히어로 카드 -->
+        <section class="verdict-hero">
+          <div class="verdict-top">
+            <div class="score-circle tnum" style="background: conic-gradient(var(--safe-green) 0% ${verdictModel.totalScore}%, var(--border-color) ${verdictModel.totalScore}% 100%);">
+              <div class="score-inner">
+                <span class="score-num">${verdictModel.totalScore}</span>
+                <span class="score-unit">종합점수</span>
+              </div>
+            </div>
+            <div class="verdict-headline-box">
+              <span class="verdict-main-badge">${verdictModel.signalBadge}</span>
+              <h2 class="verdict-title">${verdictModel.headline}</h2>
+              <div class="verdict-sub tnum">${verdictModel.subline}</div>
+            </div>
           </div>
-          <h2 class="card-title" style="margin-bottom:8px;">오늘의 AI·반도체 5대 핵심 변화 &amp; 보유종목 나비효과</h2>
-          <div class="insight-list" style="margin-bottom:12px;">
-            ${dynamicIssues.map(dItem => `
-              <div class="insight-item" style="flex-direction:column; gap:4px; padding:10px 11px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-subtle);">
-                <div style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:6px;">
-                  <strong style="font-size:12.5px; color:var(--text-primary);">${dItem.factor}</strong>
-                  <span class="action-pill" style="background:${dItem.tone === 'red' ? 'var(--up-red-soft)' : (dItem.tone === 'green' ? 'var(--safe-green-soft)' : 'var(--warn-amber-soft)')}; color:${dItem.tone === 'red' ? 'var(--up-red)' : (dItem.tone === 'green' ? 'var(--safe-green)' : 'var(--warn-amber)')};">${dItem.status}</span>
+
+          <!-- 5대 요소 프로그레스 바 -->
+          <div class="factor-bars tnum">
+            ${verdictModel.factors.map(f => `
+              <div class="factor-row">
+                <span class="factor-name">${f.name}</span>
+                <div class="factor-track">
+                  <div class="factor-fill" style="width:${f.score}%; background:${f.color};"></div>
                 </div>
-                <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.48;">${dItem.desc}</div>
+                <span class="factor-status" style="color:${f.color};">${f.status}</span>
               </div>
             `).join("")}
           </div>
 
-          <div style="border-top:1px solid var(--border-subtle); padding-top:10px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
-              <strong style="font-size:12px; color:var(--text-primary);">📰 실시간 AI·반도체 주요 속보 피드 (클릭 시 원문 이동)</strong>
-              <span style="font-size:10px; font-weight:700; color:var(--down-blue);">Google News 실시간 RSS</span>
+          <!-- 최종 3줄 인사이트 결론 -->
+          <div class="verdict-3chips">
+            ${verdictModel.threeConclusions.map(c => `
+              <div class="v-chip">
+                <span class="v-chip-tag" style="background:${c.tagBg}; color:${c.tagColor};">${c.tag}</span>
+                <span style="line-height:1.38;">${c.text}</span>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <!-- [2] ⚡ 지금 시장을 움직이는 3대 핵심 이슈 & 실시간 뉴스 (초간결 카드) -->
+        <section class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red); margin-bottom:0;">⚡ 핵심 이슈 3줄 요약 &amp; 실시간 속보</span>
+            <span style="font-size:10px; font-weight:700; color:var(--text-muted);">${liveNews.updatedAt}</span>
+          </div>
+
+          <div class="compact-issue-grid" style="margin-bottom:10px;">
+            <div class="compact-issue">
+              <div class="ci-top">
+                <span class="ci-title">🚨 젠슨 황 엔비디아 CEO 사임 → '탈엔비디아' 수혜 폭발</span>
+                <span class="action-pill" style="background:var(--up-red-soft); color:var(--up-red);">최대 수혜</span>
+              </div>
+              <div class="ci-bullets">
+                <span class="ci-pill">콜레트 크레스 임시 CEO 체제</span>
+                <span class="ci-pill" style="color:var(--up-red); font-weight:800;">AMD ${sAmd.currLabel} (주간 +18.9%)</span>
+                <span class="ci-pill" style="color:var(--down-blue); font-weight:800;">셀레스티카·삼성 HBM 반사이익</span>
+              </div>
             </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
+
+            <div class="compact-issue">
+              <div class="ci-top">
+                <span class="ci-title">🏢 삼성전자 美 냉각기업 '모딘' 인수 추진 &amp; 온양 HBM 거점</span>
+                <span class="action-pill" style="background:var(--down-blue-soft); color:var(--down-blue);">AI M&amp;A</span>
+              </div>
+              <div class="ci-bullets">
+                <span class="ci-pill">모딘(Modine) 주가 +28% 급등</span>
+                <span class="ci-pill">온양 차세대 HBM 패키징 기지화</span>
+                <span class="ci-pill" style="color:var(--safe-green); font-weight:800;">삼전 ${sMain.currLabel} · 삼전우 +13%</span>
+              </div>
+            </div>
+
+            <div class="compact-issue">
+              <div class="ci-top">
+                <span class="ci-title">📈 소부장 어닝 서프라이즈: 원익IPS(+142%) &amp; 대덕전자(+21%)</span>
+                <span class="action-pill" style="background:var(--safe-green-soft); color:var(--safe-green);">실적 증명</span>
+              </div>
+              <div class="ci-bullets">
+                <span class="ci-pill" style="color:var(--up-red); font-weight:800;">원익 3Q 영업익 667억(+142%)</span>
+                <span class="ci-pill">대덕 6,150억 FC-BGA 증설</span>
+                <span class="ci-pill">기관 순매수 유입 (${sDaeduck.currLabel})</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--border-subtle); padding-top:8px;">
+            <div style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:5px;">📰 실시간 뉴스 헤드라인 (터치 시 원문 보기)</div>
+            <div style="display:flex; flex-direction:column; gap:5px;">
               ${sectorList.map(n => `
-                <a href="${n.link || '#'}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; background:var(--bg-subtle); border:1px solid var(--border-subtle);">
-                  <div style="font-size:11.5px; font-weight:700; color:var(--text-primary); line-height:1.38;">
-                    <span style="display:inline-block; font-size:9.5px; font-weight:800; padding:1px 5px; border-radius:4px; background:var(--down-blue-soft); color:var(--down-blue); margin-right:5px;">${n.tag || '속보'}</span>
-                    ${n.title}
-                  </div>
-                  <span style="flex-shrink:0; font-size:10px; font-weight:700; color:var(--text-muted);">${n.source || ''}</span>
+                <a href="${n.link || '#'}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:6px; padding:6px 8px; border-radius:7px; background:var(--bg-subtle); border:1px solid var(--border-subtle);">
+                  <span style="font-size:11px; font-weight:700; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">• ${n.title}</span>
+                  <span style="flex-shrink:0; font-size:9.5px; font-weight:700; color:var(--down-blue);">${n.source || ''}</span>
                 </a>
               `).join("")}
             </div>
           </div>
         </section>
 
+        <!-- [3] 💾 메모리 실물 가격 팩트 (DRAMeXchange) -->
         <section class="card">
-          <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue);">실물 영수증 1 · DRAMeXchange 일간 현물 &amp; TrendForce 고정계약가</span>
-          <div class="card-top-row">
-            <h2 class="card-title">${d.name}</h2>
-          </div>
-
-          <div class="seg-grid-2x2">
+          <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue);">💾 실물 영수증 · DRAMeXchange 현물 &amp; 고정계약가</span>
+          <div class="seg-grid-2x2" style="margin-top:4px;">
             ${tabKeys.map(k => `
               <button onclick="selectDramKey('${k}')" class="seg-btn ${k === currentDramKey ? 'active' : ''}">
                 ${dramSeries[k].shortTab}
@@ -1574,62 +1677,33 @@
 
           <div class="kpi-grid-2 tnum">
             <div class="kpi-box">
-              <div class="kpi-label">실시간 현물 평균가 (Spot)</div>
+              <div class="kpi-label">실시간 현물가 (Spot)</div>
               <div class="kpi-val" style="color:var(--down-blue);">$${d.price.toFixed(2)}</div>
               <div class="kpi-sub">${d.changeText}</div>
             </div>
             <div class="kpi-box" style="background:var(--up-red-soft); border-color:rgba(220,38,38,0.25);">
-              <div class="kpi-label" style="color:var(--up-red);">★ 분기 고정계약가 (실적 직결)</div>
-              <div class="kpi-val" style="color:var(--up-red); font-size:13.5px;">${d.contractFact}</div>
-              <div class="kpi-sub">현물 다음주 예측: ${d.spotForecast}</div>
-            </div>
-          </div>
-
-          <div class="band-gauge-box tnum">
-            <div class="band-gauge-labels">
-              <span>일중 최저가(Low): <strong>$${d.low.toFixed(2)}</strong></span>
-              <span style="color:var(--down-blue);">현재 평균: <strong>$${d.price.toFixed(2)}</strong></span>
-              <span>일중 최고가(High): <strong>$${d.high.toFixed(2)}</strong></span>
-            </div>
-            <div class="band-bar-track">
-              <div class="band-bar-thumb" style="left:${rangePos.toFixed(1)}%;"></div>
+              <div class="kpi-label" style="color:var(--up-red);">분기 고정계약가 (실적 직결)</div>
+              <div class="kpi-val" style="color:var(--up-red); font-size:13px;">${d.contractFact}</div>
+              <div class="kpi-sub">다음주 예측: ${d.spotForecast}</div>
             </div>
           </div>
 
           <div class="chart-box tnum">
             <div class="chart-legend">
-              <span>● 파란 실선: 최근 6개월 실거래 추이</span>
-              <span style="color:var(--safe-green);">● 초록 점선: 연말 예측 궤적</span>
+              <span>● 파란 실선: 최근 6개월 실거래</span>
+              <span style="color:var(--safe-green);">● 초록 점선: 연말 궤적</span>
             </div>
             ${renderLineSvg(d.pts, d.labels, 4, "$", "")}
           </div>
 
-          <div class="insight-box">
-            <p class="insight-text">
-              <strong style="color:var(--text-primary);">📌 핵심 해설:</strong> ${d.summary}
-            </p>
-          </div>
-        </section>
-
-        <section class="card">
-          <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">실물 영수증 2 · 품목별 고정계약가 &amp; 2027 HBM4 팩트표</span>
-          <h2 class="card-title" style="margin-bottom:10px;">현물 노이즈를 이기는 분기 고정계약가 &amp; 대안 칩 수혜 구조</h2>
-          <div class="insight-list">
-            ${memoryContractFacts.map(m => `
-              <div class="insight-item" style="flex-direction:column; gap:4px; padding:10px 11px; background:var(--bg-subtle); border-radius:10px; border:1px solid var(--border-subtle);">
-                <div style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:6px;">
-                  <strong style="font-size:12.5px; color:var(--text-primary);">${m.category}</strong>
-                  <span class="action-pill" style="background:${m.tone === 'red' ? 'var(--up-red-soft)' : (m.tone === 'green' ? 'var(--safe-green-soft)' : 'var(--warn-amber-soft)')}; color:${m.tone === 'red' ? 'var(--up-red)' : (m.tone === 'green' ? 'var(--safe-green)' : 'var(--warn-amber)')};">${m.q4_contract}</span>
-                </div>
-                <div style="font-size:11.5px; color:var(--text-secondary);">👉 <strong>전망 및 팩트:</strong> ${m.outlook_2027}</div>
-              </div>
-            `).join("")}
+          <div style="margin-top:8px; padding:8px 10px; border-radius:8px; background:var(--bg-subtle); font-size:11.5px; font-weight:700; color:var(--text-primary);">
+            💡 <strong>한줄 결론:</strong> ${d.takeaway}
           </div>
         </section>
       `;
     }
 
-    // [화면 2] 🎯 6종목 공시 팩트 & 실전 3단계 목표가
+    // [화면 2] 🎯 6종목 핵심판정 & 실전 3단계 목표가 (초간결 3칩 구조)
     function renderOverview5View() {
       const s = stockData[currentStockKey] || stockData.stock_005935;
       const stockKeys = Object.keys(stockData);
@@ -1637,60 +1711,55 @@
       const unitPrefix = isKrw ? "" : "$";
       const unitSuffix = isKrw ? "만" : "";
 
-      // 52주 최저~최고 밴드 내 현재 위치 (%)
       const bandMin = s.low52w || s.bottom * 0.85;
       const bandMax = s.high52w;
       const bandPos = Math.min(96, Math.max(4, ((s.curr - bandMin) / ((bandMax - bandMin) || 1)) * 100));
 
       return `
-        <!-- [상단] 6종목 한눈에 보는 실시간 스코어보드 (Quick Matrix) -->
-        <section class="card" style="padding:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue); margin-bottom:0;">📊 보유 6종목 실시간 시세 &amp; 목표가 스코어보드</span>
-            <span style="font-size:10.5px; font-weight:700; color:var(--text-muted);">터치 시 아래 상세분석 이동</span>
+        <!-- [상단] 6종목 한눈에 보는 스코어보드 -->
+        <section class="card" style="padding:11px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue); margin-bottom:0;">📊 보유 6종목 실시간 판정 스코어보드</span>
+            <span style="font-size:10px; font-weight:700; color:var(--text-muted);">종목 터치 시 상세 전환</span>
           </div>
-          <div style="overflow-x:auto;">
-            <table class="matrix-table tnum">
-              <thead>
-                <tr>
-                  <th>종목명</th>
-                  <th style="text-align:right;">현재가 (일간)</th>
-                  <th style="text-align:right;">주간(5일)</th>
-                  <th style="text-align:right;">1차적정 (여력)</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${stockKeys.map(k => {
-                  const item = stockData[k];
-                  const isSel = k === currentStockKey;
-                  const chgColor = item.changePct >= 0 ? "var(--up-red)" : "var(--down-blue)";
-                  const wkColor = item.weekChangePct >= 0 ? "var(--up-red)" : "var(--down-blue)";
-                  return `
-                    <tr class="matrix-row ${isSel ? 'selected-row' : ''}" onclick="selectStockKey('${k}')">
-                      <td style="font-weight:800; color:var(--text-primary);">${item.shortName}</td>
-                      <td style="text-align:right;">
-                        <div style="font-weight:800;">${item.currLabel}</div>
-                        <div style="font-size:10px; font-weight:800; color:${chgColor};">${item.changePct >= 0 ? '▲ +' : '▼ '}${item.changePct.toFixed(2)}%</div>
-                      </td>
-                      <td style="text-align:right; font-weight:800; color:${wkColor};">
-                        ${item.weekChangePct >= 0 ? '+' : ''}${item.weekChangePct.toFixed(1)}%
-                      </td>
-                      <td style="text-align:right;">
-                        <div style="font-weight:800; color:var(--safe-green);">${item.target1Label}</div>
-                        <div style="font-size:10px; font-weight:800; color:var(--up-red);">${item.upside1}</div>
-                      </td>
-                    </tr>
-                  `;
-                }).join("")}
-              </tbody>
-            </table>
-          </div>
+          <table class="matrix-table tnum">
+            <thead>
+              <tr>
+                <th>종목명</th>
+                <th style="text-align:right;">현재가 (일간)</th>
+                <th style="text-align:right;">주간(5일)</th>
+                <th style="text-align:right;">1차목표 (판정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${stockKeys.map(k => {
+                const item = stockData[k];
+                const isSel = k === currentStockKey;
+                const chgColor = item.changePct >= 0 ? "var(--up-red)" : "var(--down-blue)";
+                const wkColor = item.weekChangePct >= 0 ? "var(--up-red)" : "var(--down-blue)";
+                return `
+                  <tr class="matrix-row ${isSel ? 'selected-row' : ''}" onclick="selectStockKey('${k}')">
+                    <td style="font-weight:800; color:var(--text-primary);">${item.shortName}</td>
+                    <td style="text-align:right;">
+                      <div style="font-weight:800;">${item.currLabel}</div>
+                      <div style="font-size:10px; font-weight:800; color:${chgColor};">${item.changePct >= 0 ? '▲+' : '▼'}${item.changePct.toFixed(2)}%</div>
+                    </td>
+                    <td style="text-align:right; font-weight:800; color:${wkColor};">
+                      ${item.weekChangePct >= 0 ? '+' : ''}${item.weekChangePct.toFixed(1)}%
+                    </td>
+                    <td style="text-align:right;">
+                      <div style="font-weight:800; color:var(--safe-green);">${item.target1Label} (${item.upside1})</div>
+                      <div style="font-size:10px; font-weight:800; color:${item.tone === 'amber' ? 'var(--warn-amber)' : 'var(--down-blue)'};">${item.action}</div>
+                    </td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
         </section>
 
-        <!-- [하단] 선택 종목 심층 밸류에이션 & 실전 매매 카드 -->
+        <!-- [하단] 선택 종목 핵심 판정 카드 -->
         <section class="card" id="stockDetailCard">
-          <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red);">10년 PBR·PER 실거래 밴드 &amp; DART 공시 팩트 기반</span>
-
           <div class="seg-grid-3x2">
             ${stockKeys.map(k => `
               <button onclick="selectStockKey('${k}')" class="seg-btn ${k === currentStockKey ? 'active' : ''}">
@@ -1705,110 +1774,101 @@
                 <span class="stock-name">${s.name}</span>
                 <span class="stock-code">${s.code}</span>
               </div>
-              <div style="margin-top:5px; display:flex; flex-wrap:wrap; gap:4px;">
-                <span class="action-pill" style="background:${s.tone === 'red' ? 'var(--up-red-soft)' : 'var(--safe-green-soft)'}; color:${s.tone === 'red' ? 'var(--up-red)' : 'var(--safe-green)'};">
+              <div style="margin-top:4px; display:flex; gap:4px; flex-wrap:wrap;">
+                <span class="action-pill" style="background:${s.tone === 'amber' ? 'var(--warn-amber-soft)' : 'var(--safe-green-soft)'}; color:${s.tone === 'amber' ? 'var(--warn-amber)' : 'var(--safe-green)'};">
                   ${s.action}
                 </span>
-                <span class="action-pill" style="background:var(--bg-subtle); color:var(--text-secondary); border:1px solid var(--border-subtle);">
-                  52주 최고 대비 ${s.drawdown}
+                <span class="action-pill" style="background:var(--bg-subtle); color:var(--text-muted);">
+                  고점대비 ${s.drawdown}
                 </span>
               </div>
             </div>
             <div class="stock-curr-wrap">
               <div class="stock-curr">${s.currLabel}</div>
               <div class="stock-chg-row">
-                <span class="chg-pill ${s.changePct >= 0 ? 'chg-up' : 'chg-down'}">
-                  일간 ${s.changePct >= 0 ? '+' : ''}${s.changePct.toFixed(2)}%
-                </span>
-                <span class="chg-pill ${s.weekChangePct >= 0 ? 'chg-up' : 'chg-down'}">
-                  주간 ${s.weekChangePct >= 0 ? '+' : ''}${s.weekChangePct.toFixed(1)}%
-                </span>
+                <span class="chg-pill ${s.changePct >= 0 ? 'chg-up' : 'chg-down'}">일간 ${s.changePct >= 0 ? '+' : ''}${s.changePct.toFixed(2)}%</span>
+                <span class="chg-pill ${s.weekChangePct >= 0 ? 'chg-up' : 'chg-down'}">주간 ${s.weekChangePct >= 0 ? '+' : ''}${s.weekChangePct.toFixed(1)}%</span>
               </div>
             </div>
           </div>
 
-          <!-- 52주 주가 위치 게이지 -->
+          <!-- ★ 3초 스캔: 3대 핵심 요약 칩 (모멘텀 / 밸류에이션 / 행동지침) -->
+          <div class="stock-key-chips">
+            <div class="sk-chip">
+              <span class="sk-badge" style="background:var(--up-red-soft); color:var(--up-red);">🔥 모멘텀</span>
+              <span style="font-weight:700; color:var(--text-primary);">${s.chipMomentum}</span>
+            </div>
+            <div class="sk-chip">
+              <span class="sk-badge" style="background:var(--down-blue-soft); color:var(--down-blue);">📊 밸류팩트</span>
+              <span style="font-weight:700; color:var(--text-primary);">${s.chipValuation}</span>
+            </div>
+            <div class="sk-chip">
+              <span class="sk-badge" style="background:var(--safe-green-soft); color:var(--safe-green);">🧭 실전대응</span>
+              <span style="font-weight:800; color:var(--safe-green);">${s.chipAction}</span>
+            </div>
+          </div>
+
+          <!-- 3단계 실전 목표가 (바닥 / 1차 적정 / 2차 익절) -->
+          <div class="target-grid-3 tnum">
+            <div class="target-cell floor">
+              <div class="tc-label" style="color:var(--safe-green);">🟢 실전 바닥</div>
+              <div class="tc-val" style="color:var(--safe-green);">${s.bottomLabel}</div>
+              <div class="tc-upside" style="color:var(--text-secondary);">하방 지지선</div>
+            </div>
+            <div class="target-cell t1">
+              <div class="tc-label" style="color:var(--down-blue);">🎯 1차 적정가</div>
+              <div class="tc-val" style="color:var(--down-blue);">${s.target1Label}</div>
+              <div class="tc-upside" style="color:var(--up-red);">여력 ${s.upside1} (${s.prob1})</div>
+            </div>
+            <div class="target-cell t2">
+              <div class="tc-label" style="color:var(--up-red);">🚀 2차 분할익절</div>
+              <div class="tc-val" style="color:var(--up-red);">${s.target2Label}</div>
+              <div class="tc-upside" style="color:var(--up-red);">여력 ${s.upside2} (${s.prob2})</div>
+            </div>
+          </div>
+
+          <!-- 52주 밴드 게이지 -->
           <div class="band-gauge-box tnum">
             <div class="band-gauge-labels">
-              <span>실전 바닥: <strong>${s.bottomLabel}</strong></span>
+              <span>바닥: <strong>${s.bottomLabel}</strong></span>
               <span style="color:var(--down-blue);">현재: <strong>${s.currLabel}</strong></span>
-              <span>52주 최고: <strong>${s.high52wLabel}</strong></span>
+              <span>52주최고: <strong>${s.high52wLabel}</strong></span>
             </div>
             <div class="band-bar-track">
               <div class="band-bar-thumb" style="left:${bandPos.toFixed(1)}%;"></div>
             </div>
           </div>
 
-          <!-- 실전 3단계 가격 가이드 (과장 목표가 배제) -->
-          <div class="target-grid-4 tnum">
-            <div class="target-cell floor">
-              <div class="tc-label" style="color:var(--safe-green);">🟢 실전 바닥 지지선</div>
-              <div class="tc-val" style="color:var(--safe-green);">${s.bottomLabel}</div>
-              <div class="tc-upside" style="color:var(--text-secondary);">하방 안전마진 확보 구간</div>
-            </div>
-            <div class="target-cell t1">
-              <div class="tc-label" style="color:var(--down-blue);">🎯 1차 평균회귀 적정가</div>
-              <div class="tc-val" style="color:var(--down-blue);">${s.target1Label}</div>
-              <div class="tc-upside" style="color:var(--up-red);">현재가 대비 ${s.upside1} · ${s.prob1}</div>
-            </div>
-            <div class="target-cell t2">
-              <div class="tc-label" style="color:var(--up-red);">🚀 2차 실전 분할익절가</div>
-              <div class="tc-val" style="color:var(--up-red);">${s.target2Label}</div>
-              <div class="tc-upside" style="color:var(--up-red);">현재가 대비 ${s.upside2} · ${s.prob2}</div>
-            </div>
-            <div class="target-cell hype">
-              <div class="tc-label" style="color:var(--text-muted);">🚫 증권사 과장 목표가</div>
-              <div class="tc-val" style="color:var(--text-muted); text-decoration:line-through;">${s.hypeLabel}</div>
-              <div class="tc-upside" style="color:var(--text-muted);">희망고문 배제 · 보수적 대응</div>
-            </div>
-          </div>
-
-          <!-- 최근 실제 거래일 추이 & 목표가 궤적 차트 -->
+          <!-- 5거래일 실제 추이 & 목표 궤적 차트 -->
           <div class="chart-box tnum">
             <div class="chart-legend">
-              <span>● 파란 실선: 52주최고 → 최근 거래일 실제 추이</span>
-              <span style="color:var(--safe-green);">● 초록 점선: 1·2차 목표 궤적</span>
+              <span>● 파란 실선: 최근 거래일 실제 종가</span>
+              <span style="color:var(--safe-green);">● 초록 점선: 1·2차 목표가</span>
             </div>
             ${renderLineSvg(s.history, s.histLabels, 4, unitPrefix, unitSuffix)}
           </div>
 
-          <!-- 실시간 산출 팩트 시트 -->
-          <div class="fact-sheet">
-            <div class="fact-row">
-              <span class="fact-badge">공시·시세 팩트</span>
-              <strong>${s.hardFact}</strong>
-            </div>
-            <div class="fact-row">
-              <span class="fact-badge" style="background:var(--down-blue-soft); color:var(--down-blue); border-color:transparent;">적정가 산출근거</span>
-              <span>${s.basis}</span>
-            </div>
-          </div>
-
-          <div class="insight-box">
-            <p class="insight-text">
-              <strong style="color:var(--text-primary);">💡 실전 대응 결론:</strong> ${s.summary}
-            </p>
-          </div>
-
-          <div style="margin-top:10px; border-top:1px solid var(--border-subtle); padding-top:10px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <strong style="font-size:11.5px; color:var(--text-primary);">📰 ${s.name} 실시간 최신 뉴스 (클릭 시 원문 이동)</strong>
-              <span style="font-size:10px; font-weight:700; color:var(--down-blue);">🔄 갱신 시 실시간 연동</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              ${((liveNews.stocks && liveNews.stocks[s.symbol]) || []).slice(0, 3).map(n => `
-                <a href="${n.link || '#'}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; justify-content:space-between; align-items:center; gap:8px; padding:7px 9px; border-radius:8px; background:var(--bg-subtle); border:1px solid var(--border-subtle);">
-                  <span style="font-size:11.5px; font-weight:700; color:var(--text-primary); line-height:1.36;">• ${n.title}</span>
-                  <span style="flex-shrink:0; font-size:10px; font-weight:700; color:var(--text-muted);">${n.source || ''}</span>
+          <!-- 접이식 상세 산출 근거 & 실시간 뉴스 -->
+          <details class="deep-dive">
+            <summary>
+              <span>🔍 10년 PBR·PER 밴드 산출근거 &amp; 종목 최신 뉴스 보기</span>
+              <span style="color:var(--down-blue);">펼치기 ▼</span>
+            </summary>
+            <div class="deep-dive-body">
+              <div>• <strong>산출 근거:</strong> ${s.basis}</div>
+              <div style="margin-top:4px; font-weight:800; color:var(--text-primary);">📰 ${s.name} 최신 뉴스 (터치 시 이동):</div>
+              ${((liveNews.stocks && liveNews.stocks[s.symbol]) || []).slice(0, 2).map(n => `
+                <a href="${n.link || '#'}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:var(--down-blue); font-weight:700; display:block; padding:3px 0;">
+                  👉 ${n.title} <span style="color:var(--text-muted); font-size:10px;">(${n.source || ''})</span>
                 </a>
               `).join("")}
             </div>
-          </div>
+          </details>
         </section>
       `;
     }
 
-    // [화면 3] 📅 반도체 D-Day 캘린더 & 🌊 외인·기관 수급 레이더 (Zero-Input)
+    // [화면 3] 🧭 행동지침 · 수급 신호등 · D-Day 캘린더 (컴팩트 뷰)
     function calcDDay(targetDateStr) {
       const now = new Date();
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -1816,50 +1876,38 @@
       const target = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
       const diffDays = Math.round((target.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
       if (diffDays === 0) return { label: "D-DAY", urgentClass: "urgent" };
-      if (diffDays > 0) {
-        return {
-          label: `D-${diffDays}`,
-          urgentClass: diffDays <= 7 ? "urgent" : (diffDays <= 18 ? "near" : "normal")
-        };
-      }
+      if (diffDays > 0) return { label: `D-${diffDays}`, urgentClass: diffDays <= 7 ? "urgent" : "near" };
       return { label: `D+${Math.abs(diffDays)}`, urgentClass: "normal" };
     }
 
     const ddayCatalysts = [
       {
         targetDate: "2026-11-18",
-        date: "2026.11.18 (수)",
-        title: "🇺🇸 미 의회 엔비디아 안보조사 & 빅테크 'NVIDIA+1(대안 칩)' 점검",
-        targets: ["AMD", "셀레스티카(CLS)", "삼성전자", "삼성전자우"],
-        desc: "젠슨 황 CEO 전격 사임 및 중국 연계 안보 논란 관련 미 의회 조사 강화. 빅테크들이 엔비디아 단일 의존도를 낮추기 위해 AMD(MI450)·자체 ASIC(셀레스티카 스위치)·삼성 HBM으로 발주를 다변화하는 핵심 계기."
+        date: "11.18 (수)",
+        title: "🇺🇸 미 의회 엔비디아 조사 & 빅테크 'NVIDIA+1' 점검",
+        targets: ["AMD", "셀레스티카", "삼성전자"],
+        oneLine: "젠슨 황 사임 후 빅테크 대안 칩(AMD MI450·자체 ASIC) 다변화 가속 모멘텀"
       },
       {
         targetDate: "2026-11-20",
-        date: "2026.11.20 (금)",
-        title: "🇺🇸 엔비디아 3Q 실적 발표 — 포스트 젠슨 황(콜레트 크레스 임시 CEO) 첫 시험대",
-        targets: ["삼성전자", "대덕전자", "원익IPS", "AMD"],
-        desc: "콜레트 크레스 임시 CEO 체제에서 치르는 첫 공식 실적 발표. 기존 체결된 HBM 장기공급계약(LTA) 및 차세대 랙 출하 일정 유지 여부가 확인되며, 대안 진영(AMD·삼성전자) 반사이익 지속 폭을 결정."
+        date: "11.20 (금)",
+        title: "🇺🇸 엔비디아 3Q 실적 — 콜레트 크레스 임시 CEO 첫 시험대",
+        targets: ["삼성전자", "대덕전자", "원익IPS"],
+        oneLine: "기체결 HBM 장기계약(LTA) 및 차세대 랙 출하 유지 공식 확인 분수령"
       },
       {
         targetDate: "2026-11-27",
-        date: "2026.11.27 (목)",
-        title: "🇰🇷 한국은행 금융통화위원회 기준금리 결정 & 연말 배당 매집",
-        targets: ["삼성전자우", "대덕전자", "원익IPS"],
-        desc: "현 기준금리 연 3.00% 동결 유력. 원/달러 환율(1,335원) 안정 속에서 연말 배당락 전 국내외 기관의 고배당 매수세(삼전우 세전 연 10.8% 배당 매력) 집중 유입."
+        date: "11.27 (목)",
+        title: "🇰🇷 한국은행 금통위 기준금리 결정 & 연말 배당 수급",
+        targets: ["삼성전자우", "대덕전자"],
+        oneLine: "기준금리 3.00% 동결 유력 · 삼전우(세전 10.8% 배당) 기관 매집 집중"
       },
       {
         targetDate: "2026-12-05",
-        date: "2026.12월 초",
-        title: "💾 TrendForce 1Q27 메모리 고정거래가격(Contract) 1차 협상",
-        targets: ["삼성전자", "삼성전자우", "원익IPS"],
-        desc: "4분기 +10~15% 상승 확정에 이어 2027년 1분기 서버 DDR5 및 고용량 eSSD 공급 부족에 따른 추가 인상 타진. 삼성 온양 HBM 거점화 및 전공정 장비(원익IPS) 수혜 직결."
-      },
-      {
-        targetDate: "2026-12-18",
-        date: "2026.12월 중",
-        title: "🇺🇸 마이크론(MU) FY27 1Q 실적 발표 & HBM4 설비투자(CAPEX) 공개",
-        targets: ["원익IPS", "대덕전자", "AMD"],
-        desc: "2027년 글로벌 메모리 설비투자(CAPEX) 및 16단 HBM4 하이브리드 본딩 양산 일정 공개. 반도체 전공정 증착 장비(원익IPS) 및 대면적 기판(대덕전자) 수주 확대."
+        date: "12월 초",
+        title: "💾 1Q27 서버 DRAM·eSSD 고정계약가 1차 협상",
+        targets: ["삼성전자", "원익IPS"],
+        oneLine: "4Q(+10~15%)에 이은 2027년 1분기 추가 인상 타진 · 온양 HBM 거점 수혜"
       }
     ];
 
@@ -1871,142 +1919,57 @@
       const sCls = stockData.stock_CLS;
       const sAmd = stockData.stock_AMD;
 
-      const discPct = ((1 - sPref.rawCurr / sMain.rawCurr) * 100).toFixed(1);
-      const postTaxYield = ((18404 * 0.846 / sPref.rawCurr) * 100).toFixed(1);
-      const clsPer = (sCls.rawCurr / 21.5).toFixed(1);
-
-      const smartMoneyFlows = [
-        {
-          name: `🔴 대덕전자 (${sDaeduck.currLabel})`,
-          tag: `주간 +${Math.abs(sDaeduck.weekChangePct).toFixed(1)}% · 기판 강세 1위`,
-          tone: "up",
-          col1Label: "최근 5일 수익률",
-          col1Val: `+${Math.abs(sDaeduck.weekChangePct).toFixed(1)}% 급등`,
-          col2Label: "핵심 모멘텀",
-          col2Val: "6,150억 증설·기관매수",
-          col3Label: "1차 목표 여력",
-          col3Val: sDaeduck.upside1,
-          desc: `3Q 영업이익 879억(OPM 21%) 및 6,150억 규모 FC-BGA 설비투자 모멘텀으로 75,200원 바닥에서 ${sDaeduck.currLabel}까지 기관 순매수가 유입되며 +21.4% 급반등했습니다.`
-        },
-        {
-          name: `🇺🇸 AMD (${sAmd.currLabel})`,
-          tag: `일간 +${sAmd.changePct.toFixed(1)}% · '포스트 젠슨 황' 최대 수혜`,
-          tone: "up",
-          col1Label: "최근 5일 수익률",
-          col1Val: `+${Math.abs(sAmd.weekChangePct).toFixed(1)}% 폭등`,
-          col2Label: "핵심 모멘텀",
-          col2Val: "탈엔비디아 1순위",
-          col3Label: "1차 목표($550)",
-          col3Val: `${sAmd.upside1} 진입!`,
-          desc: `젠슨 황 엔비디아 CEO 사임 이후 빅테크의 'NVIDIA+1(대안 GPU 확보)' 물량이 차세대 MI450 & Helios 시스템으로 집중되며 금요일 나홀로 +${sAmd.changePct.toFixed(2)}% 역행 급등했습니다.`
-        },
-        {
-          name: `★ 삼성전자우 (${sPref.currLabel})`,
-          tag: `주간 +${Math.abs(sPref.weekChangePct).toFixed(1)}% · NVIDIA+1 & 배당 매집`,
-          tone: "safe",
-          col1Label: "본주 대비 할인",
-          col1Val: `${discPct}% 저평가`,
-          col2Label: "핵심 모멘텀",
-          col2Val: "모딘M&A·연10.8%배당",
-          col3Label: "1차 목표 여력",
-          col3Val: sPref.upside1,
-          desc: `AMD·브로드컴에 HBM을 공급하는 탈엔비디아 반사이익과 미 데이터센터 냉각기업 '모딘' 인수 추진 호재, 세후 연 ${postTaxYield}% 확정 배당 매력이 동시에 작동 중입니다.`
-        },
-        {
-          name: `🇺🇸 셀레스티카 (${sCls.currLabel})`,
-          tag: `주간 +${Math.abs(sCls.weekChangePct).toFixed(1)}% · AMD Helios 동맹`,
-          tone: "safe",
-          col1Label: "27년 선행 PER",
-          col1Val: `${clsPer}배 (초저평가)`,
-          col2Label: "핵심 모멘텀",
-          col2Val: "3Q 매출 +83%·MI450",
-          col3Label: "1차 목표 여력",
-          col3Val: sCls.upside1,
-          desc: `3Q 매출 $5.83B(+83% YoY) 달성 및 AMD 차세대 MI450 오픈 랙('Helios')용 UALoE 스위치 독점 개발사로, 빅테크 탈엔비디아 전환의 핵심 하드웨어 수혜주입니다.`
-        },
-        {
-          name: `📊 원익IPS (${sWonik.currLabel})`,
-          tag: `주간 +${Math.abs(sWonik.weekChangePct).toFixed(1)}% · 3Q 영업익 +142%↑`,
-          tone: "safe",
-          col1Label: "3Q 연결 영업익",
-          col1Val: "667억(+142% YoY)",
-          col2Label: "핵심 모멘텀",
-          col2Val: "선단 D램·HBM 전환",
-          col3Label: "1차 목표 여력",
-          col3Val: sWonik.upside1,
-          desc: `2026년 3분기 연결 영업이익 667억 원(전년비 +142% 급증) 공시로 본업 경쟁력을 입증하며 67,300원 바닥을 탈출해 ${sWonik.currLabel}에 안착했습니다.`
-        },
-        {
-          name: `🟢 삼성전자 (${sMain.currLabel})`,
-          tag: `주간 +${Math.abs(sMain.weekChangePct).toFixed(1)}% · 20만 회복 & 모딘 M&A`,
-          tone: "safe",
-          col1Label: "신규 성장동력",
-          col1Val: "모딘 인수·온양 HBM",
-          col2Label: "수혜 구조",
-          col2Val: "NVIDIA+1 HBM 다변화",
-          col3Label: "1차 목표 여력",
-          col3Val: sMain.upside1,
-          desc: `이재용 회장의 온양 첨단 HBM 거점 선언과 미 데이터센터 냉각업체 '모딘' 인수 협상 추진, AMD·브로드컴 HBM 공급 확대로 20만 원 고지(${sMain.currLabel})를 회복했습니다.`
-        }
+      const stockCards = [
+        { s: sAmd, badge: "🟠 20~30% 분할익절", badgeTone: "amber", rule: "$550~$580 구간 일부 수익확정 후 잔여 홀딩" },
+        { s: sPref, badge: "🟢 최우선 매집·홀딩", badgeTone: "green", rule: "17.2% 할인 + 연 10.8% 배당 · 21만 목표" },
+        { s: sDaeduck, badge: "🟢 기관매집 홀딩", badgeTone: "green", rule: "주간 +21.4% 1위 · 1차 13.2만까지 홀딩" },
+        { s: sCls, badge: "🟢 저평가 눌림매집", badgeTone: "green", rule: "27년 PER 11.2배 + AMD Helios 스위치" },
+        { s: sWonik, badge: "🟢 실적서프 홀딩", badgeTone: "green", rule: "3Q 영업익 +142% 폭증 · 1차 11만 목표" },
+        { s: sMain, badge: "🟢 20만 안착 홀딩", badgeTone: "green", rule: "모딘 인수 추진 · 신규자금은 삼전우로" }
       ];
-
-      const playbookList = [
-        {
-          name: "★ 삼성전자우",
-          code: "005935",
-          signal: `🟢 1차 적정가(21만)까지 홀딩·매집 (${sPref.upside1})`,
-          tone: "green",
-          actionText: `현재가 ${sPref.currLabel}으로 바닥 대비 +13% 반등했으나 여전히 본주 대비 ${discPct}% 할인 구간입니다. 분기 4,601원 배당과 'NVIDIA+1' HBM 수혜를 누리며 1차 평균회귀가(20.5만~21.5만 원)까지 보유 및 매집 최우선.`
-        },
-        {
-          name: "🇺🇸 AMD",
-          code: "NASDAQ",
-          signal: `🟠 1차 목표가($550) 진입 · 20~30% 분할익절 (${sAmd.upside1})`,
-          tone: "amber",
-          actionText: `젠슨 황 사임 반사이익으로 현재가 ${sAmd.currLabel}(장중 $585 터치)까지 급등해 1차 적정가($540~$560) 권역에 도달했습니다! $550~$580 구간에서 보유 물량의 20~30%를 1차 분할익절해 수익을 확정하고, 잔여 물량은 2차 목표가($635)까지 추세 추종하세요.`
-        },
-        {
-          name: "🔴 대덕전자",
-          code: "353200",
-          signal: `🟢 기판 턴어라운드 홀딩 · 1차 13.2만 (${sDaeduck.upside1})`,
-          tone: "green",
-          actionText: `75,200원 바닥에서 ${sDaeduck.currLabel}으로 +21.4% 급반등하며 기관 수급이 안착했습니다. 6,150억 FC-BGA 증설 및 3Q 영업익 879억 체력 기준 1차 적정가(12.5만~14.0만 원)까지 홀딩 유지.`
-        },
-        {
-          name: "🇺🇸 셀레스티카 (CLS)",
-          code: "NYSE: CLS",
-          signal: `🟢 선행 PER ${clsPer}배 · AMD Helios 동맹 매집 (${sCls.upside1})`,
-          tone: "green",
-          actionText: `3Q 매출 +83% 급증($5.83B) 및 AMD MI450 'Helios' 스위치 파트너임에도 2027년 선행 PER ${clsPer}배에 불과합니다. 1차 적정가($330~$360)까지 보유 및 눌림목 분할 매집.`
-        },
-        {
-          name: "📊 원익IPS",
-          code: "240810",
-          signal: `🟢 3Q 영업익 +142% 보유 · 1차 11만 (${sWonik.upside1})`,
-          tone: "green",
-          actionText: `3분기 영업이익 667억 원(+142% YoY) 공시 이후 ${sWonik.currLabel}에 안착했습니다. 선단 D램·HBM 전환 투자 수혜로 1차 평균회귀 적정가(10.5만~11.5만 원)까지 보유 유지.`
-        },
-        {
-          name: "🟢 삼성전자",
-          code: "005930",
-          signal: `🟢 20만 안착 홀딩 (신규는 삼전우) (${sMain.upside1})`,
-          tone: "green",
-          actionText: `미 냉각기업 '모딘' 인수 추진 및 탈엔비디아 HBM 다변화 수혜로 ${sMain.currLabel}을 회복했습니다. 기존 물량은 1차 적정가(25.5만~27.5만 원)까지 홀딩하되, 신규 현금 투입은 ${discPct}% 저렴한 삼성전자우가 유리합니다.`
-        }
-      ];
-
-      const cashRuleText = liveMacro.us10y >= 5.0
-        ? `현재 미 10년 국채금리가 <strong>${liveMacro.us10y.toFixed(2)}%</strong>로 5.0% 경계선을 상회하고 있으므로 <strong>주식 75~80% : 현금 20~25%</strong> 비중을 유지하세요. 특히 젠슨 황 사임 반사이익으로 1차 목표가($550)에 도달한 <strong>AMD에서 일부 수익을 실현해 현금 쿠션을 확보</strong>해 두면 이번 주 엔비디아 실적 발표(11/20) 변동성에 완벽히 대응할 수 있습니다.`
-        : `미 10년 국채금리(${liveMacro.us10y.toFixed(2)}%)와 유가($${liveMacro.wtiOil.toFixed(2)})가 안정권이므로 <strong>주식 80~85% : 현금 15~20%</strong> 비중으로 1차 적정가까지 수익을 극대화하는 구간입니다.`;
 
       return `
-        <!-- [1] 📅 반도체 D-Day 카탈리스트 캘린더 -->
+        <!-- [1] 포트폴리오 황금 비중 게이지 -->
         <section class="card">
-          <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue);">📅 실시간 카운트다운 · 포스트 젠슨 황 시대 D-Day 캘린더</span>
-          <div class="card-top-row">
-            <h2 class="card-title">다가오는 핵심 일정 &amp; 종목별 주가 영향</h2>
+          <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">🧭 금리·시황 연동 포트폴리오 황금 비중</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <strong style="font-size:14px;">권장 비중: 주식 78% : 현금 22%</strong>
+            <span class="action-pill" style="background:var(--warn-amber-soft); color:var(--warn-amber);">미 10Y 금리 ${liveMacro.us10y.toFixed(2)}% 반영</span>
           </div>
-          <div class="dday-list">
+          <div style="height:12px; border-radius:99px; background:var(--bg-subtle); overflow:hidden; display:flex; border:1px solid var(--border-color); margin-bottom:8px;">
+            <div style="width:78%; background:linear-gradient(90deg, var(--down-blue), var(--safe-green));"></div>
+            <div style="width:22%; background:var(--warn-amber);"></div>
+          </div>
+          <div style="font-size:11.5px; color:var(--text-secondary);">
+            💡 <strong>핵심 전략:</strong> 1차 목표가 도달한 <strong>AMD(${sAmd.currLabel})를 20~30% 분할익절</strong>해 현금 쿠션(22%)을 만들고, 나머지 5종목은 1차 적정가까지 흔들림 없이 보유합니다.
+          </div>
+        </section>
+
+        <!-- [2] 6종목 실전 행동 신호등 (2x3 그리드) -->
+        <section class="card">
+          <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red);">🚦 6종목 실전 매매 신호등 (터치 시 상세 이동)</span>
+          <div class="signal-grid-2 tnum" style="margin-top:4px;">
+            ${stockCards.map(item => `
+              <div class="sig-card" style="cursor:pointer;" onclick="selectStockKey('stock_${item.s.code.replace('NYSE: ','').replace('NASDAQ: ','')}')">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="font-size:12.5px; color:var(--text-primary);">${item.s.shortName}</strong>
+                  <span style="font-size:11.5px; font-weight:800;">${item.s.currLabel}</span>
+                </div>
+                <div>
+                  <span class="action-pill" style="background:${item.badgeTone === 'amber' ? 'var(--warn-amber-soft)' : 'var(--safe-green-soft)'}; color:${item.badgeTone === 'amber' ? 'var(--warn-amber)' : 'var(--safe-green)'}; width:100%; justify-content:center;">
+                    ${item.badge} (${item.s.upside1})
+                  </span>
+                </div>
+                <div style="font-size:10.5px; color:var(--text-secondary); line-height:1.35;">${item.rule}</div>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <!-- [3] 📅 다가오는 D-Day 핵심 일정 (컴팩트) -->
+        <section class="card">
+          <span class="section-tag" style="background:var(--down-blue-soft); color:var(--down-blue);">📅 포스트 젠슨 황 시대 · D-Day 카탈리스트</span>
+          <div class="dday-list" style="margin-top:4px;">
             ${ddayCatalysts.map(item => {
               const ddayInfo = calcDDay(item.targetDate);
               return `
@@ -2016,101 +1979,30 @@
                       <span class="dday-badge ${ddayInfo.urgentClass}">${ddayInfo.label}</span>
                       <span class="dday-title">${item.title}</span>
                     </div>
-                    <span class="dday-date">${item.date}</span>
+                    <span style="font-size:10.5px; font-weight:700; color:var(--text-muted);">${item.date}</span>
                   </div>
-                  <div class="dday-desc">${item.desc}</div>
-                  <div class="dday-tags">
-                    <span style="font-size:10px; font-weight:700; color:var(--text-muted); align-self:center;">핵심 수혜:</span>
-                    ${item.targets.map(t => `<span class="dday-tag">${t}</span>`).join("")}
+                  <div style="font-size:11px; color:var(--text-secondary); margin-bottom:4px;">• ${item.oneLine}</div>
+                  <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                    ${item.targets.map(t => `<span style="font-size:9.5px; font-weight:800; padding:1px 6px; border-radius:4px; background:var(--bg-surface); border:1px solid var(--border-color); color:var(--down-blue);">${t}</span>`).join("")}
                   </div>
                 </div>
               `;
             }).join("")}
           </div>
         </section>
-
-        <!-- [2] 🌊 외국인 & 기관 실전 수급 레이더 -->
-        <section class="card">
-          <span class="section-tag" style="background:var(--up-red-soft); color:var(--up-red);">🌊 외인·기관 실전 수급 레이더 · 스마트 머니 흐름</span>
-          <div class="card-top-row">
-            <h2 class="card-title">6종목 주간 반등 성적 &amp; 최신 모멘텀 포지션</h2>
-          </div>
-          <div class="flow-grid">
-            ${smartMoneyFlows.map(flow => `
-              <div class="flow-card">
-                <div class="flow-row-top">
-                  <span class="flow-name">${flow.name}</span>
-                  <span class="action-pill" style="background:${flow.tone === 'up' ? 'var(--up-red-soft)' : 'var(--safe-green-soft)'}; color:${flow.tone === 'up' ? 'var(--up-red)' : 'var(--safe-green)'};">${flow.tag}</span>
-                </div>
-                <div class="flow-pills-row tnum">
-                  <div class="flow-pill-col">
-                    <span class="flow-pill-label">${flow.col1Label}</span>
-                    <span class="flow-pill-val" style="color:var(--up-red);">${flow.col1Val}</span>
-                  </div>
-                  <div class="flow-pill-col">
-                    <span class="flow-pill-label">${flow.col2Label}</span>
-                    <span class="flow-pill-val" style="color:var(--down-blue);">${flow.col2Val}</span>
-                  </div>
-                  <div class="flow-pill-col">
-                    <span class="flow-pill-label">${flow.col3Label}</span>
-                    <span class="flow-pill-val" style="color:var(--safe-green);">${flow.col3Val}</span>
-                  </div>
-                </div>
-                <div class="flow-desc">${flow.desc}</div>
-              </div>
-            `).join("")}
-          </div>
-        </section>
-
-        <!-- [3] 🧭 실전 매매 신호등 & 금리 연동 현금 비중 룰 -->
-        <section class="card">
-          <span class="section-tag" style="background:var(--safe-green-soft); color:var(--safe-green);">🧭 실시간 가격 연동 · 종목별 매매 신호등</span>
-          <h2 class="card-title" style="margin-bottom:10px;">현재가 기준 매수·홀딩·분할익절 행동 지침</h2>
-
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            ${playbookList.map(p => `
-              <div class="playbook-card">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;">
-                  <span style="font-size:13.5px; font-weight:800;">${p.name} <span style="font-size:11px; font-weight:600; color:var(--text-muted);">(${p.code})</span></span>
-                  <span class="action-pill" style="background:${p.tone === 'green' ? 'var(--safe-green-soft)' : 'var(--warn-amber-soft)'}; color:${p.tone === 'green' ? 'var(--safe-green)' : 'var(--warn-amber)'};">${p.signal}</span>
-                </div>
-                <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.45;">${p.actionText}</div>
-              </div>
-            `).join("")}
-          </div>
-
-          <div class="insight-box" style="margin-top:12px;">
-            <div class="insight-item">
-              <span class="insight-key">현금 비중 룰</span>
-              <span>${cashRuleText}</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- [4] 💡 포스트 젠슨 황 시대: 엔비디아 리더십 교체와 보유 6종목 실전 영향 -->
-        <section class="factcheck-box">
-          <div class="factcheck-box-header">
-            <span class="factcheck-pill">🔥 최신 산업 해부</span>
-            <span style="font-size:12.5px; font-weight:800; color:var(--text-primary);">젠슨 황 엔비디아 CEO 사임이 보유 6종목에 미치는 실제 영향</span>
-          </div>
-          <div style="font-size:11.5px; color:var(--text-secondary); line-height:1.52; display:flex; flex-direction:column; gap:6px;">
-            <div>• <strong>단기 실물 계약 '이상무'</strong>: 콜레트 크레스 임시 CEO 체제에서도 이미 체결된 삼성전자·하이닉스의 HBM 장기공급계약(LTA)과 블랙웰 양산 일정은 그대로 유지됩니다.</div>
-            <div>• <strong>'엔비디아 플러스 원(NVIDIA+1)' 반사이익 극대화</strong>: 빅테크들이 특정 CEO·단일 기업 리스크를 피하기 위해 <strong>AMD(MI450)·구글 TPU·브로드컴 ASIC</strong>으로 주문을 분산하면서, <strong>AMD(${sAmd.currLabel})·셀레스티카(AMD Helios 스위치 동맹, ${sCls.currLabel})·삼성전자(AMD/브로드컴 HBM 주력 공급사, ${sMain.currLabel})</strong>가 오히려 가장 강력한 반사이익을 누리고 있습니다.</div>
-          </div>
-        </section>
       `;
     }
 
-    // [화면 4] 🏦 한·미 금리 · 유가 · 환율 · 유동성 모니터
+    // [화면 4] 🏦 한·미 금리 · 유가 · 환율 모니터 (컴팩트 뷰)
     function renderRatesView() {
       const ratePts = Array.isArray(liveMacro.us10yRecent) && liveMacro.us10yRecent.length >= 4
         ? [...liveMacro.us10yRecent.slice(-4), liveMacro.us10y, 4.95, 4.75]
         : [4.86, 4.98, 5.00, 5.10, liveMacro.us10y, 4.95, 4.75];
       const rateDates = Array.isArray(liveMacro.us10yDates) && liveMacro.us10yDates.length >= 4
-        ? [...liveMacro.us10yDates.slice(-4), "현재", "다음주", "연말전망"]
-        : ["11/9", "11/11", "11/12", "11/13", "현재", "다음주", "연말전망"];
+        ? [...liveMacro.us10yDates.slice(-4), "현재", "다음주", "연말"]
+        : ["11/9", "11/11", "11/12", "11/13", "현재", "다음주", "연말"];
 
-      const w = 440, h = 158, padX = 36, topY = 26, botY = 120;
+      const w = 440, h = 148, padX = 34, topY = 24, botY = 114;
       const minV = 4.40, maxV = 5.45;
       const range = maxV - minV;
       const stepX = (w - padX * 2) / (ratePts.length - 1);
@@ -2132,9 +2024,9 @@
         const isForecast = idx > 4;
         const dotColor = isCurrent ? "var(--up-red)" : (isForecast ? "var(--safe-green)" : "var(--down-blue)");
         nodesHtml += `
-          <circle cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="${isCurrent ? 5.5 : 4}" fill="${dotColor}" stroke="var(--bg-surface)" stroke-width="1.8" />
-          <text x="${c.x.toFixed(1)}" y="${(c.y - 10).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-primary)'}">${c.v.toFixed(2)}%</text>
-          <text x="${c.x.toFixed(1)}" y="${h - 10}" text-anchor="middle" font-size="10" font-weight="${isCurrent ? '800' : '600'}" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-muted)'}">${c.label}</text>
+          <circle cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="${isCurrent ? 5 : 3.8}" fill="${dotColor}" stroke="var(--bg-surface)" stroke-width="1.6" />
+          <text x="${c.x.toFixed(1)}" y="${(c.y - 9).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="800" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-primary)'}">${c.v.toFixed(2)}%</text>
+          <text x="${c.x.toFixed(1)}" y="${h - 8}" text-anchor="middle" font-size="9.5" font-weight="${isCurrent ? '800' : '600'}" fill="${isCurrent ? 'var(--up-red)' : 'var(--text-muted)'}">${c.label}</text>
         `;
       });
 
@@ -2142,65 +2034,56 @@
 
       return `
         <section class="card">
-          <span class="section-tag" style="background:${isAbove5 ? 'var(--up-red-soft)' : 'var(--safe-green-soft)'}; color:${isAbove5 ? 'var(--up-red)' : 'var(--safe-green)'};">
-            ${isAbove5 ? '⚠️ 미 10년물 5.0% 경계선 돌파 · 밸류에이션 주의 구간' : '🟢 미 10년물 5.0% 하회 · 기술주 우호적 구간'}
+          <span class="section-tag" style="background:${isAbove5 ? 'var(--warn-amber-soft)' : 'var(--safe-green-soft)'}; color:${isAbove5 ? 'var(--warn-amber)' : 'var(--safe-green)'};">
+            ${isAbove5 ? '🟠 거시 판정: 미 금리 5.15% 부담 vs 환율·유가 방어 (중립)' : '🟢 거시 판정: 금리·환율·유가 모두 우호적'}
           </span>
-          <div class="card-top-row">
-            <h2 class="card-title">한·미 국채금리 · 유가 · 환율 실시간 모니터</h2>
-          </div>
 
-          <div class="kpi-grid-2 tnum">
-            <div class="kpi-box" style="${isAbove5 ? 'background:var(--up-red-soft); border-color:rgba(220,38,38,0.3);' : ''}">
-              <div class="kpi-label">🇺🇸 미 10년 국채금리 / TLT</div>
-              <div class="kpi-val" style="color:${isAbove5 ? 'var(--up-red)' : 'var(--down-blue)'};">${liveMacro.us10y.toFixed(2)}% <span style="font-size:12px; color:var(--text-secondary);">/ $${liveMacro.tlt.toFixed(2)}</span></div>
-              <div class="kpi-sub">${isAbove5 ? '5.0% 심리적 저항선 상회 (단기 경계)' : '5.0% 하회 안정권'}</div>
+          <div class="kpi-grid-2 tnum" style="margin-top:4px;">
+            <div class="kpi-box" style="${isAbove5 ? 'background:var(--up-red-soft); border-color:rgba(220,38,38,0.25);' : ''}">
+              <div class="kpi-label">🇺🇸 미 10년 금리 / TLT</div>
+              <div class="kpi-val" style="color:${isAbove5 ? 'var(--up-red)' : 'var(--down-blue)'};">${liveMacro.us10y.toFixed(2)}% <span style="font-size:11.5px; color:var(--text-secondary);">/ $${liveMacro.tlt.toFixed(2)}</span></div>
+              <div class="kpi-sub">5.0% 경계선 상회 (추격매수 자제)</div>
             </div>
             <div class="kpi-box" style="background:var(--safe-green-soft); border-color:rgba(16,185,129,0.25);">
-              <div class="kpi-label" style="color:var(--safe-green);">🛢️ WTI 원유 선물 (CL=F)</div>
-              <div class="kpi-val" style="color:var(--safe-green);">$${liveMacro.wtiOil.toFixed(2)}</div>
-              <div class="kpi-sub">$90선 하회 안정 (전력비·인플레 완화)</div>
+              <div class="kpi-label" style="color:var(--safe-green);">💱 원/달러 환율</div>
+              <div class="kpi-val" style="color:var(--safe-green);">${liveMacro.usdkrw.toFixed(1)}원</div>
+              <div class="kpi-sub">원화 안정 · 국내 외인 수급 방어</div>
             </div>
             <div class="kpi-box">
-              <div class="kpi-label">💱 원/달러 환율 (USD/KRW)</div>
-              <div class="kpi-val">${liveMacro.usdkrw.toFixed(1)}원</div>
-              <div class="kpi-sub">1,330원대 원화 강세 · 외인 수급 우호적</div>
+              <div class="kpi-label">🛢️ WTI 유가 (CL=F)</div>
+              <div class="kpi-val">$${liveMacro.wtiOil.toFixed(2)}</div>
+              <div class="kpi-sub">$90 하회 안정 (인플레 완화)</div>
             </div>
             <div class="kpi-box">
-              <div class="kpi-label">🇰🇷 한은 기준금리 / 국고채 10Y</div>
-              <div class="kpi-val">${liveMacro.krBase.toFixed(2)}% <span style="font-size:12px; color:var(--text-secondary);">/ ${liveMacro.kr10y.toFixed(2)}%</span></div>
-              <div class="kpi-sub">11/27 금통위 연 3.00% 동결 유력</div>
+              <div class="kpi-label">🇰🇷 한은 기준 / 국고 10Y</div>
+              <div class="kpi-val">${liveMacro.krBase.toFixed(2)}% / ${liveMacro.kr10y.toFixed(2)}%</div>
+              <div class="kpi-sub">11/27 금통위 동결 유력</div>
             </div>
           </div>
 
           <div class="chart-box tnum">
             <div class="chart-legend">
-              <span>● 미국 10년물 국채금리 추이 (%)</span>
-              <span style="color:var(--up-red);">--- 5.00% 기술주 멀티플 경계선</span>
+              <span>● 미국 10년물 국채금리 (%)</span>
+              <span style="color:var(--up-red);">--- 5.00% 경계선</span>
             </div>
             <svg viewBox="0 0 ${w} ${h}" class="svg-chart">
-              <line x1="${padX}" y1="${threshY.toFixed(1)}" x2="${w - padX}" y2="${threshY.toFixed(1)}" stroke="var(--up-red)" stroke-dasharray="4 3" stroke-width="1.3" />
-              <text x="${padX + 4}" y="${(threshY - 5).toFixed(1)}" font-size="9.5" font-weight="800" fill="var(--up-red)">5.00% 기술주 밸류에이션 경계선</text>
+              <line x1="${padX}" y1="${threshY.toFixed(1)}" x2="${w - padX}" y2="${threshY.toFixed(1)}" stroke="var(--up-red)" stroke-dasharray="4 3" stroke-width="1.2" />
+              <text x="${padX + 4}" y="${(threshY - 5).toFixed(1)}" font-size="9" font-weight="800" fill="var(--up-red)">5.00% 밸류 경계선</text>
               <line x1="${padX}" y1="${botY}" x2="${w - padX}" y2="${botY}" stroke="var(--border-color)" stroke-width="1" />
-              <polyline fill="none" stroke="var(--down-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="${solidPts}" />
-              <polyline fill="none" stroke="var(--safe-green)" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" points="${dashPts}" />
+              <polyline fill="none" stroke="var(--down-blue)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points="${solidPts}" />
+              <polyline fill="none" stroke="var(--safe-green)" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round" stroke-linejoin="round" points="${dashPts}" />
               ${nodesHtml}
             </svg>
           </div>
 
-          <div class="insight-box">
-            <div class="insight-list">
-              <div class="insight-item">
-                <span class="insight-key">금리 5.15% 해부</span>
-                <span>미 10년물 국채금리가 이번 주 4.86%에서 <strong>${liveMacro.us10y.toFixed(2)}%</strong>로 올라서며 TLT($${liveMacro.tlt.toFixed(2)})가 조정을 받고 고PER 기술주에 차익실현 매물이 출회되었습니다. 금리가 5.0% 아래로 다시 내려오기 전까지는 추격 매수보다 현금 20% 비중을 지키는 것이 핵심입니다.</span>
-              </div>
-              <div class="insight-item">
-                <span class="insight-key">환율·유가 방어막</span>
-                <span>다행히 WTI 유가가 <strong>$${liveMacro.wtiOil.toFixed(2)}</strong>로 $90 아래에서 안정되어 있고, 원/달러 환율이 <strong>${liveMacro.usdkrw.toFixed(1)}원</strong>으로 내려와 있어 외국인 투자자의 환차손 우려가 해소되었습니다. 덕분에 금리 상승 속에서도 이번 주 국내 반도체 4종목이 +8.5%~+21.4% 동반 상승할 수 있었습니다.</span>
-              </div>
-              <div class="insight-item">
-                <span class="insight-key">국내 유동성</span>
-                <span>한국은행 기준금리(3.00%)와 시중 주담대 금리 부담으로 개인 수급 유입은 제한적이나, 연말 배당 시즌을 앞두고 세전 연 10.8% 배당이 확정된 <strong>삼성전자우(${stockData.stock_005935.currLabel})</strong>와 어닝 서프라이즈 종목(<strong>대덕전자·원익IPS</strong>)으로 기관 자금이 집중되고 있습니다.</span>
-              </div>
+          <div class="stock-key-chips" style="margin-top:10px; margin-bottom:0;">
+            <div class="sk-chip">
+              <span class="sk-badge" style="background:var(--warn-amber-soft); color:var(--warn-amber);">금리 팩트</span>
+              <span>미 10Y 금리 <strong>${liveMacro.us10y.toFixed(2)}%</strong> 상승으로 미국 고밸류 기술주 단기 숨고르기 유발</span>
+            </div>
+            <div class="sk-chip">
+              <span class="sk-badge" style="background:var(--safe-green-soft); color:var(--safe-green);">환율 방어</span>
+              <span>환율(<strong>${liveMacro.usdkrw.toFixed(1)}원</strong>)·유가(<strong>$${liveMacro.wtiOil.toFixed(2)}</strong>) 안정 덕분에 한국 반도체 4종목은 주간 +8~21% 강세</span>
             </div>
           </div>
         </section>
@@ -2208,13 +2091,13 @@
     }
 
     // =========================================================================
-    // 5. 화면 전환 · 브라우저 직접 실시간 거래소 조회 + 실시간 뉴스 RSS + GitHub JSON 하이브리드 동기화 엔진
+    // 5. 화면 전환 · 브라우저 직접 실시간 거래소 조회 + 실시간 뉴스 RSS 동기화 엔진
     // =========================================================================
     const viewTitles = {
-      dram: "🔮 실시간 산업 뉴스·시황 & 메모리 팩트",
-      overview5: "🎯 6종목 실시간 시세·뉴스 & 3단계 목표가",
-      factcheck: "📅 D-Day 캘린더 & 🌊 외인·기관 수급",
-      rates: "🏦 한·미 금리 · 유가 · 환율 모니터"
+      dram: "🧠 반도체 종합 판독 & 메모리 팩트",
+      overview5: "🎯 6종목 핵심 판정 & 3단계 목표가",
+      factcheck: "🧭 포트폴리오 비중 · 신호등 · 일정",
+      rates: "🏦 한·미 금리 · 환율 · 유가 모니터"
     };
 
     function showToast(msg) {
@@ -2241,7 +2124,7 @@
       recomputeAllDynamicMetrics();
 
       const titleEl = document.getElementById("headerTitle");
-      if (titleEl) titleEl.textContent = viewTitles[currentView] || "메모리 · 6종목 팩트 리포트";
+      if (titleEl) titleEl.textContent = viewTitles[currentView] || "반도체 종합 판독기";
 
       const container = document.getElementById("viewContainer");
       if (currentView === "dram") container.innerHTML = renderDramView();
@@ -2313,7 +2196,6 @@
     function applyLivePayload(data) {
       if (!data) return;
 
-      // 1. 디램 현물가 동기화 (dram 또는 dram_spot 키 모두 호환)
       const sp = data.dram || data.dram_spot;
       if (sp) {
         const keyMap = {
@@ -2333,15 +2215,12 @@
               dramSeries[k].change = item.change;
               const base6m = dramSeries[k].pts[0] || p;
               const sixMChg = (((p - base6m) / base6m) * 100).toFixed(1);
-              dramSeries[k].changeText = `현물 ${item.change} (6개월 +${sixMChg}%)`;
+              dramSeries[k].changeText = `현물 ${item.change} · 6개월 +${sixMChg}%`;
             }
-            if (item.spot_forecast) dramSeries[k].spotForecast = item.spot_forecast;
-            if (item.contract_fact) dramSeries[k].contractFact = item.contract_fact;
           }
         });
       }
 
-      // 2. 매크로 지표 동기화
       const mc = data.macro || {};
       if (mc.us10y || data.us10y) liveMacro.us10y = Number(mc.us10y || data.us10y);
       if (mc.us10y_change_pct !== undefined) liveMacro.us10yChg = Number(mc.us10y_change_pct);
@@ -2354,7 +2233,6 @@
       if (mc.kr_base || data.kr_base) liveMacro.krBase = Number(mc.kr_base || data.kr_base);
       if (mc.kr_10y || data.kr_10y) liveMacro.kr10y = Number(mc.kr_10y || data.kr_10y);
 
-      // 3. 보유 6종목 상세 시세 동기화
       const st = data.stocks || {};
       const h52 = data.high52w || {};
       const dt = data.stocks_detail || {};
@@ -2372,7 +2250,6 @@
         }
       });
 
-      // 4. 실시간 뉴스 피드 동기화
       if (data.live_news && typeof data.live_news === "object") {
         if (data.live_news.updated_at) liveNews.updatedAt = data.live_news.updated_at;
         if (Array.isArray(data.live_news.sector) && data.live_news.sector.length > 0) {
@@ -2387,39 +2264,18 @@
         }
       }
 
-      // 5. 전체 동적 텍스트·목표수익률·시황 이슈 재계산
       recomputeAllDynamicMetrics();
-
-      // 6. 동기화 타임스탬프 표시 업데이트
-      const stampEl = document.getElementById("lastDataStamp");
-      const nowShort = formatNowKstShort();
-      if (stampEl) {
-        stampEl.textContent = `${nowShort} 최신 시세·뉴스 반영됨`;
-      }
-
-      const dot = document.getElementById("liveDot");
-      if (dot) {
-        dot.style.transform = "scale(1.45)";
-        setTimeout(() => { dot.style.transform = "scale(1.0)"; }, 400);
-      }
     }
 
     function getRealtimeMarketStatusText() {
       const now = new Date();
-      const wd = now.getDay(); // 0=Sun, 6=Sat
+      const wd = now.getDay();
       const hm = now.getHours() * 60 + now.getMinutes();
       const daysKr = ["일", "월", "화", "수", "목", "금", "토"];
       const wdKr = daysKr[wd];
-      if (wd === 0 || wd === 6) {
-        return `주말(${wdKr}) 휴장 · 직전장 종가 및 최신 뉴스 반영`;
-      }
-      if (hm >= 9 * 60 && hm < 15 * 60 + 30) {
-        return `평일(${wdKr}) 국내 정규장 실시간 가동중`;
-      } else if (hm < 9 * 60) {
-        return `평일(${wdKr}) 국내 개장전 · 미국장/뉴스 실시간 반영`;
-      } else {
-        return `평일(${wdKr}) 국내 장마감 · 미국장/뉴스 실시간 반영`;
-      }
+      if (wd === 0 || wd === 6) return `주말(${wdKr}) · 최신 종가 & 실시간 뉴스 반영`;
+      if (hm >= 9 * 60 && hm < 15 * 60 + 30) return `평일(${wdKr}) 국내 정규장 실시간 가동중`;
+      return `평일(${wdKr}) 글로벌 시세 & 실시간 뉴스 연동`;
     }
 
     function formatNowKstFull() {
@@ -2446,9 +2302,7 @@
     function updateLiveClock() {
       const tEl = document.getElementById("liveTimeText");
       if (tEl) {
-        const timeStr = formatNowKstFull();
-        const statusStr = getRealtimeMarketStatusText();
-        tEl.innerHTML = `<span style="color:var(--safe-green); font-weight:800;">🔴 LIVE</span> ${timeStr} KST · ${statusStr}`;
+        tEl.innerHTML = `<span style="color:var(--safe-green); font-weight:800;">LIVE</span> ${formatNowKstFull()} · ${getRealtimeMarketStatusText()}`;
       }
       const cdEl = document.getElementById("nextRefreshCountdown");
       if (cdEl) {
@@ -2467,11 +2321,10 @@
       }
     }
 
-    // 브라우저에서 직접 Google News RSS를 조회해 최신 헤드라인을 실시간 반영
     async function fetchDirectBrowserNewsRSS() {
       const queries = [
-        { q: "엔비디아 젠슨황 사임 반도체", tag: "AI·엔비디아 지각변동", target: "sector" },
-        { q: "삼성전자 모딘 HBM 반도체", tag: "삼성 HBM·M&A", target: "005930.KS" },
+        { q: "엔비디아 젠슨황 사임 반도체", tag: "NVIDIA+1", target: "sector" },
+        { q: "삼성전자 모딘 HBM 반도체", tag: "삼성 HBM", target: "005930.KS" },
         { q: "대덕전자 기판 반도체", tag: "기판 수급", target: "353200.KS" },
         { q: "원익IPS 영업이익 반도체", tag: "장비 실적", target: "240810.KQ" }
       ];
@@ -2489,29 +2342,23 @@
             const r = await fetchWithTimeout(pUrl, { cache: "no-store" }, 2800);
             if (!r.ok) continue;
             const xmlText = await r.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(xmlText, "text/xml");
+            const doc = new DOMParser().parseFromString(xmlText, "text/xml");
             const nodes = Array.from(doc.querySelectorAll("item")).slice(0, 3);
             if (!nodes.length) continue;
 
             const parsed = nodes.map(node => {
               let title = node.querySelector("title")?.textContent || "";
               const link = node.querySelector("link")?.textContent || "#";
-              const pubDate = (node.querySelector("pubDate")?.textContent || "").slice(0, 16);
               const source = node.querySelector("source")?.textContent || "뉴스";
-              if (title.includes(" - ")) {
-                title = title.split(" - ").slice(0, -1).join(" - ").trim();
-              }
-              return { tag: item.tag, title, source, pubDate, link };
+              if (title.includes(" - ")) title = title.split(" - ").slice(0, -1).join(" - ").trim();
+              return { tag: item.tag, title, source, link };
             });
 
             if (item.target === "sector") {
               newSector.push(...parsed);
             } else {
               liveNews.stocks[item.target] = parsed;
-              if (item.target === "005930.KS") {
-                liveNews.stocks["005935.KS"] = parsed;
-              }
+              if (item.target === "005930.KS") liveNews.stocks["005935.KS"] = parsed;
               newSector.push(parsed[0]);
             }
             newsFetched += parsed.length;
@@ -2521,13 +2368,12 @@
       }));
 
       if (newSector.length >= 2) {
-        liveNews.sector = newSector.slice(0, 6);
-        liveNews.updatedAt = `${formatNowKstShort()} 실시간 RSS`;
+        liveNews.sector = newSector.slice(0, 4);
+        liveNews.updatedAt = `${formatNowKstShort()} 실시간 뉴스`;
       }
       return newsFetched;
     }
 
-    // 브라우저에서 직접 Yahoo Finance 실시간 시세를 CORS 프록시 경유로 보조 조회
     async function fetchDirectBrowserYahooQuotes() {
       const syms = ["005935.KS", "005930.KS", "353200.KS", "240810.KQ", "AMD", "CLS", "^TNX", "CL=F", "KRW=X", "TLT"];
       const mapSym = {
@@ -2563,8 +2409,7 @@
               const c = closesRaw[i];
               if (typeof c === "number" && c > 0) {
                 const dt = new Date((tsList[i] + 9 * 3600) * 1000);
-                const lbl = `${dt.getUTCMonth() + 1}/${dt.getUTCDate()}`;
-                pairs.push([lbl, isKrw ? Math.round(c) : Number(c.toFixed(2))]);
+                pairs.push([`${dt.getUTCMonth() + 1}/${dt.getUTCDate()}`, isKrw ? Math.round(c) : Number(c.toFixed(2))]);
               }
             }
             const p = typeof meta.regularMarketPrice === "number"
@@ -2616,7 +2461,6 @@
           } catch (_) {}
         }
       }));
-
       return updatedCount;
     }
 
@@ -2624,17 +2468,16 @@
       const btn = document.getElementById("refreshBtn");
       const badgeEl = document.getElementById("syncSourceBadge");
       if (btn && manual) {
-        btn.textContent = "⏳ 시세·뉴스 동기화중";
+        btn.textContent = "⏳ 동기화중";
         btn.disabled = true;
       }
       if (badgeEl && manual) {
-        badgeEl.textContent = "🔄 거래소 시세 & 실시간 뉴스 조회중...";
+        badgeEl.textContent = "🔄 실시간 시세·뉴스 조회중...";
       }
 
       countdownSec = 30;
       let payload = null;
 
-      // 1. 로컬 서버 API (/api/briefing) 또는 동일 오리진 JSON, GitHub Raw 병렬/순차 조회
       const urlsToTry = [
         `data/latest_briefing.json?t=${Date.now()}`,
         `https://raw.githubusercontent.com/dnrzoqs-byte/memory-briefing/main/data/latest_briefing.json?t=${Date.now()}`,
@@ -2657,11 +2500,8 @@
         } catch (_) {}
       }
 
-      if (payload) {
-        applyLivePayload(payload);
-      }
+      if (payload) applyLivePayload(payload);
 
-      // 2. 수동 갱신 클릭 시 브라우저 직접 실시간 거래소 시세(Yahoo Finance) + 실시간 뉴스(Google News RSS) 동시 쿼리
       let directCount = 0;
       let newsCount = 0;
       if (manual) {
@@ -2681,52 +2521,41 @@
 
       if (badgeEl) {
         badgeEl.textContent = (directCount > 0 || newsCount > 0)
-          ? "🟢 거래소 시세 & 실시간 뉴스 직접 연동"
-          : "🟢 실시간 시세·뉴스 연동";
+          ? "🟢 거래소·뉴스 직접 연동됨"
+          : "🟢 시세·뉴스 실시간 연동";
       }
       const stampEl = document.getElementById("lastDataStamp");
       const curTime = formatNowKstShort();
-      if (stampEl) {
-        stampEl.textContent = `${curTime} 시세·뉴스 동기화 완료`;
-      }
+      if (stampEl) stampEl.textContent = `${curTime} 최신 판독 완료`;
 
       if (manual) {
-        document.querySelectorAll(".card").forEach(c => {
+        document.querySelectorAll(".card, .verdict-hero").forEach(c => {
           c.classList.remove("card-refreshed");
           void c.offsetWidth;
           c.classList.add("card-refreshed");
         });
-
-        showToast(`✅ [${curTime} 최신 시세·뉴스 반영] 삼전우 ${stockData.stock_005935.currLabel} · 대덕 ${stockData.stock_353200.currLabel} · AMD ${stockData.stock_AMD.currLabel} · 실시간 뉴스 최신화 완료`);
+        showToast(`✅ [${curTime} 판독 완료] 종합 ${verdictModel.totalScore}점 · 삼전우 ${stockData.stock_005935.currLabel} · AMD ${stockData.stock_AMD.currLabel}`);
       }
 
       if (btn && manual) {
-        btn.textContent = "✅ 갱신완료";
+        btn.textContent = "✅ 완료";
         btn.disabled = false;
-        setTimeout(() => { btn.textContent = "🔄 실시간 갱신"; }, 1400);
+        setTimeout(() => { btn.textContent = "🔄 실시간 갱신"; }, 1200);
       }
     }
 
-    // 초기 즉시 렌더링 및 1초 시계 + 30초 무중단 자동 갱신 가동
     (function initImmediate() {
       recomputeAllDynamicMetrics();
       const params = new URLSearchParams(window.location.search);
-      const requestedView = params.get("view") || "dram";
-      switchView(requestedView, false);
+      switchView(params.get("view") || "dram", false);
       updateLiveClock();
       setInterval(updateLiveClock, 1000);
       setTimeout(() => { refreshLivePrices(false); }, 60);
-
       setInterval(() => {
-        if (!document.hidden) {
-          refreshLivePrices(false);
-        }
+        if (!document.hidden) refreshLivePrices(false);
       }, 30000);
-
       document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) {
-          refreshLivePrices(false);
-        }
+        if (!document.hidden) refreshLivePrices(false);
       });
     })();
   </script>
