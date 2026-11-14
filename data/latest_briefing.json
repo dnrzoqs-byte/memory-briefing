@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-14 16:21 KST",
+  "updated_at": "2026-11-14 18:55 KST",
   "market_date": "2026.11.14(토) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -373,7 +373,7 @@
     {
       "tag": "AI 생태계 지각변동 · NVIDIA+1 반사이익",
       "title": "젠슨 황 엔비디아 CEO 전격 사임 충격파 → '탈엔비디아(NVIDIA+1)' 대안 진영(AMD·셀레스티카·삼성전자)으로 글로벌 자금 대이동!",
-      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「흔들리는 엔비디아…구글·AMD, 칩 시장 '지각변동' 일으키나 - 머니투데이」 - 머니투데이)",
+      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「미국 의원들, 엔비디아에 대한 조사 강화」 - VOA 한국어 홈페이지)",
       "impact": "보유 6종목 중 AMD(1차 적정가 $540~$560 진입 완료)·셀레스티카·삼성전자·삼전우 직접적 반사이익 수혜"
     },
     {
@@ -404,8 +404,15 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-14 16:21 KST",
+    "updated_at": "2026-11-14 18:55 KST",
     "sector": [
+      {
+        "title": "미국 의원들, 엔비디아에 대한 조사 강화",
+        "source": "VOA 한국어 홈페이지",
+        "pubDate": "Fri, 13 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzWjM5c3RGVDNTRldLZGdYa0dJeW5ja0lmaHIzQURqYzhoNkJzUGt5d1E3dG9HTXQzNXd5VlMwLU83VXVmMmZNZHZXY2xpYkQ20gFTQVVfeXFMTnd1TzgxV0xpRVEyaHl1elkzUUJQNkJpRlFiWTEtMWVEUWoyMHBOa0xldXl5cERpbGctVGR2SzlVaG96WHE5engwWlBMb2VNOXdPaDA?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
       {
         "title": "흔들리는 엔비디아…구글·AMD, 칩 시장 '지각변동' 일으키나 - 머니투데이",
         "source": "머니투데이",
@@ -414,17 +421,10 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "정부 “엔비디아 GPU 26만장 공급 차질 없어”…젠슨 황 사임에도 협력 계속",
-        "source": "한겨레",
+        "title": "\"사임 후폭풍\"…미중 AI 패권 재편에 韓반도체 '촉각' [젠슨황 스캔들⑤·끝]",
+        "source": "뉴시스",
         "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9qa1RSRFo3czhPLVhKV1FocGdsZGZjclZPTUtkQjJ6Q09hdjdrREx6bWQxRS1EQk9hVEM2enVYWGRvVkh0Q1hzVlA4WlVBaE5QV3Btekt0UHpFYV9TVUw1ZA?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "미국 의원들, 엔비디아에 대한 조사 강화",
-        "source": "VOA 한국어 홈페이지",
-        "pubDate": "Fri, 13 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBzWjM5c3RGVDNTRldLZGdYa0dJeW5ja0lmaHIzQURqYzhoNkJzUGt5d1E3dG9HTXQzNXd5VlMwLU83VXVmMmZNZHZXY2xpYkQ20gFTQVVfeXFMTnd1TzgxV0xpRVEyaHl1elkzUUJQNkJpRlFiWTEtMWVEUWoyMHBOa0xldXl5cERpbGctVGR2SzlVaG96WHE5engwWlBMb2VNOXdPaDA?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1SQmFJbzYxN2FIVWJlT0g3YjdQTUNXYUk0clVJSDBCODZKeEdqdkNKZmhmUWdIQndpUG84SUN5eTNyQ3Q3cFc2aVJqTTI1dUpCeDY2LTNoc3Jid210RTBxM9IBeEFVX3lxTE1PRmo3Q2tseURGbzdyZDVTa053dDNVZXFCNmtISzJpWmoyejhtTnA0TUlpbE9ieFg4QWpvdk9aQTV2a0t6X0twQTFOSHh3akZNbExpSEwxVkptWW1RTnJmR0dteXZVaW9nQzBMRXVPUjc3RmlTeDFYNw?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -442,10 +442,10 @@
         "tag": "삼성 HBM·M&A"
       },
       {
-        "title": "\"내년 HBM 물량 목표가에 완판\" 삼성전자, 반도체 고점론 일축",
-        "source": "파이낸셜뉴스",
-        "pubDate": "Thu, 29 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9yaU5KcllVMEtVcE9odUdaQmVJRUkyZXQ3MG9OSENsZzNNcnZha192OE8wTTJkTjQwWWw3R1ExeVNBZUIxSmlXRXFVN2htY0xYNWVpM3Q2WkZrQQ?oc=5",
+        "title": "꺾이지 않은 삼성전자…반도체 초호황, AI 수요에 HBM 업고 내년에도 좋다",
+        "source": "경향신문",
+        "pubDate": "Thu, 08 Oct 2026",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE05WW1fSXJyc3dZQ2tIaHJWS1hrTTl3dG5paHNkWFZKeEM4aVlFRkVrT3MzQnFFWno0NGR0ZlFJWGdiUzVZX1BtYnNHZkRVNklWRzloQ2E5bGRGd9IBX0FVX3lxTE9EX2hOcUdaOVYzcHkxX2FFcUktU0xXdmpndmtIdk5yclZ4RU9LZXZjZ3Z6YmlXSm1oakt2ZmU4b0FQX0pWT0o5TG05Wk1XQjRNcFNTZTByQWZ3dDhiNWo0?oc=5",
         "tag": "삼성 HBM·M&A"
       },
       {
@@ -573,16 +573,16 @@
       ],
       "CLS": [
         {
-          "title": "Canadian AI-buildout stocks: hardware, power, engineering and software",
-          "source": "Yahoo Finance",
-          "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYi16S2k0Y1VnY2U3SnVTTVBmbVpqMDN4VTdOOVllM2RZN1VHejRTRXUwRW1oT29CZFZJR0FZY245NFBKbE1hVUNQcm1BXzFPSnkza0dYT29PdGo3ZVRmY2sySzV0b1hINEcxZFpSTVFaaXAtRVFkblNsanNPMGZtRlRCN0NGNmNoYlVpSXdxYTI0a3ZGbWxzQ1BKY3RXMkw5ZGc?oc=5"
-        },
-        {
           "title": "Celestica (TSX:CLS) Stock Cools Despite Q3 Earnings Power And AI Ramp",
           "source": "Yahoo Finance",
           "pubDate": "Tue, 27 Oct 2026",
           "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQb21NWVZXZ2dEa2NnRnZLbG53cjBBZVl6ekpfZnFwWTI4VldPWUxMa2tnUGFQbmp0WTFpX1NaRDJjM2d0Vi1CWC15bHBLbFRCclgtaF9qdkhxVTFHYWJaVURBa3dkVXBZUzBJMTZZdjA2ekFISnpMQUdLeDBOeXEwWGRNbngwcjQ3SGRnWktwLS1zb1g1SmpLUDZB?oc=5"
+        },
+        {
+          "title": "Canadian AI-buildout stocks: hardware, power, engineering and software",
+          "source": "Yahoo Finance",
+          "pubDate": "Wed, 11 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYi16S2k0Y1VnY2U3SnVTTVBmbVpqMDN4VTdOOVllM2RZN1VHejRTRXUwRW1oT29CZFZJR0FZY245NFBKbE1hVUNQcm1BXzFPSnkza0dYT29PdGo3ZVRmY2sySzV0b1hINEcxZFpSTVFaaXAtRVFkblNsanNPMGZtRlRCN0NGNmNoYlVpSXdxYTI0a3ZGbWxzQ1BKY3RXMkw5ZGc?oc=5"
         },
         {
           "title": "CLS Stock Soars Premarket After Blowout Q3 — Retail Calls It ‘Very Inexpensive’ As Celestica Touts AI ‘Supercycle’",
