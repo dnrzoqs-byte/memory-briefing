@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-15 06:10 KST",
+  "updated_at": "2026-11-15 10:34 KST",
   "market_date": "2026.11.15(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -373,7 +373,7 @@
     {
       "tag": "AI 생태계 지각변동 · NVIDIA+1 반사이익",
       "title": "젠슨 황 엔비디아 CEO 전격 사임 충격파 → '탈엔비디아(NVIDIA+1)' 대안 진영(AMD·셀레스티카·삼성전자)으로 글로벌 자금 대이동!",
-      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「젠슨 황 사임에 1.5GW 유출설 겹친 엔비디아…HBM 2027년 판도 바뀐다」 - 글로벌이코노믹)",
+      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |」 - 연합인포맥스)",
       "impact": "보유 6종목 중 AMD(1차 적정가 $540~$560 진입 완료)·셀레스티카·삼성전자·삼전우 직접적 반사이익 수혜"
     },
     {
@@ -404,13 +404,20 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-15 06:10 KST",
+    "updated_at": "2026-11-15 10:34 KST",
     "sector": [
       {
-        "title": "젠슨 황 사임에 1.5GW 유출설 겹친 엔비디아…HBM 2027년 판도 바뀐다",
-        "source": "글로벌이코노믹",
+        "title": "\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |",
+        "source": "연합인포맥스",
         "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOU20wVmRXV0w4RVllaXd1dnc4dU9YWlQyNlFsRzdySFgtZzFva1FqSnJHY013dk1LWUpHckVqaVA4SFRRT3VYd3VXMlFqNVRTM2JCaWVDNDBDWHZPNExOWTVrOXZETWpCVUU1NmVSTDF6S090QnNqOXd5aU10VFhDTGlKYXNNYW5y?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jZkkxeEhoTm41dWtGVzZwcUlSU19pTVQzNlZ5dFhXLU9JdDJteTRrR2xadDdtdnBtSnFNek1sMzhBOWRsRy02aXZ6WDRzZHE3MHJ0b3NlZG1ZaDRtalFZN3RaY0lzU3UzWVA3MjVLWGNwNC1E?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
+        "title": "'젠슨황 스캔들'에 짓눌린 증시…엔비디아 실적·앤트로픽 상장 주시",
+        "source": "연합뉴스",
+        "pubDate": "Sat, 14 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9nR0p4Y2pYLVk2R3BIak9qbGxBY2NpNWFSY0cwUG85TjFGR0hycl94WjJYTXJZTUt4Nnd2WEVjektXMjRyalYyVDE3MVFZUjl3YVVqTmlOQjl2Y0XSAWBBVV95cUxPMEFvZkx4dXNTVkhiX2RfZkV3V3ZXQzFieDlaQlFvQWExaWY3RkVFUE9UTDcwcllsMW5QeEF1LVphMzVJX0dsLVRPVjdQdlY1elczSVlMbVZjVUtJWWs4bnE?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -418,13 +425,6 @@
         "source": "세계일보",
         "pubDate": "Sat, 14 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBRLVRzV2VYMXAtaU1VclRqWjN6Mzk5aVBTZGlvQW9LOUxlbDZId3NOME9GRV82Zktnd3oxS1NZTlJmTkkwRlZ4Ny00eGNwQ3Fxc3M4U3JvY1kzbHpkZG1Ka2ZibkdqbTFCT1BF0gFUQVVfeXFMT2JzMTg1OUhMVW9ycVV4UkJSSjZtUURjUnNrOXNqcG1KQ3RMZUJkb1Q1dTNTMHpFLWdxTW9EWlFNcnFSbW1fZ3Q1MlE2b2hDMG80Z3BU?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "젠슨 황 씨 사임 후 엔비디아 반도체 중국 유출 의혹, 미국이 규제 강화하면 중국은 희토류로 맞대응? 🔍",
-        "source": "뉴닉",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9hNHJqbFBuRnBnQWVTUDBlWklIZmhNS2sxLVNxR2pyYTdjeERDREhadlFlYUx1eTFwbExSUGE2aFM3SzVVLTg5UUlZcFp6ekxHeEdr?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -545,10 +545,10 @@
           "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1ucXNscFFOajc4MUlhUHRpZEZ4YlZRcW1sZDhxTGVLT3poSWlKRWJWZ2tFalBscll3YjAzaG1PWU9mTGxodXdzbUgtNjcyenZtWmhFbUpkVFFLU0lteGd4MjF3Qi1xcWZadkR1Qg?oc=5"
         },
         {
-          "title": "[종목상담 주식민원처리반] 반도체 제조 공정의 증착·열처리 장비 생산 '원익IPS' - 머니투데이",
-          "source": "머니투데이",
+          "title": "반도체 소부장도 실적 개선…전공정·소재로 온기 확산",
+          "source": "KB Think",
           "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1kd1RmdUlpaWVRZmRiSUFXWTNab0kwLU1RTXQ3aDY5ZGxZbWJtU2hWSHlUNU9ZZU1TMlZxc0hsRUxsOUszYXFPVkZGOFE2VVZLUF9hNVhtazEySVpHNXlhaURqUUo0VmtYdjRhRzNn0gFuQVVfeXFMTWR3VGZ1SWlpZVFmZGJJQVdZM1pvSTAtTVFNdDdoNjlkbFltYm1TaFZIeVQ1T1llTVMyVnFzSGxFTGw5SzNhcU9WRkY4UTZVVktQX2E1WG1rMTJJWkc1eWFpRGpRSjRWa1h2NGFHM2c?oc=5"
+          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFA3emFCQ190OVJZaWFzcnFSeExsaEVEaVZNQW9VczNwQ09jMWEyNDVod25KVlN0bjAyak80OEdMTURFVzRDdTFMOE41RWxDLXBMVWVYR3pwSTNPLUxMZFBxSXBLdUxsZ2JLTHZvV1YzU2xZZw?oc=5"
         }
       ],
       "AMD": [
