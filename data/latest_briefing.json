@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-16 01:11 KST",
-  "market_date": "2026.11.16(월) 01:11 미국 정규장 실시간 거래중",
+  "updated_at": "2026-11-16 06:30 KST",
+  "market_date": "2026.11.16(월) 장 시작 전 · 글로벌 종가 및 최신 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -45,7 +45,7 @@
     "us2y": 4.31,
     "tlt_price": 79.38,
     "wti_oil": 88.56,
-    "usdkrw": 1336.2,
+    "usdkrw": 1335.0,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -71,13 +71,13 @@
       "11/12",
       "11/13"
     ],
-    "usdkrw_change_pct": 0.18,
+    "usdkrw_change_pct": 0.09,
     "usdkrw_recent": [
       1343.84,
       1341.91,
       1336.26,
       1333.78,
-      1336.2
+      1334.98
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -108,7 +108,7 @@
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1336.2,
+  "usdkrw": 1335.0,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
@@ -134,9 +134,9 @@
       "change_pct": 1.31,
       "week_change_pct": 13.44,
       "high52w": 243500,
-      "low52w": 71000,
-      "day_high": 175500,
-      "day_low": 167400,
+      "low52w": 0,
+      "day_high": 0,
+      "day_low": 0,
       "recent_dates": [
         "11/9",
         "11/10",
@@ -158,9 +158,9 @@
       "change_pct": -0.96,
       "week_change_pct": 9.17,
       "high52w": 374500,
-      "low52w": 94500,
-      "day_high": 216000,
-      "day_low": 205000,
+      "low52w": 0,
+      "day_high": 0,
+      "day_low": 0,
       "recent_dates": [
         "11/9",
         "11/10",
@@ -182,9 +182,9 @@
       "change_pct": -2.25,
       "week_change_pct": 28.23,
       "high52w": 198000,
-      "low52w": 41550,
-      "day_high": 99600,
-      "day_low": 90900,
+      "low52w": 0,
+      "day_high": 0,
+      "day_low": 0,
       "recent_dates": [
         "11/9",
         "11/10",
@@ -206,9 +206,9 @@
       "change_pct": -1.89,
       "week_change_pct": 16.49,
       "high52w": 187800,
-      "low52w": 55400,
-      "day_high": 84400,
-      "day_low": 77100,
+      "low52w": 0,
+      "day_high": 0,
+      "day_low": 0,
       "recent_dates": [
         "11/9",
         "11/10",
@@ -378,8 +378,8 @@
     },
     {
       "tag": "거시경제 · 금리·환율 점검",
-      "title": "미 10년물 국채금리 5.15% 돌파(TLT $79.38) 경계감 vs 원/달러 환율 1,336.2원 원화 강세 방어력",
-      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 5.15%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $88.56)가 $90 아래에서 안정되고 원/달러 환율이 1,336.2원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
+      "title": "미 10년물 국채금리 5.15% 돌파(TLT $79.38) 경계감 vs 원/달러 환율 1,335.0원 원화 강세 방어력",
+      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 5.15%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $88.56)가 $90 아래에서 안정되고 원/달러 환율이 1,335.0원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
       "impact": "원익IPS(3Q 영업이익 667억, 전년비 +142% 급증) 및 대덕전자(91,300원, 주간 +21.4%) 실적·수급 장세 지속"
     },
     {
@@ -404,7 +404,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-16 01:12 KST",
+    "updated_at": "2026-11-16 06:30 KST",
     "sector": [
       {
         "title": "젠슨 황 퇴진에 엔비디아 공급망 '재편'…韓 반도체 수요처 다변화 '기회'",
@@ -414,17 +414,17 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |",
-        "source": "연합인포맥스",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jZkkxeEhoTm41dWtGVzZwcUlSU19pTVQzNlZ5dFhXLU9JdDJteTRrR2xadDdtdnBtSnFNek1sMzhBOWRsRy02aXZ6WDRzZHE3MHJ0b3NlZG1ZaDRtalFZN3RaY0lzU3UzWVA3MjVLWGNwNC1E?oc=5",
+        "title": "[사설] 젠슨 황 퇴진, AI산업 면밀하게 대책 마련해야",
+        "source": "경기일보",
+        "pubDate": "Sun, 15 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5tOHNfX3hiZm5KVkxSUE9seFoxZHhvLThQMHpRT0NqM2FBTGNZSUZlWkQ5b2VReUxPblZhV2V2OXZzUXRsZWxnNlJNUWk2cTlBWllzV0o5UjZBNEU?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "젠슨 황 사임 이후 엔비디아: 리더십 공백이 AI 반도체 공급망 전체를 흔든다",
-        "source": "한국공공정책신문",
+        "title": "[젠슨황 퇴진] 제왕 엔비디아 '흔들'…글로벌 반도체·K-피지컬 AI '격변'",
+        "source": "파이낸셜포스트",
         "pubDate": "Sun, 15 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9Jd2hMNEZKVGViZU5wT3BwcUlBV0xZc3RLNE42NHpiVml5LW9RcXEyUlE5MWZlcnVIQmJEOXJxc2l2RmM?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5PV0hnM2JrcGQ0X19JRFNvRkwyUmpCeGhyaHBkRFNIeElGLTN1WllpNWhiZDdYS3IyVlduWlNabXprWUljZFZxU1ZrWFNkaHBiM3k2NUg3d3BkVllKanp3T1lJM2VDckRvUHQ1SjM4S3VBTXZ2?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -435,17 +435,17 @@
         "tag": "삼성 HBM·M&A"
       },
       {
-        "title": "오직 삼성만 가능한 속도와 생산력으로 낙오됐던 HBM 경쟁서 점유율 1위 노려",
-        "source": "월간중앙",
-        "pubDate": "Thu, 22 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5wcDQ3WGJCbWtoMS1kYUNXOE10eFZGa19LdEU2anFsZnR0T0llZ3VydTVpb3pYODlxZzRrZl9VZGNXcVJOSUZBOUw4QWd3RmdWU0VZakRHM2FWMTd5NDk2dTFfdGRBcFU3QnVYRlVB?oc=5",
-        "tag": "삼성 HBM·M&A"
-      },
-      {
         "title": "한미반도체, 삼성과 '해빙 모드'…삼성전자 거래 재개 신호탄 되나",
         "source": "www.ebn.co.kr",
         "pubDate": "Wed, 07 Oct 2026",
         "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBrNHBZMzJDcXVEYjlVWWp4ZGFBY0E0OV9SSlJtM0RoelQxcnYtRS1XbTAzSWhaMk4wam9VRjdfNXcyaUMyWm5VREZvX2FiUEZDQkJKUVJ4WmlhZDB6Wm5MdTlRTmViZmlP?oc=5",
+        "tag": "삼성 HBM·M&A"
+      },
+      {
+        "title": "\"내년 HBM 물량 목표가에 완판\" 삼성전자, 반도체 고점론 일축",
+        "source": "파이낸셜뉴스",
+        "pubDate": "Thu, 29 Oct 2026",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9yaU5KcllVMEtVcE9odUdaQmVJRUkyZXQ3MG9OSENsZzNNcnZha192OE8wTTJkTjQwWWw3R1ExeVNBZUIxSmlXRXFVN2htY0xYNWVpM3Q2WkZrQQ?oc=5",
         "tag": "삼성 HBM·M&A"
       },
       {
@@ -463,10 +463,10 @@
         "tag": "메모리 업황"
       },
       {
-        "title": "삼성전자, 3분기 D램 가격 최대 20% 인상…AI 수요 굳건",
-        "source": "지디넷코리아",
-        "pubDate": "Fri, 03 Jul 2026",
-        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5Sa1Z6VUV0NFBvelFKZ1cxRXBVR2hJTW11c1RsS1hKRzVSVUE5OEhmbl9CdVpLSkJ6OTVaT245a1l5Ym5pSEl6cWRidzh5eWdSRlBHZ2hn?oc=5",
+        "title": "공정 바꾸고 대체품까지…'금값' AI메모리에 빅테크 대응 몸부림",
+        "source": "연합뉴스",
+        "pubDate": "Wed, 21 Oct 2026",
+        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5XTmFudERCamN6cldsWXBZcVFCYUg1cmNFSEk2RlNvWjd6RHhEV2ZIUm5rYm5EMEp4WDBla1RRV2xVWmRqcXNfWTdaS3kyWmpTNVk3X0REV1phdWfSAWBBVV95cUxQVnB2XzBUZmFvOF9Sa2NjM0FORWxhdWNUYWVOSDRIS29RWFdMeW9tSndSdURhVWZ0c1NabnVDVV90VnhjOWZoSHpXaUZBUWNFUEtCS3REZ1RLc1hHbWVTY0c?oc=5",
         "tag": "메모리 업황"
       }
     ],
@@ -505,10 +505,10 @@
           "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5pS0ZVYkdHakk5bnNjMEVIM1p5Q3BiWTRTdHgtX1I2LVdXWGdiSUxnR0R0QVlzQTlCOERkbmpwU1pKWWtvN0J6cExHR01jWklIRmI3ZnBkSVA4M2Rhems4b3J1Z1dKTl9ueVBXV1lValZzN1hhdEkxTEtGSdIBgAFBVV95cUxNTDZHRERGZ1Q0OHRMZ2xqWlFnMjY1ZHVCR25iX2xSRnJLbDlrTmhkaFUtX0JiNmcyUF9lVHBvODJhYkg2YTNrdFlGZGZ3VGZEenBuZzdKR3JHSUk3ZS1YajQtMG1IRzc4RXlNWC1pZVFmODJha1p0YmpoWUpjbkV4cA?oc=5"
         },
         {
-          "title": "오직 삼성만 가능한 속도와 생산력으로 낙오됐던 HBM 경쟁서 점유율 1위 노려",
-          "source": "월간중앙",
-          "pubDate": "Thu, 22 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5wcDQ3WGJCbWtoMS1kYUNXOE10eFZGa19LdEU2anFsZnR0T0llZ3VydTVpb3pYODlxZzRrZl9VZGNXcVJOSUZBOUw4QWd3RmdWU0VZakRHM2FWMTd5NDk2dTFfdGRBcFU3QnVYRlVB?oc=5"
+          "title": "\"내년 HBM 물량 목표가에 완판\" 삼성전자, 반도체 고점론 일축",
+          "source": "파이낸셜뉴스",
+          "pubDate": "Thu, 29 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9yaU5KcllVMEtVcE9odUdaQmVJRUkyZXQ3MG9OSENsZzNNcnZha192OE8wTTJkTjQwWWw3R1ExeVNBZUIxSmlXRXFVN2htY0xYNWVpM3Q2WkZrQQ?oc=5"
         }
       ],
       "353200.KS": [
@@ -579,16 +579,16 @@
           "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQb21NWVZXZ2dEa2NnRnZLbG53cjBBZVl6ekpfZnFwWTI4VldPWUxMa2tnUGFQbmp0WTFpX1NaRDJjM2d0Vi1CWC15bHBLbFRCclgtaF9qdkhxVTFHYWJaVURBa3dkVXBZUzBJMTZZdjA2ekFISnpMQUdLeDBOeXEwWGRNbngwcjQ3SGRnWktwLS1zb1g1SmpLUDZB?oc=5"
         },
         {
-          "title": "Canadian AI-buildout stocks: hardware, power, engineering and software",
+          "title": "Celestica (CLS): Initiating a Stake Following the Summer AI Capex Pullback",
           "source": "Yahoo Finance",
-          "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYi16S2k0Y1VnY2U3SnVTTVBmbVpqMDN4VTdOOVllM2RZN1VHejRTRXUwRW1oT29CZFZJR0FZY245NFBKbE1hVUNQcm1BXzFPSnkza0dYT29PdGo3ZVRmY2sySzV0b1hINEcxZFpSTVFaaXAtRVFkblNsanNPMGZtRlRCN0NGNmNoYlVpSXdxYTI0a3ZGbWxzQ1BKY3RXMkw5ZGc?oc=5"
+          "pubDate": "Mon, 12 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSWZtNEU3VTItUFJfMUY0cWZUTkYyYUdpMGtBU2NNQk9MN0Q4S0EzRjVWSjJYTHdYRV82M2ljcVhYQ2NDWnJDTmpON2xJMFFoa1o2dlAzanJYb1drZTNsbXFTV0pYTFRfNEFhT0YtYWh4dWZGUjlTREtxQ2M0QVhzX3FOejY2MG15Z1JENTR1ZS12QVNUeTFVR0w4RkpFQ1AtWGJaQkkwNA?oc=5"
         },
         {
-          "title": "CLS Stock Soars Premarket After Blowout Q3 — Retail Calls It ‘Very Inexpensive’ As Celestica Touts AI ‘Supercycle’",
-          "source": "Yahoo Finance",
-          "pubDate": "Tue, 27 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUnR4U1piRlFUUnN3UVlHMUVlaEYxZDhvaEFhSmJKWjFoemdXbW14YlNaU2d6MmdUbklTdHRrNVk1bU9KVHNjWlNpT3ZaYXhhTnNFa1lvWVlkdW1JM2M2cXNHVnV4NjQ1TmwzeF8xV1JESzBCT2x0ZUJqakYtOXBCMEI0NUdTLXJfVWtIdkVMUDNiM2p4cm01Y216UHNSTTg?oc=5"
+          "title": "Celestica Stock: Is AI Growth Worth the Risk in a Retirement Portfolio?",
+          "source": "Yahoo! Finance Canada",
+          "pubDate": "Wed, 11 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNUxUZjQ5Sl9rUml5U0VCbTlfdERVT1RxTXR4dkJRR3RrXzdKWXljS291Sks3WEtMLUEtRGJKX2ZzbVRiYnVrMWM3YVRzVXVJLVhuanJEdmZmNDRjNDJRT2V1T19XZzhLenluanEwRlFSS3VjZ3VGZ3FMdGN1eU5xVElTQVJzSUU?oc=5"
         }
       ]
     }
