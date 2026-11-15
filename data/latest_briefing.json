@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-15 17:56 KST",
-  "market_date": "2026.11.15(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
+  "updated_at": "2026-11-16 01:11 KST",
+  "market_date": "2026.11.16(월) 01:11 미국 정규장 실시간 거래중",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -373,7 +373,7 @@
     {
       "tag": "AI 생태계 지각변동 · NVIDIA+1 반사이익",
       "title": "젠슨 황 엔비디아 CEO 전격 사임 충격파 → '탈엔비디아(NVIDIA+1)' 대안 진영(AMD·셀레스티카·삼성전자)으로 글로벌 자금 대이동!",
-      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |」 - 연합인포맥스)",
+      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(206,000원)·삼전우(170,500원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「젠슨 황 퇴진에 엔비디아 공급망 '재편'…韓 반도체 수요처 다변화 '기회'」 - 전자신문)",
       "impact": "보유 6종목 중 AMD(1차 적정가 $540~$560 진입 완료)·셀레스티카·삼성전자·삼전우 직접적 반사이익 수혜"
     },
     {
@@ -404,15 +404,8 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-15 17:56 KST",
+    "updated_at": "2026-11-16 01:12 KST",
     "sector": [
-      {
-        "title": "\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |",
-        "source": "연합인포맥스",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jZkkxeEhoTm41dWtGVzZwcUlSU19pTVQzNlZ5dFhXLU9JdDJteTRrR2xadDdtdnBtSnFNek1sMzhBOWRsRy02aXZ6WDRzZHE3MHJ0b3NlZG1ZaDRtalFZN3RaY0lzU3UzWVA3MjVLWGNwNC1E?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
       {
         "title": "젠슨 황 퇴진에 엔비디아 공급망 '재편'…韓 반도체 수요처 다변화 '기회'",
         "source": "전자신문",
@@ -421,10 +414,17 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "엔비디아 새 수장 누가 될까…AI 투자 전략 향방에 국내 반도체업계 촉각",
-        "source": "일요신문",
+        "title": "\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |",
+        "source": "연합인포맥스",
+        "pubDate": "Sat, 14 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jZkkxeEhoTm41dWtGVzZwcUlSU19pTVQzNlZ5dFhXLU9JdDJteTRrR2xadDdtdnBtSnFNek1sMzhBOWRsRy02aXZ6WDRzZHE3MHJ0b3NlZG1ZaDRtalFZN3RaY0lzU3UzWVA3MjVLWGNwNC1E?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
+        "title": "젠슨 황 사임 이후 엔비디아: 리더십 공백이 AI 반도체 공급망 전체를 흔든다",
+        "source": "한국공공정책신문",
         "pubDate": "Sun, 15 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5jNExBVVZmTXVhZXBzM0NBMk9BVERGMFFjZl8wM0Q3bXp3VW1fVTZadi1iYXVhVWFuUVFLNGE4ZEZJZTZHck5BREp0TzZKUm00bm5rMUVMWFplVl8wa0RfY3RZVEt2QQ?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9Jd2hMNEZKVGViZU5wT3BwcUlBV0xZc3RLNE42NHpiVml5LW9RcXEyUlE5MWZlcnVIQmJEOXJxc2l2RmM?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -442,11 +442,18 @@
         "tag": "삼성 HBM·M&A"
       },
       {
-        "title": "\"내년 HBM 물량 목표가에 완판\" 삼성전자, 반도체 고점론 일축",
-        "source": "파이낸셜뉴스",
-        "pubDate": "Thu, 29 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9yaU5KcllVMEtVcE9odUdaQmVJRUkyZXQ3MG9OSENsZzNNcnZha192OE8wTTJkTjQwWWw3R1ExeVNBZUIxSmlXRXFVN2htY0xYNWVpM3Q2WkZrQQ?oc=5",
+        "title": "한미반도체, 삼성과 '해빙 모드'…삼성전자 거래 재개 신호탄 되나",
+        "source": "www.ebn.co.kr",
+        "pubDate": "Wed, 07 Oct 2026",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBrNHBZMzJDcXVEYjlVWWp4ZGFBY0E0OV9SSlJtM0RoelQxcnYtRS1XbTAzSWhaMk4wam9VRjdfNXcyaUMyWm5VREZvX2FiUEZDQkJKUVJ4WmlhZDB6Wm5MdTlRTmViZmlP?oc=5",
         "tag": "삼성 HBM·M&A"
+      },
+      {
+        "title": "10월 ICT 수출 703억달러 역대 최대…AI 반도체가 성장 견인",
+        "source": "디지털투데이",
+        "pubDate": "Sun, 15 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9kRGliRDNISjhlVk9sYUwzekxNLWlhZGF4Mm1UaU9FcTNpRlNMSlRuRHdzOTdCV0FCOHVraHYwRm9DaDdmWERkd1Jib0ttYnNkd3ktVUV5SGQ1Wk5nZVhTQmF1SFJyN2lKaVNxaGxNMVUwcW8?oc=5",
+        "tag": "메모리 업황"
       },
       {
         "title": "“범용 D램부터 HBM까지 다 오른다”…‘AI 거품론’ 우려 속, 메모리 반도체 가격 ‘껑충’",
@@ -461,28 +468,21 @@
         "pubDate": "Fri, 03 Jul 2026",
         "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5Sa1Z6VUV0NFBvelFKZ1cxRXBVR2hJTW11c1RsS1hKRzVSVUE5OEhmbl9CdVpLSkJ6OTVaT245a1l5Ym5pSEl6cWRidzh5eWdSRlBHZ2hn?oc=5",
         "tag": "메모리 업황"
-      },
-      {
-        "title": "삼성전자 분기 영업익 107조…AI 반도체가 만든 사상 최대 실적",
-        "source": "부산경남대표방송 KNN 뉴스",
-        "pubDate": "Thu, 08 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5OYmJ4ZkFFWGJ6a3Itek5OTTNUOUkxODB1anR3bGJsZ2xvU29KSER5aWxLeGdHSjZIRlRJcFR0S2M1R2h5RUhqT1MtY3dmTU9Bd0VRWmRpbw?oc=5",
-        "tag": "메모리 업황"
       }
     ],
     "stocks": {
       "005935.KS": [
         {
+          "title": "삼성전자 3분기 영업이익 99%가 반도체…30조 현금배당",
+          "source": "경향신문",
+          "pubDate": "Thu, 29 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBVbDJlcllEdkVQdmtMblZEdTRnREpZV1hsa2NMZG9jazNKbWlhTHpXZW1ST19vaGdJS3B0SGRZY1RnbHQtcHA5TkxPX2NUUGZkN2lCOVVDdjNnUdIBX0FVX3lxTE5rTVFHVHZ5RndEYzJGVnE4M2R5WFFZTzRJRXJ6ZkNsTUdVSWNnMW00NnV1eHVrazl2eEFjT2dzTWN5MFNTVGM5b29PLTdLOWVHVER3QXJyVEtKd1ozb2Fz?oc=5"
+        },
+        {
           "title": "\"내년 HBM 물량 목표가에 완판\" 삼성전자, 반도체 고점론 일축",
           "source": "파이낸셜뉴스",
           "pubDate": "Thu, 29 Oct 2026",
           "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9yaU5KcllVMEtVcE9odUdaQmVJRUkyZXQ3MG9OSENsZzNNcnZha192OE8wTTJkTjQwWWw3R1ExeVNBZUIxSmlXRXFVN2htY0xYNWVpM3Q2WkZrQQ?oc=5"
-        },
-        {
-          "title": "KB證 “삼성전자, 하반기 70조 현금배당 가능…주주환원 확대 기대” [줍줍리포트]",
-          "source": "서울경제",
-          "pubDate": "Thu, 01 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9YaE5naUROVVBhT2xRY0xPVXJVWmlVV2RxNThwSUFTWV9SUHl1OVpmMzdwSFBMY1dDYmxmbXlsZFpVRExEOEJtZnZGMEJWbEw3c2fSAVNBVV95cUxNN054RDRvOUhBN0FCTnRoekplWGNSOFlYOW9jNFdEdFh1ck9JZGNQaEJTdERtWTBfR2Q3RkM4MjNfeF94dUpHRFZ6YkRpVUtCNHpIRQ?oc=5"
         },
         {
           "title": "[반도체 전략 따라잡기] 삼성 배당 이벤트 오늘 끝 이제 ‘실적 경쟁’ 시작입니다",
@@ -525,10 +525,10 @@
           "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CR0o5UXp1dGRkenJZZG9KUHNReGtjTEExbVRqcjdRWl9XVnZiWnRTRk9SLS05N3dhVl9FSTFrSGxsMjJpMHNIVjVqWUN0QWhOMHhncTdjVC1LZw?oc=5"
         },
         {
-          "title": "[테크데이, '판'이 바뀐다]'50년 기판 강자' 대덕전자, 유리기판·CPO 동시 조준",
-          "source": "전자신문",
-          "pubDate": "Tue, 26 May 2026",
-          "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1fNm5nQ05ZMmVlcTRsTEJqSWY5X2pzSHhvRDYxdTh0d09NU2o0TUkzaDVwWERpc2xibVQ5NzdyakJJVkp6bU1ZYzVSQnlmdw?oc=5"
+          "title": "대덕전자, 6150억원 또 투자…올해만 1.3조원 이상",
+          "source": "디일렉",
+          "pubDate": "Thu, 22 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5YUXhHcGRDZmdBa21ZVnhJWjBQYnl1dk9UMUpXM0luendlenNTdUhuRmhUREs2b2Ztc29WdnV1Q3BrdFpoLXZ3RjZ6QVZqaVFhbjdYa3ExUFloYklJNFg1QzRwTnNUQQ?oc=5"
         }
       ],
       "240810.KQ": [
