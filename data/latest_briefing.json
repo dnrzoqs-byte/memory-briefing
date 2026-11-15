@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-15 10:34 KST",
+  "updated_at": "2026-11-15 17:56 KST",
   "market_date": "2026.11.15(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -404,7 +404,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-15 10:34 KST",
+    "updated_at": "2026-11-15 17:56 KST",
     "sector": [
       {
         "title": "\"엔비디아, 젠슨 황 사임에 단기 주가 부진…AI 생태계 연속성 관건\" |",
@@ -414,17 +414,17 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "'젠슨황 스캔들'에 짓눌린 증시…엔비디아 실적·앤트로픽 상장 주시",
-        "source": "연합뉴스",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9nR0p4Y2pYLVk2R3BIak9qbGxBY2NpNWFSY0cwUG85TjFGR0hycl94WjJYTXJZTUt4Nnd2WEVjektXMjRyalYyVDE3MVFZUjl3YVVqTmlOQjl2Y0XSAWBBVV95cUxPMEFvZkx4dXNTVkhiX2RfZkV3V3ZXQzFieDlaQlFvQWExaWY3RkVFUE9UTDcwcllsMW5QeEF1LVphMzVJX0dsLVRPVjdQdlY1elczSVlMbVZjVUtJWWs4bnE?oc=5",
+        "title": "젠슨 황 퇴진에 엔비디아 공급망 '재편'…韓 반도체 수요처 다변화 '기회'",
+        "source": "전자신문",
+        "pubDate": "Sun, 15 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1oRzkwSGUzZW11NVRjYklQWEVrM3l3YlItd3kwV2FNR2FOSFVVQkEtcFZqRDhQcGFwZXN1Q0hoc2RpX05Beno3MjU0dnVsZw?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "깐부 젠슨 황 사임은 K반도체 둠스데이?…초대형 변수에 업계 초긴장 [반도체 투자 리포트]",
-        "source": "세계일보",
-        "pubDate": "Sat, 14 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBRLVRzV2VYMXAtaU1VclRqWjN6Mzk5aVBTZGlvQW9LOUxlbDZId3NOME9GRV82Zktnd3oxS1NZTlJmTkkwRlZ4Ny00eGNwQ3Fxc3M4U3JvY1kzbHpkZG1Ka2ZibkdqbTFCT1BF0gFUQVVfeXFMT2JzMTg1OUhMVW9ycVV4UkJSSjZtUURjUnNrOXNqcG1KQ3RMZUJkb1Q1dTNTMHpFLWdxTW9EWlFNcnFSbW1fZ3Q1MlE2b2hDMG80Z3BU?oc=5",
+        "title": "엔비디아 새 수장 누가 될까…AI 투자 전략 향방에 국내 반도체업계 촉각",
+        "source": "일요신문",
+        "pubDate": "Sun, 15 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5jNExBVVZmTXVhZXBzM0NBMk9BVERGMFFjZl8wM0Q3bXp3VW1fVTZadi1iYXVhVWFuUVFLNGE4ZEZJZTZHck5BREp0TzZKUm00bm5rMUVMWFplVl8wa0RfY3RZVEt2QQ?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -513,22 +513,22 @@
       ],
       "353200.KS": [
         {
-          "title": "[종목상담 주식민원처리반] 반도체 기판주 전반 상승 따른 강세 부각 '대덕전자' - 머니투데이",
-          "source": "머니투데이",
-          "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5vSDJMNVNCbzBqaTFEdDFTNU43dk1zUDQ1c0xmNlRXdW9lNlVoRlJkZWdJWXJmVWJrV21tU3V0ZERFZWU3c21Wcm9UTDVQU3VJaTNzUEQ5TmYzZlZCN08yQmdRTHljdUxQ0gFuQVVfeXFMTlhueDZkU3duZUhmaEFZLV9WaDBxRzdHQmloUDFRLUt4Y2VQaXFMdTVoY3pHOVlMRllPSEd5Z1ExS1FpZWNMVHNwUlpRU01yd05sWC1xNWw3SXluOGl2Uzk0WVhpNlc2OUt4c2Nmb3c?oc=5"
+          "title": "[KPCA SHOW 2026 프리뷰] 대덕전자, 미세회로·고밀도 인터커넥트 기반 반도체 패키지 기판 출품",
+          "source": "헬로티",
+          "pubDate": "Tue, 01 Sep 2026",
+          "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE44Um1Id0NqdDU2Y2lRNXQzQ2tTVDhrU05oSjJUOHh0RVBrOUdrcEQxNmltbk4xQmlCUVhWcWRxSG5yUVMwZnpOYUhycVZpUHZCZlpSSE5lNFluZXhyX09v?oc=5"
         },
         {
-          "title": "[종목상담 주식민원처리반] 반도체 기판주 전반 상승 따른 강세 부각 '대덕전자'",
-          "source": "MTN 머니투데이방송",
-          "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5uRjRPamlvaFc5TktWWG81RUlOTXpCNU54WHVTaUpHa0N2VEtXajdTT01DWnFkSjZwaVFFcjc1X1BtUWFzRThkUUs2aXhxYXpRYklLekQtMUhDTTJU?oc=5"
+          "title": "\"반도체 기판 가격 또 오른다…대덕전자·심텍 등 수천억 투자\"-하나",
+          "source": "한국경제",
+          "pubDate": "Thu, 08 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CR0o5UXp1dGRkenJZZG9KUHNReGtjTEExbVRqcjdRWl9XVnZiWnRTRk9SLS05N3dhVl9FSTFrSGxsMjJpMHNIVjVqWUN0QWhOMHhncTdjVC1LZw?oc=5"
         },
         {
-          "title": "[특징주] 대덕전자·심텍·삼성전기 등 반도체 기판주 동반 강세…뉴욕증시 반등 속 상승세",
-          "source": "CBC뉴스",
-          "pubDate": "Tue, 10 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5OV3J2Vk1EWlhzXzJITnF6N3FDMEJUSVozSzJ2d3VJUUNXeWZ2YjZ5UU5JejNMejZpX1BMTWNVN1p2ZE5RYzVaRjV5UVdESlFESm5VUmZCNkNGSFRoM2ZNd2JJaDMtSVdj?oc=5"
+          "title": "[테크데이, '판'이 바뀐다]'50년 기판 강자' 대덕전자, 유리기판·CPO 동시 조준",
+          "source": "전자신문",
+          "pubDate": "Tue, 26 May 2026",
+          "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1fNm5nQ05ZMmVlcTRsTEJqSWY5X2pzSHhvRDYxdTh0d09NU2o0TUkzaDVwWERpc2xibVQ5NzdyakJJVkp6bU1ZYzVSQnlmdw?oc=5"
         }
       ],
       "240810.KQ": [
