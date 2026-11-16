@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-16 10:38 KST",
-  "market_date": "2026.11.16(월) 10:38 국내 정규장 실시간 거래중",
+  "updated_at": "2026-11-16 18:09 KST",
+  "market_date": "2026.11.16(월) 국내 정규장 마감 · 글로벌 시세 및 최신 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -44,8 +44,8 @@
     "us10y": 5.15,
     "us2y": 4.31,
     "tlt_price": 79.38,
-    "wti_oil": 88.17,
-    "usdkrw": 1335.5,
+    "wti_oil": 88.67,
+    "usdkrw": 1333.5,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -71,13 +71,13 @@
       "11/12",
       "11/13"
     ],
-    "usdkrw_change_pct": 0.13,
+    "usdkrw_change_pct": -0.02,
     "usdkrw_recent": [
       1343.84,
       1341.91,
       1336.26,
       1333.78,
-      1335.46
+      1333.47
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -87,13 +87,13 @@
       79.72,
       79.38
     ],
-    "wti_oil_change_pct": -0.44,
+    "wti_oil_change_pct": 0.12,
     "wti_oil_recent": [
       86.04,
       86.53,
       88.74,
       88.56,
-      88.17
+      88.67
     ],
     "tlt_price_change_pct": -0.43,
     "tlt_price_recent": [
@@ -108,14 +108,14 @@
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1335.5,
+  "usdkrw": 1333.5,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
-    "005935.KS": 165800,
-    "005930.KS": 201500,
-    "353200.KS": 85700,
-    "240810.KQ": 73000,
+    "005935.KS": 161300,
+    "005930.KS": 196800,
+    "353200.KS": 82600,
+    "240810.KQ": 70100,
     "AMD": 534.06,
     "CLS": 240.34
   },
@@ -129,14 +129,14 @@
   },
   "stocks_detail": {
     "005935.KS": {
-      "price": 165800,
+      "price": 161300,
       "prev_close": 170500,
-      "change_pct": -2.76,
-      "week_change_pct": 9.87,
+      "change_pct": -5.4,
+      "week_change_pct": 6.89,
       "high52w": 243500,
       "low52w": 71000,
       "day_high": 170500,
-      "day_low": 165200,
+      "day_low": 160000,
       "recent_dates": [
         "11/10",
         "11/11",
@@ -149,18 +149,18 @@
         165000,
         168300,
         170500,
-        165800
+        161300
       ]
     },
     "005930.KS": {
-      "price": 201500,
+      "price": 196800,
       "prev_close": 206000,
-      "change_pct": -2.18,
-      "week_change_pct": 6.11,
+      "change_pct": -4.47,
+      "week_change_pct": 3.63,
       "high52w": 374500,
       "low52w": 94500,
       "day_high": 208000,
-      "day_low": 201000,
+      "day_low": 195000,
       "recent_dates": [
         "11/10",
         "11/11",
@@ -173,18 +173,18 @@
         206000,
         208000,
         206000,
-        201500
+        196800
       ]
     },
     "353200.KS": {
-      "price": 85700,
+      "price": 82600,
       "prev_close": 91300,
-      "change_pct": -6.13,
-      "week_change_pct": 13.96,
+      "change_pct": -9.53,
+      "week_change_pct": 9.84,
       "high52w": 198000,
       "low52w": 41550,
       "day_high": 92100,
-      "day_low": 84400,
+      "day_low": 81600,
       "recent_dates": [
         "11/10",
         "11/11",
@@ -197,18 +197,18 @@
         91100,
         93400,
         91300,
-        85700
+        82600
       ]
     },
     "240810.KQ": {
-      "price": 73000,
+      "price": 70100,
       "prev_close": 77700,
-      "change_pct": -6.05,
-      "week_change_pct": 8.47,
+      "change_pct": -9.78,
+      "week_change_pct": 4.16,
       "high52w": 187800,
       "low52w": 55400,
       "day_high": 78200,
-      "day_low": 72800,
+      "day_low": 69400,
       "recent_dates": [
         "11/10",
         "11/11",
@@ -221,7 +221,7 @@
         79700,
         79200,
         77700,
-        73000
+        70100
       ]
     },
     "AMD": {
@@ -373,13 +373,13 @@
     {
       "tag": "AI 생태계 지각변동 · NVIDIA+1 반사이익",
       "title": "젠슨 황 엔비디아 CEO 전격 사임 충격파 → '탈엔비디아(NVIDIA+1)' 대안 진영(AMD·셀레스티카·삼성전자)으로 글로벌 자금 대이동!",
-      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(201,500원)·삼전우(165,800원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「젠슨 황 사임에 美 대중 반도체 규제 강화 탄력…中 자립 가속화되나」 - 넘버스)",
+      "summary": "33년간 엔비디아를 이끌어온 젠슨 황 CEO가 사생활·안보 논란 관련 이사회 조사 끝에 전격 사임하고 콜레트 크레스 CFO 임시 CEO 체제로 전환되면서 엔비디아($162.85) 단일 의존 리스크가 부각되었습니다. 이에 빅테크들이 '엔비디아 플러스 원(대안 칩 다변화)'을 가속화하며 1순위 경쟁사인 AMD($534.06, 주간 +18.9%·일간 -8.75% 역행 급등)와 AMD 차세대 MI450 오픈 랙('Helios') 파트너 셀레스티카($240.34, 주간 +16.3%), 그리고 AMD·브로드컴에 HBM3E/HBM4를 공급하며 미 데이터센터 냉각기업 '모딘(Modine)' 인수를 추진 중인 삼성전자(196,800원)·삼전우(161,300원)가 핵심 반사이익 수혜주로 부각되고 있습니다. (최신 속보: 「“젠슨 황 퇴진이 삼성엔 기회”…KB증권, AI 반도체 최대 수혜주 지목」 - 디지털데일리)",
       "impact": "보유 6종목 중 AMD(1차 적정가 $540~$560 진입 완료)·셀레스티카·삼성전자·삼전우 직접적 반사이익 수혜"
     },
     {
       "tag": "거시경제 · 금리·환율 점검",
-      "title": "미 10년물 국채금리 5.15% 돌파(TLT $79.38) 경계감 vs 원/달러 환율 1,335.5원 원화 강세 방어력",
-      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 5.15%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $88.17)가 $90 아래에서 안정되고 원/달러 환율이 1,335.5원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
+      "title": "미 10년물 국채금리 5.15% 돌파(TLT $79.38) 경계감 vs 원/달러 환율 1,333.5원 원화 강세 방어력",
+      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 5.15%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $88.67)가 $90 아래에서 안정되고 원/달러 환율이 1,333.5원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
       "impact": "원익IPS(3Q 영업이익 667억, 전년비 +142% 급증) 및 대덕전자(91,300원, 주간 +21.4%) 실적·수급 장세 지속"
     },
     {
@@ -395,36 +395,36 @@
   "text_message": "☀️ [11/14 12:00 정오] 메모리 계약가 팩트 & 6종목 실시간 브리핑\n\n🔮 1. 메모리 가격 추이 & TrendForce 공식 팩트\n• 신형 DDR5 16Gb: $60.27 (+0.06%) / 일중 $45.5~$72.5\n• 일반 DDR4 16Gb: $79.50 (-0.31%) / 16GB 서버모듈 $243.33\n• 4Q26 고정계약가: 범용 DRAM +10~15% QoQ, 기업용 eSSD +23~28% QoQ 상승 확정!\n• 2027 HBM 전망: HBM4 전환 및 베이스다이 프리미엄으로 평균단가(ASP) +121% YoY 급등\n\n🏦 2. 금리 · 유가 · 환율 실시간 매크로 팩트\n• 미 10년 국채금리: 5.15% (TLT $79.38) / WTI 유가: $88.56 ($90 하회 안정)\n• 원/달러 환율: 1,336.2원 / 한은 기준금리: 3.00% · 국고채 10년: 3.85%\n• 이번 주 핵심 일정: 11/18(수) 미 의회 엔비디아 청문회 & 11/20(금) 엔비디아 3Q 실적 발표\n\n🎯 3. 6종목 실시간 시세 & 10년 밸류·실적 기반 적정가\n★ 삼전우(170,500원 | 52주최고 24.35만): 본주 대비 17.2% 할인 · 연배당 세전 10.8%\n  └ 1단계 적정 20.5~21.5만(+20.2%) / 2단계 23.5~24.5만\n🔴 대덕전자(91,300원 | 52주최고 19.8만): 3Q 영업이익 879억 서프라이즈 · 바닥 대비 +21% 반등!\n  └ 1단계 적정 12.5~14.0만(+42.4%) / 2단계 17~19만\n📊 원익IPS(77,700원 | 52주최고 18.78만): 3Q 영업이익 666.5억(+142% 서프라이즈!) · 바닥 탈출\n  └ 1단계 적정 10.5~11.5만(+35.1%) / 2단계 14.5~16.5만\n🇺🇸 셀레스티카($240.34 | 52주최고 $474.03): 27년 EPS $21.5 가이던스(선행 PER 11.2배)\n  └ 1단계 적정 $330~$360(+43.5%) / 2단계 $420~$450\n🟢 삼성전자(206,000원 | 52주최고 37.45만): 3Q 영업이익 107.4조 사상최대 · 분기배당 4,601원\n  └ 1단계 적정 25.5~27.5만(+28.6%) / 2단계 31~34만\n🇺🇸 AMD($534.06 | 52주최고 $658.52): 빅테크 GPU 다변화 수혜 집중 · 1차 목표가($550) 육박!\n  └ 1단계 적정 $540~$560 / 2단계 전고점 회복 $620~$650",
   "dram": {
     "ddr4_16g": {
-      "price": 79.5,
-      "change": "-0.31 %"
+      "price": 79.38,
+      "change": "-0.16 %"
     },
     "ddr4_8g": {
-      "price": 44.54,
+      "price": 44.36,
       "change": "-0.40 %"
     }
   },
   "live_news": {
-    "updated_at": "2026-11-16 10:38 KST",
+    "updated_at": "2026-11-16 18:10 KST",
     "sector": [
       {
-        "title": "젠슨 황 사임에 美 대중 반도체 규제 강화 탄력…中 자립 가속화되나",
-        "source": "넘버스",
+        "title": "“젠슨 황 퇴진이 삼성엔 기회”…KB증권, AI 반도체 최대 수혜주 지목",
+        "source": "디지털데일리",
+        "pubDate": "Mon, 16 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFByOW9GcEVGeHlpRGxSakJsM0djZ18tTmFJTEI5LUVQMWJFYU1KWG5iZ2dMbHducG1qRldPbUhxZW1HMEoydkdvNk5IZG5YQjB0bk5Sa085VUVwV0hZVW91b09qNWU?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
+        "title": "젠슨 황 사임에 흔들리는 엔비디아 ‘중국 우회 공급망’···베선트 “중국 판매로 실적 부풀렸나” 해명 요구",
+        "source": "경향신문",
         "pubDate": "Sun, 15 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBDd25BTHFrLVJmdnQ1djEwRFh1eXpDM0JuMjhXVlR4eDlkUTVpckttNlAwN0RmZjhRNi04cVRwekZRei1KMmJtMXBjV2FRXy0xcGd4SVB0OGlIWGgxSGxWdWFsZkhBRmxNc0h3?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0xblRGdjh5dDVNbnJJSUVBU0llcFlYRndlMHlyTkJmOEg4SkxRZE9CUWx1XzBUUWR4bk9KMUU5WXRYV1ZJTWdhUG5ldlJkbG8tNExDRlNsOWZCQdIBX0FVX3lxTFBZb3NscGJ2YW8yc1J2bUktT0l1Umw0Nk1aZEhOSnlDRHRjR0lqek9nMW5aYzNrWHRZbnQ1cHNNaVVqWHBZTXhjQ0duSWF2Q1BiVW5PalV4bVg5Z25jeEpB?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "미국 반도체주, 젠슨 황 사임 여파에 급락",
-        "source": "네이버페이 머니스토리",
+        "title": "젠슨 황 떠나자 반도체 '흔들'…한국 증시 영향은",
+        "source": "한국경제",
         "pubDate": "Mon, 16 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA1RU4yRE9ZSDY5Ry1pelotWVE0RzItVnI1LThCenZtWWhMQWg4VnBFTGpNbnJCUUpoS3hvb0tTYkwtbE5ZOTFhVHA2T3kwcVRoa3J2enVNS0s?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "KB증권 \"삼성전자, 脫엔비디아 시대 최대 수혜주\"",
-        "source": "조선일보",
-        "pubDate": "Mon, 16 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLS1CX1ZzVnBpWTNGMVlleHJBNUc2Q0ZGSF9xVlFoWkNYa0E3VWR6MlhxVlY2S01Yc2s4ajdrd1pFOUFpWndRVFRfSXBTd3ZvaWpUelBNeE1fRG1CM0xzQURlaVVhMk5ZQjN5NmdIWVNpWEZXdWNRX0hyeF9mN09oSQ?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9QeHJ0dGFlRy13Rm5Pc2tSWkxJTDN2YzNrNW9UalhKLVFpZWdKQ0lkZWRzVVhueFVmSFVsZE9HTDZEUnhYbmxzYlYzT2ZDeFNJX0VyUnBqamZsZw?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -449,24 +449,24 @@
         "tag": "삼성 HBM·M&A"
       },
       {
+        "title": "D램값 폭등 배후에 담합 있었나…美법원, 삼전·하닉·마이크론 소송 계속",
+        "source": "조세일보",
+        "pubDate": "Mon, 16 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9iaVE1bHZHUjlfanhxT0FyUlVLWVJOaHhWdVlxc3cxUHk2NFRBWmtuY2g5MTBJVkdGQWNEWEE0V0FDdkZqN2tLUVk0Nzc0dlpYa05WSWU3R0xsQm5tVUpR?oc=5",
+        "tag": "메모리 업황"
+      },
+      {
+        "title": "AI 투자에 반도체 수출 3,968억 달러…전체 수출의 42.7%",
+        "source": "nbn 시사경제",
+        "pubDate": "Mon, 16 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB4Ujl5amplOWlYMEVQVVUtY2ZfUm1YN1RmcDZHVkFGVU9FaWczTzZvMEtuVG4wY1pxMmoxb2dlUWhaZERXZG1Da2E4M0ZZZjhuZjFCN2hySlhqMzBQVmZCcjFsMTd1RlVTVXc?oc=5",
+        "tag": "메모리 업황"
+      },
+      {
         "title": "10월 ICT 수출 703억달러 역대 최대…AI 반도체가 성장 견인",
         "source": "디지털투데이",
         "pubDate": "Sun, 15 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9kRGliRDNISjhlVk9sYUwzekxNLWlhZGF4Mm1UaU9FcTNpRlNMSlRuRHdzOTdCV0FCOHVraHYwRm9DaDdmWERkd1Jib0ttYnNkd3ktVUV5SGQ1Wk5nZVhTQmF1SFJyN2lKaVNxaGxNMVUwcW8?oc=5",
-        "tag": "메모리 업황"
-      },
-      {
-        "title": "“범용 D램부터 HBM까지 다 오른다”…‘AI 거품론’ 우려 속, 메모리 반도체 가격 ‘껑충’",
-        "source": "CEO스코어데일리",
-        "pubDate": "Mon, 19 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1Db05kODZ5el9mcUNSRDdvajRydlpLVFhjRnJvTFAyNGhHS2NGQ04wTEVqYmkzSjlWSmpMemE1VjNlTzk0UkZvelByckMzZXpqMGNVc2pvUUJnQV95a2xmeG85X21TOHJI?oc=5",
-        "tag": "메모리 업황"
-      },
-      {
-        "title": "공정 바꾸고 대체품까지…'금값' AI메모리에 빅테크 대응 몸부림",
-        "source": "연합뉴스",
-        "pubDate": "Wed, 21 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5XTmFudERCamN6cldsWXBZcVFCYUg1cmNFSEk2RlNvWjd6RHhEV2ZIUm5rYm5EMEp4WDBla1RRV2xVWmRqcXNfWTdaS3kyWmpTNVk3X0REV1phdWfSAWBBVV95cUxQVnB2XzBUZmFvOF9Sa2NjM0FORWxhdWNUYWVOSDRIS29RWFdMeW9tSndSdURhVWZ0c1NabnVDVV90VnhjOWZoSHpXaUZBUWNFUEtCS3REZ1RLc1hHbWVTY0c?oc=5",
         "tag": "메모리 업황"
       }
     ],
