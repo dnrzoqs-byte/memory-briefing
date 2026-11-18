@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-18 12:24 KST",
-  "market_date": "2026.11.18(수) 12:24 국내 정규장 실시간 거래중",
+  "updated_at": "2026-11-18 19:00 KST",
+  "market_date": "2026.11.18(수) 국내 장마감 · 글로벌 시세 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -44,8 +44,8 @@
     "us10y": 5.1,
     "us2y": 4.31,
     "tlt_price": 79.55,
-    "wti_oil": 85.29,
-    "usdkrw": 1331.1,
+    "wti_oil": 83.21,
+    "usdkrw": 1331.5,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -71,13 +71,13 @@
       "11/16",
       "11/17"
     ],
-    "usdkrw_change_pct": -0.34,
+    "usdkrw_change_pct": -0.31,
     "usdkrw_recent": [
       1336.26,
       1333.78,
       1333.25,
       1335.67,
-      1331.08
+      1331.47
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -87,13 +87,13 @@
       79.72,
       79.38
     ],
-    "wti_oil_change_pct": -0.84,
+    "wti_oil_change_pct": -3.26,
     "wti_oil_recent": [
       88.74,
       88.56,
       85.72,
       86.01,
-      85.29
+      83.21
     ],
     "tlt_price_change_pct": 0.21,
     "tlt_price_recent": [
@@ -103,19 +103,19 @@
       79.38,
       79.55
     ],
-    "wti_oil_week_pct": -3.89,
+    "wti_oil_week_pct": -6.23,
     "us10y_week_pct": 2.1,
-    "usdkrw_week_pct": -0.39,
+    "usdkrw_week_pct": -0.36,
     "tlt_price_week_pct": -1.69,
-    "kospi": 4993.73,
-    "kospi_change_pct": 0.51,
-    "kospi_week_pct": -6.53,
+    "kospi": 5067.44,
+    "kospi_change_pct": 1.99,
+    "kospi_week_pct": -5.15,
     "kospi_recent": [
       5342.73,
       5290.53,
       5100.5,
       4968.48,
-      4993.73
+      5067.44
     ],
     "kospi_dates": [
       "11/12",
@@ -124,15 +124,15 @@
       "11/17",
       "11/18"
     ],
-    "kosdaq": 653.79,
-    "kosdaq_change_pct": 0.57,
-    "kosdaq_week_pct": -6.14,
+    "kosdaq": 662.81,
+    "kosdaq_change_pct": 1.96,
+    "kosdaq_week_pct": -4.84,
     "kosdaq_recent": [
       696.53,
       699.66,
       665.65,
       650.06,
-      653.79
+      662.81
     ],
     "sox": 9642.88,
     "sox_change_pct": 0.34,
@@ -161,36 +161,36 @@
       24509.76,
       24328.38
     ],
-    "vix": 25.46,
-    "vix_change_pct": 11.13,
-    "vix_week_pct": 45.57,
+    "vix": 23.61,
+    "vix_change_pct": -7.27,
+    "vix_week_pct": 26.26,
     "vix_recent": [
-      17.49,
       18.7,
       19.3,
       22.91,
-      25.46
+      25.46,
+      23.61
     ],
     "vix_dates": [
-      "11/11",
       "11/12",
       "11/13",
       "11/16",
-      "11/17"
+      "11/17",
+      "11/18"
     ]
   },
   "us10y": 5.15,
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1331.1,
+  "usdkrw": 1331.5,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
-    "005935.KS": 152900,
-    "005930.KS": 191100,
-    "353200.KS": 79500,
-    "240810.KQ": 69700,
+    "005935.KS": 158000,
+    "005930.KS": 194700,
+    "353200.KS": 81200,
+    "240810.KQ": 70800,
     "AMD": 503.41,
     "CLS": 236.47
   },
@@ -204,10 +204,10 @@
   },
   "stocks_detail": {
     "005935.KS": {
-      "price": 152900,
+      "price": 158000,
       "prev_close": 152000,
-      "change_pct": 0.59,
-      "week_change_pct": -9.15,
+      "change_pct": 3.95,
+      "week_change_pct": -6.12,
       "high52w": 243500,
       "low52w": 71000,
       "recent_dates": [
@@ -222,14 +222,14 @@
         170500,
         161300,
         152000,
-        152900
+        158000
       ]
     },
     "005930.KS": {
-      "price": 191100,
+      "price": 194700,
       "prev_close": 190300,
-      "change_pct": 0.42,
-      "week_change_pct": -8.12,
+      "change_pct": 2.31,
+      "week_change_pct": -6.39,
       "high52w": 374500,
       "low52w": 94500,
       "recent_dates": [
@@ -244,14 +244,14 @@
         206000,
         196800,
         190300,
-        191100
+        194700
       ]
     },
     "353200.KS": {
-      "price": 79500,
+      "price": 81200,
       "prev_close": 80700,
-      "change_pct": -1.49,
-      "week_change_pct": -14.88,
+      "change_pct": 0.62,
+      "week_change_pct": -13.06,
       "high52w": 198000,
       "low52w": 41550,
       "recent_dates": [
@@ -266,14 +266,14 @@
         91300,
         82600,
         80700,
-        79500
+        81200
       ]
     },
     "240810.KQ": {
-      "price": 69700,
+      "price": 70800,
       "prev_close": 68900,
-      "change_pct": 1.16,
-      "week_change_pct": -11.99,
+      "change_pct": 2.76,
+      "week_change_pct": -10.61,
       "high52w": 187800,
       "low52w": 55400,
       "recent_dates": [
@@ -288,7 +288,7 @@
         77700,
         70100,
         68900,
-        69700
+        70800
       ]
     },
     "AMD": {
@@ -448,35 +448,35 @@
       "impact": "삼성전자 온양사업장 첨단 HBM 거점화 및 원익IPS·대덕전자 가동률 상승 직결"
     }
   ],
-  "slot": "noon",
-  "slot_label": "12:00 정오",
-  "header": "☀️ [11/18 12:00 정오] 메모리 계약가 팩트 & 6종목 실시간 브리핑",
-  "text_message": "☀️ [11/18 12:00 정오] 메모리 계약가 팩트 & 6종목 실시간 브리핑\n\n🔮 1. 메모리 가격 추이 & TrendForce 공식 팩트\n• 신형 DDR5 16Gb: $60.27 (+0.06%) / 일중 $45.5~$72.5\n• 일반 DDR4 16Gb: $79.50 (-0.31%) / 16GB 서버모듈 $243.33\n• 4Q26 고정계약가: 범용 DRAM +10~15% QoQ, 기업용 eSSD +23~28% QoQ 상승 확정!\n• 2027 HBM 전망: HBM4 전환 및 베이스다이 프리미엄으로 평균단가(ASP) +121% YoY 급등\n\n🏦 2. 금리 · 유가 · 환율 실시간 매크로 팩트\n• 미 10년 국채금리: 5.10% (TLT $79.55) / WTI 유가: $85.04 ($90 하회 안정)\n• 원/달러 환율: 1,329.1원 / 한은 기준금리: 3.00% · 국고채 10년: 3.85%\n• 이번 주 핵심 일정: 11/18(수) 미 의회 엔비디아 청문회 & 11/20(금) 엔비디아 3Q 실적 발표\n\n🎯 3. 6종목 실시간 시세 & 10년 밸류·실적 기반 적정가\n★ 삼전우(153,100원 | 52주최고 24.35만): 본주 대비 19.8% 할인 · 연배당 세전 12.0%\n  └ 1단계 적정 20.5~21.5만(+33.9%) / 2단계 23.5~24.5만\n🔴 대덕전자(78,800원 | 52주최고 19.8만): 3Q 영업이익 879억 서프라이즈 · 바닥 대비 +21% 반등!\n  └ 1단계 적정 12.5~14.0만(+65.0%) / 2단계 17~19만\n📊 원익IPS(69,200원 | 52주최고 18.78만): 3Q 영업이익 666.5억(+142% 서프라이즈!) · 바닥 탈출\n  └ 1단계 적정 10.5~11.5만(+51.7%) / 2단계 14.5~16.5만\n🇺🇸 셀레스티카($236.47 | 52주최고 $474.03): 27년 EPS $21.5 가이던스(선행 PER 11.0배)\n  └ 1단계 적정 $330~$360(+45.9%) / 2단계 $420~$450\n🟢 삼성전자(190,900원 | 52주최고 37.45만): 3Q 영업이익 107.4조 사상최대 · 분기배당 4,601원\n  └ 1단계 적정 25.5~27.5만(+38.8%) / 2단계 31~34만\n🇺🇸 AMD($503.41 | 52주최고 $658.52): 빅테크 GPU 다변화 수혜 집중 · 1차 목표가($550) 육박!\n  └ 1단계 적정 $540~$560 / 2단계 전고점 회복 $620~$650",
+  "slot": "evening",
+  "slot_label": "19:00 퇴근",
+  "header": "🌙 [11/18 19:00 마감] 메모리 계약가 팩트 & 6종목 실시간 브리핑",
+  "text_message": "🌙 [11/18 19:00 마감] 메모리 계약가 팩트 & 6종목 실시간 브리핑\n\n🔮 1. 메모리 가격 추이 & TrendForce 공식 팩트\n• 신형 DDR5 16Gb: $60.27 (+0.06%) / 일중 $45.5~$72.5\n• 일반 DDR4 16Gb: $79.50 (-0.31%) / 16GB 서버모듈 $243.33\n• 4Q26 고정계약가: 범용 DRAM +10~15% QoQ, 기업용 eSSD +23~28% QoQ 상승 확정!\n• 2027 HBM 전망: HBM4 전환 및 베이스다이 프리미엄으로 평균단가(ASP) +121% YoY 급등\n\n🏦 2. 금리 · 유가 · 환율 실시간 매크로 팩트\n• 미 10년 국채금리: 5.10% (TLT $79.55) / WTI 유가: $83.21 ($90 하회 안정)\n• 원/달러 환율: 1,331.5원 / 한은 기준금리: 3.00% · 국고채 10년: 3.85%\n• 이번 주 핵심 일정: 11/18(수) 미 의회 엔비디아 청문회 & 11/20(금) 엔비디아 3Q 실적 발표\n\n🎯 3. 6종목 실시간 시세 & 10년 밸류·실적 기반 적정가\n★ 삼전우(158,000원 | 52주최고 24.35만): 본주 대비 18.8% 할인 · 연배당 세전 11.6%\n  └ 1단계 적정 20.5~21.5만(+29.7%) / 2단계 23.5~24.5만\n🔴 대덕전자(81,200원 | 52주최고 19.8만): 3Q 영업이익 879억 서프라이즈 · 바닥 대비 +21% 반등!\n  └ 1단계 적정 12.5~14.0만(+60.1%) / 2단계 17~19만\n📊 원익IPS(70,800원 | 52주최고 18.78만): 3Q 영업이익 666.5억(+142% 서프라이즈!) · 바닥 탈출\n  └ 1단계 적정 10.5~11.5만(+48.3%) / 2단계 14.5~16.5만\n🇺🇸 셀레스티카($236.47 | 52주최고 $474.03): 27년 EPS $21.5 가이던스(선행 PER 11.0배)\n  └ 1단계 적정 $330~$360(+45.9%) / 2단계 $420~$450\n🟢 삼성전자(194,700원 | 52주최고 37.45만): 3Q 영업이익 107.4조 사상최대 · 분기배당 4,601원\n  └ 1단계 적정 25.5~27.5만(+36.1%) / 2단계 31~34만\n🇺🇸 AMD($503.41 | 52주최고 $658.52): 빅테크 GPU 다변화 수혜 집중 · 1차 목표가($550) 육박!\n  └ 1단계 적정 $540~$560 / 2단계 전고점 회복 $620~$650",
   "dram": {
     "ddr4_16g": {
       "price": 78.95,
       "change": "-0.22 %"
     },
     "ddr4_8g": {
-      "price": 44.21,
-      "change": "-0.10 %"
+      "price": 44.03,
+      "change": "-0.50 %"
     }
   },
   "live_news": {
-    "updated_at": "2026-11-18 12:24 KST",
+    "updated_at": "2026-11-18 19:00 KST",
     "sector": [
       {
-        "title": "iM證 “엔비디아 실적 호조에 삼성전자·SK하이닉스 반등 시도”",
-        "source": "이투데이",
-        "pubDate": "Tue, 17 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFB0SGVFdFNuUzNsdzdyNHhyeW5oOW1vZVd1Y3otSThDLXBEaWFuVXBYN0tPUHRJMS1ZVFdMU01iMkc2bU16a1p3ZnBBdllNZkF6SW9VSA?oc=5",
+        "title": "엔비디아 실적에 반도체 반등…코스피, 하루 만에 5000선 회복",
+        "source": "서울경제TV",
+        "pubDate": "Wed, 18 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9iUm11bS03aGs3SGFzOEc2RFhPS0E4QW9YNUNTY25mSV9QZGFVWU1CaUdFRlhIMmZjeVJaU3VVRll5ckhxcWp3NWkwNVpzc19jU3J4XzZhcTlTbk4zMFRzUW9kVWs?oc=5",
         "tag": "엔비디아 실적·AI"
       },
       {
-        "title": "엔비디아 깜짝 실적에 반도체 반등 … 이제 공은 앤트로픽으로",
-        "source": "매일경제",
+        "title": "엔비디아 훈풍에 국내 증시 반색…반도체·로봇주 뛰며 동반 상승",
+        "source": "진일보 | 전남일보",
         "pubDate": "Wed, 18 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFB4VjA3dkNWT3h3bExxYXJzcWZ1YU5LdkJ0MnhVdjF5amp0U1dINmRzeFpkUVJFLTZhUHgyZGw4N1Budl9wMUtGZUVzYm13TlYtMWc?oc=5",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFAxZFFmMjJPQV84UERGRUpPWDZ0YUl5U01rT3ByNXpPQmk5NEdiRktkOEtzczM3OU5VSWthUW1renU1MUhFM2c1MHRBNk9RSWVIQjNCcVlrMGJkVWpxdHcyOHB5cWZVdWJPN3E5Ny1OUQ?oc=5",
         "tag": "엔비디아 실적·AI"
       },
       {
@@ -517,10 +517,10 @@
           "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8tYV8yaGhZWk5kNVlNU1BncDVNd1VkOHlsRVJrMV8wZFlGMWJUM2NoQ1BRU0FfWjJaY284RUFUS3VfWHhHMl9US1VjdTJuSHRRb0VnTm1vSmhpSVFRY1U5NFpxTjNXX3M5d2hCUA?oc=5"
         },
         {
-          "title": "[특징주] 삼성전자 잠정 실적 앞두고 2%대 상승…SK하닉은 보합",
-          "source": "이투데이",
-          "pubDate": "Wed, 07 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1MTExTNXdkSjJlV21uQUktSGJWeW1oM0RwNEY4cUM1dFA2REY1bzNoSzBKa3B4RjdGZGkzdDlHT0xLWGZpdFdZQTF3d2tleE1ISTJjYQ?oc=5"
+          "title": "주총 앞둔 삼성전자, 내년 역대급 배당 기대감 '고조'",
+          "source": "딜사이트",
+          "pubDate": "Fri, 13 Mar 2026",
+          "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAtLWpNRmdUUVlYd0UzVjB5bjZVVW1XNzRUZGJTOFlobFdBaF8ycDJRbG9lQ29ldURYUElEY3hhemxBTnF6eEFZMFg0c28tSTA?oc=5"
         },
         {
           "title": "李 “기업가치 제고” 이틀만에…밸류업 공시 49개 쏟아져",
@@ -531,45 +531,51 @@
       ],
       "005930.KS": [
         {
-          "title": "엔비디아 '베라 루빈' 매출 200억달러 증가…삼성·SK하이닉스 HBM 공급 확대 '청신호'",
-          "source": "핀포인트뉴스",
+          "title": "엔비디아 메모리 장기 계약 확대…젠슨 황 공백에도 삼성·SK, HBM 기대감",
+          "source": "아시아투데이",
           "pubDate": "Wed, 18 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9UdTUzOGpkMlEwNy1pTXI4c24weHpveDRlMnRyMWdlVDg3dHlDdlBJM0Y1ZF9sQzRSN0tqTU85bGMtMHJBVzd2eVJGeXVma01fYWtXdUtBN3dHa2NkenhiNTE1WTNaWDNkeG4zNHoyYVpNbGPSAXdBVV95cUxPR1c3MERNS2RmVlBuQU5nTXowT2FQaGZNbFFYbXNrSUdUS1JiLWlra2ZsTVM2ZE1NSkVlQTl3SlUtdElxVTVaZUIzQTBXMkl3cUlfQVJRam5ZamFSTFUwblhjSjNUaHY5T1kxQkdTdE4xQXJrTzB5cw?oc=5"
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LVmVKbnNLWUpId3o3T1hPaTExYWdBOHhSV0p3NXcxaFdpQktjZ1VYQlpyN1ZMa2xnRTlDc0JpbWlLQzJzYkF2cU15bmtqTUhCeXlhR3lfLUtDS3g3WlNWajV5ay1PMzdiZm9PbWpn?oc=5"
         },
         {
-          "title": "“젠슨 황 떠나자 삼성전자에 뜻밖의 기회?”…반도체주 폭락에도 전문가들이 주목한 이유",
-          "source": "데일리25",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE43QzhSOVJKQWNWOHlmLXBobjVsRWdPenpnYTdHUm5iVl8ydjk5WlY3U3YtSXUyOXM3TEdlOEtzcjZjRVphbmtXN1JmazNZa29hTXhIWURPX090NnZkS3ZZOURDeklzellQbEE5Yg?oc=5"
+          "title": "젠슨 황 떠난 엔비디아, 깐깐해진 지갑…삼성전자·SK하이닉스 ‘HBM 잭팟’ 제동 걸리나",
+          "source": "뉴스퀘스트",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1zUVJDd0ZSOHdQdHRXa0hraDJjTXhHUmc5OFJNZ3NLRFZxTmpFN05HcTFQSGJydzJEb2ZyLV9sWk43ZlQ3djNNQTlJby1YcVNzcVpRUnZTbWI2ZnQxVE9qWXFNUHVrU1pGNUVtaDY1aw?oc=5"
         },
         {
-          "title": "[The Numbers] KB證 “삼성전자, 脫엔비디아 시대 최대 수혜주\", 왜?…삼성 HBM 고객 65%의 의미",
-          "source": "뉴스스페이스",
-          "pubDate": "Mon, 16 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE82REpFN3FNRFllUmNMVUVFdHp2b3dic3lsRG1oVHJaYlhQU1lQRVU0MC1nbG1xamdRam9nblJtQzctcXJJMWU2VmxmdHZmQ2UyQXlzNFJjRElrWlNnalJ4RQ?oc=5"
+          "title": "中 기업 해외 GPU 이용 제한…삼전닉스 HBM 수요 변수 : 네이버 블로그",
+          "source": "Naver Blog",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPV0thLXJla0hOeVZfMlZsVm5PR0l5UHNKbFc4Tk5sZVNmNFptWVdGTUJMTlVRVTRUUU5IWDRfMHBlb3JHQ3RTQ3pMWVdVQkxBWmZWbUZncW9HTC00V25uRm5lajlnZWM3RmNUTnJIME1CdS1FSVNnVE9ZcTJ5MVhlMmxsNDBWTmljek9rclo4bw?oc=5"
         }
       ],
       "353200.KS": [
+        {
+          "title": "심텍·두산전자·대덕전자, 산업부 '2026년 세계일류상품' 선정",
+          "source": "전자신문",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE54RDMtc0xKTnVJN3ZyazNnU0dqZjFLaVdIMXJORFBnb19oeHN1ajBpX3kzNGM2ZFBpampGM2M5a0RFMlc5UTI4YVEyZHB5UQ?oc=5"
+        },
+        {
+          "title": "고성능 반도체 투자 확대 기대…전자장비·기기 관련주에 무슨 호재 있나요",
+          "source": "핀포인트뉴스",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9INGxvalRDUnRraG5xdlhwRF9mck41WkR1YjRRMnkwVU5QYWt3emk4b3FoSEVyMU85X21zVnJiT09zTGxfNUNtOUYySGJ0Ui1wRWJ0amJxeGZ6RUlBX3NjLTN4aENMajRQTnN5bURjbkx1RkHSAXdBVV95cUxOa28yT2NnV1dMOEJQelBUMFF4SU5uZ2NuSmtVckV2THE1VndSTHZaT3VOdkFtTFhfWnJQWjNyWFgycC12VF9EQTN3TldWSWE5SjJieUhqNTgwNzRiMzVfRlhoUFdVcUZVM3VCWGpnRHI2M3JNV21jSQ?oc=5"
+        },
         {
           "title": "반도체 기판주 전반적 '껑충'…티엘비·삼성전기·LG이노텍↑",
           "source": "CBC뉴스",
           "pubDate": "Wed, 18 Nov 2026",
           "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE80aWtjWXBsZHlUUnl2dmdHcEVxY2psb0xJeFhaV0JmdWphajJuam1FU2NQMk5rVV9yQXRBR3hXcV9iSDN0MFIyRGFZZUxwMlQ1bDE2OWhyTWtpX1JWaG5vN1hhRkRVd0cx?oc=5"
-        },
-        {
-          "title": "[종목상담 주식민원처리반] 반도체 기판주 전반 상승 따른 강세 부각 '대덕전자' - 머니투데이",
-          "source": "머니투데이",
-          "pubDate": "Wed, 11 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5vSDJMNVNCbzBqaTFEdDFTNU43dk1zUDQ1c0xmNlRXdW9lNlVoRlJkZWdJWXJmVWJrV21tU3V0ZERFZWU3c21Wcm9UTDVQU3VJaTNzUEQ5TmYzZlZCN08yQmdRTHljdUxQ0gFuQVVfeXFMTlhueDZkU3duZUhmaEFZLV9WaDBxRzdHQmloUDFRLUt4Y2VQaXFMdTVoY3pHOVlMRllPSEd5Z1ExS1FpZWNMVHNwUlpRU01yd05sWC1xNWw3SXluOGl2Uzk0WVhpNlc2OUt4c2Nmb3c?oc=5"
-        },
-        {
-          "title": "\"반도체 기판 가격 또 오른다…대덕전자·심텍 등 수천억 투자\"-하나",
-          "source": "한국경제",
-          "pubDate": "Thu, 08 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CR0o5UXp1dGRkenJZZG9KUHNReGtjTEExbVRqcjdRWl9XVnZiWnRTRk9SLS05N3dhVl9FSTFrSGxsMjJpMHNIVjVqWUN0QWhOMHhncTdjVC1LZw?oc=5"
         }
       ],
       "240810.KQ": [
+        {
+          "title": "반도체 장비업계, AI 투자 훈풍에 3분기 실적 '활짝'",
+          "source": "이데일리",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRVFWMlF1OEtXUGU4Y1AwaEh0UFJyRTdpeFFYTHFwTW5OajUtck83dk1MN2szRWp6WTkzRW1nZ0ZpX1JqYmN3ZGZTQmJIdld0T1JTZ3hlQWJ2WkRjVnUwZmNZUWdybHBiYjdKZWFKaUVPc0tEandxQnJPeVktUnhyYw?oc=5"
+        },
         {
           "title": "[특징주]원익IPS, 3분기 영업이익 증가에 11.54% 오른 7만6,300원…전망치 21% 상회",
           "source": "남도일보",
@@ -581,12 +587,6 @@
           "source": "데일리인베스트",
           "pubDate": "Tue, 10 Nov 2026",
           "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE8xcl8zVVZDaXM1TktKYVRaTzRwYVAzYXBXYk1YQ3lBMGotVUtTV0ZZN0hDT3YwdDM5MV9pMGlVQXFhM1NvaFJQUy03b3ZjQXZ0Uko4OW1BZUkyN2FmMzNOOXBKNXBsa1p4VE93?oc=5"
-        },
-        {
-          "title": "원익IPS, 메모리 세대 전환 빅사이클 '수혜'…\"4분기 반도체 분기 최대 매출 주목\"",
-          "source": "프라임경제",
-          "pubDate": "Mon, 09 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHWGlxZUNzRDM4em9zODRyNVdIbklzOVhLdlZ6OXIwbEVqTW1wX3Y3enUwWkhoWUpHM1BDSW80YXgwUzg4RE12ejVOVko1QnhSZGpuNTNRLTd5MzFWUVJGNmZqOWlSck9jNThwcEgtUV9KZw?oc=5"
         }
       ],
       "AMD": [
