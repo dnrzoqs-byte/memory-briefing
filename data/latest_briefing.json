@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-18 12:00 KST",
-  "market_date": "2026.11.18(수) 12:00 국내 정규장 실시간 거래중",
+  "updated_at": "2026-11-18 12:24 KST",
+  "market_date": "2026.11.18(수) 12:24 국내 정규장 실시간 거래중",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -44,8 +44,8 @@
     "us10y": 5.1,
     "us2y": 4.31,
     "tlt_price": 79.55,
-    "wti_oil": 85.04,
-    "usdkrw": 1329.1,
+    "wti_oil": 85.29,
+    "usdkrw": 1331.1,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -71,13 +71,13 @@
       "11/16",
       "11/17"
     ],
-    "usdkrw_change_pct": -0.49,
+    "usdkrw_change_pct": -0.34,
     "usdkrw_recent": [
       1336.26,
       1333.78,
       1333.25,
       1335.67,
-      1329.1
+      1331.08
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -87,13 +87,13 @@
       79.72,
       79.38
     ],
-    "wti_oil_change_pct": -1.13,
+    "wti_oil_change_pct": -0.84,
     "wti_oil_recent": [
       88.74,
       88.56,
       85.72,
       86.01,
-      85.04
+      85.29
     ],
     "tlt_price_change_pct": 0.21,
     "tlt_price_recent": [
@@ -103,19 +103,19 @@
       79.38,
       79.55
     ],
-    "wti_oil_week_pct": -4.17,
+    "wti_oil_week_pct": -3.89,
     "us10y_week_pct": 2.1,
-    "usdkrw_week_pct": -0.54,
+    "usdkrw_week_pct": -0.39,
     "tlt_price_week_pct": -1.69,
-    "kospi": 4987.43,
-    "kospi_change_pct": 0.38,
-    "kospi_week_pct": -6.65,
+    "kospi": 4993.73,
+    "kospi_change_pct": 0.51,
+    "kospi_week_pct": -6.53,
     "kospi_recent": [
       5342.73,
       5290.53,
       5100.5,
       4968.48,
-      4987.43
+      4993.73
     ],
     "kospi_dates": [
       "11/12",
@@ -124,15 +124,15 @@
       "11/17",
       "11/18"
     ],
-    "kosdaq": 652.27,
-    "kosdaq_change_pct": 0.34,
-    "kosdaq_week_pct": -6.35,
+    "kosdaq": 653.79,
+    "kosdaq_change_pct": 0.57,
+    "kosdaq_week_pct": -6.14,
     "kosdaq_recent": [
       696.53,
       699.66,
       665.65,
       650.06,
-      652.27
+      653.79
     ],
     "sox": 9642.88,
     "sox_change_pct": 0.34,
@@ -183,14 +183,14 @@
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1329.1,
+  "usdkrw": 1331.1,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
-    "005935.KS": 153100,
-    "005930.KS": 190900,
-    "353200.KS": 78800,
-    "240810.KQ": 69200,
+    "005935.KS": 152900,
+    "005930.KS": 191100,
+    "353200.KS": 79500,
+    "240810.KQ": 69700,
     "AMD": 503.41,
     "CLS": 236.47
   },
@@ -204,10 +204,10 @@
   },
   "stocks_detail": {
     "005935.KS": {
-      "price": 153100,
+      "price": 152900,
       "prev_close": 152000,
-      "change_pct": 0.72,
-      "week_change_pct": -9.03,
+      "change_pct": 0.59,
+      "week_change_pct": -9.15,
       "high52w": 243500,
       "low52w": 71000,
       "recent_dates": [
@@ -222,14 +222,14 @@
         170500,
         161300,
         152000,
-        153100
+        152900
       ]
     },
     "005930.KS": {
-      "price": 190900,
+      "price": 191100,
       "prev_close": 190300,
-      "change_pct": 0.32,
-      "week_change_pct": -8.22,
+      "change_pct": 0.42,
+      "week_change_pct": -8.12,
       "high52w": 374500,
       "low52w": 94500,
       "recent_dates": [
@@ -244,14 +244,14 @@
         206000,
         196800,
         190300,
-        190900
+        191100
       ]
     },
     "353200.KS": {
-      "price": 78800,
+      "price": 79500,
       "prev_close": 80700,
-      "change_pct": -2.35,
-      "week_change_pct": -15.63,
+      "change_pct": -1.49,
+      "week_change_pct": -14.88,
       "high52w": 198000,
       "low52w": 41550,
       "recent_dates": [
@@ -266,14 +266,14 @@
         91300,
         82600,
         80700,
-        78800
+        79500
       ]
     },
     "240810.KQ": {
-      "price": 69200,
+      "price": 69700,
       "prev_close": 68900,
-      "change_pct": 0.44,
-      "week_change_pct": -12.63,
+      "change_pct": 1.16,
+      "week_change_pct": -11.99,
       "high52w": 187800,
       "low52w": 55400,
       "recent_dates": [
@@ -288,7 +288,7 @@
         77700,
         70100,
         68900,
-        69200
+        69700
       ]
     },
     "AMD": {
@@ -463,7 +463,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-18 12:00 KST",
+    "updated_at": "2026-11-18 12:24 KST",
     "sector": [
       {
         "title": "iM證 “엔비디아 실적 호조에 삼성전자·SK하이닉스 반등 시도”",
@@ -583,10 +583,10 @@
           "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE8xcl8zVVZDaXM1TktKYVRaTzRwYVAzYXBXYk1YQ3lBMGotVUtTV0ZZN0hDT3YwdDM5MV9pMGlVQXFhM1NvaFJQUy03b3ZjQXZ0Uko4OW1BZUkyN2FmMzNOOXBKNXBsa1p4VE93?oc=5"
         },
         {
-          "title": "원익그룹 3사, 반도체 호황 수혜 엇박자…3분기엔 '반전 예고'",
-          "source": "Daum",
-          "pubDate": "Wed, 04 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE11ckNVb2pmejFHaVdDSXVDN0ZXdUd4THRqWVpCRWJlOEFIeWtWM3otUHNFYnVFWXdDNXQ0eVVxVndWOVVGbG81QTBMQQ?oc=5"
+          "title": "원익IPS, 메모리 세대 전환 빅사이클 '수혜'…\"4분기 반도체 분기 최대 매출 주목\"",
+          "source": "프라임경제",
+          "pubDate": "Mon, 09 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHWGlxZUNzRDM4em9zODRyNVdIbklzOVhLdlZ6OXIwbEVqTW1wX3Y3enUwWkhoWUpHM1BDSW80YXgwUzg4RE12ejVOVko1QnhSZGpuNTNRLTd5MzFWUVJGNmZqOWlSck9jNThwcEgtUV9KZw?oc=5"
         }
       ],
       "AMD": [
@@ -611,16 +611,16 @@
       ],
       "CLS": [
         {
-          "title": "CLS Stock Soars Premarket After Blowout Q3 — Retail Calls It ‘Very Inexpensive’ As Celestica Touts AI ‘Supercycle’",
-          "source": "Yahoo Finance",
-          "pubDate": "Tue, 27 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUnR4U1piRlFUUnN3UVlHMUVlaEYxZDhvaEFhSmJKWjFoemdXbW14YlNaU2d6MmdUbklTdHRrNVk1bU9KVHNjWlNpT3ZaYXhhTnNFa1lvWVlkdW1JM2M2cXNHVnV4NjQ1TmwzeF8xV1JESzBCT2x0ZUJqakYtOXBCMEI0NUdTLXJfVWtIdkVMUDNiM2p4cm01Y216UHNSTTg?oc=5"
-        },
-        {
           "title": "Celestica (CLS): Initiating a Stake Following the Summer AI Capex Pullback",
           "source": "Yahoo Finance",
           "pubDate": "Mon, 12 Oct 2026",
           "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSWZtNEU3VTItUFJfMUY0cWZUTkYyYUdpMGtBU2NNQk9MN0Q4S0EzRjVWSjJYTHdYRV82M2ljcVhYQ2NDWnJDTmpON2xJMFFoa1o2dlAzanJYb1drZTNsbXFTV0pYTFRfNEFhT0YtYWh4dWZGUjlTREtxQ2M0QVhzX3FOejY2MG15Z1JENTR1ZS12QVNUeTFVR0w4RkpFQ1AtWGJaQkkwNA?oc=5"
+        },
+        {
+          "title": "CLS Stock Soars Premarket After Blowout Q3 — Retail Calls It ‘Very Inexpensive’ As Celestica Touts AI ‘Supercycle’",
+          "source": "Yahoo Finance",
+          "pubDate": "Tue, 27 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUnR4U1piRlFUUnN3UVlHMUVlaEYxZDhvaEFhSmJKWjFoemdXbW14YlNaU2d6MmdUbklTdHRrNVk1bU9KVHNjWlNpT3ZaYXhhTnNFa1lvWVlkdW1JM2M2cXNHVnV4NjQ1TmwzeF8xV1JESzBCT2x0ZUJqakYtOXBCMEI0NUdTLXJfVWtIdkVMUDNiM2p4cm01Y216UHNSTTg?oc=5"
         },
         {
           "title": "How Celestica (CLS) Is Strengthening Its AI Infrastructure Case",
