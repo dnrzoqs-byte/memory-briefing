@@ -1,6 +1,6 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-18 19:00 KST",
+  "updated_at": "2026-11-18 21:45 KST",
   "market_date": "2026.11.18(수) 국내 장마감 · 글로벌 시세 및 실시간 뉴스 반영",
   "dram_spot": {
     "ddr5_16g": {
@@ -44,8 +44,8 @@
     "us10y": 5.1,
     "us2y": 4.31,
     "tlt_price": 79.55,
-    "wti_oil": 83.21,
-    "usdkrw": 1331.5,
+    "wti_oil": 84.18,
+    "usdkrw": 1332.6,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -71,13 +71,13 @@
       "11/16",
       "11/17"
     ],
-    "usdkrw_change_pct": -0.31,
+    "usdkrw_change_pct": -0.23,
     "usdkrw_recent": [
       1336.26,
       1333.78,
       1333.25,
       1335.67,
-      1331.47
+      1332.58
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -87,13 +87,13 @@
       79.72,
       79.38
     ],
-    "wti_oil_change_pct": -3.26,
+    "wti_oil_change_pct": -2.13,
     "wti_oil_recent": [
       88.74,
       88.56,
       85.72,
       86.01,
-      83.21
+      84.18
     ],
     "tlt_price_change_pct": 0.21,
     "tlt_price_recent": [
@@ -103,9 +103,9 @@
       79.38,
       79.55
     ],
-    "wti_oil_week_pct": -6.23,
+    "wti_oil_week_pct": -5.14,
     "us10y_week_pct": 2.1,
-    "usdkrw_week_pct": -0.36,
+    "usdkrw_week_pct": -0.28,
     "tlt_price_week_pct": -1.69,
     "kospi": 5067.44,
     "kospi_change_pct": 1.99,
@@ -161,15 +161,15 @@
       24509.76,
       24328.38
     ],
-    "vix": 23.61,
-    "vix_change_pct": -7.27,
-    "vix_week_pct": 26.26,
+    "vix": 24.23,
+    "vix_change_pct": -4.83,
+    "vix_week_pct": 29.57,
     "vix_recent": [
       18.7,
       19.3,
       22.91,
       25.46,
-      23.61
+      24.23
     ],
     "vix_dates": [
       "11/12",
@@ -183,7 +183,7 @@
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1331.5,
+  "usdkrw": 1332.6,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
@@ -463,7 +463,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-18 19:00 KST",
+    "updated_at": "2026-11-18 21:45 KST",
     "sector": [
       {
         "title": "엔비디아 실적에 반도체 반등…코스피, 하루 만에 5000선 회복",
@@ -473,10 +473,10 @@
         "tag": "엔비디아 실적·AI"
       },
       {
-        "title": "엔비디아 훈풍에 국내 증시 반색…반도체·로봇주 뛰며 동반 상승",
-        "source": "진일보 | 전남일보",
-        "pubDate": "Wed, 18 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFAxZFFmMjJPQV84UERGRUpPWDZ0YUl5U01rT3ByNXpPQmk5NEdiRktkOEtzczM3OU5VSWthUW1renU1MUhFM2c1MHRBNk9RSWVIQjNCcVlrMGJkVWpxdHcyOHB5cWZVdWJPN3E5Ny1OUQ?oc=5",
+        "title": "\"엔비디아 실적 서프라이즈…반도체 대형주 반등 시도할 것\"…iM",
+        "source": "마켓인",
+        "pubDate": "Tue, 17 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5NaUQ3YkNSM2J2SmhRTmdlcmFSOXM2eXNaWTVUMjhtX216OTR0bGgzd3lIUUJhMVpyWU03OHo0T1R3MWU1bnN3Y0xISjl1Y1BqaDE1TjhLVkZNX2NNVml0a1ZoQlZiaFI5UDZqalhiTzJvTEU?oc=5",
         "tag": "엔비디아 실적·AI"
       },
       {
@@ -496,15 +496,15 @@
       {
         "title": "젠슨 황 사임에 5000선 깨진 코스피, 엔비디아가 다시 살릴까? - 머니투데이",
         "source": "머니투데이",
-        "pubDate": "Tue, 17 Nov 2026",
+        "pubDate": "Wed, 18 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MMmpRcTdRcVFKaGMxSU85OHVKODh6RVNvRnlKaU9IYUYzN3hGQkdsNkR4MEVpLThYNkY4dDlIMDlSZDNGa254TzZ6dnVxRjhzREZ5V0pnRjJqNkdEaWRpdE9DWVJZOEpL0gFuQVVfeXFMUGtMcHBqQ1JoNWZYMkk3bDY0anVIbVFESlBEaUc5QkZHb3ZZQnRoVGRaX0dLaWZscVU4UVdJcHRnYml5VUtKUkJpV29wMWpWOXA5elE3TkpsN2U4VDJHSUlUUHFQeHM4dlY4U2NLRWc?oc=5",
         "tag": "NVIDIA+1 수혜"
       },
       {
-        "title": "[이슈플러스] 젠슨 황, 사임 사흘 만에 복귀 추진…실적 '분수령'",
-        "source": "DealSite경제TV",
-        "pubDate": "Mon, 16 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9MSmZJZVRSYzlHMFBjeHlfWUpHeW01amx6UDNXTGt4QUNvZGJPY1RBS1BFV2NpQ1JGOUZSM0p1bmVxamlJaEI5N3VZNFdWVnhpMmM4MEZR?oc=5",
+        "title": "젠슨 황 떠난 빈자리, 삼성전자에 기회?…“탈엔비디아 시대 수혜주” [오늘 나온 보고서]",
+        "source": "매일경제",
+        "pubDate": "Sun, 15 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE92aWUtNWVLbElCbUNNbmVvYnp4bDJINTN4Y0Nmb0ZHTXdzVkdYQUtHMVg0OTU2aGo4MnlkRXFBbFhEaG5rbkRYZXVjeDZCbS1hMkE?oc=5",
         "tag": "NVIDIA+1 수혜"
       }
     ],
@@ -531,16 +531,16 @@
       ],
       "005930.KS": [
         {
-          "title": "엔비디아 메모리 장기 계약 확대…젠슨 황 공백에도 삼성·SK, HBM 기대감",
-          "source": "아시아투데이",
-          "pubDate": "Wed, 18 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LVmVKbnNLWUpId3o3T1hPaTExYWdBOHhSV0p3NXcxaFdpQktjZ1VYQlpyN1ZMa2xnRTlDc0JpbWlLQzJzYkF2cU15bmtqTUhCeXlhR3lfLUtDS3g3WlNWajV5ay1PMzdiZm9PbWpn?oc=5"
-        },
-        {
           "title": "젠슨 황 떠난 엔비디아, 깐깐해진 지갑…삼성전자·SK하이닉스 ‘HBM 잭팟’ 제동 걸리나",
           "source": "뉴스퀘스트",
           "pubDate": "Wed, 18 Nov 2026",
           "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1zUVJDd0ZSOHdQdHRXa0hraDJjTXhHUmc5OFJNZ3NLRFZxTmpFN05HcTFQSGJydzJEb2ZyLV9sWk43ZlQ3djNNQTlJby1YcVNzcVpRUnZTbWI2ZnQxVE9qWXFNUHVrU1pGNUVtaDY1aw?oc=5"
+        },
+        {
+          "title": "[글로벌 이슈K] 엔비디아 '순환금융' 관리 강화...삼성전기엔 증설 지원",
+          "source": "뉴스핌",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBNU3BETDdkbUVuT25oTjBsYS1qTF9aWHpZOFZZUzRNZEEyQVFkUXc1d2h6UHp6aWdLQzhNRVNJUVBzN285TnFXNnFmNUVRLU5iUHd3U0ZsUXVNSHBJ?oc=5"
         },
         {
           "title": "中 기업 해외 GPU 이용 제한…삼전닉스 HBM 수요 변수 : 네이버 블로그",
@@ -617,10 +617,10 @@
           "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSWZtNEU3VTItUFJfMUY0cWZUTkYyYUdpMGtBU2NNQk9MN0Q4S0EzRjVWSjJYTHdYRV82M2ljcVhYQ2NDWnJDTmpON2xJMFFoa1o2dlAzanJYb1drZTNsbXFTV0pYTFRfNEFhT0YtYWh4dWZGUjlTREtxQ2M0QVhzX3FOejY2MG15Z1JENTR1ZS12QVNUeTFVR0w4RkpFQ1AtWGJaQkkwNA?oc=5"
         },
         {
-          "title": "CLS Stock Soars Premarket After Blowout Q3 — Retail Calls It ‘Very Inexpensive’ As Celestica Touts AI ‘Supercycle’",
+          "title": "Why Celestica Stock Jumped Today",
           "source": "Yahoo Finance",
           "pubDate": "Tue, 27 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUnR4U1piRlFUUnN3UVlHMUVlaEYxZDhvaEFhSmJKWjFoemdXbW14YlNaU2d6MmdUbklTdHRrNVk1bU9KVHNjWlNpT3ZaYXhhTnNFa1lvWVlkdW1JM2M2cXNHVnV4NjQ1TmwzeF8xV1JESzBCT2x0ZUJqakYtOXBCMEI0NUdTLXJfVWtIdkVMUDNiM2p4cm01Y216UHNSTTg?oc=5"
+          "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNdG5tbTJEbXMwV2M1THJ6aW5DVVNldDFjVzFuRUhrY05iNUZBejJZSHVsR0xZMTdBLXR1OUdibzh1M21JVmczMU1kNVlQMW9ldlVLbm9XYXFvLVpOUEN0VHdJNlVjWVFMZ2UycG1aaEtSeVZOd0RGZVZQa2xacnpKZndTTU01eHlQeEI5Y19OWWdOc2p0S285bkpPNFlwdw?oc=5"
         },
         {
           "title": "How Celestica (CLS) Is Strengthening Its AI Infrastructure Case",
