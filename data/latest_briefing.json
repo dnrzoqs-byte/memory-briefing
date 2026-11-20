@@ -1,7 +1,7 @@
 {
   "timestamp": "2026-11-14 12:57 KST",
-  "updated_at": "2026-11-20 05:12 KST",
-  "market_date": "2026.11.20(금) 05:12 미국 정규장 실시간 거래중",
+  "updated_at": "2026-11-20 11:05 KST",
+  "market_date": "2026.11.20(금) 11:05 국내 정규장 실시간 거래중",
   "dram_spot": {
     "ddr5_16g": {
       "price": 60.27,
@@ -41,11 +41,11 @@
   "ddr4_8g_price": 44.54,
   "ddr5_mod_price": 243.33,
   "macro": {
-    "us10y": 5.06,
+    "us10y": 5.05,
     "us2y": 4.31,
-    "tlt_price": 80.42,
-    "wti_oil": 82.84,
-    "usdkrw": 1333.0,
+    "tlt_price": 80.35,
+    "wti_oil": 82.8,
+    "usdkrw": 1337.9,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_change_pct": 0.2,
@@ -56,13 +56,13 @@
       88.74,
       88.92
     ],
-    "us10y_change_pct": -0.12,
+    "us10y_change_pct": -0.28,
     "us10y_recent": [
       5.15,
       5.12,
       5.1,
       5.07,
-      5.06
+      5.05
     ],
     "us10y_dates": [
       "11/13",
@@ -71,13 +71,13 @@
       "11/18",
       "11/19"
     ],
-    "usdkrw_change_pct": 0.0,
+    "usdkrw_change_pct": 0.56,
     "usdkrw_recent": [
-      1333.78,
       1333.25,
       1335.67,
       1333.01,
-      1333.04
+      1330.4,
+      1337.9
     ],
     "tlt_change_pct": -0.43,
     "tlt_recent": [
@@ -87,62 +87,62 @@
       79.72,
       79.38
     ],
-    "wti_oil_change_pct": -0.5,
+    "wti_oil_change_pct": -0.49,
     "wti_oil_recent": [
-      88.56,
       85.72,
       86.01,
       83.26,
-      82.84
+      83.21,
+      82.8
     ],
-    "tlt_price_change_pct": 0.25,
+    "tlt_price_change_pct": 1.01,
     "tlt_price_recent": [
+      79.72,
       79.38,
       79.38,
       79.55,
-      80.22,
-      80.42
+      80.35
     ],
-    "wti_oil_week_pct": -6.46,
-    "us10y_week_pct": -1.82,
-    "usdkrw_week_pct": -0.06,
-    "tlt_price_week_pct": 1.31,
-    "kospi": 5137.89,
-    "kospi_change_pct": 3.41,
-    "kospi_week_pct": -3.83,
+    "wti_oil_week_pct": -3.41,
+    "us10y_week_pct": -1.98,
+    "usdkrw_week_pct": 0.35,
+    "tlt_price_week_pct": 0.79,
+    "kospi": 4912.38,
+    "kospi_change_pct": -3.06,
+    "kospi_week_pct": -7.15,
     "kospi_recent": [
-      5342.73,
       5290.53,
       5100.5,
       4968.48,
-      5137.89
+      5067.44,
+      4912.38
     ],
     "kospi_dates": [
-      "11/12",
       "11/13",
       "11/16",
       "11/17",
-      "11/18"
+      "11/18",
+      "11/20"
     ],
-    "kosdaq": 684.81,
-    "kosdaq_change_pct": 5.35,
-    "kosdaq_week_pct": -1.68,
+    "kosdaq": 656.81,
+    "kosdaq_change_pct": -0.91,
+    "kosdaq_week_pct": -6.12,
     "kosdaq_recent": [
-      696.53,
       699.66,
       665.65,
       650.06,
-      684.81
+      662.81,
+      656.81
     ],
-    "sox": 9436.46,
-    "sox_change_pct": -2.24,
-    "sox_week_pct": -7.0,
+    "sox": 9419.72,
+    "sox_change_pct": -2.41,
+    "sox_week_pct": -7.16,
     "sox_recent": [
       10146.32,
       9610.65,
       9642.88,
       9652.8,
-      9436.46
+      9419.72
     ],
     "sox_dates": [
       "11/13",
@@ -151,25 +151,25 @@
       "11/18",
       "11/19"
     ],
-    "nasdaq": 23900.97,
-    "nasdaq_change_pct": -2.17,
-    "nasdaq_week_pct": -4.91,
+    "nasdaq": 23879.2,
+    "nasdaq_change_pct": -2.25,
+    "nasdaq_week_pct": -5.0,
     "nasdaq_recent": [
       25136.27,
       24509.76,
       24328.38,
       24429.88,
-      23900.97
+      23879.2
     ],
-    "vix": 27.52,
-    "vix_change_pct": 12.05,
-    "vix_week_pct": 42.59,
+    "vix": 28.44,
+    "vix_change_pct": 15.8,
+    "vix_week_pct": 47.36,
     "vix_recent": [
       19.3,
       22.91,
       25.46,
       24.56,
-      27.52
+      28.44
     ],
     "vix_dates": [
       "11/13",
@@ -183,16 +183,16 @@
   "us2y": 4.31,
   "tlt_price": 79.38,
   "wti_oil": 88.92,
-  "usdkrw": 1333.0,
+  "usdkrw": 1337.9,
   "kr_base": 3.0,
   "kr_10y": 3.85,
   "stocks": {
-    "005935.KS": 157500,
-    "005930.KS": 196900,
-    "353200.KS": 84800,
-    "240810.KQ": 76700,
-    "AMD": 480.88,
-    "CLS": 242.0
+    "005935.KS": 146600,
+    "005930.KS": 185400,
+    "353200.KS": 76000,
+    "240810.KQ": 68000,
+    "AMD": 489.19,
+    "CLS": 240.23
   },
   "high52w": {
     "005935.KS": 243500,
@@ -204,78 +204,100 @@
   },
   "stocks_detail": {
     "005935.KS": {
-      "price": 157500,
-      "prev_close": 152000,
-      "change_pct": 3.62,
-      "week_change_pct": -6.42,
+      "price": 146600,
+      "prev_close": 157500,
+      "change_pct": -6.92,
+      "week_change_pct": -9.11,
       "high52w": 243500,
-      "low52w": 127755,
+      "low52w": 71000,
       "recent_dates": [
-        "11/12",
-        "11/13",
         "11/16",
         "11/17",
-        "11/18"
+        "11/18",
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        168300,
-        170500,
         161300,
         152000,
-        157500
+        158000,
+        157500,
+        146600
       ]
     },
     "005930.KS": {
-      "price": 196900,
-      "prev_close": 190300,
-      "change_pct": 3.47,
-      "week_change_pct": -5.34,
+      "price": 185400,
+      "prev_close": 196900,
+      "change_pct": -5.84,
+      "week_change_pct": -5.79,
       "high52w": 374500,
-      "low52w": 160395,
+      "low52w": 94500,
       "recent_dates": [
-        "11/12",
-        "11/13",
         "11/16",
         "11/17",
-        "11/18"
+        "11/18",
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        208000,
-        206000,
         196800,
         190300,
-        196900
+        194700,
+        196900,
+        185400
       ]
     },
     "353200.KS": {
-      "price": 84800,
-      "prev_close": 80700,
-      "change_pct": 5.08,
-      "week_change_pct": -9.21,
+      "price": 76000,
+      "prev_close": 84800,
+      "change_pct": -10.38,
+      "week_change_pct": -7.99,
       "high52w": 198000,
-      "low52w": 60520,
+      "low52w": 41550,
       "recent_dates": [
-        "11/12",
-        "11/13",
         "11/16",
         "11/17",
-        "11/18"
+        "11/18",
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        93400,
-        91300,
         82600,
         80700,
-        84800
+        81200,
+        84800,
+        76000
       ]
     },
     "240810.KQ": {
-      "price": 76700,
-      "prev_close": 68900,
-      "change_pct": 11.32,
-      "week_change_pct": -3.16,
+      "price": 68000,
+      "prev_close": 76700,
+      "change_pct": -11.34,
+      "week_change_pct": -3.0,
       "high52w": 187800,
-      "low52w": 56695,
+      "low52w": 55400,
+      "recent_dates": [
+        "11/16",
+        "11/17",
+        "11/18",
+        "11/19",
+        "11/20"
+      ],
+      "recent_closes": [
+        70100,
+        68900,
+        70800,
+        76700,
+        68000
+      ]
+    },
+    "AMD": {
+      "price": 489.19,
+      "prev_close": 503.41,
+      "change_pct": -2.82,
+      "week_change_pct": -16.42,
+      "high52w": 658.52,
+      "low52w": 188.22,
       "recent_dates": [
         "11/12",
         "11/13",
@@ -284,99 +306,77 @@
         "11/18"
       ],
       "recent_closes": [
-        79200,
-        77700,
-        70100,
-        68900,
-        76700
-      ]
-    },
-    "AMD": {
-      "price": 480.88,
-      "prev_close": 530.14,
-      "change_pct": -9.29,
-      "week_change_pct": -9.96,
-      "high52w": 658.52,
-      "low52w": 188.22,
-      "recent_dates": [
-        "11/13",
-        "11/16",
-        "11/17",
-        "11/18",
-        "11/19"
-      ],
-      "recent_closes": [
+        585.3,
         534.06,
         504.28,
         503.41,
-        530.14,
-        480.88
+        489.19
       ]
     },
     "CLS": {
-      "price": 242.0,
-      "prev_close": 243.32,
-      "change_pct": -0.54,
-      "week_change_pct": 0.69,
+      "price": 240.23,
+      "prev_close": 236.47,
+      "change_pct": 1.59,
+      "week_change_pct": -5.43,
       "high52w": 474.03,
       "low52w": 197.5,
       "recent_dates": [
+        "11/12",
         "11/13",
         "11/16",
         "11/17",
-        "11/18",
-        "11/19"
+        "11/18"
       ],
       "recent_closes": [
+        254.03,
         240.34,
         238.48,
         236.47,
-        243.32,
-        242.0
+        240.23
       ]
     },
     "NVDA": {
-      "price": 146.93,
-      "prev_close": 150.96,
-      "change_pct": -2.67,
-      "week_change_pct": -9.78,
+      "price": 145.98,
+      "prev_close": 155.46,
+      "change_pct": -6.1,
+      "week_change_pct": -12.16,
       "high52w": 243.37,
-      "low52w": 146.67,
+      "low52w": 145.71,
       "recent_dates": [
+        "11/12",
         "11/13",
         "11/16",
         "11/17",
-        "11/18",
-        "11/19"
+        "11/18"
       ],
       "recent_closes": [
+        166.19,
         162.85,
         156.14,
         155.46,
-        150.96,
-        146.93
+        145.98
       ]
     },
     "MU": {
-      "price": 693.1,
-      "prev_close": 705.27,
-      "change_pct": -1.73,
-      "week_change_pct": -10.95,
+      "price": 690.44,
+      "prev_close": 712.42,
+      "change_pct": -3.09,
+      "week_change_pct": -13.53,
       "high52w": 1255.0,
       "low52w": 192.59,
       "recent_dates": [
+        "11/12",
         "11/13",
         "11/16",
         "11/17",
-        "11/18",
-        "11/19"
+        "11/18"
       ],
       "recent_closes": [
+        798.44,
         778.31,
         719.02,
         712.42,
-        705.27,
-        693.1
+        690.44
       ]
     }
   },
@@ -463,7 +463,7 @@
     }
   },
   "live_news": {
-    "updated_at": "2026-11-20 05:12 KST",
+    "updated_at": "2026-11-20 11:06 KST",
     "sector": [
       {
         "title": "[e마켓오프닝] 엔비디아 실적 D-day···나스닥 2.49% 급락·반도체 긴장",
@@ -501,10 +501,10 @@
         "tag": "NVIDIA+1 수혜"
       },
       {
-        "title": "젠슨 황 떠난 빈자리, 삼성전자에 기회?…“탈엔비디아 시대 수혜주” [오늘 나온 보고서]",
-        "source": "매일경제",
-        "pubDate": "Sun, 15 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE92aWUtNWVLbElCbUNNbmVvYnp4bDJINTN4Y0Nmb0ZHTXdzVkdYQUtHMVg0OTU2aGo4MnlkRXFBbFhEaG5rbkRYZXVjeDZCbS1hMkE?oc=5",
+        "title": "[이슈플러스] 젠슨 황, 사임 사흘 만에 복귀 추진…실적 '분수령'",
+        "source": "DealSite경제TV",
+        "pubDate": "Mon, 16 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9MSmZJZVRSYzlHMFBjeHlfWUpHeW01amx6UDNXTGt4QUNvZGJPY1RBS1BFV2NpQ1JGOUZSM0p1bmVxamlJaEI5N3VZNFdWVnhpMmM4MEZR?oc=5",
         "tag": "NVIDIA+1 수혜"
       }
     ],
@@ -531,16 +531,16 @@
       ],
       "005930.KS": [
         {
-          "title": "엔비디아 실적 발표에 SK하이닉스·삼성전자 공급망 경쟁 주목",
-          "source": "PRESS9",
-          "pubDate": "Thu, 19 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9UUmpkR0RaT3lJZk9GQXdxdEFtTjN5WkRUZ3JXQ0tWVmJ4NEtud09ndE1USjhHTFNyS0NJV1d1WnZ1UFRTV3VVbUZaS0twbHVuNFhsN29lMkRQaEwydWk1M1NYQ0o?oc=5"
-        },
-        {
           "title": "젠슨 황 떠난 엔비디아, 깐깐해진 지갑…삼성전자·SK하이닉스 ‘HBM 잭팟’ 제동 걸리나",
           "source": "뉴스퀘스트",
           "pubDate": "Wed, 18 Nov 2026",
           "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1zUVJDd0ZSOHdQdHRXa0hraDJjTXhHUmc5OFJNZ3NLRFZxTmpFN05HcTFQSGJydzJEb2ZyLV9sWk43ZlQ3djNNQTlJby1YcVNzcVpRUnZTbWI2ZnQxVE9qWXFNUHVrU1pGNUVtaDY1aw?oc=5"
+        },
+        {
+          "title": "[글로벌 이슈K] 엔비디아 '순환금융' 관리 강화...삼성전기엔 증설 지원",
+          "source": "뉴스핌",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBNU3BETDdkbUVuT25oTjBsYS1qTF9aWHpZOFZZUzRNZEEyQVFkUXc1d2h6UHp6aWdLQzhNRVNJUVBzN285TnFXNnFmNUVRLU5iUHd3U0ZsUXVNSHBJ?oc=5"
         },
         {
           "title": "[The Numbers] KB證 “삼성전자, 脫엔비디아 시대 최대 수혜주\", 왜?…삼성 HBM 고객 65%의 의미",
@@ -550,6 +550,12 @@
         }
       ],
       "353200.KS": [
+        {
+          "title": "반도체 기판주 동반 약세…이수페타시스·대덕전자·삼성전기 등 하락, 코스피 5000선 붕괴",
+          "source": "CBC뉴스",
+          "pubDate": "Fri, 20 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0wemNheEZFeUczNVVZN2FsWkh3dmV2ejNPUU9ySXE1LUhJM0hZZFNmUGpYOWFGY1k1dkZJRHRjYkR1ZElqaWF4SE9iOFZ6Ql9yTFZsUmxSczJxMndiSENxWklSZi1wVHc?oc=5"
+        },
         {
           "title": "심텍·두산전자·대덕전자, 산업부 '2026년 세계일류상품' 선정",
           "source": "전자신문",
@@ -561,34 +567,9 @@
           "source": "한국경제",
           "pubDate": "Thu, 08 Oct 2026",
           "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9CR0o5UXp1dGRkenJZZG9KUHNReGtjTEExbVRqcjdRWl9XVnZiWnRTRk9SLS05N3dhVl9FSTFrSGxsMjJpMHNIVjVqWUN0QWhOMHhncTdjVC1LZw?oc=5"
-        },
-        {
-          "title": "[KPCA SHOW 2026 프리뷰] 대덕전자, 미세회로·고밀도 인터커넥트 기반 반도체 패키지 기판 출품",
-          "source": "헬로티",
-          "pubDate": "Tue, 01 Sep 2026",
-          "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE44Um1Id0NqdDU2Y2lRNXQzQ2tTVDhrU05oSjJUOHh0RVBrOUdrcEQxNmltbk4xQmlCUVhWcWRxSG5yUVMwZnpOYUhycVZpUHZCZlpSSE5lNFluZXhyX09v?oc=5"
         }
       ],
-      "240810.KQ": [
-        {
-          "title": "반도체 장비업계, AI 투자 훈풍에 3분기 실적 '활짝'",
-          "source": "이데일리",
-          "pubDate": "Wed, 18 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRVFWMlF1OEtXUGU4Y1AwaEh0UFJyRTdpeFFYTHFwTW5OajUtck83dk1MN2szRWp6WTkzRW1nZ0ZpX1JqYmN3ZGZTQmJIdld0T1JTZ3hlQWJ2WkRjVnUwZmNZUWdybHBiYjdKZWFKaUVPc0tEandxQnJPeVktUnhyYw?oc=5"
-        },
-        {
-          "title": "[서치 e종목] 원익IPS, 메모리 신규 투자로 이익 레버리지 효과↑…주가 동력?",
-          "source": "데일리인베스트",
-          "pubDate": "Tue, 10 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1ucXNscFFOajc4MUlhUHRpZEZ4YlZRcW1sZDhxTGVLT3poSWlKRWJWZ2tFalBscll3YjAzaG1PWU9mTGxodXdzbUgtNjcyenZtWmhFbUpkVFFLU0lteGd4MjF3Qi1xcWZadkR1Qg?oc=5"
-        },
-        {
-          "title": "원익그룹 3사, 반도체 호황 수혜 엇박자…3분기엔 '반전 예고'",
-          "source": "Daum",
-          "pubDate": "Wed, 04 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE11ckNVb2pmejFHaVdDSXVDN0ZXdUd4THRqWVpCRWJlOEFIeWtWM3otUHNFYnVFWXdDNXQ0eVVxVndWOVVGbG81QTBMQQ?oc=5"
-        }
-      ],
+      "240810.KQ": [],
       "AMD": [
         {
           "title": "AMD vs Nvidia GPU: 97% Growth vs 30x Claim [2026]",
@@ -611,12 +592,6 @@
       ],
       "CLS": [
         {
-          "title": "Celestica Inc. (CLS) Stock Price, News, Quote & History",
-          "source": "Yahoo! Finance Canada",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkbUkzUkpIeC0xRU5Hbk1INWxQaXZ5WkhJLU1rdmJtTDltVVFkQWxOYndQcXBUSkdHVUlKRFRZai12cVI3SHBhVHV5RUQ1MGlX?oc=5"
-        },
-        {
           "title": "Celestica: Time To Buy Again (Rating Upgrade) (NYSE:CLS)",
           "source": "Seeking Alpha",
           "pubDate": "Thu, 19 Nov 2026",
@@ -627,6 +602,12 @@
           "source": "kalkine.ca",
           "pubDate": "Thu, 19 Nov 2026",
           "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNLVZqekFWUTA5TW1SOUhRM19POHlrR3MzbFUzM0ZHN3ktUHIyU2ZPM2dUWmxaRmotOG16VThBemVOQXJLOWRPUzZ2Rk5JS2stRkh5d3M1bElsamZZQktsVUs4YVgxMnhOVXNyc0FBcUo1bzVWM1JlRVBLQldwOXh3RE91bE03ZVdZS2NhcE5Oakc4V0ZmVTZTLXNPZmJ1SnU0TDdiZm1uYWZHeER3bkxfSzBZQ2VrdXFpbWZLR0pDV0hmaTBmOUk1R0stdUJzbGgzVGVZ?oc=5"
+        },
+        {
+          "title": "Celestica (CLS): Initiating a Stake Following the Summer AI Capex Pullback",
+          "source": "Yahoo Finance",
+          "pubDate": "Mon, 12 Oct 2026",
+          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSWZtNEU3VTItUFJfMUY0cWZUTkYyYUdpMGtBU2NNQk9MN0Q4S0EzRjVWSjJYTHdYRV82M2ljcVhYQ2NDWnJDTmpON2xJMFFoa1o2dlAzanJYb1drZTNsbXFTV0pYTFRfNEFhT0YtYWh4dWZGUjlTREtxQ2M0QVhzX3FOejY2MG15Z1JENTR1ZS12QVNUeTFVR0w4RkpFQ1AtWGJaQkkwNA?oc=5"
         }
       ]
     }
