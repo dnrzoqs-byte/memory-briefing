@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-20 20:04 KST",
-  "market_date": "2026.11.20(금) 국내 정규장 마감 · 글로벌 시세 및 최신 뉴스 반영",
+  "updated_at": "2026-11-21 04:45 KST",
+  "market_date": "2026.11.21(토) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram": {
     "ddr4_16g": {
       "price": 78.62,
@@ -16,91 +16,105 @@
     "005930.KS": 183100,
     "353200.KS": 73900,
     "240810.KQ": 65600,
-    "AMD": 489.19,
-    "CLS": 240.23
+    "AMD": 427.37,
+    "CLS": 204.56
   },
   "stocks_detail": {
     "005935.KS": {
       "price": 144300,
-      "prev_close": 157500,
-      "change_pct": -8.38,
+      "prev_close": 158000,
+      "change_pct": -8.67,
       "week_change_pct": -15.37,
       "high52w": 243500,
       "low52w": 71000,
-      "day_high": 150800,
-      "day_low": 142000,
       "recent_dates": [
+        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19",
-        "11/20"
+        "11/19"
       ],
       "recent_closes": [
+        170500,
         161300,
         152000,
         158000,
-        157500,
         144300
       ]
     },
     "005930.KS": {
       "price": 183100,
-      "prev_close": 196900,
-      "change_pct": -7.01,
+      "prev_close": 194700,
+      "change_pct": -5.96,
       "week_change_pct": -11.12,
       "high52w": 374500,
       "low52w": 94500,
-      "day_high": 189300,
-      "day_low": 181400,
       "recent_dates": [
+        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19",
-        "11/20"
+        "11/19"
       ],
       "recent_closes": [
+        206000,
         196800,
         190300,
         194700,
-        196900,
         183100
       ]
     },
     "353200.KS": {
       "price": 73900,
-      "prev_close": 84800,
-      "change_pct": -12.85,
+      "prev_close": 81200,
+      "change_pct": -8.99,
       "week_change_pct": -19.06,
       "high52w": 198000,
       "low52w": 41550,
-      "day_high": 78400,
-      "day_low": 72300,
       "recent_dates": [
+        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19",
-        "11/20"
+        "11/19"
       ],
       "recent_closes": [
+        91300,
         82600,
         80700,
         81200,
-        84800,
         73900
       ]
     },
     "240810.KQ": {
       "price": 65600,
-      "prev_close": 76700,
-      "change_pct": -14.47,
+      "prev_close": 70800,
+      "change_pct": -7.34,
       "week_change_pct": -15.57,
       "high52w": 187800,
       "low52w": 55400,
-      "day_high": 70200,
-      "day_low": 65000,
+      "recent_dates": [
+        "11/13",
+        "11/16",
+        "11/17",
+        "11/18",
+        "11/19"
+      ],
+      "recent_closes": [
+        77700,
+        70100,
+        68900,
+        70800,
+        65600
+      ]
+    },
+    "AMD": {
+      "price": 427.37,
+      "prev_close": 489.19,
+      "change_pct": -12.64,
+      "week_change_pct": -15.25,
+      "high52w": 658.52,
+      "low52w": 188.22,
       "recent_dates": [
         "11/16",
         "11/17",
@@ -109,265 +123,289 @@
         "11/20"
       ],
       "recent_closes": [
-        70100,
-        68900,
-        70800,
-        76700,
-        65600
-      ]
-    },
-    "AMD": {
-      "price": 489.19,
-      "prev_close": 530.14,
-      "change_pct": -7.72,
-      "week_change_pct": -16.42,
-      "high52w": 658.52,
-      "low52w": 188.22,
-      "day_high": 555.01,
-      "day_low": 470.56,
-      "recent_dates": [
-        "11/13",
-        "11/16",
-        "11/17",
-        "11/18",
-        "11/19"
-      ],
-      "recent_closes": [
-        534.06,
         504.28,
         503.41,
         530.14,
-        489.19
+        489.19,
+        427.37
       ]
     },
     "CLS": {
-      "price": 240.23,
-      "prev_close": 243.32,
-      "change_pct": -1.27,
-      "week_change_pct": -5.43,
+      "price": 204.56,
+      "prev_close": 240.23,
+      "change_pct": -14.85,
+      "week_change_pct": -14.22,
       "high52w": 474.03,
       "low52w": 197.5,
-      "day_high": 263.72,
-      "day_low": 239.38,
       "recent_dates": [
-        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19"
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        240.34,
         238.48,
         236.47,
         243.32,
-        240.23
+        240.23,
+        204.56
       ]
     },
     "NVDA": {
-      "price": 145.98,
-      "prev_close": 150.96,
-      "change_pct": -3.3,
-      "week_change_pct": -12.16,
+      "price": 129.96,
+      "prev_close": 145.98,
+      "change_pct": -10.97,
+      "week_change_pct": -16.77,
       "high52w": 243.37,
-      "low52w": 145.71,
-      "day_high": 158.13,
-      "day_low": 145.71,
+      "low52w": 128.75,
       "recent_dates": [
-        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19"
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        162.85,
         156.14,
         155.46,
         150.96,
-        145.98
+        145.98,
+        129.96
       ]
     },
     "MU": {
-      "price": 690.44,
-      "prev_close": 705.27,
-      "change_pct": -2.1,
-      "week_change_pct": -13.53,
+      "price": 599.91,
+      "prev_close": 690.44,
+      "change_pct": -13.11,
+      "week_change_pct": -16.56,
       "high52w": 1255.0,
       "low52w": 192.59,
-      "day_high": 760.0,
-      "day_low": 689.28,
       "recent_dates": [
-        "11/13",
         "11/16",
         "11/17",
         "11/18",
-        "11/19"
+        "11/19",
+        "11/20"
       ],
       "recent_closes": [
-        778.31,
         719.02,
         712.42,
         705.27,
-        690.44
+        690.44,
+        599.91
       ]
     }
   },
   "macro": {
-    "us10y": 5.05,
+    "us10y": 4.92,
     "us2y": 4.31,
-    "tlt_price": 80.35,
-    "wti_oil": 81.46,
-    "usdkrw": 1338.8,
+    "tlt_price": 81.59,
+    "wti_oil": 82.93,
+    "usdkrw": 1344.8,
     "kr_base": 3.0,
     "kr_10y": 3.85,
-    "wti_oil_change_pct": -2.1,
+    "wti_oil_change_pct": -0.34,
     "wti_oil_recent": [
       85.72,
       86.01,
       83.26,
       83.21,
-      81.46
+      82.93
     ],
-    "us10y_change_pct": -0.28,
+    "us10y_change_pct": -2.65,
     "us10y_recent": [
-      5.15,
       5.12,
       5.1,
       5.07,
-      5.05
+      5.05,
+      4.92
     ],
     "us10y_dates": [
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20"
+    ],
+    "usdkrw_change_pct": 1.08,
+    "usdkrw_recent": [
+      1333.25,
+      1335.67,
+      1333.01,
+      1330.4,
+      1344.75
+    ],
+    "tlt_price_change_pct": 1.55,
+    "tlt_price_recent": [
+      79.38,
+      79.55,
+      80.22,
+      80.35,
+      81.59
+    ],
+    "wti_oil_week_pct": -3.25,
+    "us10y_week_pct": -3.96,
+    "usdkrw_week_pct": 0.86,
+    "tlt_price_week_pct": 2.79,
+    "kospi": 4869.96,
+    "kospi_change_pct": -3.9,
+    "kospi_week_pct": -7.95,
+    "kospi_recent": [
+      5290.53,
+      5100.5,
+      4968.48,
+      5067.44,
+      4869.96
+    ],
+    "kospi_dates": [
       "11/13",
       "11/16",
       "11/17",
       "11/18",
       "11/19"
     ],
-    "usdkrw_change_pct": 0.63,
-    "usdkrw_recent": [
-      1333.25,
-      1335.67,
-      1333.01,
-      1330.4,
-      1338.8
+    "kosdaq": 645.68,
+    "kosdaq_change_pct": -2.58,
+    "kosdaq_week_pct": -7.72,
+    "kosdaq_recent": [
+      699.66,
+      665.65,
+      650.06,
+      662.81,
+      645.68
     ],
-    "tlt_price_change_pct": 0.16,
-    "tlt_price_recent": [
-      79.38,
-      79.38,
-      79.55,
-      80.22,
-      80.35
+    "sox": 8528.28,
+    "sox_change_pct": -9.46,
+    "sox_week_pct": -11.26,
+    "sox_recent": [
+      9610.65,
+      9642.88,
+      9652.8,
+      9419.72,
+      8528.28
+    ],
+    "sox_dates": [
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20"
+    ],
+    "nasdaq": 22857.88,
+    "nasdaq_change_pct": -4.28,
+    "nasdaq_week_pct": -6.74,
+    "nasdaq_recent": [
+      24509.76,
+      24328.38,
+      24429.88,
+      23879.2,
+      22857.88
+    ],
+    "vix": 34.68,
+    "vix_change_pct": 21.94,
+    "vix_week_pct": 51.37,
+    "vix_recent": [
+      22.91,
+      25.46,
+      24.56,
+      28.44,
+      34.68
+    ],
+    "vix_dates": [
+      "11/16",
+      "11/17",
+      "11/18",
+      "11/19",
+      "11/20"
     ]
   },
-  "usdkrw": 1338.8,
+  "usdkrw": 1344.8,
   "live_news": {
-    "updated_at": "2026-11-20 20:05 KST",
+    "updated_at": "2026-11-21 04:45 KST",
     "sector": [
       {
-        "title": "엔비디아 '포스트 젠슨 황' 현실화…공동 창업자도 공개 비판",
-        "source": "더퍼블릭",
-        "pubDate": "Fri, 20 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBUQlhycmhoSUlNRTREb2U1MHAyX1BMVm1pWjZic1VvZ21Cd1pWVlRCQzJuaXJtWU5qLTZEMngzWFJ6M2I3UkpNNzJyQjJoZnRhSTlGTEdWWDd5dzJSRHpRMHBDVE9DekJqQ2xV0gFvQVVfeXFMTUJSZmNGSDl6Y1NSR3N1Z1VhZlczQ25DbXVJZ3dQSzhJVUlBUmJpbmFnME9zdUxhWkhHSUtSMHF0MlEzSmlDaUEwd2dXUUlKQlpaOWhJTm1hZ2pBaGZWUDhuWFRMamxrUE9RaWlocUpV?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
-        "title": "젠슨 황 없는 엔비디아, AI 업계 ‘돈줄’ 역할 계속 할까요?",
-        "source": "네이버페이 머니스토리",
+        "title": "[e마켓오프닝] 엔비디아 실적 D-day···나스닥 2.49% 급락·반도체 긴장",
+        "source": "시사저널e",
         "pubDate": "Tue, 17 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA3UUktc1Z4bmM3b2VicXV2VGtpSnEyQ1ZJSlNvUmRnWlM5NmJDVVFwaDJyZkk2S1FZbXFkdmhJZ2t3QzZUNjQzdXk3MFdueW9iYVVKSHdVSTk?oc=5",
-        "tag": "AI·엔비디아 지각변동"
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBUVnhxRzl0alpXYjFqc3puSkJYeDktdmpGRVIwemJUWUFnMUdrYnZEN29jaTFhNTBKM3F5OTdxTmxhQnljNnoxRE1fOXdqemlnMzEwR0x1Y0JVUWZ5ampIYXZwVlJkeG4tbHYwYURQREk0dw?oc=5",
+        "tag": "엔비디아 실적·AI"
       },
       {
-        "title": "젠슨 황 사임에도 성장 자신한 엔비디아…K메모리 '청신호' - 머니투데이",
+        "title": "엔비디아 실적 발표에 SK하이닉스·삼성전자 공급망 경쟁 주목",
+        "source": "PRESS9",
+        "pubDate": "Thu, 19 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9UUmpkR0RaT3lJZk9GQXdxdEFtTjN5WkRUZ3JXQ0tWVmJ4NEtud09ndE1USjhHTFNyS0NJV1d1WnZ1UFRTV3VVbUZaS0twbHVuNFhsN29lMkRQaEwydWk1M1NYQ0o?oc=5",
+        "tag": "엔비디아 실적·AI"
+      },
+      {
+        "title": "증시, 李대통령 18일 자본시장 간담회 '집중'… '코스피5000'개막후 금융정책 ?",
+        "source": "seoulwire.com",
+        "pubDate": "Mon, 16 Mar 2026",
+        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAyRmh3NWt6OERZWE1sSXhqWmkyRWVHM2dLRDRtVWNmT0FINTJEUjI0VnBDWVVsdXpCb0cyX1htS2hGSjRvYUUtcnVzM0xQNko5S25fQXhyYl93VjMyZ0xrQS12c3JRRGxhZXFn?oc=5",
+        "tag": "국내증시 대책"
+      },
+      {
+        "title": "06화 한국 자본시장 버블 리스크 우려의 허와 실",
+        "source": "브런치",
+        "pubDate": "Sun, 22 Mar 2026",
+        "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5QZS15QS05aHA5UFhXYVVGYU4zU2owRFFZNUxaclZhUkNDcmtLV2tkYkY0U21RVk5aMzNhZmZBRm11NWdrdVRTVUxXTFZyMjM4V09v?oc=5",
+        "tag": "국내증시 대책"
+      },
+      {
+        "title": "젠슨 황 사임에 5000선 깨진 코스피, 엔비디아가 다시 살릴까? - 머니투데이",
         "source": "머니투데이",
         "pubDate": "Wed, 18 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1ILUVXbThVVGQzMjJyaDViMWZEdU1NWEk5X2VtQUlWVFJEeklfejJCRGxOUUluNlJNMU9ZaVhPRVdMZGhkbEYxZTd2czFuRlhHUkpuUmV6VkRwWnZ6Um1reUsyZEJmM09xYTFWV9IBckFVX3lxTE10RlZyMWw3akRMY3dGZGozOGgxUGNTbnEtbngwUWp0RHJmMXd1czZiUkhmd3Y2cVU1czR3UzJuQ1dYbHFhT1EtaUNLYW5iaUIxM3hzYXIwWk8wcGdWSDFxaEtaeElOU3hReWthNWZQUGRyQQ?oc=5",
-        "tag": "AI·엔비디아 지각변동"
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MMmpRcTdRcVFKaGMxSU85OHVKODh6RVNvRnlKaU9IYUYzN3hGQkdsNkR4MEVpLThYNkY4dDlIMDlSZDNGa254TzZ6dnVxRjhzREZ5V0pnRjJqNkdEaWRpdE9DWVJZOEpL0gFuQVVfeXFMUGtMcHBqQ1JoNWZYMkk3bDY0anVIbVFESlBEaUc5QkZHb3ZZQnRoVGRaX0dLaWZscVU4UVdJcHRnYml5VUtKUkJpV29wMWpWOXA5elE3TkpsN2U4VDJHSUlUUHFQeHM4dlY4U2NLRWc?oc=5",
+        "tag": "NVIDIA+1 수혜"
       },
       {
-        "title": "AI 반도체 ‘열과의 전쟁’…칩부터 데이터센터까지",
-        "source": "IT조선",
-        "pubDate": "Tue, 17 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9IS3QwMWo5YzFnWVpmYVVMdTctM0xWc2l3RnZiNkpPSFVWdy0tUmdOYUlDN0RTN1R5VXlKZDBMSzQ5ckhPZWQ3ZTFIcWp2Tnhlam5sS2pKNC1SQm1qUWJYTkZ6MVV0SFZDcGtvUjhFTUrSAXRBVV95cUxOY1pzdFlEYS1ia1ZfbjdxejlwZDNBUl81T0JVQjVFbnd3OUEtR1BHYWx5a0g1ZTVDMnFNLWR6c0pIRzFpN1hoajVmMVBCLVlPVkRQMEtOQTM4WURSSGFUVjNVdmlFWENGM19Rdk5aU0lzeXhUag?oc=5",
-        "tag": "삼성 HBM·M&A"
-      },
-      {
-        "title": "삼성전자 \"내년 반도체 실적 올해 웃돌 것\" … HBM 공급은 이미 완판",
-        "source": "뉴데일리 경제",
-        "pubDate": "Thu, 29 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5pS0ZVYkdHakk5bnNjMEVIM1p5Q3BiWTRTdHgtX1I2LVdXWGdiSUxnR0R0QVlzQTlCOERkbmpwU1pKWWtvN0J6cExHR01jWklIRmI3ZnBkSVA4M2Rhems4b3J1Z1dKTl9ueVBXV1lValZzN1hhdEkxTEtGSdIBgAFBVV95cUxNTDZHRERGZ1Q0OHRMZ2xqWlFnMjY1ZHVCR25iX2xSRnJLbDlrTmhkaFUtX0JiNmcyUF9lVHBvODJhYkg2YTNrdFlGZGZ3VGZEenBuZzdKR3JHSUk3ZS1YajQtMG1IRzc4RXlNWC1pZVFmODJha1p0YmpoWUpjbkV4cA?oc=5",
-        "tag": "삼성 HBM·M&A"
-      },
-      {
-        "title": "한미반도체, 삼성과 '해빙 모드'…삼성전자 거래 재개 신호탄 되나",
-        "source": "www.ebn.co.kr",
-        "pubDate": "Wed, 07 Oct 2026",
-        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBrNHBZMzJDcXVEYjlVWWp4ZGFBY0E0OV9SSlJtM0RoelQxcnYtRS1XbTAzSWhaMk4wam9VRjdfNXcyaUMyWm5VREZvX2FiUEZDQkJKUVJ4WmlhZDB6Wm5MdTlRTmViZmlP?oc=5",
-        "tag": "삼성 HBM·M&A"
-      },
-      {
-        "title": "D램‧낸드 현물가는 하락하는데 계약가는 상승…“현물가와 계약가 간 괴리는 20% 이상”",
-        "source": "더퍼블릭",
-        "pubDate": "Fri, 20 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE0xeGwyamsxci1hbE9kd0xYb1NaZ1hESTQ0Uk1iMkFSUjBuMmlMWTVSckJqZXVjMDVaYzBMSy1yMXFOemlkLU9xOTVkM3pYa2tYdzhndFlzenFnX2tYV3o3NEpoamlGb0tPLXY40gFvQVVfeXFMTm5nQy1vanA1UG9DU2liT2huWmUyRWtsTDNUT19PUVFoUzAtallJamQ4N1hMeUpRTktwV3g5Zl9KWHRvcVhzOTJGT3hSb0M4Vy1LUW9Da0pVc0E4RXR6SnFya0JHcXBDeXlieTRXMU53?oc=5",
-        "tag": "메모리 업황"
-      },
-      {
-        "title": "“삼성전자·SK하이닉스 과도하게 빠졌다”…KB증권 “내년 D램 가격 40% 상승”",
-        "source": "디지털데일리",
-        "pubDate": "Fri, 20 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9rdWxibVh2aDBCTXk5ZFhmaW5IT1hUOUJGMFFsTFFQRnEzTTMzckNzLTNadENXRVlza2ZOYTkzcHJ6U3VKcnVMbzRLWTRRUXpHTFZIdlp6ZVhnX3JXMzlORVNJVWI?oc=5",
-        "tag": "메모리 업황"
-      },
-      {
-        "title": "HBM4 가격, 내년 2배 껑충…삼성·SK AI 메모리 사업 '청신호'",
-        "source": "지디넷코리아",
-        "pubDate": "Wed, 18 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE56ZjlNbjVQUElOSTJHNk1nclpnU3ZfMmcxUEdfSGhvTDNZMFV2dnZ0QWtBajhhZVdfMkJPWmVRMmc5SmRmR2ZqY1Y4SmY4SHRUOTlScXln?oc=5",
-        "tag": "메모리 업황"
+        "title": "[이슈플러스] 젠슨 황, 사임 사흘 만에 복귀 추진…실적 '분수령'",
+        "source": "DealSite경제TV",
+        "pubDate": "Mon, 16 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9MSmZJZVRSYzlHMFBjeHlfWUpHeW01amx6UDNXTGt4QUNvZGJPY1RBS1BFV2NpQ1JGOUZSM0p1bmVxamlJaEI5N3VZNFdWVnhpMmM4MEZR?oc=5",
+        "tag": "NVIDIA+1 수혜"
       }
     ],
     "stocks": {
       "005935.KS": [
         {
-          "title": "삼성전자 3분기 영업이익 99%가 반도체…30조 현금배당",
-          "source": "경향신문",
-          "pubDate": "Thu, 29 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBVbDJlcllEdkVQdmtMblZEdTRnREpZV1hsa2NMZG9jazNKbWlhTHpXZW1ST19vaGdJS3B0SGRZY1RnbHQtcHA5TkxPX2NUUGZkN2lCOVVDdjNnUdIBX0FVX3lxTE5rTVFHVHZ5RndEYzJGVnE4M2R5WFFZTzRJRXJ6ZkNsTUdVSWNnMW00NnV1eHVrazl2eEFjT2dzTWN5MFNTVGM5b29PLTdLOWVHVER3QXJyVEtKd1ozb2Fz?oc=5"
+          "title": "삼전닉스 주주환원 경쟁...삼성 역대급 ‘100조’·하이닉스 ‘50조’ 기대",
+          "source": "ESG경제",
+          "pubDate": "Thu, 06 Aug 2026",
+          "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE8tYV8yaGhZWk5kNVlNU1BncDVNd1VkOHlsRVJrMV8wZFlGMWJUM2NoQ1BRU0FfWjJaY284RUFUS3VfWHhHMl9US1VjdTJuSHRRb0VnTm1vSmhpSVFRY1U5NFpxTjNXX3M5d2hCUA?oc=5"
         },
         {
-          "title": "[반도체 전략 따라잡기] 삼성 배당 이벤트 오늘 끝 이제 ‘실적 경쟁’ 시작입니다",
-          "source": "SBS Biz",
-          "pubDate": "Mon, 28 Sep 2026",
-          "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB3Sk5iN0RRZUY5dGFFSXVIY3BZV2lZZmt3cnh3Y1l1MjFSYlZOa2luQWU4SUxGQ0ZfdUZuNk56Wk1jbkxRQjR4S0p1UnhFYXZIV2g00gFYQVVfeXFMTU9rdWpoQ0E3Q0pOcGtSZnB0aU8wcnltUW1MU2JjVzQxS1lUS1NDdWppMlhzOG5XdVN5Z3dQVE94b3JfV0pmN3l2SUZLNC05MzRKdHd6a1BaRQ?oc=5"
+          "title": "李 “기업가치 제고” 이틀만에…밸류업 공시 49개 쏟아져",
+          "source": "서울경제",
+          "pubDate": "Sun, 22 Mar 2026",
+          "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5vZzhSa3l6Z0dEa2tPUWlveW42UlVyRjhXbEVZNFUzY2Q3R2lOalFXQUZ4UEs3VDVXS2VmUk1qMkcxZHgwQmdDWnJaeUh4bkN4elHSAVNBVV95cUxNZG1ZMmVRc01MOFlwV05QVURvTUpURlQ5dGxvRVFNUHZCVi1sTTVIMUhWMUVILTkteWIxdU9kZjVfdVVZeTRNY2hyVFlTZHJkcmkyNA?oc=5"
         },
         {
-          "title": "삼성전자·SK하이닉스, 반도체로 사상 최대 실적··· 주주환원·투자 확대 '선순환'",
-          "source": "그린포스트코리아",
-          "pubDate": "Thu, 29 Jan 2026",
-          "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5oYUl2Z3BKaktTdUpKaTQtaUVmSU5OSE5nU0RkSWphTnlJeDM5V29YbGpIMklJR1RIS0RIM0xoVmdab201SjdNUFJGQkkwWDdiRDZPeFN5NllvNTNQLUFndVBFa0lJaFFQVnJtYnBZVDQ1VFVpV2fSAXpBVV95cUxNYm9rbWZnNmFxdGlVem4tQTZSYmI0ZUtPYmdiN3hiTVZobUsyTEJXTWFMLVNaNHF0Z01hczdya0w5YlNHR0FuUHpyaEMtcGZPanpKU0tsWDQzUHh4VHl1bjVnRE1vUm8xMXNMeE9jRldxR1FUWi0ybmR1Zw?oc=5"
+          "title": "주총 앞둔 삼성전자, 내년 역대급 배당 기대감 '고조'",
+          "source": "딜사이트",
+          "pubDate": "Fri, 13 Mar 2026",
+          "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAtLWpNRmdUUVlYd0UzVjB5bjZVVW1XNzRUZGJTOFlobFdBaF8ycDJRbG9lQ29ldURYUElEY3hhemxBTnF6eEFZMFg0c28tSTA?oc=5"
         }
       ],
       "005930.KS": [
         {
-          "title": "삼성, 반도체 부품서 AI DC 일괄 수주까지 계열사 ‘총동원령’",
-          "source": "브릿지경제",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFAzelBrR1RON1czZmtPdjNFV1lBWFZETDlsZi1YbEJ3ZFZuTHdBc3BRcGVCdVFjUlpRQWFiTU8tM0xVNjhMMHJJZk5oSzhJZURtYkNqZzhCWEpzZw?oc=5"
+          "title": "[금융트렌드] 삼성전자, 젠슨 황 퇴진 영향 어떨까",
+          "source": "핸드메이커",
+          "pubDate": "Fri, 20 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1yYmhKbVppd1J3TUxGRkJjOFl0M1dmS3NwZW1LdU92b0dGWkVSWEhTSWxNS0JfNV9hNGtmUmkxQnhtaDE0ejIwcVhpQzNxM0lyN2VkcGlHdVNmRmhiUURPWDFnYjZxM0XSAWtBVV95cUxPWmM0RXB3SUx3TjhiVXFaV1RZUDZoaHY0a0ZNSFJBeEIzMUp2M1hsOWE3TGpOSXpudG44QVlzOE9Vc2R1U2VGdU9tV0QtWlQ1bkVEaUpOYnJmQURmSjBOWW1yeE1fUFF3dkdaOA?oc=5"
         },
         {
-          "title": "삼성 2나노·모딘 인수 협상, 엔비디아 일극 체제에 던진 승부수",
-          "source": "경제투데이",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5iZ3ZVVnhiSE9vZlRLM1hadDVtLWZTenhTNVg4MXhXZThHLV9OMklpbk9YZG5KN0dfRklLWjd0dHZqUDJxSVB2ZE5HU2dzVm85YTVBTkJmaVY2enI2N3JBRURpazZOdVRvb2J30gFrQVVfeXFMTmJndlVWeGJIT29mVEszWFp0NW0tZlN6eFM1WDgxeFdlOEctX04ySWluT1hkbko3R19GSUtaN3R0dmpQMnFJUHZkTkdTZ3NWbzlhNUFOQmZpVjZ6cjY3ckFFRGlrNk51VG9vYnc?oc=5"
+          "title": "젠슨 황 떠난 엔비디아, 깐깐해진 지갑…삼성전자·SK하이닉스 ‘HBM 잭팟’ 제동 걸리나",
+          "source": "뉴스퀘스트",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1zUVJDd0ZSOHdQdHRXa0hraDJjTXhHUmc5OFJNZ3NLRFZxTmpFN05HcTFQSGJydzJEb2ZyLV9sWk43ZlQ3djNNQTlJby1YcVNzcVpRUnZTbWI2ZnQxVE9qWXFNUHVrU1pGNUVtaDY1aw?oc=5"
         },
         {
-          "title": "AI 반도체 ‘열과의 전쟁’…칩부터 데이터센터까지",
-          "source": "IT조선",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9IS3QwMWo5YzFnWVpmYVVMdTctM0xWc2l3RnZiNkpPSFVWdy0tUmdOYUlDN0RTN1R5VXlKZDBMSzQ5ckhPZWQ3ZTFIcWp2Tnhlam5sS2pKNC1SQm1qUWJYTkZ6MVV0SFZDcGtvUjhFTUrSAXRBVV95cUxOY1pzdFlEYS1ia1ZfbjdxejlwZDNBUl81T0JVQjVFbnd3OUEtR1BHYWx5a0g1ZTVDMnFNLWR6c0pIRzFpN1hoajVmMVBCLVlPVkRQMEtOQTM4WURSSGFUVjNVdmlFWENGM19Rdk5aU0lzeXhUag?oc=5"
+          "title": "엔비디아 메모리 장기 계약 확대…젠슨 황 공백에도 삼성·SK, HBM 기대감",
+          "source": "아시아투데이",
+          "pubDate": "Wed, 18 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LVmVKbnNLWUpId3o3T1hPaTExYWdBOHhSV0p3NXcxaFdpQktjZ1VYQlpyN1ZMa2xnRTlDc0JpbWlLQzJzYkF2cU15bmtqTUhCeXlhR3lfLUtDS3g3WlNWajV5ay1PMzdiZm9PbWpn?oc=5"
         }
       ],
       "353200.KS": [
@@ -404,10 +442,10 @@
           "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE00TEY5LWg5Sk03eTcxSnc1OEY0aTluLVFpMl8wLVJINHJ0Z1p2M3ZmZ3hRNG1HalZWRDdlaVJ5RnhBQjlpOFE?oc=5"
         },
         {
-          "title": "원익IPS, 메모리 세대 전환 빅사이클 '수혜'…\"4분기 반도체 분기 최대 매출 주목\"",
-          "source": "프라임경제",
-          "pubDate": "Mon, 09 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHWGlxZUNzRDM4em9zODRyNVdIbklzOVhLdlZ6OXIwbEVqTW1wX3Y3enUwWkhoWUpHM1BDSW80YXgwUzg4RE12ejVOVko1QnhSZGpuNTNRLTd5MzFWUVJGNmZqOWlSck9jNThwcEgtUV9KZw?oc=5"
+          "title": "글로벌 AI 투자 훈풍에… 반도체 장비업계 3분기 호실적",
+          "source": "대한경제",
+          "pubDate": "Wed, 11 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBqN2pCNDZpcmk4NWxqOWxBeG9DRXVsUUk3LTZDTml4VGFZZHB1aTBBcEZtMzNuU1ZYXzBrazI0ejc2MlhTR2ZTSUM4eEVWRjJvTFctdjViaDFnbTV3M1NHeXE1RWFtSDJuMExJMy1tblktSE0?oc=5"
         }
       ],
       "AMD": [
@@ -432,16 +470,16 @@
       ],
       "CLS": [
         {
-          "title": "Celestica: Time To Buy Again (Rating Upgrade) (NYSE:CLS)",
+          "title": "Celestica drops 15% amid broad tech selloff (CLS:NYSE)",
           "source": "Seeking Alpha",
-          "pubDate": "Thu, 19 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNODFzVENvbEdsS0xOd0lEbUNGLTBqVnNxUWpPekhabnpGbURzcnFoRVZzYkdEMlhIU3BPRkEtOEdUWU1TNFd6Q2Y5S19uY3ZtZFdRTEhQQlJmNlE3a2Q2LU1qZkZZYnU3dXR1WXpGeWU2bEE2MThvaHNJUGVjNG5xVXVR?oc=5"
+          "pubDate": "Fri, 20 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdlBwQWJOV0kwbnpwajJ6eDJVcWJLLTMyNnpSY29vcTZTLU45NHdfaGxmV0RNVGNOY3h3ZVpXMHV0TkxZM0hDVkVlMkVyNEtfQlpNNjF6cS1JVy1QMUJ3N2RTaTZrRW1JaUVUVENybnA1Zk1Eelc0akMyRXVPdHEwcUlfaG5Oc01lOE1nQi1JanQ0UQ?oc=5"
         },
         {
-          "title": "Celestica (CLS): Initiating a Stake Following the Summer AI Capex Pullback",
-          "source": "Yahoo Finance",
-          "pubDate": "Mon, 12 Oct 2026",
-          "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSWZtNEU3VTItUFJfMUY0cWZUTkYyYUdpMGtBU2NNQk9MN0Q4S0EzRjVWSjJYTHdYRV82M2ljcVhYQ2NDWnJDTmpON2xJMFFoa1o2dlAzanJYb1drZTNsbXFTV0pYTFRfNEFhT0YtYWh4dWZGUjlTREtxQ2M0QVhzX3FOejY2MG15Z1JENTR1ZS12QVNUeTFVR0w4RkpFQ1AtWGJaQkkwNA?oc=5"
+          "title": "Where Could Celestica Stock Be in 5 Years? What the New Outlook Means",
+          "source": "Yahoo! Finance Canada",
+          "pubDate": "Tue, 17 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOOEctd05aLXVZSllSSG1fN1dMN0N6UXpxODVxcnBKaWVsUENETW1LZG9ET2p5Z3kwMWxQUk1ua0lXWkZ1SGZLeFV0MWYyZXVVQ29GQkRnUWE2VTQwX2JjRGR4RnhpMlNiaVlCVlh4WXZHOGIxMHRDU1dFeDY1a1FOM1RZQU8?oc=5"
         },
         {
           "title": "Buy This Incredible Artificial Intelligence (AI) Stock Before It Soars 144% (Hint: It Will Outpace Nvidia’s Growth)",
