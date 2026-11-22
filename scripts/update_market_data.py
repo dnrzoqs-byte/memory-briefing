@@ -4,12 +4,13 @@ import re
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone, timedelta
 
 KST = timezone(timedelta(hours=9))
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json,*/*;q=0.8",
 }
 
@@ -75,7 +76,6 @@ def fetch_yahoo_rich(ticker):
         price = valid_pairs[-1][1]
 
     if valid_pairs:
-        # Ensure latest close reflects regularMarketPrice if same day
         valid_pairs[-1] = (valid_pairs[-1][0], price)
 
     if len(valid_pairs) >= 2:
@@ -114,15 +114,17 @@ def fetch_yahoo_rich(ticker):
 
 
 def fetch_google_news_rss(query, hl="ko", gl="KR", ceid="KR:ko", max_items=3):
-    encoded_q = urllib.parse.quote(query)
+    """Fetch strictly recent (when:7d) news from Google News RSS sorted by latest publication date."""
+    q_with_time = f"{query} when:7d"
+    encoded_q = urllib.parse.quote(q_with_time)
     url = f"https://news.google.com/rss/search?q={encoded_q}&hl={hl}&gl={gl}&ceid={ceid}"
     req = urllib.request.Request(url, headers=HEADERS)
-    items = []
+    raw_items = []
     try:
         with urllib.request.urlopen(req, timeout=8) as resp:
             xml_data = resp.read()
         root = ET.fromstring(xml_data)
-        for item in root.findall("./channel/item")[:max_items]:
+        for item in root.findall("./channel/item"):
             title = item.findtext("title", "")
             link = item.findtext("link", "")
             pub_date = item.findtext("pubDate", "")
@@ -130,16 +132,29 @@ def fetch_google_news_rss(query, hl="ko", gl="KR", ceid="KR:ko", max_items=3):
             source = source_el.text if source_el is not None else "뉴스"
             if " - " in title:
                 title = title.rsplit(" - ", 1)[0].strip()
-            short_date = pub_date[:16] if pub_date else ""
-            items.append({
+            try:
+                dt = parsedate_to_datetime(pub_date)
+                ts = dt.timestamp()
+                short_date = dt.astimezone(KST).strftime("%m/%d %H:%M")
+            except Exception:
+                ts = 0
+                short_date = pub_date[:16] if pub_date else ""
+            raw_items.append({
                 "title": title,
                 "source": source,
                 "pubDate": short_date,
-                "link": link
+                "link": link,
+                "_ts": ts
             })
+        raw_items.sort(key=lambda x: x["_ts"], reverse=True)
     except Exception as e:
         print(f"[WARN] Google News RSS failed for {query}: {e}")
-    return items
+
+    cleaned = []
+    for x in raw_items[:max_items]:
+        x.pop("_ts", None)
+        cleaned.append(x)
+    return cleaned
 
 
 def fetch_all_live_news():
@@ -149,9 +164,9 @@ def fetch_all_live_news():
         "stocks": {}
     }
     sector_queries = [
-        ("엔비디아 실적 삼성전자 반도체", "엔비디아 실적·AI"),
-        ("코스피 5000 금융당국 증시 안정 밸류업", "국내증시 대책"),
-        ("젠슨황 사임 엔비디아 플러스 원 삼성전자", "NVIDIA+1 수혜"),
+        ("코스피 삼성전자 반도체", "국내증시·반도체"),
+        ("엔비디아 삼성전자 HBM", "AI·HBM 공급망"),
+        ("필라델피아 반도체 나스닥", "미국 기술주"),
     ]
     seen_titles = set()
     for q, tag in sector_queries:
@@ -162,12 +177,12 @@ def fetch_all_live_news():
                 news_bundle["sector"].append(item)
 
     stock_queries = {
-        "005935.KS": ("삼성전자 배당 밸류업 HBM", "ko", "KR", "KR:ko"),
-        "005930.KS": ("삼성전자 반도체 엔비디아 HBM", "ko", "KR", "KR:ko"),
+        "005935.KS": ("삼성전자 주가 배당 반도체", "ko", "KR", "KR:ko"),
+        "005930.KS": ("삼성전자 반도체 HBM 주가", "ko", "KR", "KR:ko"),
         "353200.KS": ("대덕전자 기판 반도체", "ko", "KR", "KR:ko"),
-        "240810.KQ": ("원익IPS 반도체 영업이익", "ko", "KR", "KR:ko"),
-        "AMD": ("AMD AI GPU Nvidia MI450", "en-US", "US", "US:en"),
-        "CLS": ("Celestica CLS AI stock", "en-US", "US", "US:en"),
+        "240810.KQ": ("원익IPS 반도체 장비", "ko", "KR", "KR:ko"),
+        "AMD": ("AMD stock AI GPU", "en-US", "US", "US:en"),
+        "CLS": ("Celestica CLS stock AI", "en-US", "US", "US:en"),
     }
     for ticker, (q, hl, gl, ceid) in stock_queries.items():
         items = fetch_google_news_rss(q, hl=hl, gl=gl, ceid=ceid, max_items=3)
@@ -193,6 +208,26 @@ def compute_market_status_label(now_kst):
         return f"{date_prefix} 국내 장마감 · 글로벌 시세 및 실시간 뉴스 반영"
     else:
         return f"{date_prefix} {now_kst.strftime('%H:%M')} 미국장 마감 직후 · 국내 개장 전 실시간"
+
+
+def inject_snapshot_into_index_html(base_dir, data):
+    """Automatically inject the latest JSON payload directly into index.html so even static/cached loads have the freshest data."""
+    html_path = os.path.join(base_dir, "index.html")
+    if not os.path.exists(html_path):
+        return
+    try:
+        with open(html_path, "r", encoding="utf-8") as f:
+            html = f.read()
+        marker_pattern = r"/\*__EMBEDDED_LIVE_PAYLOAD_START__\*/.*?/\*__EMBEDDED_LIVE_PAYLOAD_END__\*/"
+        if re.search(marker_pattern, html, re.S):
+            compact_json = json.dumps(data, ensure_ascii=False)
+            replacement = f"/*__EMBEDDED_LIVE_PAYLOAD_START__*/window.__INITIAL_BRIEFING_PAYLOAD__ = {compact_json};/*__EMBEDDED_LIVE_PAYLOAD_END__*/"
+            new_html = re.sub(marker_pattern, lambda _: replacement, html, flags=re.S)
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(new_html)
+            print("✅ Injected latest live snapshot directly into index.html")
+    except Exception as e:
+        print(f"[WARN] Failed to inject snapshot into index.html: {e}")
 
 
 def update_data():
@@ -267,13 +302,15 @@ def update_data():
     data["macro"].setdefault("kr_base", 3.00)
     data["macro"].setdefault("kr_10y", 3.85)
 
-    # 4. Live News RSS Feeds
+    # 4. Live News RSS Feeds (strictly recent 7d sorted newest first)
     live_news = fetch_all_live_news()
     data["live_news"] = live_news
 
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+    inject_snapshot_into_index_html(base_dir, data)
 
     print(f"✅ Successfully updated {json_path} at {data['updated_at']} (KOSPI: {data['macro'].get('kospi')}, VIX: {data['macro'].get('vix')})")
     return data
