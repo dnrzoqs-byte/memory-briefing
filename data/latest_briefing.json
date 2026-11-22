@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 22:45 KST",
+  "updated_at": "2026-11-22 23:03 KST",
   "market_date": "2026.11.22(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram": {
     "ddr4_16g": {
@@ -322,7 +322,7 @@
   },
   "usdkrw": 1337.8,
   "live_news": {
-    "updated_at": "2026-11-22 22:46 KST",
+    "updated_at": "2026-11-22 23:03 KST",
     "sector": [
       {
         "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
@@ -442,13 +442,32 @@
           "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBZNVN2MEZWdHZmLVVidktWcWxGX0lDajlQekk2XzY2QnJvckMteHNDQ0k3a1RiMUxjUzJ2cWZ6UEp4SW9RRUNISU9OYlkxckJUX0h6OE5ERm04cmNBbGxPNE16UWVHYm1PUTFHSkFlRmtaOFnSAXdBVV95cUxQRkU2NW92aU5YUTIwQWloaHR5YXI4d3Bha2Zpa2FqS2xCcVlXOFQ5aVFjbXN0amhxTzkzSEdYWGVXTktLemFQZlZ5dzlZaV9wV211Z1RRbk8zVzBaZzlaQ0NDay1xbU5KYjNBbk96aVBiYkFlaS1Rdw?oc=5"
         },
         {
-          "title": "[주간 코스닥 기관] 레인보우로보틱스 집중 매수…심텍·주성엔지니어링은 팔았다",
-          "source": "핀포인트뉴스",
-          "pubDate": "11/21 07:40",
-          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9yblh6R1FjdU81MTBzZlFLVThEVzJUelFMZEQwTnlVVVA5RTJMcDBZQ2cteFBqTVpWTG9pR0stSzFpVE9HSEw1ekVHQTA2WHRTNnViTzk4TzB2SU9EMDA2M1F0cHo5aFVvcDNHVHRoelNWYUZDUFBz0gF3QVVfeXFMT3JuWHpHUWN1TzUxMHNmUUtVOERXMlR6UUxkRDBOeVVVUDlFMkxwMFlDZy14UGpNWlZMb2lHSy1LMWlUT0dITDV6RUdBMDZYdFM2dWJPOThPMHZJT0QwMDYzUXRwejloVW9wM0dUdGh6U1ZhRkNQUHM?oc=5"
+          "title": "[관심주] 앤트로픽 상장 훈풍도 못 막았다… AMD 中 제재 의혹에 이오테크닉스·원익IPS 등 줄줄이 급락",
+          "source": "CBC뉴스",
+          "pubDate": "11/21 00:30",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE95M1kxNjRXNnBTYmprclU3WFBRYzlENG9xZm5kUFBLMXVLZEljaFhMUW5MU0g1c1NLMElaZV9TUkVsMTJjckhDN2JDR2ZFaTkwZ1IxbHROamNiMThsT081eDJyMm54d2lV?oc=5"
         }
       ],
-      "AMD": [],
+      "AMD": [
+        {
+          "title": "Billionaire David Tepper Just Made a Massive AI Chip Rotation — Will It Pay Off?",
+          "source": "The Motley Fool",
+          "pubDate": "11/22 12:00",
+          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRkFiOUhWZENjaXdGNXRnc1hvR21YS0VvNzVwN3dSd1hZNndVV25PcDIzd0ZiaDU3cENkc09QTFJacGdmamtrbGdqdURNRTFmQlpMb1ZoT3lCbnpuNjN2VS0weXAwcnVyWEQzeGxFdlhRLW81VXdSLTlXbEExN2RSUkhlejNzSTJwZDVLNlRkMklJOG5HNFFMYk01d1d1NTVDQXpkYVYySTZaZGF3cGhRUGgxM3c4a0NNRXdpTw?oc=5"
+        },
+        {
+          "title": "AMD Stock Forecast: $1T Milestone Meets Helios Ramp as $617.80 Breakout Nears",
+          "source": "TradingKey",
+          "pubDate": "11/22 09:38",
+          "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQTVYS3l0V1p6eUhpYVVJNHpndVNYZEJUdDIxUm9FSFUzbHh5aHRPTF9YczhRMWRXSnBSY3U5a2NnZEZ6dHo2b1Mwd19MMXNyOEhsZF9jVTlfOEtNWkRydmZ4WDBybnB6aXY0aDRRaGF5QUQydXBJWGRDVU9FUzVRcmktS2gzdllsMFY1S0tYb0FteXlxOENoRVNLTkUwNklLdWxKSV81NWNQRnFWdmJVQTRn?oc=5"
+        },
+        {
+          "title": "Cathie Wood Doubles Down On ‘Highest Conviction Names’ Nvidia, Tesla and AMD As Cyclical Tech Stocks Get ‘Slaughtered’ Amid Market Pullback",
+          "source": "Yahoo Finance",
+          "pubDate": "11/22 04:30",
+          "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNX2V0Qk5IVnlEWUhvV2tEYXB1cm9EUk9XVjJXdU96X3NFczNJaVRGTG8zemc1eWFjYXdUS1VzUWNqd0tQN3l3TGZwbl9ZS2I2blVlMUprVHBBWndWdF9pQ2R1eWFGZlN0dTFQUXJKUUQ3Y2xHbWREOUhtWHBMR25wX0lkakZGY3RYLXhwYjNrdklveHlOMXpod3dMaGdwdw?oc=5"
+        }
+      ],
       "CLS": [
         {
           "title": "Celestica Inc. (CLS) Stock Price, News, Quote & History",
