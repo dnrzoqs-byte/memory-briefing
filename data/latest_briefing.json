@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 23:39 KST",
+  "updated_at": "2026-11-22 23:50 KST",
   "market_date": "2026.11.22(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram": {
     "ddr4_16g": {
@@ -322,7 +322,7 @@
   },
   "usdkrw": 1346.1,
   "live_news": {
-    "updated_at": "2026-11-22 23:40 KST",
+    "updated_at": "2026-11-22 23:50 KST",
     "sector": [
       {
         "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
@@ -368,7 +368,26 @@
       }
     ],
     "stocks": {
-      "005935.KS": [],
+      "005935.KS": [
+        {
+          "title": "돈 잔치 벌어졌다…삼성전자·SK하이닉스 주주들 웃을 소식",
+          "source": "위키트리",
+          "pubDate": "11/22 20:15",
+          "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53dlkyM3NuYjhCLU1QRkJpY2R5UGR4cFVDNW5sYldkSEtkbU5tbi1HNTdkUWI2czFWcWlBMldiQ093bGVYRmc3SmVqTEw4ZE5ZeVVjSTBR?oc=5"
+        },
+        {
+          "title": "코스피 5,000선 붕괴...반등 전망 엇갈려, 삼성전자 배당금 변수",
+          "source": "팩트공감",
+          "pubDate": "11/22 16:03",
+          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE94SjJuMW93b213VW9kb25LWWhfNjdzdmd6TzAxaUZvcHBzSm9UTzlFRXAxbV9aMVJ2TDRkNHV5NTlBZ2lJNGZMY3EzOFFDbllja29Ta2cwRDA4bXpzNEkwajdmZzFFbTNT?oc=5"
+        },
+        {
+          "title": "코스피 4% 이상 급등 속 일본·한국 증시 반등…SK하이닉스·소프트뱅크 6% 급등, 키옥시아 8% 가까이 급등",
+          "source": "TradingKey",
+          "pubDate": "11/22 15:09",
+          "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNNzJucS1kVXZxSkRJcnZ5bGx6S1llX1QwZDhsemxTTVhXNlFaZUdUS2s1QUNFRUJuYXFlaWFnOFpYOURDUUJiWVBGX1FMMy02WWJMcENQT3VDTWl5Vk41RVlodDdzaFFtOGwzeU9GRnU0X2lPZm53RkJHZWNUT2ozQUw0YnR1bTJHNi1La1JrRmNQU3F4blFfTXJXVlpXNWtkcHJCWV8zNnBBb1c2MG9mMXNfUXBuamJzMXF4b0tXV1UwcDhpeDJnRkdHMkpLdlFyQ2o4c2tid3l0NkdEMktTeXNxdw?oc=5"
+        }
+      ],
       "005930.KS": [
         {
           "title": "HBM 슈퍼사이클 기대 꺾였나…삼성전자부터 테크윙까지 매도세 확산 '경계령'",
