@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-22 23:50 KST",
-  "market_date": "2026.11.22(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
+  "updated_at": "2026-11-23 00:04 KST",
+  "market_date": "2026.11.23(월) 00:04 미국 정규장 실시간 거래중",
   "dram": {
     "ddr4_16g": {
       "price": 78.62,
@@ -322,7 +322,7 @@
   },
   "usdkrw": 1346.1,
   "live_news": {
-    "updated_at": "2026-11-22 23:50 KST",
+    "updated_at": "2026-11-23 00:04 KST",
     "sector": [
       {
         "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
@@ -450,16 +450,16 @@
       ],
       "AMD": [
         {
+          "title": "Nvidia stock hits decade-low valuation despite strong AI demand and earnings growth | Hindustan Times",
+          "source": "Hindustan Times",
+          "pubDate": "11/22 19:47",
+          "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOYnM4SFlSalgtSm5rME55YzBYUFEzbjYtLXUyQV9SY09PZFhmVEc2MWVJNC1VdU1qeGRxaUk3ZmVJdjFDX3JWMFlUVnVsVDFEaDU0bEVzMWVONXpWZHNQemtUZUs5UzNHQVhtMUdrTlQ4d09kWmZuS1kxTmNQZzF4WlRGREhPQWhVNU9XSVZUdzFkb3RiNTJUeHBXQ0U0N3N4aHJTeFlzeW83eV9RUjl2QnlwMXNQNHVzRy1ZV3M2NzVyTWZlc21hSC0tWkFGMXE5VWtnbEFDWkRfb0JRWGE2aUZjMi1ROFpweXfSAe8BQVVfeXFMTy1EUWExRUNyajlEN3c5NmhURU5LX0xwalNWY2RlUUxITzh4eVJvN3ZpckFjQ0JSOWJuTkhBSW9ySVRwX3pTaURLNWRFcmdtRVpuTFVxd2VDeERfQUNoeG5vWGV0TzVSMTcxR1g3ci1Zc25VOHBWQU1vQlc2MDluT3VjeU8zUlFsbU1TU0pNRzBlLU1RTURLYXNpX29KRkRJR3JIOGp4Y05mbkJRWFU5U2xFM0h0V3dSS3pRbEpmRTFDdlJfWXJGcmNKVXNpMDkwUE9hSGVQeE9zY2hTbnQ5aXRwSWQtYmhnZ1JhTEw1SVU?oc=5"
+        },
+        {
           "title": "Billionaire David Tepper Just Made a Massive AI Chip Rotation — Will It Pay Off?",
           "source": "The Motley Fool",
           "pubDate": "11/22 12:00",
           "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRkFiOUhWZENjaXdGNXRnc1hvR21YS0VvNzVwN3dSd1hZNndVV25PcDIzd0ZiaDU3cENkc09QTFJacGdmamtrbGdqdURNRTFmQlpMb1ZoT3lCbnpuNjN2VS0weXAwcnVyWEQzeGxFdlhRLW81VXdSLTlXbEExN2RSUkhlejNzSTJwZDVLNlRkMklJOG5HNFFMYk01d1d1NTVDQXpkYVYySTZaZGF3cGhRUGgxM3c4a0NNRXdpTw?oc=5"
-        },
-        {
-          "title": "AMD Stock Forecast: $1T Milestone Meets Helios Ramp as $617.80 Breakout Nears",
-          "source": "TradingKey",
-          "pubDate": "11/22 09:38",
-          "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQTVYS3l0V1p6eUhpYVVJNHpndVNYZEJUdDIxUm9FSFUzbHh5aHRPTF9YczhRMWRXSnBSY3U5a2NnZEZ6dHo2b1Mwd19MMXNyOEhsZF9jVTlfOEtNWkRydmZ4WDBybnB6aXY0aDRRaGF5QUQydXBJWGRDVU9FUzVRcmktS2gzdllsMFY1S0tYb0FteXlxOENoRVNLTkUwNklLdWxKSV81NWNQRnFWdmJVQTRn?oc=5"
         },
         {
           "title": "Cathie Wood Doubles Down On ‘Highest Conviction Names’ Nvidia, Tesla and AMD As Cyclical Tech Stocks Get ‘Slaughtered’ Amid Market Pullback",
@@ -512,6 +512,6 @@
   ],
   "slot": "noon",
   "slot_label": "12:00 정오",
-  "header": "☀️ [11/22 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑",
-  "text_message": "☀️ [11/22 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑\n\n🚨 1. 글로벌·국내 실시간 시장 판독\n• 코스피: 4,869.96 (-5.21%) | VIX 공포지수: 35.89\n• 필라델피아 반도체(SOX): 8,408.59 (-10.73%)\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41\n• 원/달러 환율: 1,346.1원 (지수 변동성 대비 환율 안정)\n\n💾 2. 메모리 실물 가격 팩트 (DRAMeXchange)\n• 서버용 DDR5 16Gb: $60.27 (+0.06%) / 16GB 모듈 $243.33\n• 일반 DDR4 16Gb: $78.62 (-0.16 %) / 4Q 서버 DRAM 계약가 +10~15% 상승 확정\n\n🎯 3. 보유 6종목 실시간 시세 & 10년 밸류 밴드 위치\n★ 삼전우(144,300원): 본주 대비 21.2% 할인 · 세전 배당 12.75%\n  └ 실전바닥 14.0~15.5만 / 1차적정 20.5~21.5만(+45.5%)\n🟢 삼성전자(183,100원): PBR 1.0배 진바닥 구간 · 3Q 영업이익 107.4조\n  └ 실전바닥 18.0~19.0만 / 1차적정 25.5~27.5만(+44.7%)\n🔴 대덕전자(73,900원): 3Q 영업이익 879억(OPM 21%) · 6,150억 FC-BGA 증설\n  └ 실전바닥 7.2~8.0만 / 1차적정 12.5~14.0만(+78.6%)\n📊 원익IPS(65,600원): 3Q 영업이익 667억(+142% YoY) · 과매도 바닥 구간\n  └ 실전바닥 6.3~7.0만 / 1차적정 10.5~11.5만(+67.7%)\n🇺🇸 셀레스티카($201.80): 27년 EPS $21.5 가이던스 기준 선행 PER 9.4배\n  └ 실전바닥 $198~$215 / 1차적정 $330~$360(+71.0%)\n🇺🇸 AMD($424.39): 빅테크 GPU 다변화(MI450·Helios) 핵심 수혜\n  └ 실전바닥 $410~$445 / 1차적정 $540~$560(+29.6%)"
+  "header": "☀️ [11/23 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑",
+  "text_message": "☀️ [11/23 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑\n\n🚨 1. 글로벌·국내 실시간 시장 판독\n• 코스피: 4,869.96 (-5.21%) | VIX 공포지수: 35.89\n• 필라델피아 반도체(SOX): 8,408.59 (-10.73%)\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41\n• 원/달러 환율: 1,346.1원 (지수 변동성 대비 환율 안정)\n\n💾 2. 메모리 실물 가격 팩트 (DRAMeXchange)\n• 서버용 DDR5 16Gb: $60.27 (+0.06%) / 16GB 모듈 $243.33\n• 일반 DDR4 16Gb: $78.62 (-0.16 %) / 4Q 서버 DRAM 계약가 +10~15% 상승 확정\n\n🎯 3. 보유 6종목 실시간 시세 & 10년 밸류 밴드 위치\n★ 삼전우(144,300원): 본주 대비 21.2% 할인 · 세전 배당 12.75%\n  └ 실전바닥 14.0~15.5만 / 1차적정 20.5~21.5만(+45.5%)\n🟢 삼성전자(183,100원): PBR 1.0배 진바닥 구간 · 3Q 영업이익 107.4조\n  └ 실전바닥 18.0~19.0만 / 1차적정 25.5~27.5만(+44.7%)\n🔴 대덕전자(73,900원): 3Q 영업이익 879억(OPM 21%) · 6,150억 FC-BGA 증설\n  └ 실전바닥 7.2~8.0만 / 1차적정 12.5~14.0만(+78.6%)\n📊 원익IPS(65,600원): 3Q 영업이익 667억(+142% YoY) · 과매도 바닥 구간\n  └ 실전바닥 6.3~7.0만 / 1차적정 10.5~11.5만(+67.7%)\n🇺🇸 셀레스티카($201.80): 27년 EPS $21.5 가이던스 기준 선행 PER 9.4배\n  └ 실전바닥 $198~$215 / 1차적정 $330~$360(+71.0%)\n🇺🇸 AMD($424.39): 빅테크 GPU 다변화(MI450·Helios) 핵심 수혜\n  └ 실전바닥 $410~$445 / 1차적정 $540~$560(+29.6%)"
 }
