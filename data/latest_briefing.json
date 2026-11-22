@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23 00:24 KST",
-  "market_date": "2026.11.23(월) 00:24 미국 정규장 실시간 거래중",
+  "updated_at": "2026-11-23 03:19 KST",
+  "market_date": "2026.11.23(월) 03:19 미국 정규장 실시간 거래중",
   "dram": {
     "ddr4_16g": {
       "price": 78.62,
@@ -26,7 +26,7 @@
       "change_pct": -8.38,
       "week_change_pct": -10.54,
       "high52w": 243500,
-      "low52w": 72600,
+      "low52w": 122655,
       "recent_dates": [
         "11/16",
         "11/17",
@@ -48,7 +48,7 @@
       "change_pct": -7.01,
       "week_change_pct": -6.96,
       "high52w": 374500,
-      "low52w": 96200,
+      "low52w": 155635,
       "recent_dates": [
         "11/16",
         "11/17",
@@ -70,7 +70,7 @@
       "change_pct": -12.85,
       "week_change_pct": -10.53,
       "high52w": 198000,
-      "low52w": 41550,
+      "low52w": 62815,
       "recent_dates": [
         "11/16",
         "11/17",
@@ -92,7 +92,7 @@
       "change_pct": -14.47,
       "week_change_pct": -6.42,
       "high52w": 187800,
-      "low52w": 55400,
+      "low52w": 55760,
       "recent_dates": [
         "11/16",
         "11/17",
@@ -202,7 +202,7 @@
     "us2y": 4.31,
     "tlt_price": 81.45,
     "wti_oil": 83.41,
-    "usdkrw": 1346.1,
+    "usdkrw": 1346.0,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_oil_change_pct": 0.24,
@@ -228,13 +228,13 @@
       "11/19",
       "11/20"
     ],
-    "usdkrw_change_pct": 0.85,
+    "usdkrw_change_pct": 0.84,
     "usdkrw_recent": [
       1335.67,
       1333.01,
       1330.4,
       1334.79,
-      1346.13
+      1346.04
     ],
     "tlt_price_change_pct": 1.37,
     "tlt_price_recent": [
@@ -320,9 +320,9 @@
       "11/20"
     ]
   },
-  "usdkrw": 1346.1,
+  "usdkrw": 1346.0,
   "live_news": {
-    "updated_at": "2026-11-23 00:25 KST",
+    "updated_at": "2026-11-23 03:19 KST",
     "sector": [
       {
         "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
@@ -353,17 +353,17 @@
         "tag": "AI·HBM 공급망"
       },
       {
-        "title": "한국 증시 블랙먼데이 공포 확산…코스피 야간선물도 7% 급락",
-        "source": "ABC뉴스",
-        "pubDate": "11/22 18:20",
-        "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBFaFYtUEFXcFpYN0FHWXluRl9kNGRTakZwV3Fwc29UelowaFFjeld6MGZ0TXduRkJGWE5ER3NfMWhGQ2dFOUJfRkU3bHFMNEpuZGwxNlJrM0szb2lqSGF3VnJvOUVmMUnSAWdBVV95cUxQRWhWLVBBV3BaWDdBR1l5bkZfZDRkU2pGcFdxcHNvVHpaMGhRY3pXejBmdE13bkZCRlhOREdzXzFoRkNnRTlCX0ZFN2xxTDRKbmRsMTZSazNLM29pakhhd1ZybzlFZjFJ?oc=5",
+        "title": "[시황발자국] 11월 22일(일) 주말 긴급 시황 : 엔비디아 -14% 쇼크에 나스닥 -5.28% '검은 금요일'…월요일 국내 증시 핵심 변수와 베테랑의 대응 기준선",
+        "source": "네이버 프리미엄콘텐츠",
+        "pubDate": "11/22 15:31",
+        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOVUYzXzhGVE1WSlVkQjZYSWQ4TVBBVWE0bm9UclRkdFRIMi1pM3I5bDlFYWxNUVN1RFJ3Q1RJMUY4cDFGVmN5M2FDdElCVDZwREhraFJSNFJqUE42Z09BMVlpdUdXMUNGa0IwdFdPXzVjRWdjeFdSa3F1RFM3LTg1aDRCci1FXzFh?oc=5",
         "tag": "미국 기술주"
       },
       {
-        "title": "한미 증시 동반 급락 반복…추가 하락과 반등 가른 변수는? - 머니투데이",
-        "source": "머니투데이",
-        "pubDate": "11/22 16:49",
-        "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1CbjRhVXF2Q1JZR3J0QldhSGpyaGpNbjJJQTB3aVFuekI4VkJwbEVqdDJia294dHpzV2VXOUxVWkg2aDhXUmN4dmhMOTVjUGg3ZzdpeWpJWENsMlpvaThBN2dTc3hHOUEteWw1bEVB0gFuQVVfeXFMTUJuNGFVcXZDUllHcnRCV2FIanJoak1uMklBMHdpUW56QjhWQnBsRWp0MmJrb3h0enNXZVc5TFVaSDZoOFdSY3h2aEw5NWNQaDdnN2l5aklYQ2wyWm9pOEE3Z1NzeEc5QS15bDVsRUE?oc=5",
+        "title": "코스피 5000 깨진 뒤 나스닥도 5% 급락···월요일 변수는 외국인 수급",
+        "source": "여성경제신문",
+        "pubDate": "11/22 13:04",
+        "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9yRXFqdnlsR3JkNDdYNmVWQi1oQlc0ZnJMdmdsZzFrdmhJSG1uVkdrY3R3ZF93SjI1YUpna2JPSG9HeG5jUllHb2Z0MU5scGFERlZ5emhER2FraDkxQUlycDctUXRvLXhEd0JkTklfaVlzRko2MTZJ0gF3QVVfeXFMT3JFcWp2eWxHcmQ0N1g2ZVZCLWhCVzRmckx2Z2xnMWt2aElIbW5WR2tjdHdkX3dKMjVhSmdrYk9Ib0d4bmNSWUdvZnQxTmxwYURGVnl6aERHYWtoOTFBSXJwNy1RdG8teER3QmROSV9pWXNGSjYxNkk?oc=5",
         "tag": "미국 기술주"
       }
     ],
@@ -402,10 +402,10 @@
           "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1yUjNwMWZJQU1Jd1hKMGxBQzdTUFp5dDBtSWFCUFRtYVBvd2otUDgtY2JXdm02M3o1cEdQYjhhZlEtbDNabXc3TzZkZ3JfYU1HQkhyVEVfNlZZTVk4VEdfanI5bTlSZXRBYWIwMVczZ2F3NkNwUy1F?oc=5"
         },
         {
-          "title": "삼성 vs SK하이닉스: 어떤 AI 메모리 주식이 더 나은가? 어떻게 투자할 것인가?",
-          "source": "TradingKey",
-          "pubDate": "11/22 12:35",
-          "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNU2ZoTUFwMldMdlN0RWNCdkdJbERneXdhaXFFSHdxaDNtbjV5VVJKeUFaUXJIdm14Qm1JSzFLcjdYbEdfczZvWjZ4OWRlU2RFRkdTa2dwWmRncmhEa3VFSC1iNEJ2UkswQ1pDZElGQzczVWtOa3Z4QjFQZXByMlpHZUU4X0pPQlROLUFsaVk0SjhheUpZNFkwbE5SdDFJTEhRUDc0c2lXWWhucEk?oc=5"
+          "title": "“호황 끝” 공포에 주가 반토막…삼전닉스 3대 불안의 진실",
+          "source": "중앙일보",
+          "pubDate": "11/22 06:00",
+          "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBRZ3VnSnBrM3ZrN3RRS2xVR3hUTzcySmJYZDdEVHdlTklkaF9WejRGZ0VFMDYyLUk3ZS1ZR20ySnRKbXdoVXdyYW9fLUpFeF9xVFh1ZlRB?oc=5"
         }
       ],
       "353200.KS": [
@@ -450,6 +450,12 @@
       ],
       "AMD": [
         {
+          "title": "Prediction: These Will Be AMD’s and Nvidia’s Stock Prices by 2028",
+          "source": "Yahoo Finance",
+          "pubDate": "11/23 01:04",
+          "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPOUZUTmFNWGdrZXVXZkhPTzJhR3g1YXFmN3ZIbGxsWTd6WVZlZTdvOUx1ZVB2OFJiTXRmdFpwN1NET29tMWhCOWxxY29WeGJoSlNXXzVUaXRPOFFiOFlUcnpHTUxPd2VwTGYwU1hQMGZ1YkZvbko2V0RFU1hEVHpDbnVIMmg3Y1FSX2U3enNUNlB6ZHM1bmJxUTg4X1RIeGZK?oc=5"
+        },
+        {
           "title": "Billionaire David Tepper Just Made a Massive AI Chip Rotation — Will It Pay Off?",
           "source": "The Motley Fool",
           "pubDate": "11/22 12:00",
@@ -460,32 +466,26 @@
           "source": "TradingKey",
           "pubDate": "11/22 09:38",
           "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQTVYS3l0V1p6eUhpYVVJNHpndVNYZEJUdDIxUm9FSFUzbHh5aHRPTF9YczhRMWRXSnBSY3U5a2NnZEZ6dHo2b1Mwd19MMXNyOEhsZF9jVTlfOEtNWkRydmZ4WDBybnB6aXY0aDRRaGF5QUQydXBJWGRDVU9FUzVRcmktS2gzdllsMFY1S0tYb0FteXlxOENoRVNLTkUwNklLdWxKSV81NWNQRnFWdmJVQTRn?oc=5"
-        },
-        {
-          "title": "Cathie Wood Doubles Down On ‘Highest Conviction Names’ Nvidia, Tesla and AMD As Cyclical Tech Stocks Get ‘Slaughtered’ Amid Market Pullback",
-          "source": "Yahoo Finance",
-          "pubDate": "11/22 04:30",
-          "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNX2V0Qk5IVnlEWUhvV2tEYXB1cm9EUk9XVjJXdU96X3NFczNJaVRGTG8zemc1eWFjYXdUS1VzUWNqd0tQN3l3TGZwbl9ZS2I2blVlMUprVHBBWndWdF9pQ2R1eWFGZlN0dTFQUXJKUUQ3Y2xHbWREOUhtWHBMR25wX0lkakZGY3RYLXhwYjNrdklveHlOMXpod3dMaGdwdw?oc=5"
         }
       ],
       "CLS": [
         {
-          "title": "Celestica Inc. (CLS) Stock Price, News, Quote & History",
-          "source": "Yahoo! Finance Canada",
-          "pubDate": "11/22 17:01",
-          "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkbUkzUkpIeC0xRU5Hbk1INWxQaXZ5WkhJLU1rdmJtTDltVVFkQWxOYndQcXBUSkdHVUlKRFRZai12cVI3SHBhVHV5RUQ1MGlX?oc=5"
+          "title": "Celestica Stock Price Forecast. Should You Buy CLS.TO?",
+          "source": "StockInvest.us",
+          "pubDate": "11/21 08:35",
+          "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFA3SlI1RVJDNEx5UjFibkx3Y05yMDVaQXNNOUFSUENHWkpjQzRLcG5xMXY5WUFvd3EtVGNPam11V1cwU1h1MkhCNXVyVQ?oc=5"
+        },
+        {
+          "title": "Celestica Stock Price Forecast. Should You Buy CLS?",
+          "source": "StockInvest.us",
+          "pubDate": "11/21 07:46",
+          "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1NdmN6WktkSlNVVmNLWWZKRkxoY1dXdDFpU0N6RzU5RnBOUFF2THNxc3kzaDVMX19od3RqdU01TTFTeVN5ZXBN?oc=5"
         },
         {
           "title": "Can Celestica (TSX:CLS) Sustain Its Expansion Across AI Infrastructure Markets?",
           "source": "Kalkine Media",
           "pubDate": "11/21 07:38",
           "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPbzVrYk4zdDhkS1k5X21sWTZpU21ESld4VDNTQ05xNWMwR0VtQXA3cWZRSzVOMjJsZDNPc2U1cUQ1d3dHcVRfR0wySjZvNEhqNGlvRExzeGRBbnJ4bmZDQXNFWnNOOHBOaVhWSnFDdnJleEJCWFEyRXQ3ZHVIZjhwZ0xsNkpuSFNpRGs1R09WRWFuckJnVjZwMmFLNUhuR1NwV0R5Z2xnREFXV3VrRkVzTmlnMzdmRnpYUGJvVHRn?oc=5"
-        },
-        {
-          "title": "Celestica drops 15% amid broad tech selloff (CLS:NYSE)",
-          "source": "Seeking Alpha",
-          "pubDate": "11/21 04:23",
-          "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPdlBwQWJOV0kwbnpwajJ6eDJVcWJLLTMyNnpSY29vcTZTLU45NHdfaGxmV0RNVGNOY3h3ZVpXMHV0TkxZM0hDVkVlMkVyNEtfQlpNNjF6cS1JVy1QMUJ3N2RTaTZrRW1JaUVUVENybnA1Zk1Eelc0akMyRXVPdHEwcUlfaG5Oc01lOE1nQi1JanQ0UQ?oc=5"
         }
       ]
     }
