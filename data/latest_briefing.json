@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 23:12 KST",
+  "updated_at": "2026-11-22 23:27 KST",
   "market_date": "2026.11.22(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram": {
     "ddr4_16g": {
@@ -202,7 +202,7 @@
     "us2y": 4.31,
     "tlt_price": 81.45,
     "wti_oil": 83.41,
-    "usdkrw": 1337.8,
+    "usdkrw": 1346.1,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_oil_change_pct": 0.24,
@@ -228,13 +228,13 @@
       "11/19",
       "11/20"
     ],
-    "usdkrw_change_pct": 0.23,
+    "usdkrw_change_pct": 0.85,
     "usdkrw_recent": [
       1335.67,
       1333.01,
       1330.4,
       1334.79,
-      1337.8
+      1346.13
     ],
     "tlt_price_change_pct": 1.37,
     "tlt_price_recent": [
@@ -246,7 +246,7 @@
     ],
     "wti_oil_week_pct": -2.69,
     "us10y_week_pct": -4.08,
-    "usdkrw_week_pct": 0.16,
+    "usdkrw_week_pct": 0.78,
     "tlt_price_week_pct": 2.61,
     "kospi": 4869.96,
     "kospi_change_pct": -5.21,
@@ -320,9 +320,9 @@
       "11/20"
     ]
   },
-  "usdkrw": 1337.8,
+  "usdkrw": 1346.1,
   "live_news": {
-    "updated_at": "2026-11-22 23:12 KST",
+    "updated_at": "2026-11-22 23:27 KST",
     "sector": [
       {
         "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
@@ -382,18 +382,18 @@
           "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE94SjJuMW93b213VW9kb25LWWhfNjdzdmd6TzAxaUZvcHBzSm9UTzlFRXAxbV9aMVJ2TDRkNHV5NTlBZ2lJNGZMY3EzOFFDbllja29Ta2cwRDA4bXpzNEkwajdmZzFFbTNT?oc=5"
         },
         {
-          "title": "앤트로픽 상장이 주가반등 열쇠?...'변동성·外人 매도' 진정에 달렸다",
-          "source": "주간한국",
-          "pubDate": "11/22 15:00",
-          "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5UdVVGbUF2QnNyMW9xajA5TkU2ckc0NGNzR2plMGNQeVA2M3VBRlI5NzYzYXZIdFllZEd1TTBTRksxU3B4SWViYW96MUtfTTQyZ2R4THpPUUtFU1Y2blpMSlhtTjFsOWh2cjFlSnYybzTSAXRBVV95cUxQQnprZGV2U1VhQ25WbVUyckJrNm1LdkQ5Wi1nMTlCQzJDOElRemhsbkVKaWNWa3ppdG9vZXZBcEc4Z3E1bmpLRkxXMHE3TnJiRU8xMlFsZ3UtSTUyOVRaRFFuTXVqZURiZmlXMW9NVWEtYzdXZQ?oc=5"
+          "title": "코스피 4% 이상 급등 속 일본·한국 증시 반등…SK하이닉스·소프트뱅크 6% 급등, 키옥시아 8% 가까이 급등",
+          "source": "TradingKey",
+          "pubDate": "11/22 15:09",
+          "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNNzJucS1kVXZxSkRJcnZ5bGx6S1llX1QwZDhsemxTTVhXNlFaZUdUS2s1QUNFRUJuYXFlaWFnOFpYOURDUUJiWVBGX1FMMy02WWJMcENQT3VDTWl5Vk41RVlodDdzaFFtOGwzeU9GRnU0X2lPZm53RkJHZWNUT2ozQUw0YnR1bTJHNi1La1JrRmNQU3F4blFfTXJXVlpXNWtkcHJCWV8zNnBBb1c2MG9mMXNfUXBuamJzMXF4b0tXV1UwcDhpeDJnRkdHMkpLdlFyQ2o4c2tid3l0NkdEMktTeXNxdw?oc=5"
         }
       ],
       "005930.KS": [
         {
           "title": "HBM 슈퍼사이클 기대 꺾였나…삼성전자부터 테크윙까지 매도세 확산 '경계령'",
           "source": "핀포인트뉴스",
-          "pubDate": "11/22 16:33",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1QN2pOZUVMOHp6U3VYUy1GdjBLZ3hicjZrMDZDS2Fhd1hPeFd5MElqNXJSQ1JoYzB2aWo4OWZ1NU5zMmFPdVFqcFVzUWVfR2hvR2lHZm0yREEyNWRlNlZzN09nc1ZNX2laY182c3Z6WGpRTlHSAXdBVV95cUxPckg5YlpIYVhVcC1Fdm9ndlhIWURsTVVQSm8tMEt6a2dfMkh2cmRTSlNXaDRPMF96VGZZMzdZRzlmNzJCd0tuaDN2SU12eHF5dTBRUnItd1VMR3dfLWJOOUhRUDlIUlRJRVVxQ3ExMmFTSENfSFdNTQ?oc=5"
+          "pubDate": "11/22 16:40",
+          "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9ySDliWkhhWFVwLUV2b2d2WEhZRGxNVVBKby0wS3prZ18ySHZyZFNKU1doNE8wX3pUZlkzN1lHOWY3MkJ3S25oM3ZJTXZ4cXl1MFFSci13VUxHd18tYk45SFFQOUhSVElFVXFDcTEyYVNIQ19IV01N0gF3QVVfeXFMT3JIOWJaSGFYVXAtRXZvZ3ZYSFlEbE1VUEpvLTBLemtnXzJIdnJkU0pTV2g0TzBfelRmWTM3WUc5ZjcyQndLbmgzdklNdnhxeXUwUVJyLXdVTEd3Xy1iTjlIUVA5SFJUSUVVcUNxMTJhU0hDX0hXTU0?oc=5"
         },
         {
           "title": "[오하은의 기업주주되기] 삼성전자 주식을 산다는 것…반도체부터 미래 성장동력까지",
@@ -513,5 +513,5 @@
   "slot": "noon",
   "slot_label": "12:00 정오",
   "header": "☀️ [11/22 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑",
-  "text_message": "☀️ [11/22 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑\n\n🚨 1. 글로벌·국내 실시간 시장 판독\n• 코스피: 4,869.96 (-5.21%) | VIX 공포지수: 35.89\n• 필라델피아 반도체(SOX): 8,408.59 (-10.73%)\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41\n• 원/달러 환율: 1,337.8원 (지수 변동성 대비 환율 안정)\n\n💾 2. 메모리 실물 가격 팩트 (DRAMeXchange)\n• 서버용 DDR5 16Gb: $60.27 (+0.06%) / 16GB 모듈 $243.33\n• 일반 DDR4 16Gb: $78.62 (-0.16 %) / 4Q 서버 DRAM 계약가 +10~15% 상승 확정\n\n🎯 3. 보유 6종목 실시간 시세 & 10년 밸류 밴드 위치\n★ 삼전우(144,300원): 본주 대비 21.2% 할인 · 세전 배당 12.75%\n  └ 실전바닥 14.0~15.5만 / 1차적정 20.5~21.5만(+45.5%)\n🟢 삼성전자(183,100원): PBR 1.0배 진바닥 구간 · 3Q 영업이익 107.4조\n  └ 실전바닥 18.0~19.0만 / 1차적정 25.5~27.5만(+44.7%)\n🔴 대덕전자(73,900원): 3Q 영업이익 879억(OPM 21%) · 6,150억 FC-BGA 증설\n  └ 실전바닥 7.2~8.0만 / 1차적정 12.5~14.0만(+78.6%)\n📊 원익IPS(65,600원): 3Q 영업이익 667억(+142% YoY) · 과매도 바닥 구간\n  └ 실전바닥 6.3~7.0만 / 1차적정 10.5~11.5만(+67.7%)\n🇺🇸 셀레스티카($201.80): 27년 EPS $21.5 가이던스 기준 선행 PER 9.4배\n  └ 실전바닥 $198~$215 / 1차적정 $330~$360(+71.0%)\n🇺🇸 AMD($424.39): 빅테크 GPU 다변화(MI450·Helios) 핵심 수혜\n  └ 실전바닥 $410~$445 / 1차적정 $540~$560(+29.6%)"
+  "text_message": "☀️ [11/22 12:00 정오] 시황·메모리 팩트 & 6종목 실시간 브리핑\n\n🚨 1. 글로벌·국내 실시간 시장 판독\n• 코스피: 4,869.96 (-5.21%) | VIX 공포지수: 35.89\n• 필라델피아 반도체(SOX): 8,408.59 (-10.73%)\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41\n• 원/달러 환율: 1,346.1원 (지수 변동성 대비 환율 안정)\n\n💾 2. 메모리 실물 가격 팩트 (DRAMeXchange)\n• 서버용 DDR5 16Gb: $60.27 (+0.06%) / 16GB 모듈 $243.33\n• 일반 DDR4 16Gb: $78.62 (-0.16 %) / 4Q 서버 DRAM 계약가 +10~15% 상승 확정\n\n🎯 3. 보유 6종목 실시간 시세 & 10년 밸류 밴드 위치\n★ 삼전우(144,300원): 본주 대비 21.2% 할인 · 세전 배당 12.75%\n  └ 실전바닥 14.0~15.5만 / 1차적정 20.5~21.5만(+45.5%)\n🟢 삼성전자(183,100원): PBR 1.0배 진바닥 구간 · 3Q 영업이익 107.4조\n  └ 실전바닥 18.0~19.0만 / 1차적정 25.5~27.5만(+44.7%)\n🔴 대덕전자(73,900원): 3Q 영업이익 879억(OPM 21%) · 6,150억 FC-BGA 증설\n  └ 실전바닥 7.2~8.0만 / 1차적정 12.5~14.0만(+78.6%)\n📊 원익IPS(65,600원): 3Q 영업이익 667억(+142% YoY) · 과매도 바닥 구간\n  └ 실전바닥 6.3~7.0만 / 1차적정 10.5~11.5만(+67.7%)\n🇺🇸 셀레스티카($201.80): 27년 EPS $21.5 가이던스 기준 선행 PER 9.4배\n  └ 실전바닥 $198~$215 / 1차적정 $330~$360(+71.0%)\n🇺🇸 AMD($424.39): 빅테크 GPU 다변화(MI450·Helios) 핵심 수혜\n  └ 실전바닥 $410~$445 / 1차적정 $540~$560(+29.6%)"
 }
