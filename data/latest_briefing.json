@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 12:00 KST",
+  "updated_at": "2026-11-22 19:00 KST",
   "market_date": "2026.11.22(일) 주말 휴장 · 직전 거래일 종가 및 실시간 뉴스 반영",
   "dram": {
     "ddr4_16g": {
@@ -218,7 +218,7 @@
     "us2y": 4.31,
     "tlt_price": 81.45,
     "wti_oil": 83.41,
-    "usdkrw": 1346.1,
+    "usdkrw": 1337.8,
     "kr_base": 3.0,
     "kr_10y": 3.85,
     "wti_oil_change_pct": 0.24,
@@ -227,7 +227,7 @@
       86.01,
       83.26,
       83.21,
-      83.98
+      83.41
     ],
     "us10y_change_pct": -2.77,
     "us10y_recent": [
@@ -244,13 +244,13 @@
       "11/19",
       "11/20"
     ],
-    "usdkrw_change_pct": 1.18,
+    "usdkrw_change_pct": 0.23,
     "usdkrw_recent": [
-      1333.25,
       1335.67,
       1333.01,
       1330.4,
-      1334.79
+      1334.79,
+      1337.8
     ],
     "tlt_price_change_pct": 1.37,
     "tlt_price_recent": [
@@ -261,9 +261,9 @@
       81.45
     ]
   },
-  "usdkrw": 1346.1,
+  "usdkrw": 1337.8,
   "live_news": {
-    "updated_at": "2026-11-22 12:00 KST",
+    "updated_at": "2026-11-22 19:00 KST",
     "sector": [
       {
         "title": "‘불륜 스캔들’ 젠슨 황 복귀 의사 공식화…엔비디아 이사회는 ‘불가’",
@@ -273,17 +273,17 @@
         "tag": "AI·엔비디아 지각변동"
       },
       {
-        "title": "젠슨 황 사임에 머스크까지 복귀 촉구…엔비디아發 충격",
-        "source": "브랜드뉴스",
-        "pubDate": "Sat, 21 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4wVzFycnRGWE44OFE2Z1F4RVdwMzAtcVExSTZtdGxFRVhKbm43MWNRZUp3aDZGRkxwVm9IMldJRzllelZ3cjRBM3VvWmhteUFSWHd3LU91b0NMa1JyMjZ6MFN2M2pLb21ISHp5OA?oc=5",
-        "tag": "AI·엔비디아 지각변동"
-      },
-      {
         "title": "젠슨 황 없는 엔비디아, AI 업계 ‘돈줄’ 역할 계속 할까요?",
         "source": "네이버페이 머니스토리",
         "pubDate": "Tue, 17 Nov 2026",
         "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA3UUktc1Z4bmM3b2VicXV2VGtpSnEyQ1ZJSlNvUmRnWlM5NmJDVVFwaDJyZkk2S1FZbXFkdmhJZ2t3QzZUNjQzdXk3MFdueW9iYVVKSHdVSTk?oc=5",
+        "tag": "AI·엔비디아 지각변동"
+      },
+      {
+        "title": "젠슨 황 사임에 머스크까지 복귀 촉구…엔비디아發 충격",
+        "source": "브랜드뉴스",
+        "pubDate": "Sat, 21 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4wVzFycnRGWE44OFE2Z1F4RVdwMzAtcVExSTZtdGxFRVhKbm43MWNRZUp3aDZGRkxwVm9IMldJRzllelZ3cjRBM3VvWmhteUFSWHd3LU91b0NMa1JyMjZ6MFN2M2pLb21ISHp5OA?oc=5",
         "tag": "AI·엔비디아 지각변동"
       },
       {
@@ -322,10 +322,10 @@
         "tag": "메모리 업황"
       },
       {
-        "title": "“엔비디아 14% 폭락” 서학개미 8천억 사들였는데…삼전닉스도 ‘초긴장’",
-        "source": "데일리25",
-        "pubDate": "Sat, 21 Nov 2026",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE94bEd3Mmg0TWx0REp6eVMtaDZOS2FqQ0w1T1U2TnlTbG1OdHBZMXMwRVdSVTd0VWU5TldfQVdrV1lic0x6OFV1bHB6R1R4T1kteG92M0V4Ymtlci1SS0tIZU9rS3lPRi05dkc0Tg?oc=5",
+        "title": "AI 붐으로 메모리 반도체 조달이 재편되는 가운데, 애플은 삼성전자·SK하이닉스와 장기 DRAM 공급 계약을 체결할 것인가?",
+        "source": "TradingKey",
+        "pubDate": "Wed, 18 Nov 2026",
+        "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPcUdOeVZncTNPcDZpZS1IVDQtUTF2OHBTTkZ2bDd2aGdiOGJQV2Z0MUVLdEJNYnVUaFRNOW1jNG9PVUN6b2ZMc1FINVlGUGlodVFKMk8wazc0a09ZcVRuRUppN25DOVFudFVnRS1sODlydTZQZE40TkVUR3hiTFlPNXJSdFV3ZmFoekpJcDgteEJoRW1NV0lzczBfUnd3d1RtODVNNkRZVGF4VVpJd0F4NWtGQldidDNmcG9WaHpDc0F5TnREbzNEOTgwVE1YY05MZzRwanBPWQ?oc=5",
         "tag": "메모리 업황"
       }
     ],
@@ -401,7 +401,7 @@
           "title": "원익그룹 3사, 반도체 호황 수혜 엇박자…3분기엔 '반전 예고'",
           "source": "Daum",
           "pubDate": "Wed, 04 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE11ckNVb2pmejFHaVdDSXVDN0ZXdUd4THRqWVpCRWJlOEFIeWtWM3otUHNFYnVFWXdDNXQ0eVVxVndWOVVGbG81QTBMQQ?oc=5"
+          "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE00TEY5LWg5Sk03eTcxSnc1OEY0aTluLVFpMl8wLVJINHJ0Z1p2M3ZmZ3hRNG1HalZWRDdlaVJ5RnhBQjlpOFE?oc=5"
         },
         {
           "title": "반도체 장비업계, AI 투자 훈풍에 3분기 실적 '활짝'",
@@ -432,10 +432,10 @@
       ],
       "CLS": [
         {
-          "title": "Where Could Celestica Stock Be in 5 Years? What the New Outlook Means",
+          "title": "Celestica Inc. (CLS) Stock Price, News, Quote & History",
           "source": "Yahoo! Finance Canada",
-          "pubDate": "Tue, 17 Nov 2026",
-          "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOOEctd05aLXVZSllSSG1fN1dMN0N6UXpxODVxcnBKaWVsUENETW1LZG9ET2p5Z3kwMWxQUk1ua0lXWkZ1SGZLeFV0MWYyZXVVQ29GQkRnUWE2VTQwX2JjRGR4RnhpMlNiaVlCVlh4WXZHOGIxMHRDU1dFeDY1a1FOM1RZQU8?oc=5"
+          "pubDate": "Sun, 22 Nov 2026",
+          "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkbUkzUkpIeC0xRU5Hbk1INWxQaXZ5WkhJLU1rdmJtTDltVVFkQWxOYndQcXBUSkdHVUlKRFRZai12cVI3SHBhVHV5RUQ1MGlX?oc=5"
         },
         {
           "title": "Celestica drops 15% amid broad tech selloff (CLS:NYSE)",
@@ -461,8 +461,8 @@
     },
     {
       "tag": "거시경제 · 금리·환율 점검",
-      "title": "미 10년물 국채금리 4.91% 돌파(TLT $81.45) 경계감 vs 원/달러 환율 1,346.1원 원화 강세 방어력",
-      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 4.91%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $83.41)가 $90 아래에서 안정되고 원/달러 환율이 1,346.1원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
+      "title": "미 10년물 국채금리 4.91% 돌파(TLT $81.45) 경계감 vs 원/달러 환율 1,337.8원 원화 강세 방어력",
+      "summary": "미 10년물 국채금리가 5.0% 심리적 저항선을 넘어 4.91%까지 상승하며 나스닥 고밸류 종목의 차익실현을 자극했으나, 국제유가(WTI $83.41)가 $90 아래에서 안정되고 원/달러 환율이 1,337.8원으로 하향 안정화되면서 국내 반도체·소부장(삼성전자·대덕전자·원익IPS)의 외국인·기관 수급을 든든히 뒷받침하고 있습니다.",
       "impact": "원익IPS(3Q 영업이익 667억, 전년비 +142% 급증) 및 대덕전자(91,300원, 주간 +21.4%) 실적·수급 장세 지속"
     },
     {
@@ -472,8 +472,8 @@
       "impact": "삼성전자 온양사업장 첨단 HBM 거점화 및 원익IPS·대덕전자 가동률 상승 직결"
     }
   ],
-  "slot": "noon",
-  "slot_label": "12:00 정오",
-  "header": "☀️ [11/22 12:00 정오] 메모리 계약가 팩트 & 6종목 실시간 브리핑",
-  "text_message": "☀️ [11/22 12:00 정오] 메모리 계약가 팩트 & 6종목 실시간 브리핑\n\n🔮 1. 메모리 가격 추이 & TrendForce 공식 팩트\n• 신형 DDR5 16Gb: $60.67 (+0.00%) / 일중 $45.2~$72.0\n• 일반 DDR4 16Gb: $78.62 (-0.16%) / 16GB 서버모듈 $245.00\n• 4Q26 고정계약가: 범용 DRAM +10~15% QoQ, 기업용 eSSD +23~28% QoQ 상승 확정!\n• 2027 HBM 전망: HBM4 전환 및 베이스다이 프리미엄으로 평균단가(ASP) +121% YoY 급등\n\n🏦 2. 금리 · 유가 · 환율 실시간 매크로 팩트\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41 ($90 하회 안정)\n• 원/달러 환율: 1,346.1원 / 한은 기준금리: 3.00% · 국고채 10년: 3.85%\n• 이번 주 핵심 일정: 11/18(수) 미 의회 엔비디아 청문회 & 11/20(금) 엔비디아 3Q 실적 발표\n\n🎯 3. 6종목 실시간 시세 & 10년 밸류·실적 기반 적정가\n★ 삼전우(144,300원 | 52주최고 24.35만): 본주 대비 21.2% 할인 · 연배당 세전 12.8%\n  └ 1단계 적정 20.5~21.5만(+42.1%) / 2단계 23.5~24.5만\n🔴 대덕전자(73,900원 | 52주최고 19.8만): 3Q 영업이익 879억 서프라이즈 · 바닥 대비 +21% 반등!\n  └ 1단계 적정 12.5~14.0만(+75.9%) / 2단계 17~19만\n📊 원익IPS(65,600원 | 52주최고 18.78만): 3Q 영업이익 666.5억(+142% 서프라이즈!) · 바닥 탈출\n  └ 1단계 적정 10.5~11.5만(+60.1%) / 2단계 14.5~16.5만\n🇺🇸 셀레스티카($201.80 | 52주최고 $474.03): 27년 EPS $21.5 가이던스(선행 PER 9.4배)\n  └ 1단계 적정 $330~$360(+71.0%) / 2단계 $420~$450\n🟢 삼성전자(183,100원 | 52주최고 37.45만): 3Q 영업이익 107.4조 사상최대 · 분기배당 4,601원\n  └ 1단계 적정 25.5~27.5만(+44.7%) / 2단계 31~34만\n🇺🇸 AMD($424.39 | 52주최고 $658.52): 빅테크 GPU 다변화 수혜 집중 · 1차 목표가($550) 육박!\n  └ 1단계 적정 $540~$560 / 2단계 전고점 회복 $620~$650"
+  "slot": "evening",
+  "slot_label": "19:00 퇴근",
+  "header": "🌙 [11/22 19:00 마감] 메모리 계약가 팩트 & 6종목 실시간 브리핑",
+  "text_message": "🌙 [11/22 19:00 마감] 메모리 계약가 팩트 & 6종목 실시간 브리핑\n\n🔮 1. 메모리 가격 추이 & TrendForce 공식 팩트\n• 신형 DDR5 16Gb: $60.67 (+0.00%) / 일중 $45.2~$72.0\n• 일반 DDR4 16Gb: $78.62 (-0.16%) / 16GB 서버모듈 $245.00\n• 4Q26 고정계약가: 범용 DRAM +10~15% QoQ, 기업용 eSSD +23~28% QoQ 상승 확정!\n• 2027 HBM 전망: HBM4 전환 및 베이스다이 프리미엄으로 평균단가(ASP) +121% YoY 급등\n\n🏦 2. 금리 · 유가 · 환율 실시간 매크로 팩트\n• 미 10년 국채금리: 4.91% (TLT $81.45) / WTI 유가: $83.41 ($90 하회 안정)\n• 원/달러 환율: 1,337.8원 / 한은 기준금리: 3.00% · 국고채 10년: 3.85%\n• 이번 주 핵심 일정: 11/18(수) 미 의회 엔비디아 청문회 & 11/20(금) 엔비디아 3Q 실적 발표\n\n🎯 3. 6종목 실시간 시세 & 10년 밸류·실적 기반 적정가\n★ 삼전우(144,300원 | 52주최고 24.35만): 본주 대비 21.2% 할인 · 연배당 세전 12.8%\n  └ 1단계 적정 20.5~21.5만(+42.1%) / 2단계 23.5~24.5만\n🔴 대덕전자(73,900원 | 52주최고 19.8만): 3Q 영업이익 879억 서프라이즈 · 바닥 대비 +21% 반등!\n  └ 1단계 적정 12.5~14.0만(+75.9%) / 2단계 17~19만\n📊 원익IPS(65,600원 | 52주최고 18.78만): 3Q 영업이익 666.5억(+142% 서프라이즈!) · 바닥 탈출\n  └ 1단계 적정 10.5~11.5만(+60.1%) / 2단계 14.5~16.5만\n🇺🇸 셀레스티카($201.80 | 52주최고 $474.03): 27년 EPS $21.5 가이던스(선행 PER 9.4배)\n  └ 1단계 적정 $330~$360(+71.0%) / 2단계 $420~$450\n🟢 삼성전자(183,100원 | 52주최고 37.45만): 3Q 영업이익 107.4조 사상최대 · 분기배당 4,601원\n  └ 1단계 적정 25.5~27.5만(+44.7%) / 2단계 31~34만\n🇺🇸 AMD($424.39 | 52주최고 $658.52): 빅테크 GPU 다변화 수혜 집중 · 1차 목표가($550) 육박!\n  └ 1단계 적정 $540~$560 / 2단계 전고점 회복 $620~$650"
 }
