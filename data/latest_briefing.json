@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-23 03:19 KST",
-  "market_date": "2026.11.23(월) 03:19 미국 정규장 실시간 거래중",
+  "updated_at": "2026-11-23 09:03 KST",
+  "market_date": "2026.11.23(월) 09:03 국내 정규장 실시간 거래중",
   "dram": {
     "ddr4_16g": {
       "price": 78.62,
@@ -201,17 +201,17 @@
     "us10y": 4.91,
     "us2y": 4.31,
     "tlt_price": 81.45,
-    "wti_oil": 83.41,
-    "usdkrw": 1346.0,
+    "wti_oil": 82.86,
+    "usdkrw": 1341.7,
     "kr_base": 3.0,
     "kr_10y": 3.85,
-    "wti_oil_change_pct": 0.24,
+    "wti_oil_change_pct": -1.33,
     "wti_oil_recent": [
-      85.72,
       86.01,
       83.26,
       83.21,
-      83.41
+      83.98,
+      82.86
     ],
     "us10y_change_pct": -2.77,
     "us10y_recent": [
@@ -228,13 +228,13 @@
       "11/19",
       "11/20"
     ],
-    "usdkrw_change_pct": 0.84,
+    "usdkrw_change_pct": 0.52,
     "usdkrw_recent": [
       1335.67,
       1333.01,
       1330.4,
       1334.79,
-      1346.04
+      1341.68
     ],
     "tlt_price_change_pct": 1.37,
     "tlt_price_recent": [
@@ -244,9 +244,9 @@
       80.35,
       81.45
     ],
-    "wti_oil_week_pct": -2.69,
+    "wti_oil_week_pct": -3.66,
     "us10y_week_pct": -4.08,
-    "usdkrw_week_pct": 0.78,
+    "usdkrw_week_pct": 0.45,
     "tlt_price_week_pct": 2.61,
     "kospi": 4869.96,
     "kospi_change_pct": -5.21,
@@ -320,22 +320,22 @@
       "11/20"
     ]
   },
-  "usdkrw": 1346.0,
+  "usdkrw": 1341.7,
   "live_news": {
-    "updated_at": "2026-11-23 03:19 KST",
+    "updated_at": "2026-11-23 09:03 KST",
     "sector": [
       {
-        "title": "삼성전자·SK하이닉스 시총 하루 130조원 줄었다…코스피 5000선 다시 붕괴",
-        "source": "산학뉴스",
-        "pubDate": "11/22 21:10",
-        "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5wRWdveFcwdUd6OEdHZVowRkJKeDBMdUpkY3pXeEdocFRUZngtZV9CS2dkalJma1Zxa3lxbzBhc2NtSVRYRkRaTENZV2liQkxndDJSNV9IdUpKaHg1VWpQTUJUMGFTakFtTzVB?oc=5",
+        "title": "코스피 4800선도 위태롭다… 엔비디아 급락에 삼성전자·SK하이닉스 운명은?",
+        "source": "핀포인트뉴스",
+        "pubDate": "11/23 08:39",
+        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1tekx4T2lqSDI5UEo2SHVRZzNfajYxalR0Z3lrTFB6bkk1b1hWUEE0YUVDMHM3MjYtRzVlRS1Bd0dWcEJOZDcxNWh1TkJtZmVfUnBDTVRYNjB5T3UyMHFjV0s3Y0R0d3FJdGR4czVkY2pWTTTSAXdBVV95cUxNLXRjcmREMkFsWVhyWnQ5aEVObnRBNjlLemp2VXZvblNNTmk1X1RVZ1FEZkpwVFVXdXFTSmh6QllEQ0l0NzBlX09MX3JvZUptTmJpR2JySlZfckkySm90VWdtZHNzR2VfZURQUmZmVGlrUmlCMUhPVQ?oc=5",
         "tag": "국내증시·반도체"
       },
       {
-        "title": "코스피 급락 현실화하나.. 삼성전자·SK하이닉스 운명 가를 한 주 > 뉴스",
-        "source": "지데일리",
-        "pubDate": "11/22 19:09",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5LZjB5dmpMVWFlcmZZX0pKT0tmWXVMSFF4S1czbFVnZnQ5cXVDaWpJeExiSFFTNFkzakh5SXZCQVBFWkFrRnNROUp0YXVpN213aG54U1AxdDRTdm9XcUlGVllQaXVlZ0JmSVdnXw?oc=5",
+        "title": "코스피, ‘검은 금요일’ 충격 딛고 반등할까…삼성전자·SK하이닉스 시험대",
+        "source": "진일보 | 전남일보",
+        "pubDate": "11/23 03:00",
+        "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0wZXFaTFgzV3RDbGhabzluekpLWkd4bml2c2ZYZUNuU3FLU0dqb0c5NmNvdm1aRXozY2FaZ2I0WlBOUHc5WEhBR1pIWkZHVTdrMXZWZFFEYkdSRDVxaG9Ud2pmQWc5aVpSRldLMUVIUQ?oc=5",
         "tag": "국내증시·반도체"
       },
       {
@@ -346,49 +346,55 @@
         "tag": "AI·HBM 공급망"
       },
       {
-        "title": "이재용의 원픽…\"될 사람이 됐다\" 엔비디아 뚫은 30년 삼성맨 [강경주의 테크X]",
-        "source": "한국경제",
-        "pubDate": "11/21 09:30",
-        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBiUFdleVN3by1tamhUajFQczRqMHA2djFDNHJfMmhLMzNBNXNpQl9kYWgyYXdGVUtJRDFoM19MUFQ5TUNveF9OQnJoVFRVLXctNFVBbWpjcU1OUQ?oc=5",
+        "title": "“HBM4 12개냐 8개냐”…AI칩 설계 갈리자 삼성·SK하닉 ‘맞춤형 메모리’ 승부수",
+        "source": "쿠키뉴스",
+        "pubDate": "11/22 01:46",
+        "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBQQmctLTFaNlBhLXF5UUwyZnJoU1hqcHR5RkgtMFlSWDUwY2NlYmo4cGJDS1l2dkxzLTZwLVVsbHNBR3haRk03bDFQTlI5WHdvTXB0NDN3V19lYkVxc2doY1FpOA?oc=5",
         "tag": "AI·HBM 공급망"
       },
       {
-        "title": "[시황발자국] 11월 22일(일) 주말 긴급 시황 : 엔비디아 -14% 쇼크에 나스닥 -5.28% '검은 금요일'…월요일 국내 증시 핵심 변수와 베테랑의 대응 기준선",
-        "source": "네이버 프리미엄콘텐츠",
-        "pubDate": "11/22 15:31",
-        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOVUYzXzhGVE1WSlVkQjZYSWQ4TVBBVWE0bm9UclRkdFRIMi1pM3I5bDlFYWxNUVN1RFJ3Q1RJMUY4cDFGVmN5M2FDdElCVDZwREhraFJSNFJqUE42Z09BMVlpdUdXMUNGa0IwdFdPXzVjRWdjeFdSa3F1RFM3LTg1aDRCci1FXzFh?oc=5",
+        "title": "미국 증시, 엔비디아 회계 조사 보도에 급락",
+        "source": "네이버페이 머니스토리",
+        "pubDate": "11/23 08:55",
+        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9FN2FkX1RSNVQ1VWtKa3RtSVk1Mzh1amdRekl0dTY2Mk5Xc2JWMTBtSGp2bFJQTmpWWWR1SW9MNnpNRVM5UEZaSmZ3TmZNaGhMQlZIckloX1I?oc=5",
         "tag": "미국 기술주"
       },
       {
-        "title": "코스피 5000 깨진 뒤 나스닥도 5% 급락···월요일 변수는 외국인 수급",
-        "source": "여성경제신문",
-        "pubDate": "11/22 13:04",
-        "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9yRXFqdnlsR3JkNDdYNmVWQi1oQlc0ZnJMdmdsZzFrdmhJSG1uVkdrY3R3ZF93SjI1YUpna2JPSG9HeG5jUllHb2Z0MU5scGFERlZ5emhER2FraDkxQUlycDctUXRvLXhEd0JkTklfaVlzRko2MTZJ0gF3QVVfeXFMT3JFcWp2eWxHcmQ0N1g2ZVZCLWhCVzRmckx2Z2xnMWt2aElIbW5WR2tjdHdkX3dKMjVhSmdrYk9Ib0d4bmNSWUdvZnQxTmxwYURGVnl6aERHYWtoOTFBSXJwNy1RdG8teER3QmROSV9pWXNGSjYxNkk?oc=5",
+        "title": "[모닝 경제 브리핑] 美 증시, AI 투자심리 붕괴에 반도체 '대폭락'…필라델피아 반도체 10.73%↓, S&P500·다우 조정 구간 진입",
+        "source": "프리진경제",
+        "pubDate": "11/23 08:11",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBHV2QxNWFqR3FuOVI2Qmd4dnA2bmdpTWFOUzRZRWtvN3gxVmQ3OG12d1lqR3BhbnREMk1nSVhuOUtlZHZZQ041UEFNYVJTNFBpZ3ZrdUtjdTFwZnhYX09xeVU5WFJ4OTZLdGphbw?oc=5",
         "tag": "미국 기술주"
       }
     ],
     "stocks": {
       "005935.KS": [
         {
+          "title": "“저평가 우량주 사놓고 주식창 끕니다”…그 와중에 ‘더 싼 종목’ 찾아보니",
+          "source": "매일경제 마켓",
+          "pubDate": "11/23 07:16",
+          "link": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFA5ZjYyMURKRXNQV2NjM0tQQkpZWWhUekdlMWVpamVsX3NSRUlnSVY2eTF1a1JYbjZJMFJJZWt6VnVWc25FWnB6MGpzemoxZGNkZ3c?oc=5"
+        },
+        {
+          "title": "반도체주 급락에도 퇴직연금은 샀다…하반기 들어 투자 열기는 ‘뚝’",
+          "source": "매일경제 마켓",
+          "pubDate": "11/23 07:15",
+          "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0tMXE4b0pxMk4ybHZFOE5XcUVyZEFLVlowcHd1TDFzR0VWYlJsTXBQelE4RnQ3SWpMTmlsdzVheXVCVlhPX3VJY1dnVVhMZE9NWlhsMmRyZlpDb0h1VXJQdw?oc=5"
+        },
+        {
           "title": "돈 잔치 벌어졌다…삼성전자·SK하이닉스 주주들 웃을 소식",
           "source": "위키트리",
           "pubDate": "11/22 20:15",
           "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53dlkyM3NuYjhCLU1QRkJpY2R5UGR4cFVDNW5sYldkSEtkbU5tbi1HNTdkUWI2czFWcWlBMldiQ093bGVYRmc3SmVqTEw4ZE5ZeVVjSTBR?oc=5"
-        },
-        {
-          "title": "코스피 5,000선 붕괴...반등 전망 엇갈려, 삼성전자 배당금 변수",
-          "source": "팩트공감",
-          "pubDate": "11/22 16:03",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE94SjJuMW93b213VW9kb25LWWhfNjdzdmd6TzAxaUZvcHBzSm9UTzlFRXAxbV9aMVJ2TDRkNHV5NTlBZ2lJNGZMY3EzOFFDbllja29Ta2cwRDA4bXpzNEkwajdmZzFFbTNT?oc=5"
-        },
-        {
-          "title": "코스피 4% 이상 급등 속 일본·한국 증시 반등…SK하이닉스·소프트뱅크 6% 급등, 키옥시아 8% 가까이 급등",
-          "source": "TradingKey",
-          "pubDate": "11/22 15:09",
-          "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNNzJucS1kVXZxSkRJcnZ5bGx6S1llX1QwZDhsemxTTVhXNlFaZUdUS2s1QUNFRUJuYXFlaWFnOFpYOURDUUJiWVBGX1FMMy02WWJMcENQT3VDTWl5Vk41RVlodDdzaFFtOGwzeU9GRnU0X2lPZm53RkJHZWNUT2ozQUw0YnR1bTJHNi1La1JrRmNQU3F4blFfTXJXVlpXNWtkcHJCWV8zNnBBb1c2MG9mMXNfUXBuamJzMXF4b0tXV1UwcDhpeDJnRkdHMkpLdlFyQ2o4c2tid3l0NkdEMktTeXNxdw?oc=5"
         }
       ],
       "005930.KS": [
+        {
+          "title": "삼성전자 18만원·SK하이닉스 110만원 지킬까…반도체 업황 전망 엇갈려",
+          "source": "톱스타뉴스",
+          "pubDate": "11/23 07:15",
+          "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9Sb2xfQ19hakRMN3RJN1FUcnlwUGlPWWVDQ0Z3cS0tbFAyVHFZblRjVlFKNmR0Y1JGSEc5b2JaVmtuMEExQ0V1MV96WDNkcFExX0dqdUpmVG5FenRDME9OTEl0OHcxRG9paTg0endfM0k1UQ?oc=5"
+        },
         {
           "title": "HBM 슈퍼사이클 기대 꺾였나…삼성전자부터 테크윙까지 매도세 확산 '경계령'",
           "source": "핀포인트뉴스",
@@ -400,12 +406,6 @@
           "source": "하이뉴스",
           "pubDate": "11/22 14:05",
           "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1yUjNwMWZJQU1Jd1hKMGxBQzdTUFp5dDBtSWFCUFRtYVBvd2otUDgtY2JXdm02M3o1cEdQYjhhZlEtbDNabXc3TzZkZ3JfYU1HQkhyVEVfNlZZTVk4VEdfanI5bTlSZXRBYWIwMVczZ2F3NkNwUy1F?oc=5"
-        },
-        {
-          "title": "“호황 끝” 공포에 주가 반토막…삼전닉스 3대 불안의 진실",
-          "source": "중앙일보",
-          "pubDate": "11/22 06:00",
-          "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBRZ3VnSnBrM3ZrN3RRS2xVR3hUTzcySmJYZDdEVHdlTklkaF9WejRGZ0VFMDYyLUk3ZS1ZR20ySnRKbXdoVXdyYW9fLUpFeF9xVFh1ZlRB?oc=5"
         }
       ],
       "353200.KS": [
@@ -430,25 +430,31 @@
       ],
       "240810.KQ": [
         {
+          "title": "\"영업익 667억, 순이익은 33억\"…원익IPS, 투자손익 희비 [실적why]",
+          "source": "뉴스1",
+          "pubDate": "11/23 06:20",
+          "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9FRmpPMjRpTnZzeVY4TXFDcnZZVzU0azFRTXdvV1l4cWx3dXo3bzliX2d3ZEdfbE9OampieEVRRGpQMEI1a1R1YzdSZWdRWVYyeFBhcHVRZFRDc1Zk?oc=5"
+        },
+        {
+          "title": "원익그룹, 반도체 호황 타고 투자 확장…금융 계열사까지 키운다",
+          "source": "뉴시스",
+          "pubDate": "11/23 05:00",
+          "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9HV0lrX2xQMEpUUTBNcnRyaGMzTEgxWlZOY09uMmNBVXNSd1VDcjBhR0NhcHBYNktQZzhTWFluU3JDdk1kRU5YWU4xV3pLRHcydjNGUENUaHVHWTVpa003WNIBeEFVX3lxTE85amNraDJjamF2c1M4RzMyQTZqY3hfdFRDeWQ2V1ZkT3hucF9HalVfRmJWbjFZUm5tcnBaQWZ5Yzd5SUtsQnYyQ3NQY2Z1cWFVdmpVOFB6bTNIT3d2UEhqNVFvT25wQ3d4QVRwN3Fuc2NaU1VrNGFUSg?oc=5"
+        },
+        {
           "title": "HBM 투자 기대 꺾였나…원익IPS·HPSP 등 전공정주도 '된서리'",
           "source": "핀포인트뉴스",
           "pubDate": "11/22 10:01",
           "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE12MFFQejlNeUloLThPUjRFNUVXcTNGUEdCdGowTkFFeXMxcURrb2JtQlJFRjl2TXNpUU1NbjVHbzdHcElxQnRwMXFUazhUalJQWFJ3dEZSbDViZnZ3cnVjekFJTmRfY1k0V2p5dmNUb0xtbDlDNjVF0gF3QVVfeXFMTXYwUVB6OU15SWgtOE9SNEU1RVdxM0ZQR0J0ajBOQUV5czFxRGtvYm1CUkVGOXZNc2lRTU1uNUdvN0dwSXFCdHAxcVRrOFRqUlBYUnd0RlJsNWJmdndydWN6QUlOZF9jWTRXanl2Y1RvTG1sOUM2NUU?oc=5"
-        },
-        {
-          "title": "SK하이닉스 실적 잔치가 내수까지 살릴까…장비·소재주 확산 효과 주목",
-          "source": "핀포인트뉴스",
-          "pubDate": "11/21 14:22",
-          "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBZNVN2MEZWdHZmLVVidktWcWxGX0lDajlQekk2XzY2QnJvckMteHNDQ0k3a1RiMUxjUzJ2cWZ6UEp4SW9RRUNISU9OYlkxckJUX0h6OE5ERm04cmNBbGxPNE16UWVHYm1PUTFHSkFlRmtaOFnSAXdBVV95cUxQRkU2NW92aU5YUTIwQWloaHR5YXI4d3Bha2Zpa2FqS2xCcVlXOFQ5aVFjbXN0amhxTzkzSEdYWGVXTktLemFQZlZ5dzlZaV9wV211Z1RRbk8zVzBaZzlaQ0NDay1xbU5KYjNBbk96aVBiYkFlaS1Rdw?oc=5"
-        },
-        {
-          "title": "[관심주] 앤트로픽 상장 훈풍도 못 막았다… AMD 中 제재 의혹에 이오테크닉스·원익IPS 등 줄줄이 급락",
-          "source": "CBC뉴스",
-          "pubDate": "11/21 00:30",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE95M1kxNjRXNnBTYmprclU3WFBRYzlENG9xZm5kUFBLMXVLZEljaFhMUW5MU0g1c1NLMElaZV9TUkVsMTJjckhDN2JDR2ZFaTkwZ1IxbHROamNiMThsT081eDJyMm54d2lV?oc=5"
         }
       ],
       "AMD": [
+        {
+          "title": "AMD vs. Nvidia Stock After Jensen Huang’s Exit: 1 Trades at Nearly 4x the Other’s Earnings Multiple. Here’s the AI Chip Stock I’d Buy Now.",
+          "source": "Barchart.com",
+          "pubDate": "11/23 06:25",
+          "link": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOTWY1TFdsWFJ4OFBwbUMyNnA5cG9RbWN4c2hzeS1qakcteXdsNmNINlJ2SkFlcG9Pdi1EWndBREgxWThsY1BaWGdDRGZ0T3ZxQWp6cHJ3dXFLa3JzT2EwX0tDY3M3WmdxTE9YQXBNOVFSbl9xWFFvMDZ3dml2V1l3dlNVRFZFRUpqQ1pORlBWd3A2dlJUUmduMlNXYlRaZy1NaWs2djJ1MFhSbXNfbUVNTGdjR0xsdnJ2WUIxN0RvOHNsM1BZN0NuWkdtaWtwX2FZdWhwaUVhUU1XYjZMaVI3R2VCQWJmdlRjRE93OE9rSGVyblNZdERGaWxxTUpaUU5CWXRSSg?oc=5"
+        },
         {
           "title": "Prediction: These Will Be AMD’s and Nvidia’s Stock Prices by 2028",
           "source": "Yahoo Finance",
@@ -456,19 +462,19 @@
           "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPOUZUTmFNWGdrZXVXZkhPTzJhR3g1YXFmN3ZIbGxsWTd6WVZlZTdvOUx1ZVB2OFJiTXRmdFpwN1NET29tMWhCOWxxY29WeGJoSlNXXzVUaXRPOFFiOFlUcnpHTUxPd2VwTGYwU1hQMGZ1YkZvbko2V0RFU1hEVHpDbnVIMmg3Y1FSX2U3enNUNlB6ZHM1bmJxUTg4X1RIeGZK?oc=5"
         },
         {
-          "title": "Billionaire David Tepper Just Made a Massive AI Chip Rotation — Will It Pay Off?",
-          "source": "The Motley Fool",
-          "pubDate": "11/22 12:00",
-          "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRkFiOUhWZENjaXdGNXRnc1hvR21YS0VvNzVwN3dSd1hZNndVV25PcDIzd0ZiaDU3cENkc09QTFJacGdmamtrbGdqdURNRTFmQlpMb1ZoT3lCbnpuNjN2VS0weXAwcnVyWEQzeGxFdlhRLW81VXdSLTlXbEExN2RSUkhlejNzSTJwZDVLNlRkMklJOG5HNFFMYk01d1d1NTVDQXpkYVYySTZaZGF3cGhRUGgxM3c4a0NNRXdpTw?oc=5"
-        },
-        {
           "title": "AMD Stock Forecast: $1T Milestone Meets Helios Ramp as $617.80 Breakout Nears",
           "source": "TradingKey",
-          "pubDate": "11/22 09:38",
+          "pubDate": "11/22 15:55",
           "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQTVYS3l0V1p6eUhpYVVJNHpndVNYZEJUdDIxUm9FSFUzbHh5aHRPTF9YczhRMWRXSnBSY3U5a2NnZEZ6dHo2b1Mwd19MMXNyOEhsZF9jVTlfOEtNWkRydmZ4WDBybnB6aXY0aDRRaGF5QUQydXBJWGRDVU9FUzVRcmktS2gzdllsMFY1S0tYb0FteXlxOENoRVNLTkUwNklLdWxKSV81NWNQRnFWdmJVQTRn?oc=5"
         }
       ],
       "CLS": [
+        {
+          "title": "What Shapes Celestica (TSX:CLS)'s Role in AI Hardware Manufacturing?",
+          "source": "Kalkine Media",
+          "pubDate": "11/23 05:55",
+          "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOOU01SEtoZEY1U0dEWGRGdXgwaDNXVzUxM3d2QmpQLVJGTEtqLUNPaS1PR204eFhPQmhDbVp2M1ZWWHRfVkdsVHdWYWk2dkFLSFp0c0dXZE1yYzY2amlmaHgzc1hGcjNNM3dKMzN2YzNsM2p5TGdvOV9BcFhaM1FVM1h1bFJoN2c1YzJ0b3FmMDREUzR4c3ZFOHM5UWJ5OU1yeTBwc0hMLWhSSjhjcVE?oc=5"
+        },
         {
           "title": "Celestica Stock Price Forecast. Should You Buy CLS.TO?",
           "source": "StockInvest.us",
@@ -480,12 +486,6 @@
           "source": "StockInvest.us",
           "pubDate": "11/21 07:46",
           "link": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE1NdmN6WktkSlNVVmNLWWZKRkxoY1dXdDFpU0N6RzU5RnBOUFF2THNxc3kzaDVMX19od3RqdU01TTFTeVN5ZXBN?oc=5"
-        },
-        {
-          "title": "Can Celestica (TSX:CLS) Sustain Its Expansion Across AI Infrastructure Markets?",
-          "source": "Kalkine Media",
-          "pubDate": "11/21 07:38",
-          "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPbzVrYk4zdDhkS1k5X21sWTZpU21ESld4VDNTQ05xNWMwR0VtQXA3cWZRSzVOMjJsZDNPc2U1cUQ1d3dHcVRfR0wySjZvNEhqNGlvRExzeGRBbnJ4bmZDQXNFWnNOOHBOaVhWSnFDdnJleEJCWFEyRXQ3ZHVIZjhwZ0xsNkpuSFNpRGs1R09WRWFuckJnVjZwMmFLNUhuR1NwV0R5Z2xnREFXV3VrRkVzTmlnMzdmRnpYUGJvVHRn?oc=5"
         }
       ]
     }
