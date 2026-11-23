@@ -1,35 +1,48 @@
-name: Daily Memory & Market Briefing Updater
+name: Memory Briefing Data Updater
 
 on:
   schedule:
-    # 24시간 매시간 정각 자동 실행 (DRAMeXchange·국내/미국 장세·WTI·환율 상시 최신 동기화)
-    - cron: '0 * * * *'
+    # 한국 장중(평일 09:00~16:59 KST = 00~07 UTC)에는 30분마다, 그 밖에는 1시간마다 실행합니다.
+    # 정각에는 GitHub 대기열이 몰려 실행이 몇 시간씩 밀리므로 일부러 어긋난 분(7, 23, 37)을 씁니다.
+    - cron: '7,37 0-7 * * 1-5'
+    - cron: '23 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: briefing-updater
+  cancel-in-progress: false
+
 jobs:
   update-briefing:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Run Market Data Updater
-        run: |
-          python scripts/update_market_data.py
+      - name: Update market data
+        run: python scripts/update_market_data.py
 
-      - name: Commit and Push if Changed
+      - name: Commit and push (retry when the PC task pushed first)
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/latest_briefing.json index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(auto): update hourly market data & embedded snapshot [skip ci]" && git push)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git add data/latest_briefing.json index.html
+            if git diff --staged --quiet; then echo "no changes"; exit 0; fi
+            git commit -m "chore(auto): market data $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST [skip ci]"
+            if git push; then exit 0; fi
+            echo "push rejected, rebuilding on top of the latest main"
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/update_market_data.py
+          done
+          exit 1
