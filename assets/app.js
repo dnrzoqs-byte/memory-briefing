@@ -1,10 +1,11 @@
-/* 반도체 브리핑 v2 · app.js
+/* 반도체 브리핑 v4 · app.js
    데이터
      window.__INITIAL_BRIEFING_PAYLOAD__ : 시세·현물가·신호 (scripts/update_market_data.py 가 index.html 에 삽입)
      window.__RESEARCH__                 : 분석·출처·일정 (data/research.json 을 같은 방식으로 삽입)
    갱신: 서버 데이터(data/latest_briefing.json)는 5분마다, 실시간 시세는 장이 열린 날 1분마다 다시 받습니다.
    실시간 시세는 브라우저가 TradingView에서 바로 받습니다(국내 20분·미국 15분 지연, 코스피·VIX·금리·환율 실시간, 장전·장후 포함).
-   TradingView가 실패하면 CNBC 값을 서버 종가와 맞춰 본 뒤에만 쓰고, 둘 다 안 되면 서버 데이터를 그대로 씁니다. 문장 속 ==구절== 은 연한 형광펜으로 강조합니다. */
+   TradingView가 실패하면 CNBC 값을 서버 종가와 맞춰 본 뒤에만 쓰고, 둘 다 안 되면 서버 데이터를 그대로 씁니다. 문장 속 ==구절== 은 연한 형광펜으로 강조합니다.
+   오늘의 대응: assets/engine.js(window.MBE)가 같은 데이터로 종목별 판단·가격 계획·이유를 계산합니다. 카톡 문구도 같은 파일을 씁니다. */
 (() => {
   'use strict';
 
@@ -127,13 +128,19 @@
     const e = nov + ((7 - new Date(nov).getUTCDay()) % 7) * 86400e3 + 6 * 3600e3;
     return ms >= s && ms < e;
   }
+  // 휴장일(확실한 날만). 국내: 성탄절·연말 휴장·신정. 미국: 추수감사절·성탄절·신정·마틴 루서 킹 데이·대통령의 날.
+  const HOLI = { kr: new Set(['2026-12-25', '2026-12-31', '2027-01-01']), us: new Set(['2026-11-26', '2026-12-25', '2027-01-01', '2027-01-18', '2027-02-15']) };
+  const ymd = (d) => d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
   function sessions(ms = Date.now()) {
-    const k = kst(ms), m = k.h * 60 + k.mi, wd = k.wd;
-    const weekday = wd >= 1 && wd <= 5;
-    const dst = usDST(ms), o = dst ? 1350 : 1410, c = dst ? 300 : 360;
+    const k = new Date(ms + 9 * 3600e3), km = k.getUTCHours() * 60 + k.getUTCMinutes(), kwd = k.getUTCDay();
+    const e = new Date(ms - (usDST(ms) ? 4 : 5) * 3600e3), em = e.getUTCHours() * 60 + e.getUTCMinutes(), ewd = e.getUTCDay();
+    const krOff = kwd === 0 || kwd === 6 || HOLI.kr.has(ymd(k)), usOff = ewd === 0 || ewd === 6 || HOLI.us.has(ymd(e));
+    // 오늘 밤(한국 저녁) 미국 장은 한국 날짜와 같은 날짜의 미국 장입니다.
+    const usTonightOff = kwd === 0 || kwd === 6 || HOLI.us.has(ymd(k));
     return {
-      kr: weekday && m >= 540 && m <= 930 ? '장중' : '마감',
-      us: (weekday && m >= o) || (wd >= 2 && wd <= 6 && m < c) ? '장중' : '마감'
+      kr: krOff ? '휴장' : km >= 540 && km <= 930 ? '장중' : '마감',
+      us: usOff ? '휴장' : em >= 570 && em < 960 ? '장중' : '마감',
+      krOff, usOff, usTonightOff, km, em
     };
   }
 
@@ -162,25 +169,35 @@
     serCache.set(key, out);
     return out;
   }
-  // 실시간 가격이 서버 마지막 종가의 다음 거래일이면 점을 하나 더하고, 같은 거래일이면 마지막 점을 바꿉니다.
+  // 실시간 가격이 어느 거래일 값인지: 정규장이 열린 뒤면 오늘, 그 전이면 직전 거래일입니다.
+  function prevBiz(t) { let x = t - 86400e3; while ([0, 6].includes(new Date(x).getUTCDay())) x -= 86400e3; return x; }
   function liveDay(d) {
     if (d.day) return dUTC(d.day);
     const now = Date.now();
-    if (d.mkt === 'kr') { const k = kst(now); return Date.UTC(k.y, k.m - 1, k.d); }
-    const ny = new Date(now - (usDST(now) ? 4 : 5) * 3600e3);
-    return Date.UTC(ny.getUTCFullYear(), ny.getUTCMonth(), ny.getUTCDate());
+    if (d.mkt === 'kr') {
+      const k = kst(now), t = Date.UTC(k.y, k.m - 1, k.d);
+      return k.wd >= 1 && k.wd <= 5 && k.h * 60 + k.mi >= 540 ? t : prevBiz(t);
+    }
+    const ny = new Date(now - (usDST(now) ? 4 : 5) * 3600e3), t = Date.UTC(ny.getUTCFullYear(), ny.getUTCMonth(), ny.getUTCDate());
+    const wd = ny.getUTCDay(), m = ny.getUTCHours() * 60 + ny.getUTCMinutes();
+    if (d.mkt === 'us') return wd >= 1 && wd <= 5 && m >= 570 ? t : prevBiz(t);
+    return wd >= 1 && wd <= 5 ? t : prevBiz(t);
   }
+  // 실시간 가격이 서버 마지막 종가의 다음 거래일이면 점을 하나 더하고, 같은 거래일이면 마지막 점을 바꿉니다.
+  // 서버 기록이 하루 이상 늦으면 실시간의 전일 종가로 직전 거래일을 채운 뒤 현재가를 잇습니다(국내·미국 종목과 지수만).
   function SER(sym) {
     const base = serBase(sym), d = S.direct[sym], b = (S.P.quotes || {})[sym];
     if (!d || !isNum(d.price) || base.length < 2) return base;
     const last = base[base.length - 1];
     const near = (x, y) => isNum(x) && isNum(y) && Math.abs(x - y) <= Math.abs(y) * 6e-4 + 1e-9;
     if (near(d.price, last.v)) return base;
-    if (near(d.prev, last.v)) {
-      const t = liveDay(d);
-      return t && t > last.t ? base.concat([{ t, v: d.price, live: true }]) : base;
-    }
+    const t = liveDay(d);
+    if (near(d.prev, last.v)) return t && t > last.t ? base.concat([{ t, v: d.price, live: true }]) : base;
     if (b && near(d.prev, b.prev)) return base.slice(0, -1).concat([{ t: last.t, v: d.price, live: true }]);
+    if ((d.mkt === 'kr' || d.mkt === 'us') && isNum(d.prev) && t && t > last.t && t - last.t <= 7 * 86400e3) {
+      const pd = prevBiz(t);
+      if (pd > last.t) return base.concat([{ t: pd, v: d.prev, fill: true }, { t, v: d.price, live: true }]);
+    }
     return base;
   }
   const lastN = (a, n) => a.slice(Math.max(0, a.length - n));
@@ -216,6 +233,30 @@
     yld: (a) => { const [s, d] = String(a || '').split('|'), q = Q(s); return q && isNum(q.price) && +d > 0 ? nf((+d / q.price) * 100, 1) : null; },
     disc: () => { const c = Q('005930.KS'), p = Q('005935.KS'); return c && p && c.price ? nf((1 - p.price / c.price) * 100, 1) : null; }
   };
+  // 오늘의 대응 엔진(assets/engine.js). 서버 1년 일봉에 실시간 점을 더한 기록으로 계산하고, 데이터가 바뀔 때만 다시 계산합니다.
+  const ENG_SYMS = HOLD.concat(['^KS11', '^SOX', 'NVDA', '^VIX', '^TNX', 'HYG', 'KRW=X']);
+  let engMemo = { key: '', out: null, at: 0 };
+  function ENG() {
+    if (!window.MBE || !window.MBE.run) return null;
+    const key = [S.P.updated_ts || 0, S.liveAt || 0, S.R.version || '', S.R.as_of || '', JSON.stringify(S.pos || {})].join('|');
+    if (engMemo.key === key) return engMemo.out;
+    const ser = {};
+    ENG_SYMS.forEach((x) => { ser[x] = SER(x); });
+    const H = S.P.history || {};
+    const dram = (H.dram || []).filter((h) => isNum(h.ddr5_16g)).map((h) => ({ t: dUTC(h.d), v: h.ddr5_16g }));
+    const flows = {};
+    Object.keys(H.flows || {}).forEach((k) => { flows[k] = (H.flows[k] || []).map((x) => ({ t: dUTC(x.d), f: x.f, o: x.o, v: x.v })); });
+    const cns = {};
+    Object.keys(S.P.naver || {}).forEach((k) => { const n = S.P.naver[k] || {}; cns[k] = { eps: n.eps, bps: n.bps }; });
+    const k = kst(Date.now());
+    let out = null;
+    try { out = window.MBE.run({ ser, dram, flows, cns, research: S.R, pos: S.pos, today: Date.UTC(k.y, k.m - 1, k.d), now: Date.now() }); }
+    catch (e) { if (window.console) console.error('engine', e); }
+    engMemo = { key, out, at: Date.now() };
+    return out;
+  }
+  const EI = (sym) => { const E = ENG(); return E && E.items ? E.items[sym] || null : null; };
+
   // research.json 문장: {{토큰}} 과 {{토큰:인자}} 는 실시간 값으로, ==구절== 은 연한 형광펜 강조로 바꿉니다.
   function tpl(text) {
     return esc(text)
@@ -505,7 +546,7 @@
     el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${g}</svg>`;
     bindTips(el);
   }
-  const DRAW = { line: drawLine, cols: drawCols, range: drawRange, hbar: drawHBar };
+  const DRAW = { line: drawLine, cols: drawCols, range: drawRange, hbar: drawHBar, quad: (el, sp) => drawQuad(el, sp) };
 
   function spark(data) {
     if (!data || data.length < 2) return '';
@@ -544,28 +585,219 @@
 
   // ================================================================ 6. 오늘
   function vToday() {
-    const R = S.R, st = R.stance || {};
-    const pts = (st.points || []).map((p) => `<li>${tag(p.k)}<div>${tpl(p.t)}${srcLinks(p.src)}</div></li>`).join('');
-    const hero = `<section class="card hero c12">
-      <div class="eyebrow">오늘의 판단 · ${esc(R.as_of_label || '')}</div>
-      <h2>${tpl(st.headline || '분석 자료를 불러오는 중입니다')}</h2>
-      ${st.label ? `<div class="stance"><i class="dot"></i>${esc(st.label)}</div>` : ''}
-      <ul class="pts">${pts}</ul>
-      <div class="dodont">
-        <div class="box do"><h4>할 일</h4><ul>${(st.do || []).map((x) => `<li>${tpl(x)}</li>`).join('')}</ul></div>
-        <div class="box dont"><h4>하지 않을 일</h4><ul>${(st.dont || []).map((x) => `<li>${tpl(x)}</li>`).join('')}</ul></div>
-      </div>
-      <p class="note mt12">${esc(R.note || '')}</p>
-    </section>`;
+    const E = ENG();
     return head('오늘', esc(S.P.market_date || '')) +
-      `<div class="grid">${hero}</div>
-       <div class="grid">${planCard('c12')}</div>
+      `<div class="grid">${actionHero(E)}</div>
+       <div class="grid">${boardCard(E, 'c12')}</div>
+       <div class="grid">${mapCard(E, 'c7')}${heatCard(E, 'c5')}</div>
+       <div class="grid">${trailCard(E, 'c12')}</div>
        <div class="grid">${stressCard('c5')}<div class="c7 stack">${tilesCard('')}${upcomingCard('')}</div></div>
+       <div class="grid">${bgCard('c12')}</div>
        <div class="grid">${scenarioCard('c12')}</div>`;
   }
 
+  // ---------------------------------------------------------------- 오늘의 대응
+  function sessionLine() {
+    const ss = sessions(), k = kst(Date.now()), m = k.h * 60 + k.mi;
+    const us = [['^SOX', '반도체지수'], ['NVDA', '엔비디아'], ['MU', '마이크론']].map(([x, n]) => { const q = Q(x); return q && isNum(q.chg_pct) ? `${n} ${sgn(q.chg_pct, 1)}` : null; }).filter(Boolean).join(' · ');
+    const qk = Q('^KS11'), kr = qk && isNum(qk.chg_pct) ? `코스피 ${sgn(qk.chg_pct, 1)}` : '';
+    const tonight = ss.usTonightOff ? '오늘 밤 미국은 휴장입니다' : '';
+    if (ss.kr === '장중') return `국내 장중(시세 20분 지연) · ${kr}. 밤사이 미국 ${us}.${tonight ? ' ' + tonight + '.' : ''}`;
+    if (!ss.krOff && m < 540) return `국내 장 시작 전. 밤사이 미국 ${us}.${tonight ? ' ' + tonight + '.' : ''}`;
+    if (ss.us === '장중') return `미국 장중(시세 15분 지연) · ${us}. 오늘 국내 ${kr}.`;
+    if (ss.krOff && ss.usOff) return `국내·미국 모두 쉬는 날. 마지막 거래일 미국 ${us}.`;
+    return `국내 장 마감 · ${kr}. ${tonight || '오늘 밤 미국 장 전'}. 직전 미국 ${us}.`;
+  }
+  function evSoon(days) {
+    return (S.R.calendar || []).filter((e) => { const d = ddays(e.d); return d != null && d >= 0 && d <= days && e.firm !== false && !e.approx; });
+  }
+  function actionHero(E) {
+    if (!E) return `<section class="card hero c12"><div class="eyebrow">오늘의 대응</div><h2>판단 엔진을 불러오지 못했습니다</h2><p class="note">새로 고침을 눌러 주세요.</p></section>`;
+    const sm = E.summary || {}, evs = evSoon(1);
+    const evh = evs.length ? `<ul class="soon">${evs.map((e) => `<li><span class="when">${ddays(e.d) === 0 ? '오늘' : '내일'}${e.t ? ' ' + esc(e.t) : ''}</span><span>${esc(e.title)}${forTxt(e)}</span></li>`).join('')}</ul>` : '';
+    return `<section class="card hero act-hero c12">
+      <div class="eyebrow">오늘의 대응 · ${esc(mdw(Date.now()))} ${esc(hm(engMemo.at || Date.now()))} 계산 ${tag('view')}</div>
+      <h2>${esc(sm.head || '')}</h2>
+      <p class="lead">${esc(sm.body || '')}</p>
+      <div class="bits">${(sm.bits || []).map((b) => `<span class="bit">${esc(b)}</span>`).join('')}</div>
+      <p class="sess"><i class="dot"></i>${esc(sessionLine())}</p>
+      ${evh}
+      <details class="how"><summary>이 판단은 이렇게 나옵니다</summary>
+        <p>종목마다 두 값을 -100~100으로 계산합니다. <b>가격 매력</b>은 이익·배당·순자산 대비 지금 가격에 업황(메모리 가격, AI 투자 심리)을 섞은 값이고, <b>흐름</b>은 추세·과매도·외국인 수급·금리·환율·시장 스트레스를 종목별 무게로 합친 값입니다.</p>
+        <p>두 값이 놓인 구역이 판단이 됩니다. 가격 매력 35 이상이면서 흐름 -15 이상이면 분할 매수, 가격 매력은 높은데 흐름이 나쁘면 매수 대기, 가격 매력이 -25 아래로 비싸지거나 흐름이 -45 아래로 무너지면 비중 점검입니다. 판단은 경계를 6점 넘게 지나야 바뀌어 하루의 흔들림에 휘둘리지 않습니다.</p>
+        <p>급락 국면(시장 스트레스 65 이상이거나 고점 대비 -40% 아래)에서는 추세 신호가 자주 틀리므로 추세 무게를 절반으로 줄이고 과매도 무게를 늘립니다. 금리 결정이나 실적 같은 큰 일정 하루 전에는 사지 않고 결과를 봅니다. 매수 시작가는 다른 변수를 그대로 두고 가격만 움직였을 때 사는 구역에 드는 가격입니다.</p>
+        <p>규칙으로 계산한 참고 판단입니다. 주문은 직접 정합니다.</p>
+      </details>
+    </section>`;
+  }
+  function axBar(label, v) {
+    const x = Math.max(-100, Math.min(100, isNum(v) ? v : 0)), w = Math.abs(x) / 2;
+    return `<div class="ax"><span class="ax-l">${esc(label)}</span><span class="ax-bar"><i class="${x >= 0 ? 'pos' : 'neg'}" style="${x >= 0 ? 'left' : 'right'}:50%;width:${w.toFixed(1)}%"></i></span><b class="num">${isNum(v) ? (v > 0 ? '+' : '') + Math.round(v) : '-'}</b></div>`;
+  }
+  function chTxt(it) {
+    const c = it.change;
+    if (!c) return '';
+    const why = (c.top || []).map((x) => `${x.name} ${x.d > 0 ? '+' : '−'}${nf(Math.abs(x.d), 0)}`).join(', ');
+    if (c.changed) return `<span class="chg-b on">어제 ${esc(c.from.name)} → 오늘 ${esc(c.to.name)}</span>${why ? `<span class="muted">${esc(why)}</span>` : ''}`;
+    return `<span class="chg-b">어제와 같은 판단</span><span class="muted">점수 ${c.dScore > 0 ? '+' : ''}${c.dScore}${why ? ' · ' + esc(why) : ''}</span>`;
+  }
+  function boardCard(E, c) {
+    const pf = portfolio(), byS = {};
+    pf.rows.forEach((r) => { byS[r.s] = r; });
+    const items = HOLD.map((s) => {
+      const it = E && E.items[s], q = Q(s), r = byS[s];
+      if (!it) return '';
+      const why = (it.reasons || []).slice(0, 3).map((x) => `<li class="${x.c >= 0 ? 'pos' : 'neg'}"><b>${esc(x.name)}</b>${esc(x.txt)}</li>`).join('');
+      const mine = r && r.plp != null ? `<span class="num">내 손익 <b class="${dir(r.pl)}">${sgn(r.plp, 1)}</b></span>` : '';
+      const ex = extTxt(s, q);
+      return `<a class="plan act" href="#stocks/${esc(s)}" style="--slot:${SLOT[s]}">
+        <div class="plan-top"><span class="nm">${esc(NAME[s])}</span><span class="call ${esc(it.level.tone)}">${esc(it.level.name)}</span></div>
+        <div class="plan-px"><b class="num">${q ? px(s, q.price) : '-'}</b><span class="num ${chgDir(s, q)}">${q ? chgText(s, q) : ''}</span>${q && isNum(q.dd) ? `<span class="num muted">고점 대비 ${sgn(q.dd, 0)}</span>` : ''}</div>
+        ${ex || mine ? `<div class="plan-sub">${ex}${mine}</div>` : ''}
+        <div class="axes">${axBar('가격 매력', it.V)}${axBar('흐름', it.T)}</div>
+        <p class="act-line">${esc(it.line)}</p>
+        <ul class="why">${why}</ul>
+        <div class="plan-ft">${chTxt(it)}</div>
+      </a>`;
+    }).join('');
+    const sum = pf.rows.length ? `<div class="stats mt16">
+        <div class="stat"><span class="lb">평가금액</span><span class="vl">${krw(pf.val)}</span><span class="ds">미국 종목은 원/달러 ${nf(pf.fx, 1)}원으로 환산</span></div>
+        <div class="stat"><span class="lb">오늘 변동</span><span class="vl ${dir(pf.day)}">${pf.day > 0 ? '+' : ''}${krw(pf.day)}</span><span class="ds">전 거래일 종가 대비</span></div>
+        <div class="stat"><span class="lb">평가손익</span><span class="vl ${dir(pf.pl)}">${pf.pl != null ? (pf.pl > 0 ? '+' : '') + krw(pf.pl) : '-'}</span><span class="ds">${pf.cost ? sgn((pf.val / pf.cost - 1) * 100, 1) + ' · 평균단가 입력 종목 기준' : '평균단가를 넣으면 계산합니다'}</span></div>
+      </div>` : '';
+    return `<section class="card ${c}" id="plan">
+      <div class="ch"><h3>종목별 대응</h3><span class="sub">${tag('view')} 매일 변수로 다시 계산 · 이유는 점수를 가장 크게 움직인 변수 순 · <a href="#stocks" data-act="pos-open">수량·단가 입력</a></span></div>
+      <div class="plans">${items || '<div class="empty">판단을 계산할 기록이 부족합니다</div>'}</div>
+      ${sum}
+    </section>`;
+  }
+
+  // 가격 매력(가로)과 흐름(세로) 지도. 구역은 엔진의 규칙을 그대로 칠합니다.
+  function mapCard(E, c) {
+    if (!E || !window.MBE.zoneOf) return '';
+    return `<section class="card ${c}" id="map">
+      <div class="ch"><h3>가격 매력과 흐름</h3><span class="sub">점은 오늘, 꼬리는 최근 5거래일</span></div>
+      ${slot({ type: 'quad', height: 330, E, aria: '종목별 가격 매력과 흐름 지도' })}
+      <p class="note mt8">가로는 가격 매력(오른쪽일수록 이익·배당 대비 쌈), 세로는 흐름(위쪽일수록 지금 사도 되는 때)입니다. 오른쪽 위가 사는 구역, 오른쪽 아래가 기다리는 구역, 왼쪽이 점검 구역입니다. 점에 손가락을 올리면 숫자가 나옵니다.</p>
+    </section>`;
+  }
+  function drawQuad(el, sp) {
+    const E = sp.E, W = Math.max(280, el.clientWidth || 560), H = sp.height || 330, small = W < 420;
+    const m = { t: 10, r: 10, b: 30, l: 10 };
+    const X = (v) => m.l + ((v + 100) / 200) * (W - m.l - m.r), Y = (v) => m.t + (1 - (v + 100) / 200) * (H - m.t - m.b);
+    const FILL = { buy: 'var(--zone-buy)', ready: 'var(--zone-ready)', trim: 'var(--zone-trim)', sell: 'var(--zone-sell)' };
+    let g = '';
+    const st = 5;
+    for (let ty = 100; ty > -100; ty -= st) {
+      let run = null;
+      for (let vx = -100; vx <= 100; vx += st) {
+        const z = vx < 100 ? window.MBE.zoneOf(vx + st / 2, ty - st / 2) : null;
+        if (run && z === run.z) continue;
+        if (run && FILL[run.z]) g += `<rect x="${X(run.x).toFixed(1)}" y="${Y(ty).toFixed(1)}" width="${(X(vx) - X(run.x)).toFixed(1)}" height="${(Y(ty - st) - Y(ty)).toFixed(1)}" fill="${FILL[run.z]}" shape-rendering="crispEdges"/>`;
+        run = z ? { z, x: vx } : null;
+      }
+    }
+    g += `<line x1="${X(0).toFixed(1)}" x2="${X(0).toFixed(1)}" y1="${m.t}" y2="${(H - m.b).toFixed(1)}" stroke="var(--line-2)" stroke-dasharray="3 3"/>`;
+    g += `<line x1="${m.l}" x2="${(W - m.r).toFixed(1)}" y1="${Y(0).toFixed(1)}" y2="${Y(0).toFixed(1)}" stroke="var(--line-2)" stroke-dasharray="3 3"/>`;
+    g += `<rect x="${m.l}" y="${m.t}" width="${(W - m.l - m.r).toFixed(1)}" height="${(H - m.t - m.b).toFixed(1)}" fill="none" stroke="var(--line)"/>`;
+    const zl = 'font-size="11" font-weight="700" fill="var(--muted)"';
+    g += T(X(97), Y(93) + 2, '사는 구역', `${zl} text-anchor="end"`);
+    g += T(X(97), Y(-93) + 4, '기다리는 구역', `${zl} text-anchor="end"`);
+    g += T(X(-97), Y(-93) + 4, '줄이는 구역', zl);
+    g += T(X(-97), Y(-12), '점검 구역', zl);
+    g += T(X(-97), Y(93) + 2, '과열 점검', zl);
+    g += T(X(-97), Y(48), '지키는 구역', zl);
+    const ax = 'font-size="11" fill="var(--muted)"';
+    g += T(m.l, H - 9, '← 비쌈', ax);
+    g += T((m.l + W - m.r) / 2, H - 9, small ? '가격 매력' : '가격 매력(가로) · 흐름(세로, 위가 좋음)', `${ax} text-anchor="middle"`);
+    g += T(W - m.r, H - 9, '쌈 →', `${ax} text-anchor="end"`);
+    const pts = HOLD.map((s) => E.items[s]).filter(Boolean);
+    pts.forEach((it) => {
+      const tr = it.trail.slice(-5);
+      if (tr.length >= 2) {
+        g += `<polyline points="${tr.map((x) => X(x.V).toFixed(1) + ',' + Y(x.T).toFixed(1)).join(' ')}" fill="none" stroke="${SLOT[it.sym]}" stroke-width="1.6" stroke-opacity=".55" stroke-linejoin="round" stroke-linecap="round"/>`;
+        tr.slice(0, -1).forEach((x) => { g += `<circle cx="${X(x.V).toFixed(1)}" cy="${Y(x.T).toFixed(1)}" r="2" fill="${SLOT[it.sym]}" fill-opacity=".55"/>`; });
+      }
+    });
+    // 이름표: 점과 다른 이름표를 피해 오른쪽·왼쪽·위·아래 중 빈 곳에 둡니다.
+    const boxes = pts.map((it) => ({ x: X(it.V) - 7, y: Y(it.T) - 7, w: 14, h: 14 }));
+    const hit = (b) => boxes.some((o) => b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
+    pts.forEach((it) => {
+      const x = X(it.V), y = Y(it.T), lab = SHORT[it.sym], w = textW(lab, 11.5) + 4, h = 14;
+      const cand = [[x + 9, y - h / 2], [x - 9 - w, y - h / 2], [x - w / 2, y - 10 - h], [x - w / 2, y + 9],
+        [x + 7, y - 7 - h], [x + 7, y + 7], [x - 7 - w, y - 7 - h], [x - 7 - w, y + 7]];
+      let best = null;
+      for (const c2 of cand) {
+        const b = { x: c2[0], y: c2[1], w, h };
+        if (b.x < m.l + 2 || b.x + w > W - m.r - 2 || b.y < m.t + 2 || b.y + h > H - m.b - 2) continue;
+        if (!hit(b)) { best = c2; break; }
+      }
+      if (!best) best = cand.find((c2) => c2[0] >= m.l && c2[0] + w <= W - m.r) || cand[0];
+      boxes.push({ x: best[0], y: best[1], w, h });
+      const tip = `<div class="tt">${esc(it.name)} · ${esc(it.level.name)}</div>` + tipRow((it.V > 0 ? '+' : '') + it.V, '가격 매력') + tipRow((it.T > 0 ? '+' : '') + it.T, '흐름') + tipRow(px(it.sym, it.p), '가격');
+      g += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="${SLOT[it.sym]}" stroke="var(--surface)" stroke-width="2" data-tip="${esc(tip)}"/>`;
+      g += T(best[0] + 2, best[1] + 10.5, lab, `font-size="11.5" font-weight="700" fill="var(--ink)" ${HALO}`);
+    });
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" role="img" aria-label="${esc(sp.aria || '')}">${g}</svg>`;
+    bindTips(el);
+  }
+
+  function heatCard(E, c) {
+    if (!E) return '';
+    const cols = HOLD.filter((s) => E.items[s]);
+    const rows = E.factors.filter((F) => cols.some((s) => isNum(E.items[s].contrib[F.k])));
+    const cell = (s, F) => {
+      const v = E.items[s].contrib[F.k];
+      if (!isNum(v)) return '<td class="na">·</td>';
+      const a = Math.min(1, Math.abs(v) / 25), x = E.items[s].fs[F.k] || {};
+      return `<td class="${v >= 0 ? 'pos' : 'neg'}" style="--a:${(0.1 + a * 0.62).toFixed(2)}" title="${esc(NAME[s] + ' · ' + F.name + ': ' + (x.txt || ''))}">${v > 0.5 ? '+' : v < -0.5 ? '−' : ''}${nf(Math.abs(v), 0)}</td>`;
+    };
+    const body = rows.map((F) => `<tr><th scope="row" title="${esc(F.desc)}">${esc(F.name)}</th>${cols.map((s) => cell(s, F)).join('')}</tr>`).join('');
+    const foot = `<tr class="tot"><th scope="row">점수</th>${cols.map((s) => `<td>${E.items[s].score > 0 ? '+' : ''}${E.items[s].score}</td>`).join('')}</tr>`;
+    return `<section class="card ${c}" id="heat">
+      <div class="ch"><h3>변수가 종목을 미는 힘</h3><span class="sub">초록은 사는 쪽, 주황은 파는 쪽</span></div>
+      <div class="tbl-wrap"><table class="heat"><thead><tr><th></th>${cols.map((s) => `<th scope="col">${esc(SHORT[s])}</th>`).join('')}</tr></thead><tbody>${body}${foot}</tbody></table></div>
+      <p class="note mt8">숫자는 그 변수가 오늘 점수를 얼마나 올렸거나(+) 내렸는지입니다. 같은 변수라도 종목마다 무게가 달라 금리는 AMD에, 메모리 가격은 원익IPS에 가장 크게 작동합니다. 칸을 누르면 근거 숫자가 나옵니다.</p>
+    </section>`;
+  }
+
+  function trailCells(sym, it, E) {
+    return it.trail.map((x) => {
+      const L = E.levels[x.G];
+      const tip = `<div class="tt">${sdate(x.t)} · ${esc(L.name)}</div>` + tipRow((x.score > 0 ? '+' : '') + x.score, '점수') + tipRow(px(sym, x.p), '종가');
+      return `<i class="tc ${esc(L.tone)}" data-tip="${esc(tip)}"></i>`;
+    }).join('');
+  }
+  function trailCard(E, c) {
+    if (!E) return '';
+    const first = HOLD.map((s) => E.items[s]).find((x) => x && x.trail.length);
+    if (!first) return '';
+    const rows = HOLD.map((s) => {
+      const it = E.items[s];
+      return it ? `<div class="trow"><span class="nm">${esc(SHORT[s])}</span><span class="cells">${trailCells(s, it, E)}</span><span class="call ${esc(it.level.tone)}">${esc(it.level.name)}</span></div>` : '';
+    }).join('');
+    const lg = E.levels.slice().reverse().map((L) => `<span><i class="tc ${esc(L.tone)}"></i>${esc(L.name)}</span>`).join('');
+    return `<section class="card ${c}" id="trail">
+      <div class="ch"><h3>최근 20거래일 판단</h3><span class="sub">같은 규칙을 그날까지의 기록으로 다시 계산</span></div>
+      <div class="tlegend">${lg}</div>
+      <div class="trails">${rows}</div>
+      <div class="taxis"><span>${esc(sdate(first.trail[0].t))}</span><span>${esc(sdate(first.trail[first.trail.length - 1].t))}</span></div>
+      <p class="note mt8">판단이 언제 바뀌었는지 보여 줍니다. 칸에 손가락이나 마우스를 올리면 그날 점수와 종가가 나옵니다.</p>
+    </section>`;
+  }
+
+  function bgCard(c) {
+    const st = S.R.stance || {};
+    const pts = (st.points || []).map((x) => `<li>${tag(x.k)}<div>${tpl(x.t)}${srcLinks(x.src)}</div></li>`).join('');
+    if (!pts) return '';
+    return `<section class="card ${c}" id="bg">
+      <div class="ch"><h3>배경 정리</h3><span class="sub">${esc(S.R.as_of_label || '')} · 사람이 정리한 사실과 판단</span></div>
+      ${st.headline ? `<p class="lead">${tpl(st.headline)}</p>` : ''}
+      <ul class="pts mt12">${pts}</ul>
+    </section>`;
+  }
+
   // ---------------------------------------------------------------- 내 종목 전략
-  const TONE = { add: 'add', hold: 'hold', wait: 'wait', trim: 'trim' };
   function nextFor(sym, n) {
     return (S.R.calendar || []).filter((e) => (e.for || []).indexOf(sym) >= 0 && (ddays(e.d) == null || ddays(e.d) >= 0)).slice(0, n || 1);
   }
@@ -578,67 +810,22 @@
     if (!q || !q.ext || !isNum(q.ext.price)) return '';
     return `<span class="ext">${esc(q.ext.label)} ${px(sym, q.ext.price)} <b class="${dir(q.ext.pct)}">${sgn(q.ext.pct, 1)}</b></span>`;
   }
-  function planCard(c) {
-    const pf = portfolio(), byS = {};
-    pf.rows.forEach((r) => { byS[r.s] = r; });
-    const items = HOLD.map((s) => {
-      const q = Q(s), H = (S.R.holdings || {})[s] || {}, st = H.strategy || {}, r = byS[s], ex = extTxt(s, q);
-      const cand = nextFor(s, 6), nx = cand.find((e) => (e.for || []).length <= 3 && (ddays(e.d) == null || ddays(e.d) <= 30)) || cand[0];
-      const mine = r && r.plp != null ? `<span class="num">내 손익 <b class="${dir(r.pl)}">${sgn(r.plp, 1)}</b></span>` : '';
-      return `<a class="plan" href="#stocks/${esc(s)}" style="--slot:${SLOT[s]}">
-        <div class="plan-top"><span class="nm">${esc(NAME[s])}</span><span class="call ${esc(TONE[st.tone] || 'hold')}">${esc(st.call || '보유')}</span></div>
-        <div class="plan-px"><b class="num">${q ? px(s, q.price) : '-'}</b><span class="num ${chgDir(s, q)}">${q ? chgText(s, q) : ''}</span>${q && isNum(q.dd) ? `<span class="num muted">고점 대비 ${sgn(q.dd, 0)}</span>` : ''}</div>
-        ${ex || mine ? `<div class="plan-sub">${ex}${mine}</div>` : ''}
-        <p class="plan-line">${tpl(st.line || H.thesis || '')}</p>
-        ${nx ? `<div class="plan-ft"><span class="when">${esc(whenTxt(nx))}</span><span>${esc(nx.title)}</span></div>` : ''}
-      </a>`;
-    }).join('');
-    const sum = pf.rows.length ? `<div class="stats mt16">
-        <div class="stat"><span class="lb">평가금액</span><span class="vl">${krw(pf.val)}</span><span class="ds">미국 종목은 원/달러 ${nf(pf.fx, 1)}원으로 환산</span></div>
-        <div class="stat"><span class="lb">오늘 변동</span><span class="vl ${dir(pf.day)}">${pf.day > 0 ? '+' : ''}${krw(pf.day)}</span><span class="ds">전 거래일 종가 대비</span></div>
-        <div class="stat"><span class="lb">평가손익</span><span class="vl ${dir(pf.pl)}">${pf.pl != null ? (pf.pl > 0 ? '+' : '') + krw(pf.pl) : '-'}</span><span class="ds">${pf.cost ? sgn((pf.val / pf.cost - 1) * 100, 1) + ' · 평균단가 입력 종목 기준' : '평균단가를 넣으면 계산합니다'}</span></div>
-      </div>` : '';
-    return `<section class="card ${c}" id="plan">
-      <div class="ch"><h3>내 종목 전략</h3><span class="sub">${tag('view')} 조건을 미리 정해 두고 따릅니다 · <a href="#stocks" data-act="pos-open">수량·단가 입력</a></span></div>
-      <div class="plans">${items}</div>
-      ${sum}
-    </section>`;
-  }
-
-  // 서버가 계산한 신호 가운데 시세로 만드는 신호는 실시간 가격과 서버의 50일 평균으로 다시 계산합니다(규칙은 수집기와 같습니다).
+  // 시장 스트레스: 엔진이 서버와 같은 규칙으로, 실시간 점을 더한 기록에서 다시 계산한 값을 씁니다(오늘의 대응과 같은 숫자).
   function stressNow() {
-    const P = S.P, base = P.signals || [], st0 = P.stress || {};
-    const lin = (v, a, b) => Math.max(0, Math.min(100, ((v - a) / (b - a)) * 100));
-    const gap = (sym) => { const q = Q(sym); return S.direct[sym] && q && isNum(q.price) && isNum(q.ma50) && q.ma50 > 0 ? (q.price / q.ma50 - 1) * 100 : null; };
-    const lv = (sym) => (S.direct[sym] ? (Q(sym) || {}).price : null);
-    const G = { sox: ['^SOX', -6, 14, -8], kospi: ['^KS11', -5, 12, -7], nvda: ['NVDA', -6, 20, -10] };
-    let live = false;
-    const sig = base.map((s) => {
-      let v = null, sc = null, stt = null;
-      if (s.id === 'vix') {
-        v = lv('^VIX');
-        if (isNum(v)) { sc = lin(v, 14, 36); stt = v < 20 ? 'ok' : v < 28 ? 'watch' : 'warn'; }
-      } else if (G[s.id]) {
-        const g = G[s.id], x = gap(g[0]);
-        if (isNum(x)) { sc = lin(-x, g[1], g[2]); stt = x >= 0 ? 'ok' : x >= g[3] ? 'watch' : 'warn'; v = Math.round(x * 10) / 10; }
-      } else if (s.id === 'us10y') {
-        v = lv('^TNX');
-        if (isNum(v)) { sc = lin(v, 3.9, 5.2); stt = v < 4.3 ? 'ok' : v < 4.75 ? 'watch' : 'warn'; }
-      } else if (s.id === 'credit' && s.unit === '%') {
-        const x = gap('HYG');
-        if (isNum(x)) { sc = lin(-x, -0.5, 4); stt = x >= -0.5 ? 'ok' : x >= -2 ? 'watch' : 'warn'; v = Math.round(x * 100) / 100; }
-      }
-      if (!isNum(v) || !isNum(sc)) return s;
-      live = true;
-      return Object.assign({}, s, { value: v, score: Math.round(sc), status: stt, live: true });
+    const P = S.P, base = P.signals || [], st0 = P.stress || {}, E = ENG(), mk = E && E.market ? E.market.market : null;
+    if (!mk || !isNum(mk.S)) return Object.assign({}, st0, { sig: base, live: false });
+    const by = {};
+    (mk.sig || []).forEach((x) => { by[x.id] = x; });
+    const sig = base.map((x) => {
+      const y = by[x.id];
+      if (!y || (x.id === 'credit' && x.unit !== '%')) return x;
+      const o = Object.assign({}, x, { value: y.value, score: y.score, status: y.status, live: true });
+      if (x.id === 'dram' && y.age) o.label = `DDR5 현물 ${y.age}일 변화`;
+      return o;
     });
-    if (!live) return Object.assign({}, st0, { sig: base, live: false });
-    const scs = sig.map((x) => x.score).filter(isNum);
-    const score = scs.length ? Math.round(scs.reduce((a, b) => a + b, 0) / scs.length) : null;
-    const level = score == null ? '데이터 없음' : score < 30 ? '안정' : score < 55 ? '긴장' : score < 75 ? '공포' : '극단적 공포';
     const counts = { ok: 0, watch: 0, warn: 0 };
     sig.forEach((x) => { if (counts[x.status] != null) counts[x.status] += 1; });
-    return { sig, score, level, counts, live: true };
+    return { sig, score: mk.S, level: mk.level, counts, live: !!S.liveAt };
   }
 
   function stressCard(c) {
@@ -1025,34 +1212,115 @@
     const m = v / 1e4;
     return nf(m, Math.abs(m - Math.round(m)) < 1e-9 ? 0 : 1) + '만';
   }
-  function stratBlock(sym, H) {
-    const st = H.strategy;
-    if (!st) return '';
-    const plan = (st.plan || []).map((p) => `<li><div class="if"><span class="k">이럴 때</span>${tpl(p.if)}</div><div class="then"><span class="k">이렇게</span>${tpl(p.then)}</div></li>`).join('');
+  const DRV_NAME = { value: '가격 매력', trend: '추세', stretch: '과매도·과열', flow: '외국인·기관', rel: '상대 강도', memory: '메모리 가격', ai: 'AI 투자 심리', rates: '금리', fx: '환율', korea: '한국 증시', market: '시장 스트레스' };
+  function profileBlock(sym, H, it) {
+    const P = H.profile;
+    if (!P) return '';
+    const drv = (P.drivers || []).map((k) => {
+      const x = it && it.fs ? it.fs[k] : null, f = x && !x.na ? x.f : null;
+      const d = !isNum(f) ? '' : f >= 0.15 ? 'pos' : f <= -0.15 ? 'neg' : 'flat';
+      const w = d === 'pos' ? '우호' : d === 'neg' ? '부담' : d === 'flat' ? '중립' : '';
+      return `<span class="drv ${d}" title="${esc(x ? x.txt || '' : '')}">${esc(DRV_NAME[k] || k)}${w ? ` <b>${w}</b>` : ''}</span>`;
+    }).join('');
+    return `<div class="prof">
+      <div class="subh" style="margin-top:0">어떤 회사인가</div>
+      <p class="prof-what">${tpl(P.what)}</p>
+      <ul class="bul">${(P.biz || []).map((b) => `<li>${tpl(b.t || b)}${b.src ? srcLinks(b.src) : ''}</li>`).join('')}</ul>
+      ${P.money ? `<p class="lead mt8">${tpl(P.money)}</p>` : ''}
+      ${drv ? `<div class="drvs"><span class="k">주가를 움직이는 변수 · 오늘</span>${drv}</div>` : ''}
+    </div>`;
+  }
+  function opinion(n, scale) {
+    if (!isNum(n)) return '';
+    if (scale === 'naver') return n >= 4.5 ? '강력 매수' : n >= 3.5 ? '매수' : n >= 2.5 ? '중립' : n >= 1.5 ? '매도' : '강력 매도';
+    return n <= 1.5 ? '강력 매수' : n <= 2.5 ? '매수' : n <= 3.5 ? '중립' : n <= 4.5 ? '매도' : '강력 매도';
+  }
+  function outlookBlock(sym, H) {
+    const st = H.strategy || {}, n = (S.P.naver || {})[sym] || {}, q = Q(sym) || {};
+    const rows = [];
+    if (isKR(sym)) {
+      if (isNum(n.eps) && sym !== '005935.KS') rows.push(`<div class="val-row"><span>증권사 평균 올해 예상 주당순이익</span><b>${nf(n.eps)}원</b></div>`);
+      if (isNum(n.target) && isNum(q.price)) rows.push(`<div class="val-row"><span>증권사 평균 목표가${n.cns_date ? ` <span class="tiny muted">${esc(String(n.cns_date).slice(5).replace('-', '/'))}</span>` : ''}</span><b>${px(sym, n.target)} <span class="tiny ${dir(n.target / q.price - 1)}">${sgn((n.target / q.price - 1) * 100, 0)}</span></b></div>`);
+      if (isNum(n.recomm)) rows.push(`<div class="val-row"><span>애널리스트 평균 의견</span><b>${esc(opinion(n.recomm, 'naver'))} <span class="tiny muted">${nf(n.recomm, 2)}/5</span></b></div>`);
+    } else {
+      if (isNum(q.tgt) && isNum(q.price)) rows.push(`<div class="val-row"><span>애널리스트 평균 목표가</span><b>${px(sym, q.tgt)} <span class="tiny ${dir(q.tgt / q.price - 1)}">${sgn((q.tgt / q.price - 1) * 100, 0)}</span></b></div>`);
+      if (isNum(q.rec)) rows.push(`<div class="val-row"><span>애널리스트 평균 의견</span><b>${esc(opinion(q.rec, 'tv'))} <span class="tiny muted">${nf(q.rec, 2)} · 1 강력 매수~5 강력 매도</span></b></div>`);
+    }
     const out = (st.outlook || []).map((o) => `<div class="box ${esc(o.id || '')}${o.weight ? ' weight' : ''}"><h5>${esc(o.name)}${o.weight ? '<span class="pill">현재 무게</span>' : ''}</h5><p>${tpl(o.t)}</p></div>`).join('');
     const nx = nextFor(sym, 4);
-    return `<div class="strat">
-      <div class="strat-head"><span class="call ${esc(TONE[st.tone] || 'hold')}">${esc(st.call || '보유')}</span>${tag('view')}</div>
-      <p class="strat-line">${tpl(st.line || '')}</p>
+    return `<div class="outlk">
+      <div class="subh" style="margin-top:0">전망 ${tag('forecast')}</div>
+      ${H.outlook_note ? `<p class="lead">${tpl(H.outlook_note)}</p>` : ''}
+      ${rows.join('')}
+      ${rows.length ? '<p class="note mt8">목표가는 하락장에서 늦게 내려옵니다. 매도 기준으로 쓰지 않고 시장 기대의 높이로만 봅니다.</p>' : ''}
+      ${out ? `<div class="subh">2027년 시나리오 ${tag('view')}</div><div class="outlook">${out}</div>` : ''}
+      ${nx.length ? `<div class="subh">다음 확인 일정</div><ul class="nx">${nx.map((e) => `<li><span class="when">${esc(whenTxt(e))}</span><span>${esc(e.title)}</span></li>`).join('')}</ul>` : ''}
+    </div>`;
+  }
+  function ladder(sym, it, pos) {
+    const P = it.plan, p = it.p, rows = [];
+    const add = (v, label, cls) => { if (isNum(v) && v > 0) rows.push({ v, label, cls }); };
+    add(P.trimHi, '차익 검토가 · 오르면 일부 줄이기', 'trim');
+    if (isNum(P.richAt) && P.richAt > p) add(P.richAt, '이익 대비 비싼 구간 시작', 'band');
+    if (isNum(P.m50) && P.m50 > p) add(P.m50, '50일선', 'line');
+    add(P.m20, '20일선 · 하락이 멈췄는지 보는 선', 'line');
+    add(P.buyHi, '흐름 회복 매수가 · 이 위로 회복하면 매수', 'buy');
+    if (P.buyLo && P.buyLo < p) { add(P.steps[0], '1차 매수가', 'buy'); add(P.steps[1], '2차 매수가', 'buy'); add(P.steps[2], '3차 매수가', 'buy'); }
+    else if (P.buyNow) { add(P.steps[1], '다음 회차 매수가', 'buy'); add(P.steps[2], '그다음 회차', 'buy'); }
+    add(P.trimLo, '경계선 · 밀리면 비중 점검', 'trim');
+    if (isNum(P.cheapAt) && P.cheapAt < p) add(P.cheapAt, '이익 대비 싼 구간 시작', 'band');
+    if (pos && pos.avg > 0) add(pos.avg, '내 평균단가', 'mine');
+    const near = rows.filter((r) => r.cls === 'mine' || (r.v <= p * 1.7 && r.v >= p * 0.55));
+    near.sort((a, b) => b.v - a.v);
+    const out = [];
+    near.forEach((r) => { const pr = out[out.length - 1]; if (pr && Math.abs(pr.v / r.v - 1) < 0.004) { pr.label += ' · ' + r.label; return; } out.push(r); });
+    let i = out.findIndex((r) => r.v < p);
+    if (i < 0) i = out.length;
+    out.splice(i, 0, { v: p, label: '지금', cls: 'now' });
+    return `<ol class="ladder">${out.map((r) => `<li class="${r.cls}"><span class="lb">${esc(r.label)}</span><b class="num">${px(sym, r.v)}</b><span class="num ${r.cls === 'now' ? 'muted' : dir(r.v / p - 1)}">${r.cls === 'now' ? esc(it.level.name) : sgn((r.v / p - 1) * 100, 1)}</span></li>`).join('')}</ol>`;
+  }
+  function factorBars(it) {
+    const list = it.reasons || [], mx = Math.max(10, ...list.map((x) => Math.abs(x.c)));
+    return `<ul class="fbars">${list.map((x) => `<li><span class="fn">${esc(x.name)}</span><span class="fb"><i class="${x.c >= 0 ? 'pos' : 'neg'}" style="${x.c >= 0 ? 'left' : 'right'}:50%;width:${((Math.abs(x.c) / mx) * 50).toFixed(1)}%"></i></span><b class="num">${x.c > 0.05 ? '+' : x.c < -0.05 ? '−' : ''}${nf(Math.abs(x.c), 1)}</b><span class="ft">${esc(x.txt)}</span></li>`).join('')}</ul>`;
+  }
+  function verdictBlock(sym, it, H, pos) {
+    if (!it) return '';
+    const E = ENG(), plan = (H.strategy && H.strategy.plan) || [];
+    const notes = (it.notes || []).slice(1).map((n) => `<li>${esc(n.t)}</li>`).join('');
+    return `<div class="strat verdict">
+      <div class="strat-head"><span class="call ${esc(it.level.tone)}">${esc(it.level.name)}</span>${tag('view')}<span class="muted small">${esc(it.level.zone)} · 점수 ${it.score > 0 ? '+' : ''}${it.score}${it.crash ? ' · 급락 국면 보정 적용' : ''}</span></div>
+      <p class="strat-line">${esc(it.line)}</p>
+      <div class="axes wide">${axBar('가격 매력', it.V)}${axBar('흐름', it.T)}</div>
+      ${notes ? `<ul class="bul mt8">${notes}</ul>` : ''}
       <div class="strat-grid">
-        <div><div class="subh">대응 계획</div><ul class="ifthen">${plan}</ul></div>
-        <div><div class="subh">2027년 전망</div><div class="outlook">${out}</div>
-          ${nx.length ? `<div class="subh">다음 확인 일정</div><ul class="nx">${nx.map((e) => `<li><span class="when">${esc(whenTxt(e))}</span><span>${esc(e.title)}</span></li>`).join('')}</ul>` : ''}
-        </div>
+        <div><div class="subh">가격 계획</div>${ladder(sym, it, pos)}<p class="note mt8">매수가는 다른 변수가 오늘과 같다고 보고 가격만 움직였을 때 사는 구역에 드는 가격입니다. 변수가 바뀌면 매일 다시 계산합니다.</p></div>
+        <div><div class="subh">변수별 기여</div>${factorBars(it)}</div>
       </div>
+      <div class="subh">최근 20거래일 판단</div>
+      <div class="trow solo"><span class="cells">${trailCells(sym, it, E)}</span></div>
+      ${plan.length ? `<div class="subh">판단을 바꿀 사건 ${tag('view')}</div><ul class="ifthen">${plan.map((x) => `<li><div class="if"><span class="k">이럴 때</span>${tpl(x.if)}</div><div class="then"><span class="k">이렇게</span>${tpl(x.then)}</div></li>`).join('')}</ul>` : ''}
     </div>`;
   }
 
   function stockDetail(sym) {
-    const q = Q(sym), H = (S.R.holdings || {})[sym] || {}, pos = S.pos[sym] || {};
+    const q = Q(sym), H = (S.R.holdings || {})[sym] || {}, pos = S.pos[sym] || {}, it = EI(sym);
     if (!q) return `<section class="card c12"><div class="empty">${esc(NAME[sym])} 시세를 아직 받지 못했습니다</div></section>`;
     const refs = [];
     if (pos.avg > 0) refs.push({ v: pos.avg, label: '내 평균단가 ' + shortPx(sym, pos.avg), color: 'var(--ink)' });
-    const V = H.val || {};
+    if (it && it.plan) {
+      if (it.plan.buyLo && it.plan.buyLo < q.price) refs.push({ v: it.plan.buyLo, label: '1차 매수 ' + shortPx(sym, it.plan.buyLo), color: 'var(--call-add)' });
+      if (it.plan.trimHi) refs.push({ v: it.plan.trimHi, label: '차익 검토 ' + shortPx(sym, it.plan.trimHi), color: 'var(--call-trim)' });
+    }
+    const V = H.val || {}, nv = (S.P.naver || {})[sym] || {};
     const base = V.type === 'pe' ? (V.eps || [])[isNum(V.band) ? V.band : (V.eps || []).length - 1] : null;
-    if (base && (V.bands || []).length) V.bands.forEach((m) => refs.push({ v: base.v * m, label: 'PER ' + m + '배 ' + shortPx(sym, base.v * m) }));
+    const epsB = base ? (V.auto_eps && isNum(nv.eps) && nv.eps > 0 ? nv.eps : base.v) : null;
+    if (base && (V.bands || []).length) V.bands.forEach((m) => refs.push({ v: epsB * m, label: 'PER ' + m + '배 ' + shortPx(sym, epsB * m) }));
     else (V.targets || []).forEach((t) => refs.push({ v: t.p, label: t.n + ' ' + shortPx(sym, t.p) }));
     const s = SER(sym);
+    // 주가 범위에서 너무 먼 기준선은 빼서 주가 선이 눌리지 않게 합니다.
+    let sLo = Infinity, sHi = -Infinity;
+    s.forEach((x) => { sLo = Math.min(sLo, x.v); sHi = Math.max(sHi, x.v); });
+    const refsIn = refs.filter((r) => r.v >= sLo * 0.8 && r.v <= sHi * 1.2);
     const rng = isNum(q.hi52) && isNum(q.lo52) && q.hi52 > q.lo52 ? q.hi52 - q.lo52 : null;
     const at = (v) => (rng ? Math.max(0, Math.min(100, ((v - q.lo52) / rng) * 100)) : 50);
     const gap50 = isNum(q.ma50) ? (q.price / q.ma50 - 1) * 100 : null;
@@ -1063,11 +1331,15 @@
         <div><div><span class="sh-name">${esc(NAME[sym])}</span><span class="sh-code">${esc(CODE[sym])}</span></div><div class="role">${esc(H.role || '')}</div></div>
         <div class="sh-right"><div class="sh-price num">${px(sym, q.price)}</div><div class="sh-chg ${chgDir(sym, q)}">${chgText(sym, q)} <span class="muted small">${esc(qTime(q))}</span></div>${ex ? `<div class="small">${ex}</div>` : ''}</div>
       </div>
-      ${stratBlock(sym, H)}
+      ${verdictBlock(sym, it, H, pos)}
+      <div class="grid mt20 detail-top">
+        <div class="c6">${profileBlock(sym, H, it)}</div>
+        <div class="c6">${outlookBlock(sym, H)}</div>
+      </div>
       <div class="grid mt20 detail-grid">
         <div class="c7">
           <div class="subh" style="margin-top:0">1년 주가와 기준선</div>
-          ${slot({ type: 'line', height: 250, area: true, yTicks: 5, series: [{ name: NAME[sym], color: SLOT[sym], data: s }], refs, yFmt: (v) => shortPx(sym, v), tipFmt: (v) => px(sym, v), aria: NAME[sym] + ' 1년 주가' })}
+          ${slot({ type: 'line', height: 250, area: true, yTicks: 5, series: [{ name: NAME[sym], color: SLOT[sym], data: s }], refs: refsIn, yFmt: (v) => shortPx(sym, v), tipFmt: (v) => px(sym, v), aria: NAME[sym] + ' 1년 주가' })}
           <div class="range mt12" aria-label="52주 범위">
             <div class="bar"></div>
             ${pos.avg > 0 && rng ? `<div class="rf" style="left:${at(pos.avg).toFixed(1)}%" title="내 평균단가"></div>` : ''}
@@ -1100,8 +1372,8 @@
 
   function vStocks() {
     const sym = HOLD.includes(S.stock) ? S.stock : HOLD[0];
-    const chips = HOLD.map((s) => { const q = Q(s); return `<button class="chipbtn" aria-pressed="${s === sym}" data-stock="${esc(s)}">${esc(NAME[s])}${q ? ` <span class="num ${chgDir(s, q)}">${chgText(s, q)}</span>` : ''}</button>`; }).join('');
-    return head('내 종목', '전략과 전망 · 숫자는 실시간 가격으로 다시 계산합니다') +
+    const chips = HOLD.map((s) => { const q = Q(s), it = EI(s); return `<button class="chipbtn" aria-pressed="${s === sym}" data-stock="${esc(s)}">${it ? `<i class="tdot ${esc(it.level.tone)}" title="${esc(it.level.name)}"></i>` : ''}${esc(NAME[s])}${q ? ` <span class="num ${chgDir(s, q)}">${chgText(s, q)}</span>` : ''}</button>`; }).join('');
+    return head('내 종목', '어떤 회사인지, 전망, 지금 판단 · 숫자는 실시간 가격으로 다시 계산합니다') +
       (S.editPos ? `<div class="grid">${posEditor()}</div>` : '') +
       `<div class="grid"><div class="c12"><div class="chips" role="group" aria-label="종목 선택">${chips}</div></div></div>
        <div class="grid">${stockDetail(sym)}</div>
@@ -1338,7 +1610,7 @@
     const ids = Object.keys(TV), back = {};
     ids.forEach((x) => { back[TV[x]] = x; });
     const body = JSON.stringify({ symbols: { tickers: ids.map((x) => TV[x]), query: { types: [] } },
-      columns: ['close', 'change', 'change_abs', 'update_mode', 'premarket_close', 'premarket_change', 'postmarket_close', 'postmarket_change'] });
+      columns: ['close', 'change', 'change_abs', 'update_mode', 'premarket_close', 'premarket_change', 'postmarket_close', 'postmarket_change', 'price_target_average', 'recommendation_mark'] });
     const j = await getJSON('https://scanner.tradingview.com/global/scan', 7000, { method: 'POST', body, headers: { 'Content-Type': 'text/plain;charset=UTF-8' } });
     const out = {}, now = Date.now(), krClosed = sessions(now).kr !== '장중', kh = kst(now).h, ph = usPhase(now);
     (j.data || []).forEach((r) => {
@@ -1347,6 +1619,7 @@
       const prev = price - chg, m = /delayed_streaming_(\d+)/.exec(String(d[3] || ''));
       const o = { price, prev, chg, chg_pct: prev ? (chg / prev) * 100 : num(d[1]), src: 'TradingView', delay: m ? Math.round(+m[1] / 60) : 0, mkt: MKT(s) };
       const pre = num(d[4]), post = num(d[6]);
+      if (o.mkt === 'us' && HOLD.includes(s)) { o.tgt = num(d[8]); o.rec = num(d[9]); }
       if (o.mkt === 'kr' && isKR(s) && krClosed) {
         if (kh >= 8 && kh < 9 && isNum(pre) && Math.abs(pre - price) > 1e-9) o.ext = { price: pre, pct: num(d[5]), label: '장전' };
         else if (isNum(post) && Math.abs(post - price) > 1e-9) o.ext = { price: post, pct: num(d[7]), label: '시간외' };
@@ -1447,6 +1720,22 @@
     }, liveDelay());
   }
 
+  // 새 버전이 배포되면 다시 불러옵니다(카톡 안 브라우저처럼 오래 열어 둔 화면이 예전 코드로 남지 않게).
+  const BUILD = (/app\.js\?v=([\w.-]+)/.exec(((document.querySelector('script[src*="app.js"]') || {}).src) || '') || [])[1] || '';
+  async function checkBuild() {
+    if (!BUILD) return;
+    try {
+      const r = await fetch('index.html?b=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      const m = /assets\/app\.js\?v=([\w.-]+)/.exec(await r.text());
+      if (m && m[1] !== BUILD) {
+        if (document.hidden) { S.reloadOnShow = true; return; }
+        toast('새 버전을 불러옵니다');
+        setTimeout(() => location.reload(), 1500);
+      }
+    } catch (e) { /* 연결 실패는 다음에 다시 봅니다 */ }
+  }
+
   function toast(msg) {
     const t = document.getElementById('toast');
     if (!t) return;
@@ -1524,7 +1813,14 @@
     window.addEventListener('scroll', hideTip, { passive: true });
     setInterval(() => { if (!document.hidden && !S.busy) pull().then((r) => { if (r === 'new') softRender(); }, () => {}); }, 5 * 60e3);
     setInterval(renderStatus, 30e3);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(false); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
+      if (S.reloadOnShow) { location.reload(); return; }
+      refresh(false);
+      checkBuild();
+    });
+    setInterval(() => { if (!document.hidden) checkBuild(); }, 20 * 60e3);
+    setTimeout(checkBuild, 8000);
     setTimeout(() => refresh(false), 250);
     scheduleLive();
   }

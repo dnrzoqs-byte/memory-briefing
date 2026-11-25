@@ -513,6 +513,50 @@ def build_signals(quotes: dict, dram: dict, dram_hist: list, fred: dict):
     return sig, {"score": score, "level": level, "counts": counts}
 
 
+# ---------------------------------------------------------------- 네이버 증권(국내 종목 수급·컨센서스)
+NAVER = {"005930.KS": "005930", "005935.KS": "005935", "353200.KS": "353200", "240810.KQ": "240810", "000660.KS": "000660"}
+
+
+def _nnum(v):
+    """'-5,763,083' · '+2,348,072' · '45,515원' · '3.67배' · '45.80%' → float"""
+    if v is None:
+        return None
+    m = re.search(r"[-+]?\d[\d,]*\.?\d*", str(v))
+    if not m:
+        return None
+    try:
+        return float(m.group(0).replace(",", ""))
+    except ValueError:
+        return None
+
+
+def fetch_naver(code: str):
+    raw = http_get(f"https://m.stock.naver.com/api/stock/{code}/integration", timeout=12, retries=1,
+                   headers={"Referer": "https://m.stock.naver.com/"})
+    j = json.loads(raw.decode("utf-8"))
+    info = {x.get("code"): x.get("value") for x in (j.get("totalInfos") or [])}
+    out = {
+        "eps": _nnum(info.get("cnsEps")), "per_cns": _nnum(info.get("cnsPer")), "eps_ttm": _nnum(info.get("eps")),
+        "bps": _nnum(info.get("bps")), "pbr": _nnum(info.get("pbr")), "dps": _nnum(info.get("dividend")),
+        "foreign_rate": _nnum(info.get("foreignRate")),
+    }
+    c = j.get("consensusInfo") or {}
+    out["target"] = _nnum(c.get("priceTargetMean"))
+    out["recomm"] = _nnum(c.get("recommMean"))
+    out["cns_date"] = c.get("createDate")
+    flows = []
+    for x in (j.get("dealTrendInfos") or []):
+        d = str(x.get("bizdate") or "")
+        if len(d) != 8:
+            continue
+        flows.append({"d": f"{d[:4]}-{d[4:6]}-{d[6:]}", "f": _nnum(x.get("foreignerPureBuyQuant")),
+                      "o": _nnum(x.get("organPureBuyQuant")), "i": _nnum(x.get("individualPureBuyQuant")),
+                      "v": _nnum(x.get("accumulatedTradingVolume"))})
+    if not any(v is not None for v in out.values()) and not flows:
+        raise RuntimeError("빈 응답")
+    return out, flows
+
+
 # ---------------------------------------------------------------- 이력 병합
 def merge_history(*hists, limit: int = 500) -> list:
     merged: dict = {}
@@ -646,6 +690,27 @@ def update_data() -> dict:
     stress_hist = merge_history(hp.get("stress"), hr.get("stress"), stress_today, limit=400)
     data["signals"], data["stress"] = signals, stress
     data["history"] = {"dram": dram_hist, "stress": stress_hist}
+
+    # 4-2) 네이버 증권: 국내 종목 수급(외국인·기관)과 컨센서스. GitHub 러너에서 막히면 PC 작업이 채웁니다.
+    naver, flows_hist = {}, {}
+    pn, rn = prev2.get("naver") or {}, remote2.get("naver") or {}
+    pf, rf = hp.get("flows") or {}, hr.get("flows") or {}
+    for sym, code in NAVER.items():
+        new_flows = []
+        try:
+            info, new_flows = fetch_naver(code)
+            naver[sym] = dict(info, updated=now.strftime("%Y-%m-%d %H:%M"))
+        except Exception as e:  # noqa: BLE001
+            log(f"[WARN] naver {code}: {e}")
+            old = pn.get(sym) or rn.get(sym)
+            if old:
+                naver[sym] = dict(old, stale=True)
+            if "naver" not in failed:
+                failed.append("naver")
+        flows_hist[sym] = merge_history(pf.get(sym), rf.get(sym), new_flows, limit=60)
+        time.sleep(0.15)
+    data["naver"] = naver
+    data["history"]["flows"] = flows_hist
 
     # 5) 뉴스
     news = fetch_all_news()
