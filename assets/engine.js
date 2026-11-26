@@ -11,7 +11,7 @@
 }(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  const VERSION = '2026-11-26b';
+  const VERSION = '2026-11-27';
   const DAY = 86400e3;
   const HOLD = ['005935.KS', '005930.KS', '353200.KS', '240810.KQ', 'AMD', 'CLS'];
   const NAME = { '005935.KS': '삼성전자우', '005930.KS': '삼성전자', '353200.KS': '대덕전자', '240810.KQ': '원익IPS', AMD: 'AMD', CLS: '셀레스티카' };
@@ -70,7 +70,7 @@
     { id: 'trim', name: '비중 점검', tone: 'warn', zone: '점검 구역', act: '더 사지 않고, 오르면 일부 줄이는 쪽을 봅니다' },
     { id: 'hold', name: '보유', tone: 'hold', zone: '지키는 구역', act: '사지도 팔지도 않습니다' },
     { id: 'ready', name: '매수 대기', tone: 'wait', zone: '기다리는 구역', act: '정한 가격이나 조건이 오면 삽니다' },
-    { id: 'buy', name: '분할 매수', tone: 'add', zone: '사는 구역', act: '계획 금액의 4분의 1을 삽니다' }
+    { id: 'buy', name: '분할 매수', tone: 'add', zone: '사는 구역', act: '정한 금액을 나눠 한 번 삽니다' }
   ];
   const LIDX = { sell: 0, trim: 1, hold: 2, ready: 3, buy: 4 };
   // m 만큼 구역을 넓혀(+) 또는 좁혀(-) 봅니다. 한 번 정한 판단은 경계를 6점 넘게 지나야 바뀝니다(하루 흔들림 방지).
@@ -318,6 +318,43 @@
     return out;
   }
 
+  // ------------------------------------------------------------ 시장 위험 단계(포트폴리오 전체)
+  // 종목 판단과 따로, 시장 전체가 얼마나 위험한지 8가지 신호로 셉니다(위험 2점, 주의 1점, 16점 만점).
+  // 단계가 높을수록 한 번에 사는 양을 줄이고 현금을 더 남깁니다. 흔들림이 클 때 비중을 줄이는 원칙입니다.
+  const RISK_LEVELS = [
+    { lv: 1, name: '낮음', tone: 'good', cash: '10~15%', unit: '4분의 1', say: '정한 계획대로 나눠 삽니다' },
+    { lv: 2, name: '보통', tone: 'mid', cash: '15~25%', unit: '4분의 1', say: '정한 가격에서만 나눠 삽니다' },
+    { lv: 3, name: '조심', tone: 'warn', cash: '25~35%', unit: '8분의 1', say: '한 번에 사는 양을 평소의 절반으로 줄입니다' },
+    { lv: 4, name: '높음', tone: 'crit', cash: '35~45%', unit: '8분의 1', say: '사는 양을 절반으로 줄이고 현금을 더 남깁니다' }
+  ];
+  function riskOf(ctx, mk, t) {
+    const sig = [];
+    const add = (id, name, term, st, val) => sig.push({ id, name, term, st, val });
+    const vx = at(ctx, '^VIX', t);
+    if (vx) add('vix', '변동성', 'VIX', vx.v >= 28 ? 'warn' : vx.v >= 20 ? 'watch' : 'ok', nf(vx.v, 1));
+    const r = mk.rates;
+    if (r && !r.na) add('us10y', '미국 금리', '10년물', r.L >= 5 || (r.L >= 4.75 && (r.D || 0) >= 0.15) ? 'warn' : r.L >= 4.5 ? 'watch' : 'ok', `${nf(r.L, 2)}%${isNum(r.D) ? ', 20일 ' + bpT(r.D) : ''}`);
+    const pol = ((ctx.R || {}).outlook || {}).policy;
+    if (pol) {
+      const up = ['kr', 'us'].filter((k) => pol[k] === 'up').length;
+      add('policy', '기준금리', '한은·연준 방향', up >= 2 ? 'warn' : up === 1 ? 'watch' : 'ok', pol.t || (up ? '인상 중' : '동결·인하'));
+    }
+    const sx = at(ctx, '^SOX', t);
+    if (sx) { const m = sma(sx.a, sx.e, 200); if (isNum(m)) { const g = (sx.v / m - 1) * 100; add('sox', '반도체 추세', '반도체지수 200일선', g <= -10 ? 'warn' : g < 0 ? 'watch' : 'ok', `200일 평균보다 ${sg(g, 1)}`); } }
+    const nv = at(ctx, 'NVDA', t);
+    if (nv) { const m = sma(nv.a, nv.e, 50); if (isNum(m)) { const g = (nv.v / m - 1) * 100; add('nvda', 'AI 대장주', '엔비디아 50일선', g <= -10 ? 'warn' : g < 0 ? 'watch' : 'ok', `50일 평균보다 ${sg(g, 1)}`); } }
+    const d = mk.memory;
+    if (d && !d.na && isNum(d.m28)) add('dram', 'D램 값', 'DDR5 현물 4주', d.m28 <= -5 ? 'warn' : d.m28 < 0 ? 'watch' : 'ok', `${d.age}일간 ${sg(d.m28, 1)}`);
+    const fl = flowAt(ctx, '005930.KS', t);
+    if (!fl.na) add('flow', '외국인·기관', '삼성전자 5일 순매수', fl.ratio <= -0.04 ? 'warn' : fl.ratio < 0 ? 'watch' : 'ok', `거래량의 ${sg(fl.ratio * 100, 1)}`);
+    const hy = at(ctx, 'HYG', t);
+    if (hy) { const m = sma(hy.a, hy.e, 50); if (isNum(m)) { const g = (hy.v / m - 1) * 100; add('credit', '신용 시장', '하이일드 채권 50일선', g <= -2 ? 'warn' : g <= -0.5 ? 'watch' : 'ok', `50일 평균보다 ${sg(g, 2)}`); } }
+    const pts = sig.reduce((a, x) => a + (x.st === 'warn' ? 2 : x.st === 'watch' ? 1 : 0), 0), max = sig.length * 2;
+    const pct = max ? pts / max : 0;
+    const L = RISK_LEVELS[pct >= 0.75 ? 3 : pct >= 0.5 ? 2 : pct >= 0.25 ? 1 : 0];
+    return Object.assign({ pts, max, pct, n: sig.length, warn: sig.filter((x) => x.st === 'warn').length, watch: sig.filter((x) => x.st === 'watch').length, sig }, L);
+  }
+
   function fxFor(sym, fx) {
     if (!fx) return { f: 0, na: true, txt: '환율 기록 없음' };
     if (isKR(sym)) {
@@ -479,6 +516,9 @@
     if (H.thesis_status === 'watch' && G > 2) { G = 2; notes.push({ k: 'thesis', t: H.thesis_note || '보유 논리를 점검하는 중이라 더 사지 않습니다' }); }
     if (H.thesis_status === 'broken') { G = Math.min(G, r.score <= -15 ? 0 : 1); notes.push({ k: 'thesis', t: H.thesis_note || '보유 논리가 깨져 비중을 줄입니다' }); }
     if (isNum(wt) && wt > 0.4 && G > 2) { G = 2; notes.push({ k: 'weight', t: `이 종목이 포트폴리오의 ${nf(wt * 100, 0)}%라 더 늘리지 않습니다` }); }
+    // 나쁜 경우 하단(재검토 가격) 아래로 내려가면 전망 자체가 틀렸을 수 있어 더 사지 않고 이유부터 다시 봅니다.
+    const RV = (H.claude || {}).review;
+    if (isNum(RV) && r.p < RV && G > 2) { G = 2; notes.push({ k: 'review', t: `재검토 가격(${pxShort(sym, RV)}) 아래라 더 사지 않고 전망부터 다시 봅니다` }); }
     return { G, notes, ev };
   }
 
@@ -503,9 +543,11 @@
     const trimLo = trimNow ? null : scan(ctx, sym, t, mk, p, -1, 50, TRIMZ);
     const sp = clamp((r.vol || 0.02) * Math.sqrt(5), 0.05, 0.12);
     const b0 = buyLo || null;
-    const steps = b0 ? [b0, roundPx(sym, b0 * (1 - sp), 'down'), roundPx(sym, b0 * (1 - 2 * sp), 'down')] : [];
+    // 재검토 가격보다 아래의 매수 회차는 두지 않습니다(그 아래에서는 사지 않고 전망부터 다시 보므로).
+    const rv = (holding(ctx, sym).claude || {}).review, review = isNum(rv) ? rv : null;
+    const steps = (b0 ? [b0, roundPx(sym, b0 * (1 - sp), 'down'), roundPx(sym, b0 * (1 - 2 * sp), 'down')] : []).filter((v, i) => i === 0 || !review || v >= review);
     const v = r.fs.value || {};
-    return { buyLo, buyHi, trimHi, trimLo, buyNow, trimNow, sp, steps, m20: roundPx(sym, r.m20), m50: roundPx(sym, r.m50),
+    return { buyLo, buyHi, trimHi, trimLo, buyNow, trimNow, sp, steps, review, m20: roundPx(sym, r.m20), m50: roundPx(sym, r.m50),
       cheapAt: roundPx(sym, v.cheapAt), richAt: roundPx(sym, v.richAt), lo52: r.lo52, hi52: r.hi52 };
   }
 
@@ -518,7 +560,8 @@
     return list.sort((a, b) => Math.abs(b.c) - Math.abs(a.c));
   }
 
-  function sentence(sym, lv, plan, r, notes, reasons) {
+  function sentence(sym, lv, plan, r, notes, reasons, unit) {
+    const U = unit || '4분의 1';
     const P = (v) => pxShort(sym, v);
     const worst = (reasons || []).filter((x) => x.c < 0).sort((a, b) => a.c - b.c)[0];
     const block = worst ? ` ${worst.name}부터 나아져야 추가 매수 구간이 생깁니다.` : ' 지금 변수로는 추가 매수 구간이 보이지 않습니다.';
@@ -526,12 +569,12 @@
     const n = notes && notes.length ? ' ' + notes[0].t + '.' : '';
     const lo = plan.buyLo && plan.buyLo < r.p ? `${P(plan.buyLo)}(${dist(plan.buyLo)})` : null;
     const hi = plan.buyHi ? `${P(plan.buyHi)}(${dist(plan.buyHi)})` : null;
-    if (lv.id === 'buy') return `지금 가격에서 계획 금액의 4분의 1을 삽니다. 다음 회차는 ${P(plan.steps[1])}(${dist(plan.steps[1])}) 아래에서.${n}`;
+    if (lv.id === 'buy') return `지금 가격에서 계획 금액의 ${U}을 삽니다.${U !== '4분의 1' ? ' 시장 위험이 높아 평소의 절반입니다.' : ''}${plan.steps[1] ? ` 다음 회차는 ${P(plan.steps[1])}(${dist(plan.steps[1])}) 아래에서.` : ''}${n}`;
     if (lv.id === 'ready') {
-      if (n) return `싼 구간입니다.${n}${lo ? ` 그 뒤 ${lo} 아래면 4분의 1을 삽니다.` : ''}`;
-      if (lo && hi) return `싸지만 아직 내리는 중입니다. ${lo} 아래로 더 내리거나, ${hi} 위로 회복해 흐름이 돌면 4분의 1을 삽니다.`;
-      if (lo) return `싸지만 아직 내리는 중입니다. ${lo} 아래로 오면 4분의 1을 삽니다.`;
-      if (hi) return `싸지만 아직 내리는 중입니다. ${hi} 위로 회복해 흐름이 돌면 4분의 1을 삽니다.`;
+      if (n) return `싼 구간입니다.${n}${lo ? ` 그 뒤 ${lo} 아래면 ${U}을 삽니다.` : ''}`;
+      if (lo && hi) return `싸지만 아직 내리는 중입니다. ${lo} 아래로 더 내리거나, ${hi} 위로 회복해 흐름이 돌면 ${U}을 삽니다.`;
+      if (lo) return `싸지만 아직 내리는 중입니다. ${lo} 아래로 오면 ${U}을 삽니다.`;
+      if (hi) return `싸지만 아직 내리는 중입니다. ${hi} 위로 회복해 흐름이 돌면 ${U}을 삽니다.`;
       return `싸지만 아직 내리는 중입니다.${worst ? ` ${worst.name}이 돌아서는 것을 먼저 확인합니다.` : ' 흐름이 돌아서는 것을 먼저 확인합니다.'}`;
     }
     if (lv.id === 'hold') {
@@ -545,20 +588,21 @@
   }
 
   // 목록에 쓰는 짧은 한 줄 행동
-  function actOf(sym, lv, plan, r, notes) {
+  function actOf(sym, lv, plan, r, notes, unit) {
+    const U = unit || '4분의 1';
     const P = (v) => pxShort(sym, v);
     const ev = (notes || []).find((n) => n.k === 'event'), kn = (notes || []).find((n) => n.k === 'knife');
     const lo = plan.buyLo && plan.buyLo < r.p ? plan.buyLo : null, hi = plan.buyHi || null;
-    if (lv.id === 'buy') return plan.steps[1] ? `지금 4분의 1 매수, 다음은 ${P(plan.steps[1])} 아래` : '지금 4분의 1 매수';
+    if (lv.id === 'buy') return plan.steps[1] ? `지금 ${U} 매수, 다음은 ${P(plan.steps[1])} 아래` : `지금 ${U} 매수`;
     if (lv.id === 'ready') {
       if (ev && ev.title) return `${ev.title} 뒤 매수`;
       if (kn) return lo ? `하락이 멈추거나 ${P(lo)} 아래면 매수` : '하락이 멈추면 매수';
-      if (lo) return `${P(lo)} 아래로 오면 4분의 1 매수`;
+      if (lo) return `${P(lo)} 아래로 오면 ${U} 매수`;
       if (hi) return `${P(hi)} 위로 회복하면 매수`;
       return '흐름이 돌아서면 매수';
     }
     if (lv.id === 'hold') {
-      if (lo) return `그대로 두기 · ${P(lo)} 아래면 추가`;
+      if (lo && lo < r.p) return `그대로 두기 · ${P(lo)} 아래면 추가`;
       if (plan.trimHi) return `그대로 두기 · ${P(plan.trimHi)} 위면 일부 정리`;
       return '그대로 두기';
     }
@@ -579,6 +623,7 @@
     // 오늘 판단에 쓰는 시장 변수는 모든 종목이 같은 최신 값(가장 늦은 기록 날짜 기준)을 봅니다.
     const tMax = Math.max.apply(null, Object.keys(ctx.S).map((k) => { const S = ctx.S[k]; return S.t.length ? S.t[S.t.length - 1] : 0; }).concat([0]));
     const mkNow = marketAt(ctx, tMax);
+    const risk = riskOf(ctx, mkNow, tMax);
     HOLD.forEach((sym) => {
       const S = ctx.S[sym];
       if (!S || S.t.length < 70) return;
@@ -619,27 +664,28 @@
         sym, name: NAME[sym], short: SHORT[sym], t, p: r.p, score: r.score, V: r.V, T: r.T, crash: r.crash, dd: r.dd,
         level: lv, base, notes: g.notes, events: g.ev, fs: r.fs, contrib: r.contrib, reasons, plan, weight: wt, change, flips,
         trail: tr.map((x) => ({ t: x.t, p: x.p, score: x.score, V: x.V, T: x.T, G: x.G, id: LEVELS[x.G].id })),
-        line: sentence(sym, lv, plan, r, g.notes, reasons), act: actOf(sym, lv, plan, r, g.notes),
+        line: sentence(sym, lv, plan, r, g.notes, reasons, risk.unit), act: actOf(sym, lv, plan, r, g.notes, risk.unit),
         vWord: vWord(r.V), tWord: tWord(r.T)
       };
     });
-    return { version: VERSION, today, items, market: mkNow, summary: summarize(items, mkNow), factors: FACTORS, levels: LEVELS, vw: VW, tw: TW };
+    return { version: VERSION, today, items, market: mkNow, risk, summary: summarize(items, mkNow, risk), factors: FACTORS, levels: LEVELS, vw: VW, tw: TW };
   }
 
-  function summarize(items, mk) {
+  function summarize(items, mk, risk) {
+    const U = (risk && risk.unit) || '4분의 1', half = U !== '4분의 1';
     const list = HOLD.map((s) => items[s]).filter(Boolean);
     const by = (id) => list.filter((x) => x.level.id === id).map((x) => x.name);
     const buys = by('buy'), ready = by('ready'), trims = by('trim').concat(by('sell')), holds = by('hold');
     const parts = [];
-    if (buys.length) parts.push(`${buys.join('·')}는 오늘 4분의 1을 삽니다.`);
+    if (buys.length) parts.push(half ? `${buys.join('·')}는 오늘 ${U}만 삽니다. 시장 위험이 높아 평소의 절반입니다.` : `${buys.join('·')}는 오늘 ${U}을 삽니다.`);
     if (ready.length) parts.push(`${ready.join('·')}는 정한 가격이나 조건을 기다립니다.`);
     if (trims.length) parts.push(`${trims.join('·')}는 반등 때 일부 줄입니다.`);
     if (holds.length) parts.push(`${holds.length === list.length ? '모두' : holds.join('·') + '는'} 그대로 둡니다.`);
-    const head = buys.length ? '오늘은 일부를 사는 날입니다.' : ready.length ? '오늘은 기다리는 날입니다.' : trims.length ? '오늘은 지키면서 줄일 곳을 보는 날입니다.' : '오늘은 그대로 두는 날입니다.';
+    const head = buys.length ? (half ? '오늘은 조금만 사는 날입니다.' : '오늘은 일부를 사는 날입니다.') : ready.length ? '오늘은 기다리는 날입니다.' : trims.length ? '오늘은 지키면서 줄일 곳을 보는 날입니다.' : '오늘은 그대로 두는 날입니다.';
     const counts = {};
     LEVELS.forEach((L) => { counts[L.id] = list.filter((x) => x.level.id === L.id).length; });
     return { head, body: parts.join(' '), counts, groups: { buy: buys, ready, trim: trims, hold: holds } };
   }
 
-  return { run, VERSION, FACTORS, LEVELS, VW, TW, HOLD, ZONES, zoneOf, px, pxShort, sg, nf, TREND_SHORT, evMoment, vWord, tWord };
+  return { run, VERSION, FACTORS, LEVELS, VW, TW, HOLD, ZONES, RISK_LEVELS, zoneOf, px, pxShort, sg, nf, TREND_SHORT, evMoment, vWord, tWord };
 }));

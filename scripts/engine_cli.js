@@ -39,10 +39,10 @@ const out = MBE.run(inputFrom(P, R));
 if (full) { process.stdout.write(JSON.stringify(out)); process.exit(0); }
 
 // 카톡 한 줄: "삼성우 보유 · 13.4만 원 이하 추가, 15.1만 원 이상 일부 차익"
-function kakaoLine(s, it) {
+function kakaoLine(s, it, unit) {
   const px = (v) => MBE.pxShort(s, v), bits = [], pl = it.plan || {}, id = it.level.id;
   const ev = (it.notes || []).find((n) => n.k === 'event');
-  if (id === 'buy') bits.push('지금 4분의 1');
+  if (id === 'buy') bits.push('지금 ' + (unit || '4분의 1'));
   if (ev && it.events && it.events[0]) bits.push(it.events[0].title + ' 뒤');
   if (id === 'trim' || id === 'sell') {
     bits.push('반등 때 일부 줄이기');
@@ -62,6 +62,9 @@ Object.keys(out.items).forEach((s) => {
   items[s] = { level: it.level.name, id: it.level.id, score: it.score, V: it.V, T: it.T,
     buyLo: it.plan.buyLo, buyHi: it.plan.buyHi, trimHi: it.plan.trimHi,
     changed: it.change ? it.change.changed : false, from: it.change ? it.change.from.name : null,
-    line: it.line, act: it.act, kakao: kakaoLine(s, it) };
+    line: it.line, act: it.act, kakao: kakaoLine(s, it, (out.risk || {}).unit) };
 });
-process.stdout.write(JSON.stringify({ head: out.summary.head, body: out.summary.body, items }));
+const rk = out.risk || {};
+const risk = rk.lv ? { lv: rk.lv, name: rk.name, cash: rk.cash, unit: rk.unit, pts: rk.pts, max: rk.max, warn: rk.warn,
+  kakao: `${rk.lv}단계 ${rk.name}(${rk.pts}/${rk.max}점) · 현금 ${rk.cash} · 한 번에 ${rk.unit}` } : null;
+process.stdout.write(JSON.stringify({ head: out.summary.head, body: out.summary.body, risk, items }));
