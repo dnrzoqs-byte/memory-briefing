@@ -11,7 +11,7 @@
 }(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  const VERSION = '2026-11-26';
+  const VERSION = '2026-11-26b';
   const DAY = 86400e3;
   const HOLD = ['005935.KS', '005930.KS', '353200.KS', '240810.KQ', 'AMD', 'CLS'];
   const NAME = { '005935.KS': '삼성전자우', '005930.KS': '삼성전자', '353200.KS': '대덕전자', '240810.KQ': '원익IPS', AMD: 'AMD', CLS: '셀레스티카' };
@@ -25,18 +25,21 @@
   // ------------------------------------------------------------ 변수와 종목별 무게
   // 같은 변수라도 종목마다 주가에 주는 무게가 다릅니다. 줄마다 합계 1.
   const FACTORS = [
-    { k: 'value', name: '가격 매력', desc: '이익·배당 대비 지금 가격' },
-    { k: 'trend', name: '추세', desc: '20일·50일 평균선과 가격의 위치' },
-    { k: 'stretch', name: '과매도·과열', desc: 'RSI와 20일선에서 벌어진 정도' },
-    { k: 'flow', name: '외국인·기관', desc: '최근 5거래일 순매수' },
-    { k: 'rel', name: '상대 강도', desc: '최근 20일 수익률을 기준 지수와 비교' },
-    { k: 'memory', name: '메모리 가격', desc: 'DDR5 현물 4주·1주 변화' },
-    { k: 'ai', name: 'AI 투자 심리', desc: '엔비디아·반도체지수 추세' },
-    { k: 'rates', name: '금리', desc: '미국 10년물 수준과 20일 변화' },
-    { k: 'fx', name: '환율', desc: '원/달러 수준과 20일 변화' },
-    { k: 'korea', name: '한국 증시', desc: '코스피 추세' },
-    { k: 'market', name: '시장 스트레스', desc: '7개 위험 신호 평균과 1주 변화' }
+    { k: 'value', name: '싼 정도', term: 'PER·PBR·배당', desc: '이익·배당·순자산에 견준 지금 가격' },
+    { k: 'trend', name: '주가 방향', term: '20·50일 평균선', desc: '최근 20일·50일 평균 가격보다 위인지 아래인지' },
+    { k: 'stretch', name: '단기 낙폭', term: 'RSI·이격도', desc: '짧은 기간에 얼마나 많이 빠졌거나 올랐는지' },
+    { k: 'flow', name: '외국인·기관', term: '5일 순매수', desc: '최근 5거래일 외국인과 기관이 사고판 양' },
+    { k: 'rel', name: '시장 대비', term: '상대 강도', desc: '최근 20일 수익률을 코스피나 반도체지수와 비교' },
+    { k: 'memory', name: 'D램 값', term: 'DDR5 현물가', desc: 'DDR5 현물 가격의 4주·1주 변화' },
+    { k: 'ai', name: 'AI 분위기', term: '엔비디아·SOX 추세', desc: '엔비디아와 반도체지수가 오르는 중인지' },
+    { k: 'rates', name: '미국 금리', term: '10년물', desc: '미국 10년물 금리 수준과 20일 변화' },
+    { k: 'fx', name: '환율', term: '원/달러', desc: '원/달러 수준과 20일 변화' },
+    { k: 'korea', name: '코스피', term: '코스피 추세', desc: '코스피가 오르는 중인지' },
+    { k: 'market', name: '시장 공포', term: '스트레스 지수', desc: '위험 신호 7개 평균이 커지는 중인지' }
   ];
+  const FNAME = {};
+  FACTORS.forEach((F) => { FNAME[F.k] = F.name; });
+
   // 두 축으로 판단합니다.
   //  가격 매력(V): 이익·배당 대비 가격에, 이익을 좌우하는 업황(메모리 가격 또는 AI 투자 심리)을 섞은 값
   //  흐름(T): 추세·과매도·수급·금리·환율·시장 분위기처럼 "지금 사도 되는 때인가"를 말하는 값
@@ -155,6 +158,46 @@
     na: '추세를 볼 기록이 부족'
   };
   const TREND_SHORT = { up: '상승 추세', pullback: '상승 중 조정', recover: '추세 회복 시도', rebound: '반등 시도', down: '하락 추세', breakdown: '하락 추세(최저가 근처)', na: '기록 부족' };
+
+  // 두 축과 변수의 쉬운 상태말
+  const vWord = (v) => (v >= 60 ? '아주 쌈' : v >= 30 ? '싼 편' : v > -30 ? '보통' : v > -60 ? '비싼 편' : '아주 비쌈');
+  const tWord = (t) => (t >= 40 ? '좋음' : t >= 10 ? '괜찮음' : t > -20 ? '애매함' : t > -45 ? '나쁨' : '아주 나쁨');
+  const TREND_WORD = { up: '오르는 중', pullback: '오르다 쉬는 중', recover: '다시 오르는 중', rebound: '반등 시도', down: '내리는 중', breakdown: '계속 내리는 중', na: '' };
+  function plainOf(k, x, sym) {
+    if (!x || x.na) return {};
+    const f = x.f, P = (v) => pxShort(sym, v), pick = (a, b, c) => (f >= 0.15 ? a : f <= -0.15 ? b : c);
+    switch (k) {
+      case 'value':
+        if (isNum(x.disc)) return { word: f >= 0.3 ? '배당 매력 큼' : f <= -0.3 ? '배당 매력 작음' : '배당 매력 보통', say: `보통주보다 ${nf(x.disc, 1)}% 싸고 예상 배당 수익률 ${nf(x.yld, 1)}%` };
+        return { word: f >= 0.6 ? '이익 대비 쌈' : f >= 0.2 ? '이익 대비 싼 편' : f <= -0.6 ? '이익 대비 비쌈' : f <= -0.2 ? '이익 대비 비싼 편' : '가격 보통',
+          say: `예상 이익의 ${nf(x.per, 1)}배(PER)${isNum(x.pbr) ? `, 순자산의 ${nf(x.pbr, 2)}배(PBR)` : ''}${x.caveat ? '. D램 값이 내려 절반만 반영' : ''}` };
+      case 'trend':
+        return { word: TREND_WORD[x.st] || '', say: isNum(x.m20) ? `20일 평균 가격(${P(x.m20)})보다 ${x.st === 'up' || x.st === 'recover' || x.st === 'rebound' ? '위' : '아래'}` : '' };
+      case 'stretch':
+        return { word: f >= 0.5 ? '많이 빠짐' : f >= 0.2 ? '조금 빠짐' : f <= -0.5 ? '많이 오름' : f <= -0.2 ? '조금 오름' : '보통 수준', say: `20일 평균보다 ${sg((x.gap || 0) * 100, 1)}, RSI ${nf(x.rsi, 0)}` };
+      case 'flow': {
+        const sh = (n) => (Math.abs(n) >= 1e4 ? sg(n / 1e4, Math.abs(n) >= 1e6 ? 0 : 1, '만 주') : sg(n, 0, '주'));
+        return { word: pick('외국인·기관 매수', '외국인·기관 매도', '수급 중립'), state: pick('매수 우위', '매도 우위', '중립'), say: `최근 ${x.n}거래일 ${sh(x.net)}(거래량의 ${sg(x.ratio * 100, 1)})` };
+      }
+      case 'rel':
+        return { word: pick('시장보다 강함', '시장보다 약함', '시장과 비슷'), state: pick('강함', '약함', '비슷'), say: `20일 ${sg(x.r20 * 100, 1)}, ${isKR(sym) ? '코스피' : '반도체지수'} ${sg(x.b20 * 100, 1)}` };
+      case 'memory':
+        return { word: pick('D램 값 오름', 'D램 값 내림', 'D램 값 보합'), state: pick('오름', '내림', '보합'), say: `DDR5 현물 $${nf(x.v, 2)}${isNum(x.m28) ? `, ${x.age}일간 ${sg(x.m28, 1)}` : ''}` };
+      case 'ai':
+        return { word: pick('AI 분위기 좋음', 'AI 분위기 나쁨', 'AI 분위기 보통'), state: pick('좋음', '나쁨', '보통'), say: `엔비디아 ${x.tn ? TREND_WORD[x.tn.st] : '-'}, 반도체지수 ${x.ts ? TREND_WORD[x.ts.st] : '-'}` };
+      case 'rates':
+        return { word: pick('금리 부담 줄어듦', '금리 부담 커짐', '금리 보통'), state: pick('부담 줄어듦', '부담 커짐', '보통'), say: `미국 10년물 ${nf(x.L, 2)}%, 20일 ${bpT(x.D)}` };
+      case 'fx':
+        if (x.kind === 'kr') return { word: pick('원화 강세', '원화 약세', '환율 보통'), state: pick('원화 강세', '원화 약세', '보통'), say: `원/달러 ${nf(x.X, 0)}원, 20일 ${sg((x.dX || 0) * 100, 1)}` };
+        return { word: pick('달러 싼 편', '달러 비싼 편', '환율 보통'), state: pick('달러 싼 편', '달러 비싼 편', '보통'), say: `원/달러 ${nf(x.X, 0)}원, 1년 범위의 ${nf((x.pos || 0) * 100, 0)}% 지점` };
+      case 'korea':
+        return { word: pick('코스피 상승세', '코스피 하락세', '코스피 보합'), state: pick('상승세', '하락세', '보합'), say: `코스피 20일 ${sg((x.rk || 0) * 100, 1)}` };
+      case 'market':
+        return { word: pick('공포 줄어드는 중', '공포 커지는 중', '공포 비슷'), state: pick('줄어드는 중', '커지는 중', '비슷'), say: `시장 공포 ${x.S}${isNum(x.S5) ? `(1주 전 ${x.S5})` : ''}` };
+      default:
+        return {};
+    }
+  }
 
   function trendOf(a, e) {
     const p = a[e], m20 = sma(a, e, 20), m50 = sma(a, e, 50);
@@ -363,6 +406,7 @@
     if (MEMORY.has(sym) && fs.value.f > 0 && mk.memory && !mk.memory.na && mk.memory.f <= -0.3) {
       fs.value = Object.assign({}, fs.value, { f: fs.value.f * 0.5, caveat: true, txt: fs.value.txt + ' · 현물가가 내려 낮은 배수를 절반만 믿음' });
     }
+    Object.keys(fs).forEach((k) => { if (fs[k] && !fs[k].na && !fs[k].skip) fs[k] = Object.assign({}, fs[k], plainOf(k, fs[k], sym)); });
     const crash = (mk.market && isNum(mk.market.S) && mk.market.S >= 65) || dd <= -0.40;
     // 가격 매력(V)
     const vw = VW[sym] || {}, cv = {};
@@ -386,12 +430,27 @@
 
   function dayOf(t) { const d = new Date(t + 9 * 3600e3); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); }
   function dUTC(s) { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : null; }
-  function eventsFor(ctx, sym, from, days) {
+  // 일정 시각(한국 시간, UTC ms). at "HH:MM" 이 있으면 그 값, 없으면 t 의 '오전 10시'·'새벽 4시' 같은 글에서 읽고,
+  // 그것도 없으면 그날 국내 장 마감(15:30)으로 봅니다.
+  function evMoment(e) {
+    const d = dUTC(e && e.d);
+    if (d == null) return null;
+    let hh = null, mm = 0;
+    const a = /^(\d{1,2}):(\d{2})$/.exec((e.at || '').trim());
+    if (a) { hh = +a[1]; mm = +a[2]; } else {
+      const m = /(새벽|오전|오후|저녁|밤)?\s*(\d{1,2})시(?:\s*(\d{1,2})분|\s*(반))?/.exec(e.t || '');
+      if (m) { hh = +m[2]; if ((m[1] === '오후' || m[1] === '저녁' || m[1] === '밤') && hh < 12) hh += 12; mm = m[3] ? +m[3] : m[4] ? 30 : 0; }
+    }
+    if (hh == null) { hh = 15; mm = 30; }
+    return d + (hh * 60 + mm) * 60e3 - 9 * 3600e3;
+  }
+  // ref 시각 기준으로 36시간 안에 있고, 발표 뒤 1시간이 아직 안 지난 큰 일정만 관문이 됩니다.
+  function eventsFor(ctx, sym, ref) {
     return ((ctx.R || {}).calendar || []).filter((e) => {
       if (e.firm === false || e.approx) return false;
       if ((e.for || []).indexOf(sym) < 0 || !MAJOR_TAGS.has(e.tag)) return false;
-      const d = dUTC(e.d);
-      return d != null && d >= from && d <= from + days * DAY;
+      const m = evMoment(e);
+      return m != null && ref < m + 3600e3 && m - ref <= 36 * 3600e3;
     });
   }
   function weightOf(ctx, sym, prices, fxv) {
@@ -406,16 +465,16 @@
     return tot > 0 && mine > 0 ? mine / tot : null;
   }
 
-  function gate(ctx, sym, z, r, mk, dayT, wt) {
+  function gate(ctx, sym, z, r, mk, ref, wt) {
     let G = LIDX[z];
     const notes = [];
     const st = r.fs.trend.st, dS = mk.market ? mk.market.dS : null;
     if (G === 4 && (st === 'down' || st === 'breakdown') && isNum(dS) && dS >= 3) {
       G = 3; notes.push({ k: 'knife', t: `싼 구간이지만 시장 스트레스가 1주 새 ${dS}점 올라 하락이 멈추는 날을 기다립니다` });
     }
-    const ev = eventsFor(ctx, sym, dayT, 1);
-    if (ev.length && G === 4) { G = 3; notes.push({ k: 'event', t: `${ev[0].title} 결과를 보고 삽니다` }); }
-    else if (ev.length && G === 3) notes.push({ k: 'event', t: `${ev[0].title} 결과가 먼저입니다` });
+    const ev = eventsFor(ctx, sym, ref);
+    if (ev.length && G === 4) { G = 3; notes.push({ k: 'event', title: ev[0].title, t: `${ev[0].title} 결과를 보고 삽니다` }); }
+    else if (ev.length && G === 3) notes.push({ k: 'event', title: ev[0].title, t: `${ev[0].title} 결과가 먼저입니다` });
     const H = holding(ctx, sym);
     if (H.thesis_status === 'watch' && G > 2) { G = 2; notes.push({ k: 'thesis', t: H.thesis_note || '보유 논리를 점검하는 중이라 더 사지 않습니다' }); }
     if (H.thesis_status === 'broken') { G = Math.min(G, r.score <= -15 ? 0 : 1); notes.push({ k: 'thesis', t: H.thesis_note || '보유 논리가 깨져 비중을 줄입니다' }); }
@@ -454,7 +513,7 @@
     const list = FACTORS.map((F) => {
       const x = r.fs[F.k], c = r.contrib[F.k];
       if (!x || x.na || x.skip || !isNum(c)) return null;
-      return { k: F.k, name: F.name, c, f: x.f, txt: x.txt };
+      return { k: F.k, name: F.name, term: F.term, c, f: x.f, txt: x.txt, word: x.word || '', state: x.state || x.word || '', say: x.say || x.txt };
     }).filter(Boolean);
     return list.sort((a, b) => Math.abs(b.c) - Math.abs(a.c));
   }
@@ -485,6 +544,28 @@
     return `반등 때 보유분을 줄입니다. 보유 논리를 다시 확인한 뒤에만 다시 삽니다.${n}`;
   }
 
+  // 목록에 쓰는 짧은 한 줄 행동
+  function actOf(sym, lv, plan, r, notes) {
+    const P = (v) => pxShort(sym, v);
+    const ev = (notes || []).find((n) => n.k === 'event'), kn = (notes || []).find((n) => n.k === 'knife');
+    const lo = plan.buyLo && plan.buyLo < r.p ? plan.buyLo : null, hi = plan.buyHi || null;
+    if (lv.id === 'buy') return plan.steps[1] ? `지금 4분의 1 매수, 다음은 ${P(plan.steps[1])} 아래` : '지금 4분의 1 매수';
+    if (lv.id === 'ready') {
+      if (ev && ev.title) return `${ev.title} 뒤 매수`;
+      if (kn) return lo ? `하락이 멈추거나 ${P(lo)} 아래면 매수` : '하락이 멈추면 매수';
+      if (lo) return `${P(lo)} 아래로 오면 4분의 1 매수`;
+      if (hi) return `${P(hi)} 위로 회복하면 매수`;
+      return '흐름이 돌아서면 매수';
+    }
+    if (lv.id === 'hold') {
+      if (lo) return `그대로 두기 · ${P(lo)} 아래면 추가`;
+      if (plan.trimHi) return `그대로 두기 · ${P(plan.trimHi)} 위면 일부 정리`;
+      return '그대로 두기';
+    }
+    if (lv.id === 'trim') return '더 사지 않기 · 반등 때 일부 줄이기';
+    return '반등 때 줄이기';
+  }
+
   // ------------------------------------------------------------ 실행
   function run(input, opt) {
     opt = opt || {};
@@ -495,6 +576,9 @@
     const lastP = {};
     HOLD.forEach((s) => { const S = ctx.S[s]; if (S && S.v.length) lastP[s] = S.v[S.v.length - 1]; });
     const fxS = ctx.S['KRW=X'], fxNow = fxS && fxS.v.length ? fxS.v[fxS.v.length - 1] : null;
+    // 오늘 판단에 쓰는 시장 변수는 모든 종목이 같은 최신 값(가장 늦은 기록 날짜 기준)을 봅니다.
+    const tMax = Math.max.apply(null, Object.keys(ctx.S).map((k) => { const S = ctx.S[k]; return S.t.length ? S.t[S.t.length - 1] : 0; }).concat([0]));
+    const mkNow = marketAt(ctx, tMax);
     HOLD.forEach((sym) => {
       const S = ctx.S[sym];
       if (!S || S.t.length < 70) return;
@@ -506,13 +590,17 @@
         if (!r) continue;
         const z = zoneHyst(r.V, r.T, prev);
         prev = z;
-        const g = gate(ctx, sym, z, r, mk, t, null);
+        // 지난 거래일의 관문은 그날 장 마감 시각 기준(국내 15:30, 미국 16:00 ET)
+        const g = gate(ctx, sym, z, r, mk, t + (isKR(sym) ? 6.5 : 21) * 3600e3, null);
         trail.push({ t, p: r.p, score: r.score, V: r.V, T: r.T, z, G: g.G, contrib: r.contrib });
       }
       if (!trail.length) return;
-      const last = trail[trail.length - 1], t = last.t, mk = marketAt(ctx, t), r = stockAt(ctx, sym, t, mk);
+      const last = trail[trail.length - 1], t = last.t, mk = mkNow, r = stockAt(ctx, sym, t, mk);
+      const prevZ = trail.length >= 2 ? trail[trail.length - 2].z : null;
+      last.z = zoneHyst(r.V, r.T, prevZ);
+      Object.assign(last, { score: r.score, V: r.V, T: r.T, contrib: r.contrib });
       const wt = weightOf(ctx, sym, lastP, fxNow);
-      const g = gate(ctx, sym, last.z, r, mk, Math.max(today, t), wt);
+      const g = gate(ctx, sym, last.z, r, mk, ctx.now, wt);
       last.G = g.G;
       const plan = planOf(ctx, sym, t, mk, r, last.z);
       const lv = LEVELS[g.G], base = LEVELS[LIDX[last.z]];
@@ -522,7 +610,7 @@
         const ks = Object.keys(Object.assign({}, r.contrib, prevD.contrib)).map((k) => ({ k, d: (r.contrib[k] || 0) - ((prevD.contrib || {})[k] || 0) }))
           .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
         change = { from: LEVELS[prevD.G], to: lv, changed: prevD.G !== g.G, dScore: r.score - prevD.score, prevT: prevD.t,
-          top: ks.slice(0, 2).filter((x) => Math.abs(x.d) >= 1).map((x) => ({ k: x.k, name: (FACTORS.find((F) => F.k === x.k) || {}).name, d: x.d })) };
+          top: ks.slice(0, 2).filter((x) => Math.abs(x.d) >= 1).map((x) => ({ k: x.k, name: FNAME[x.k], d: x.d })) };
       }
       const tr = trail.slice(-nTrail);
       const flips = tr.reduce((n, x, i) => n + (i > 0 && tr[i - 1].G !== x.G ? 1 : 0), 0);
@@ -531,12 +619,11 @@
         sym, name: NAME[sym], short: SHORT[sym], t, p: r.p, score: r.score, V: r.V, T: r.T, crash: r.crash, dd: r.dd,
         level: lv, base, notes: g.notes, events: g.ev, fs: r.fs, contrib: r.contrib, reasons, plan, weight: wt, change, flips,
         trail: tr.map((x) => ({ t: x.t, p: x.p, score: x.score, V: x.V, T: x.T, G: x.G, id: LEVELS[x.G].id })),
-        line: sentence(sym, lv, plan, r, g.notes, reasons)
+        line: sentence(sym, lv, plan, r, g.notes, reasons), act: actOf(sym, lv, plan, r, g.notes),
+        vWord: vWord(r.V), tWord: tWord(r.T)
       };
     });
-    const tMax = Math.max.apply(null, Object.keys(ctx.S).map((k) => { const S = ctx.S[k]; return S.t.length ? S.t[S.t.length - 1] : 0; }).concat([0]));
-    const mk = marketAt(ctx, tMax);
-    return { version: VERSION, today, items, market: mk, summary: summarize(items, mk), factors: FACTORS, levels: LEVELS, vw: VW, tw: TW };
+    return { version: VERSION, today, items, market: mkNow, summary: summarize(items, mkNow), factors: FACTORS, levels: LEVELS, vw: VW, tw: TW };
   }
 
   function summarize(items, mk) {
@@ -544,31 +631,15 @@
     const by = (id) => list.filter((x) => x.level.id === id).map((x) => x.name);
     const buys = by('buy'), ready = by('ready'), trims = by('trim').concat(by('sell')), holds = by('hold');
     const parts = [];
-    if (buys.length) parts.push(`${buys.join('·')}는 오늘 계획 금액의 4분의 1을 삽니다.`);
-    const rd = list.filter((x) => x.level.id === 'ready');
-    const evR = rd.filter((x) => (x.notes || []).some((n) => n.k === 'event')), knR = rd.filter((x) => evR.indexOf(x) < 0 && (x.notes || []).some((n) => n.k === 'knife'));
-    const plainR = rd.filter((x) => evR.indexOf(x) < 0 && knR.indexOf(x) < 0);
-    if (evR.length) parts.push(`${evR.map((x) => x.name).join('·')}는 싼 구간이지만 ${(evR[0].events[0] || {}).title || '큰 일정'} 결과를 본 뒤에 삽니다.`);
-    if (knR.length) parts.push(`${knR.map((x) => x.name).join('·')}는 싸지만 공포가 커지는 중이라 하락이 멈추는 날을 기다립니다.`);
-    if (plainR.length) parts.push(`${plainR.map((x) => x.name).join('·')}는 싸지만 아직 내리는 중이라 정해 둔 가격에 닿을 때만 삽니다.`);
-    if (holds.length) parts.push(`${holds.join('·')}는 그대로 둡니다.`);
-    if (trims.length) parts.push(`${trims.join('·')}는 더 사지 않고 반등 때 비중을 줄이는 쪽을 봅니다.`);
+    if (buys.length) parts.push(`${buys.join('·')}는 오늘 4분의 1을 삽니다.`);
+    if (ready.length) parts.push(`${ready.join('·')}는 정한 가격이나 조건을 기다립니다.`);
+    if (trims.length) parts.push(`${trims.join('·')}는 반등 때 일부 줄입니다.`);
+    if (holds.length) parts.push(`${holds.length === list.length ? '모두' : holds.join('·') + '는'} 그대로 둡니다.`);
     const head = buys.length ? '오늘은 일부를 사는 날입니다.' : ready.length ? '오늘은 기다리는 날입니다.' : trims.length ? '오늘은 지키면서 줄일 곳을 보는 날입니다.' : '오늘은 그대로 두는 날입니다.';
-    const bits = [];
-    const m = mk.market;
-    if (m && isNum(m.S)) bits.push(`시장 스트레스 ${m.S}(${m.level})${isNum(m.dS) && m.dS !== 0 ? ', 1주 새 ' + (m.dS > 0 ? '+' : '') + m.dS : ''}`);
-    const R = mk.rates;
-    if (R && isNum(R.L)) bits.push(`금리 ${isNum(R.D) && R.D <= -0.05 ? '하락' : isNum(R.D) && R.D >= 0.05 ? '상승' : '제자리'}(10년물 ${nf(R.L, 2)}%, 20일 ${bpT(R.D)})`);
-    const A = mk.ai;
-    if (A && A.ts) bits.push(`반도체 ${TREND_SHORT[A.ts.st]}(지수 50일선 대비 ${sg(A.ts.gap50, 0)})`);
-    const D = mk.memory;
-    if (D && !D.na && isNum(D.m28)) bits.push(`D램 현물 ${D.age}일 ${sg(D.m28, 1)}`);
-    const X = mk.fx;
-    if (X && isNum(X.X)) bits.push(`원/달러 ${nf(X.X, 0)}원`);
     const counts = {};
     LEVELS.forEach((L) => { counts[L.id] = list.filter((x) => x.level.id === L.id).length; });
-    return { head, body: parts.join(' '), bits, counts };
+    return { head, body: parts.join(' '), counts, groups: { buy: buys, ready, trim: trims, hold: holds } };
   }
 
-  return { run, VERSION, FACTORS, LEVELS, VW, TW, HOLD, ZONES, zoneOf, px, pxShort, sg, nf, TREND_SHORT };
+  return { run, VERSION, FACTORS, LEVELS, VW, TW, HOLD, ZONES, zoneOf, px, pxShort, sg, nf, TREND_SHORT, evMoment, vWord, tWord };
 }));

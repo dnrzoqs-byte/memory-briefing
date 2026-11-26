@@ -9,6 +9,9 @@ const MBE = require(path.join(__dirname, '..', 'assets', 'engine.js'));
 
 const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const full = process.argv.includes('--full');
+// 점검용: --now=2026-11-26T09:00+09:00 처럼 시각을 바꿔 실행할 수 있습니다.
+const nowArg = (process.argv.find((a) => a.startsWith('--now=')) || '').slice(6);
+const NOW = nowArg ? Date.parse(nowArg) : Date.now();
 const base = path.join(__dirname, '..');
 const P = JSON.parse(fs.readFileSync(args[0] || path.join(base, 'data', 'latest_briefing.json'), 'utf8'));
 const R = JSON.parse(fs.readFileSync(args[1] || path.join(base, 'data', 'research.json'), 'utf8'));
@@ -28,8 +31,8 @@ function inputFrom(P, R) {
   Object.keys(H.flows || {}).forEach((k) => { flows[k] = (H.flows[k] || []).map((x) => ({ t: dUTC(x.d), f: x.f, o: x.o, v: x.v })); });
   const cns = {};
   Object.keys(P.naver || {}).forEach((k) => { const n = P.naver[k] || {}; cns[k] = { eps: n.eps, bps: n.bps }; });
-  const k = new Date(Date.now() + 9 * 3600e3);
-  return { ser, dram, flows, cns, research: R, today: Date.UTC(k.getUTCFullYear(), k.getUTCMonth(), k.getUTCDate()), now: Date.now() };
+  const k = new Date(NOW + 9 * 3600e3);
+  return { ser, dram, flows, cns, research: R, today: Date.UTC(k.getUTCFullYear(), k.getUTCMonth(), k.getUTCDate()), now: NOW };
 }
 
 const out = MBE.run(inputFrom(P, R));
@@ -59,6 +62,6 @@ Object.keys(out.items).forEach((s) => {
   items[s] = { level: it.level.name, id: it.level.id, score: it.score, V: it.V, T: it.T,
     buyLo: it.plan.buyLo, buyHi: it.plan.buyHi, trimHi: it.plan.trimHi,
     changed: it.change ? it.change.changed : false, from: it.change ? it.change.from.name : null,
-    line: it.line, kakao: kakaoLine(s, it) };
+    line: it.line, act: it.act, kakao: kakaoLine(s, it) };
 });
-process.stdout.write(JSON.stringify({ head: out.summary.head, body: out.summary.body, bits: out.summary.bits, items }));
+process.stdout.write(JSON.stringify({ head: out.summary.head, body: out.summary.body, items }));
